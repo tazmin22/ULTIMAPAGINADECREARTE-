@@ -1,0 +1,1368 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Puertas al Mundo - Cre Arte</title>
+    <meta name="description"
+        content="Cre Arte trasciende fronteras a través de alianzas, exposiciones internacionales y festivales culturales en Bariloche y el mundo." />
+    <link rel="icon" type="image/png" href="./img/LOGO.png" />
+
+    <!-- UIkit -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.19.4/dist/css/uikit.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.19.4/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.19.4/dist/js/uikit-icons.min.js"></script>
+
+    <!-- Google Fonts (mismo set que quienes_somos) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Caveat:wght@700&family=Inter:wght@300;400;600;800;900&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* ===== BASE ===== */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #fff;
+            margin: 0;
+            padding: 0;
+            color: #111;
+            font-family: 'EB Garamond', serif;
+            overflow-x: hidden;
+            animation: fadeInPage 1.5s ease-out forwards;
+        }
+
+        @keyframes fadeInPage {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #e65c00;
+            transition: color 0.3s ease;
+        }
+
+        .t-nav {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 28px 6%;
+        }
+
+        .t-nav-logo img {
+            height: 120px;
+            width: auto;
+            display: block;
+            filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.4));
+            transition: transform 0.3s ease;
+        }
+
+        .t-nav-logo:hover img {
+            transform: scale(1.05);
+        }
+
+        .t-nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .t-nav-links a {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.72rem;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: #fff;
+            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .t-nav-links a:hover {
+            color: #f2cb7b;
+        }
+
+        @media (max-width: 860px) {
+            .t-nav-links {
+                display: none;
+            }
+        }
+
+
+
+        /* ===== HERO ===== */
+        .pm-hero {
+            position: relative;
+            width: 100%;
+            height: 65vh;
+            min-height: 520px;
+            background-image: url('./img/Fractales.jpg');
+            background-size: cover;
+            background-position: center;
+            overflow: hidden;
+        }
+
+        /* Ondas SVG blancas — idénticas a quienes_somos */
+        .mag-waves {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        /* Imagen flotante esquina superior derecha */
+        .header-corner-img {
+            position: absolute;
+            top: 20px;
+            right: 0;
+            width: 280px;
+            z-index: 5;
+            pointer-events: none;
+            opacity: 0.8;
+            filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.1));
+        }
+
+        .mag-waves path {
+            fill: none;
+            stroke: rgba(255, 255, 255, 0.4);
+            stroke-width: 40;
+            stroke-linecap: round;
+        }
+
+        /* Título hero */
+        .pm-hero-title-wrap {
+            position: absolute;
+            top: 28%;
+            left: 6%;
+            z-index: 20;
+        }
+
+        .pm-hero-title {
+            font-family: 'Playfair Display', serif;
+            font-weight: 900;
+            font-size: 5.5rem;
+            line-height: 0.85;
+            color: #fff;
+            margin: 0;
+            letter-spacing: -2px;
+            text-shadow: 2px 4px 12px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Texto lateral derecho */
+        .pm-hero-handwritten {
+            position: absolute;
+            top: 30%;
+            right: 8%;
+            z-index: 20;
+            font-family: 'Caveat', cursive;
+            color: #fff;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+            font-size: 2.2rem;
+            line-height: 1.1;
+            transform: rotate(-4deg);
+            text-align: center;
+        }
+
+        /* ===== SEPARADOR ===== */
+        .pm-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 18px;
+            padding: 50px 6%;
+        }
+
+        .pm-divider-line {
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(to right, transparent, #6a1a1c55, transparent);
+            max-width: 350px;
+        }
+
+        .pm-divider-ornament {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            color: #6a1a1c;
+            opacity: 0.6;
+        }
+
+        /* ===== SECCIÓN BASE (reutilizable) ===== */
+        .pm-section {
+            max-width: 1250px;
+            margin: 0 auto;
+            padding: 60px 5%;
+        }
+
+        /* Encabezado de sección con estilo "Nuestra GENTE" */
+        .pm-sec-header {
+            margin-bottom: 50px;
+        }
+
+        .pm-sec-title {
+            margin: 0;
+            line-height: 0.9;
+            font-family: 'Inter', sans-serif;
+            font-size: 5rem;
+            font-weight: 900;
+            color: #e65c00;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+        }
+
+        .pm-sec-title span {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 4.5rem;
+            color: #e65c00;
+            font-weight: 500;
+            text-transform: none;
+            letter-spacing: normal;
+        }
+
+        .pm-sec-desc {
+            font-family: 'EB Garamond', serif;
+            font-size: 1.2rem;
+            color: #444;
+            line-height: 1.6;
+            max-width: 620px;
+            margin-top: 22px;
+        }
+
+        /* ===== GRID DE TARJETAS ===== */
+        .pm-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3px;
+        }
+
+        .pm-card {
+            position: relative;
+            overflow: hidden;
+            cursor: default;
+        }
+
+        .pm-card img {
+            width: 100%;
+            height: 380px;
+            object-fit: cover;
+            display: block;
+            filter: grayscale(100%);
+            transition: filter 0.5s ease, transform 0.5s ease;
+        }
+
+        .pm-card:hover img {
+            filter: grayscale(0%);
+            transform: scale(1.03);
+        }
+
+        .pm-card-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 50px 20px 20px;
+            background: linear-gradient(to top, rgba(17, 17, 17, 0.92) 0%, transparent 100%);
+        }
+
+        .pm-card-tag {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.65rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #f2cb7b;
+            margin-bottom: 6px;
+        }
+
+        .pm-card-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-style: italic;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+
+        .pm-card-body {
+            font-family: 'EB Garamond', serif;
+            font-size: 1rem;
+            line-height: 1.4;
+            color: rgba(255, 255, 255, 0.75);
+            opacity: 0;
+            transform: translateY(8px);
+            transition: opacity 0.4s ease 0.05s, transform 0.4s ease 0.05s;
+        }
+
+        .pm-card:hover .pm-card-body {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ===== BANNER OSCURO (estilo Nuestra Historia) ===== */
+        .pm-dark-banner {
+            position: relative;
+            width: 100%;
+            min-height: 420px;
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            padding: 80px 10%;
+            box-sizing: border-box;
+            color: #fff;
+            margin: 40px 0;
+        }
+
+        .pm-dark-banner::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.72);
+            z-index: 1;
+        }
+
+        .pm-dark-banner-inner {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 60px;
+        }
+
+        .pm-dark-banner-title {
+            flex: 0 0 35%;
+            margin: 0;
+            line-height: 0.9;
+            font-family: 'Inter', sans-serif;
+            font-size: 4.5rem;
+            font-weight: 900;
+            color: #f2cb7b;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+        }
+
+        .pm-dark-banner-title span {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 4rem;
+            color: #f2cb7b;
+            font-weight: 500;
+            text-transform: none;
+            letter-spacing: normal;
+        }
+
+        .pm-dark-banner-text {
+            flex: 1;
+            font-family: 'EB Garamond', serif;
+            font-size: 1.25rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .pm-dark-banner-text p {
+            margin-bottom: 15px;
+        }
+
+        .pm-dark-banner-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* ===== CITA CENTRAL ===== */
+        .pm-quote-section {
+            text-align: center;
+            padding: 80px 6%;
+            background-color: #faf7f2;
+            position: relative;
+        }
+
+        .pm-quote-section::before {
+            content: '"';
+            font-family: 'Playfair Display', serif;
+            font-size: 20rem;
+            color: rgba(106, 26, 28, 0.05);
+            position: absolute;
+            top: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            line-height: 1;
+            pointer-events: none;
+        }
+
+        .pm-quote {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.4rem, 2.5vw, 2rem);
+            font-style: italic;
+            color: #6a1a1c;
+            max-width: 750px;
+            margin: 0 auto 18px;
+            line-height: 1.5;
+            position: relative;
+        }
+
+        .pm-quote-author {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #888;
+        }
+
+        /* ===== LAYOUT DE FEATURE (imagen + texto) ===== */
+        .pm-feature {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            max-width: 1250px;
+            margin: 0 auto;
+            padding: 70px 5%;
+            align-items: center;
+        }
+
+        .pm-feature.reverse {
+            direction: rtl;
+        }
+
+        .pm-feature.reverse>* {
+            direction: ltr;
+        }
+
+        .pm-feature-img {
+            position: relative;
+        }
+
+        .pm-feature-img img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            display: block;
+            box-shadow: 8px 8px 0 #ecd5b6;
+        }
+
+        .pm-feature-img .pm-img-caption {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.72rem;
+            color: #888;
+            margin-top: 10px;
+            text-align: right;
+        }
+
+        .pm-feature-text h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            font-style: italic;
+            color: #6a1a1c;
+            margin: 0 0 20px;
+            line-height: 1.1;
+        }
+
+        .pm-feature-text p {
+            font-size: 1.15rem;
+            line-height: 1.7;
+            color: #333;
+            margin-bottom: 18px;
+        }
+
+        .pm-feature-label {
+            display: inline-block;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #e65c00;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        /* ===== FOOTER ===== */
+        .mag-footer {
+            text-align: center;
+            padding: 40px;
+            background: #111;
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            margin-top: 40px;
+        }
+
+        .mag-footer a {
+            color: #f2cb7b;
+        }
+
+        .mag-footer a:hover {
+            color: #e65c00;
+        }
+
+        /* ===== DECORATIVOS: ESTRELLAS Y FLORES ===== */
+        .deco {
+            position: absolute;
+            pointer-events: none;
+            z-index: 5;
+            user-select: none;
+        }
+
+        /* Estrella de 5 puntas usando clip-path */
+        .deco-star {
+            background-color: #6a1a1c;
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+        }
+
+        .deco-star-sm {
+            width: 28px;
+            height: 28px;
+        }
+
+        .deco-star-md {
+            width: 44px;
+            height: 44px;
+        }
+
+        .deco-star-lg {
+            width: 62px;
+            height: 62px;
+        }
+
+        .deco-star-xl {
+            width: 80px;
+            height: 80px;
+        }
+
+        /* Flor SVG inline — roja oscura */
+        .deco-flower svg path {
+            fill: #6a1a1c;
+        }
+
+        /* Contenedor relativo para posicionar decos dentro de secciones */
+        .deco-wrap {
+            position: relative;
+        }
+
+        /* ===== VIAJES (TRAVEL MAGAZINE SPREAD) ===== */
+        .viajes-section {
+            background: #fff;
+            padding: 80px 0;
+            overflow: hidden;
+        }
+
+        .viajes-header {
+            text-align: center;
+            padding: 0 5% 60px;
+        }
+
+        .viajes-header .pm-sec-title {
+            font-size: 4.5rem;
+        }
+
+        .viajes-header .pm-sec-title span {
+            font-size: 4rem;
+        }
+
+        .viajes-header .pm-sec-desc {
+            margin: 20px auto 0;
+            text-align: center;
+        }
+
+        /* Una tarjeta de viaje estilo spread de revista */
+        .viaje-spread {
+            display: grid;
+            grid-template-columns: 1fr 1.6fr;
+            min-height: 520px;
+            border-top: 1px solid #eee;
+            position: relative;
+        }
+
+        .viaje-spread:last-of-type {
+            border-bottom: 1px solid #eee;
+        }
+
+        /* Alterna la dirección de cada spread con grid-column explícito */
+        .viaje-spread.flip {
+            grid-template-columns: 1.6fr 1fr;
+        }
+
+        /* En flip: fotos van a columna 1 (izquierda), texto a columna 2 (derecha) */
+        .viaje-spread.flip .viaje-photos {
+            grid-column: 1;
+            grid-row: 1;
+        }
+
+        .viaje-spread.flip .viaje-text {
+            grid-column: 2;
+            grid-row: 1;
+            border-left: 1px solid #eee;
+            border-right: none;
+        }
+
+        /* Columna de texto */
+        .viaje-text {
+            padding: 60px 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border-left: 1px solid #eee;
+        }
+
+        .viaje-eyebrow {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.65rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: #6a1a1c;
+            font-weight: 700;
+            margin-bottom: 14px;
+        }
+
+        .viaje-text h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-style: italic;
+            color: #111;
+            margin: 0 0 6px;
+            line-height: 1.1;
+        }
+
+        .viaje-text .viaje-country {
+            font-family: 'Caveat', cursive;
+            font-size: 1.4rem;
+            color: #6a1a1c;
+            margin-bottom: 22px;
+        }
+
+        .viaje-text p {
+            font-family: 'EB Garamond', serif;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #444;
+            margin-bottom: 15px;
+        }
+
+        /* Columna de fotos — dos fotos superpuestas */
+        .viaje-photos {
+            position: relative;
+            overflow: hidden;
+            background: #f5f0eb;
+        }
+
+        .viaje-photo-main {
+            width: 65%;
+            height: 70%;
+            object-fit: cover;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            display: block;
+            box-shadow: -6px -6px 0 #ecd5b6;
+        }
+
+        .viaje-photo-secondary {
+            width: 48%;
+            height: 52%;
+            object-fit: cover;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            display: block;
+            box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Anotación manuscrita en la foto */
+        .viaje-annotation {
+            position: absolute;
+            font-family: 'Caveat', cursive;
+            font-size: 1.3rem;
+            color: #6a1a1c;
+            transform: rotate(-6deg);
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        /* ===== ANIMACION REVEAL VIAJES ===== */
+        .viaje-photos {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .viaje-photos.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .viaje-text {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.7s ease 0.15s, transform 0.7s ease 0.15s;
+        }
+
+        .viaje-text.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 900px) {
+
+            .viaje-spread,
+            .viaje-spread.flip {
+                grid-template-columns: 1fr;
+            }
+
+            .viaje-spread.flip .viaje-text {
+                order: 0;
+                border-right: none;
+                border-left: 1px solid #eee;
+            }
+
+            .viaje-photos {
+                min-height: 350px;
+            }
+
+            .viaje-text {
+                padding: 40px 25px;
+            }
+
+            .viaje-text h3 {
+                font-size: 2rem;
+            }
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 900px) {
+            .pm-hero-title {
+                font-size: 3.5rem;
+            }
+
+            .pm-hero-handwritten {
+                font-size: 1.5rem;
+                right: 4%;
+                top: 18%;
+            }
+
+            .pm-hero-intro {
+                display: none;
+            }
+
+            .pm-cards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pm-card img {
+                height: 260px;
+            }
+
+            .pm-card-body {
+                opacity: 1;
+                transform: none;
+            }
+
+            .pm-feature {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .pm-feature.reverse {
+                direction: ltr;
+            }
+
+            .pm-feature-img img {
+                height: 300px;
+            }
+
+            .pm-dark-banner-inner {
+                flex-direction: column;
+                gap: 25px;
+            }
+
+            .pm-dark-banner-title {
+                font-size: 3rem;
+                flex: none;
+            }
+
+            .mag-nav {
+                gap: 4rem;
+            }
+
+            .pm-sec-title {
+                font-size: 3rem;
+            }
+
+            .pm-sec-title span {
+                font-size: 2.8rem;
+            }
+        }
+
+        /* ===== IMAGENES FLOTANTES PARALLAX 3D ===== */
+
+        /* Base de todas las imágenes flotantes */
+        .fimg {
+            position: fixed;
+            pointer-events: none;
+            will-change: transform;
+            user-select: none;
+            border-radius: 4px;
+            /* Sombra para sensación de profundidad */
+            filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.25));
+            transition: transform 0.05s linear;
+        }
+
+        /* fondo1: “en primer plano” — encima de todo el contenido */
+        .fimg-1 {
+            width: clamp(100px, 12vw, 180px);
+            top: 18vh;
+            right: 3%;
+            z-index: 200;
+            /* POR ENCIMA de heroes, secciones, nav */
+            transform-origin: center center;
+        }
+
+        /* fondo2: “capa media” — entre elementos */
+        .fimg-2 {
+            width: clamp(80px, 10vw, 150px);
+            top: 55vh;
+            left: 2%;
+            z-index: 6;
+            /* Encima de contenido base pero debajo de overlays */
+        }
+
+        /* fondo3: “fondo” — detrás del contenido de las secciones */
+        .fimg-3 {
+            width: clamp(90px, 11vw, 160px);
+            top: 82vh;
+            right: 6%;
+            z-index: 0;
+            /* DETRÁS de las secciones con fondo */
+            opacity: 0.6;
+            filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.15)) blur(0.5px);
+        }
+
+        /* === NEW PREMIUM FOOTER === */
+        .crearte-footer {
+            background-color: #000;
+            color: #fff;
+            margin-top: 50px;
+        }
+
+        .footer-wave-divider {
+            line-height: 0;
+        }
+
+        .footer-main {
+            padding: 20px 0 40px;
+            background-color: #000;
+        }
+
+        .footer-column h5 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 900;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            margin-bottom: 25px;
+            color: #fff;
+        }
+
+        .footer-column ul {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-column ul li a {
+            color: #ccc;
+            font-size: 0.9rem;
+            transition: opacity 0.3s;
+        }
+
+        .footer-column ul li a:hover {
+            opacity: 0.6;
+        }
+
+        .footer-legal {
+            margin-top: 60px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Hearts Animation */
+        .sacaraat-trigger {
+            position: relative;
+            cursor: pointer;
+            display: inline-block;
+            color: #111;
+            transition: transform 0.3s;
+        }
+
+        .sacaraat-trigger:hover {
+            transform: scale(1.1);
+        }
+
+        .heart-particle {
+            position: fixed;
+            pointer-events: none;
+            color: #ff4d4d;
+            font-size: 1.2rem;
+            animation: floatUp 1s ease-out forwards;
+            z-index: 9999;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) scale(0) rotate(0deg);
+                opacity: 0;
+            }
+
+            20% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-60px) scale(1.8) rotate(20deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <!-- ── NAVEGACIÓN ─────────────────────────── -->
+    <nav class="t-nav">
+        <a href="./pagina_principal.html" class="t-nav-logo">
+            <img src="./img/LOGO.png" alt="Cre Arte Logo">
+        </a>
+        <div class="t-nav-links">
+            <a href="./pagina_principal.html">Inicio</a>
+            <a href="./talleres.html">Talleres</a>
+            <a href="./quienes_somos.html">Quiénes Somos</a>
+            <a href="./puertas_al_mundo.html">Puertas al Mundo</a>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="pm-hero">
+
+        <div class="pm-hero-title-wrap">
+            <h1 class="pm-hero-title">
+                Puertas<br>al<br>Mundo
+            </h1>
+        </div>
+        <div class="pm-hero-handwritten">
+            "ARTE SIN<br>FRONTERAS,<br>CULTURA<br>SIN LÍMITES"
+        </div>
+    </header>
+
+    <!-- SEPARADOR -->
+    <div class="pm-divider">
+        <div class="pm-divider-line"></div>
+        <div class="pm-divider-ornament">✦</div>
+        <div class="pm-divider-line"></div>
+    </div>
+
+    <!-- ===== ALIANZAS ===== -->
+    <section class="pm-section" id="alianzas">
+        <div class="pm-sec-header">
+            <div class="pm-sec-title"><span>Nuestras</span><br>ALIANZAS</div>
+            <p class="pm-sec-desc">
+                Construimos vínculos duraderos con instituciones culturales, universidades y centros de arte de toda
+                América Latina y Europa. Cada alianza es un nuevo canal para intercambiar ideas, técnicas y visiones del
+                mundo.
+            </p>
+        </div>
+
+        <div class="pm-cards-grid">
+            <div class="pm-card">
+                <img src="./img/crearte.jpg" alt="Alianza Cultural">
+                <div class="pm-card-info">
+                    <div class="pm-card-tag">Buenos Aires</div>
+                    <div class="pm-card-title">Centro Cultural Recoleta</div>
+                    <p class="pm-card-body">Programa conjunto de intercambio docente y co-producción de exhibiciones en
+                        Buenos Aires y Bariloche.</p>
+                </div>
+            </div>
+            <div class="pm-card">
+                <img src="./img/Fractales.jpg" alt="Alianza Internacional">
+                <div class="pm-card-info">
+                    <div class="pm-card-tag">Europa</div>
+                    <div class="pm-card-title">Instituto Cervantes</div>
+                    <p class="pm-card-body">Colaboración para exhibir arte patagónico en España, vinculando la identidad
+                        local con el público internacional.</p>
+                </div>
+            </div>
+            <div class="pm-card">
+                <img src="./img/cuadros.webp" alt="Alianza Regional">
+                <div class="pm-card-info">
+                    <div class="pm-card-tag">Región</div>
+                    <div class="pm-card-title">Red de Museos Patagónicos</div>
+                    <p class="pm-card-body">Integración en una red regional que permite itinerar obras por museos de
+                        toda la Patagonia argentina y chilena.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CITA -->
+    <div class="pm-quote-section">
+        <p class="pm-quote">
+            "Una alianza entre artistas es el contrato más honesto que puede firmar la humanidad."
+        </p>
+        <div class="pm-quote-author">— Tony Mora, fundador de Cre Arte</div>
+    </div>
+
+    <!-- ===== EXPOSICIONES – Banner oscuro ===== -->
+    <div class="pm-dark-banner" style="background-image: url('./img/Peña.JPG');">
+        <div class="pm-dark-banner-inner">
+            <h2 class="pm-dark-banner-title"><span>Nuestras</span><br>EXPO&shy;SICIONES</h2>
+            <div class="pm-dark-banner-text">
+                <p>
+                    Las exposiciones de Cre Arte son ventanas abiertas al universo creativo de nuestros artistas. Desde
+                    muestras íntimas en nuestro espacio hasta grandes montajes en escenarios internacionales, cada
+                    exhibición cuenta una historia única de color, forma y emoción.
+                </p>
+                <p>
+                    Hemos llevado obras a galerías de Buenos Aires, Santiago de Chile, Madrid y Berlín, demostrando que
+                    el arte de la Patagonia tiene algo poderoso que decirle al mundo.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- EXPOSICIONES – Feature grid -->
+    <div class="pm-feature" id="exposiciones">
+        <div class="pm-feature-img">
+            <img src="./img/Antonio Mora. Mujer con sombrero. 0,89 x 0,70. Oleo- 2006.jpg" alt="Exposición obra">
+            <div class="pm-img-caption">Mujer con sombrero — Tony Mora. Óleo, 2006</div>
+        </div>
+        <div class="pm-feature-text">
+            <div class="pm-feature-label">Exhibición permanente</div>
+            <h3>El legado de Tony Mora en el mundo</h3>
+            <p>
+                La obra de nuestro fundador ha recorrido continentes. Sus retratos cargados de profundidad psicológica y
+                su uso magistral del óleo han capturado la atención de coleccionistas y críticos de arte de múltiples
+                países.
+            </p>
+            <p>
+                Cada exposición itinerante lleva consigo no solo lienzos, sino el espíritu de Bariloche: su montaña, su
+                cielo y la energía de quienes eligieron al arte como forma de vida.
+            </p>
+        </div>
+    </div>
+
+    <div class="pm-feature reverse">
+        <div class="pm-feature-img">
+            <img src="./img/pintura.jpg" alt="Exposición colectiva">
+            <div class="pm-img-caption">Exposición colectiva — alumnos y docentes Cre Arte</div>
+        </div>
+        <div class="pm-feature-text">
+            <div class="pm-feature-label">Muestras colectivas</div>
+            <h3>Muchas voces, un solo lenguaje</h3>
+            <p>
+                Nuestras exposiciones colectivas celebran la diversidad dentro de la unidad. Cada alumno y cada docente
+                aporta su visión personal, creando conjuntos de obras que dialogan entre sí y con el espectador.
+            </p>
+            <p>
+                Estas muestras se realizan anualmente y en colaboración con espacios culturales locales e
+                internacionales.
+            </p>
+        </div>
+    </div>
+
+    <!-- SEPARADOR -->
+    <div class="pm-divider">
+        <div class="pm-divider-line"></div>
+        <div class="pm-divider-ornament">✦</div>
+        <div class="pm-divider-line"></div>
+    </div>
+
+    <!-- ===== FESTIVALES ===== -->
+    <section class="pm-section" id="festivales">
+        <div class="pm-sec-header">
+            <div class="pm-sec-title"><span>Nuestros</span><br>FESTIVALES</div>
+            <p class="pm-sec-desc">
+                Los festivales son el corazón palpitante de Cre Arte. Encuentros donde la música, la danza, la pintura y
+                la comunidad se fusionan en celebraciones únicas que convocan a artistas y espectadores de toda la
+                región.
+            </p>
+        </div>
+
+        <div class="pm-cards-grid">
+            <div class="pm-card">
+                <img src="./img/Murga.jpg" alt="Festival de Arte Urbano">
+                <div class="pm-card-info">
+                    <div class="pm-card-tag">Anual · Julio</div>
+                    <div class="pm-card-title">Festival de Arte Bariloche</div>
+                    <p class="pm-card-body">Una semana de intervenciones en espacios públicos, performances, murales
+                        colectivos y encuentros con artistas invitados.</p>
+                </div>
+            </div>
+            <div class="pm-card">
+                <img src="./img/Peña.JPG" alt="Noche de Arte">
+                <div class="pm-card-info">
+                    <div class="pm-card-tag">Mensual</div>
+                    <div class="pm-card-title">Noches de Arte Cre Arte</div>
+                    <p class="pm-card-body">Veladas culturales mensuales donde alumnos, docentes e invitados presentan
+                        sus obras en un ambiente íntimo y vibrante.</p>
+                </div>
+            </div>
+            <div class="pm-card">
+                <img src="./img/tiempo de amar.JPG" alt="Festival Internacional">
+                <div class="pm-card-info">
+                    <div class="pm-card-tag">Bienal · Noviembre</div>
+                    <div class="pm-card-title">Bienal Patagónica de Arte</div>
+                    <p class="pm-card-body">Un evento bienal que convoca artistas de Argentina, Chile, Uruguay y Brasil
+                        para un gran encuentro cultural en la Patagonia.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEPARADOR -->
+    <div class="pm-divider">
+        <div class="pm-divider-line"></div>
+        <div class="pm-divider-ornament">✦</div>
+        <div class="pm-divider-line"></div>
+    </div>
+
+    <!-- ===== VIAJES ===== -->
+    <section class="viajes-section" id="viajes">
+
+        <div class="viajes-header">
+            <div class="pm-sec-title"><span>Nuestros</span><br>VIAJES</div>
+            <p class="pm-sec-desc">
+                Cada viaje es un lienzo nuevo. Llevamos a nuestros alumnos y docentes a explorar destinos que inspiran,
+                para que el mundo se convierta en su musa.
+            </p>
+        </div>
+
+        <!-- SPREAD 1: Roma — texto izq, fotos der -->
+        <div class="viaje-spread">
+            <div class="viaje-text">
+                <div class="viaje-eyebrow">Italia · Exposición Internacional</div>
+                <h3>Roma</h3>
+                <div class="viaje-country">♥ La Ciudad Eterna</div>
+                <p>
+                    En la cuna misma del arte occidental, nuestros artistas participaron de una muestra colectiva en la
+                    Galleria Nazionale. Caminar por sus calles milenarias fue encontrar inspiración en cada piedra, en
+                    cada fresco, en cada plaza.
+                </p>
+                <p>
+                    Fue un encuentro con la historia del arte que transformó por completo la mirada de quienes viajaron.
+                </p>
+            </div>
+            <div class="viaje-photos">
+                <img class="viaje-photo-secondary" src="./img/roma.jpg" alt="Roma">
+                <img class="viaje-photo-main" src="./img/Fractales.jpg" alt="Arte en Roma">
+                <div class="viaje-annotation" style="bottom: 38%; left: 44%;">la città eterna…</div>
+            </div>
+        </div>
+
+        <!-- SPREAD 2: Patagonia — fotos izq (.flip), texto der -->
+        <div class="viaje-spread flip">
+            <div class="viaje-text">
+                <div class="viaje-eyebrow">Patagonia · Residencia Artística</div>
+                <h3>El Bolsón</h3>
+                <div class="viaje-country">♥ Tierra de Arte y Montaña</div>
+                <p>
+                    A tan solo horas de Bariloche, El Bolsón nos regaló una semana de residencia artística plena.
+                    Pinturas al aire libre, encuentros con artesanos locales y talleres bajo el cielo patagónico.
+                </p>
+                <p>
+                    Un viaje que nos recordó que la inspiración siempre está más cerca de lo que imaginamos.
+                </p>
+            </div>
+            <div class="viaje-photos">
+                <img class="viaje-photo-secondary" src="./img/crearte.jpg" alt="El Bolsón">
+                <img class="viaje-photo-main" src="./img/Murga.jpg" alt="Patagonia">
+                <div class="viaje-annotation" style="top: 30%; right: 42%; transform:rotate(5deg);">entre cerros…</div>
+            </div>
+        </div>
+
+        <!-- SPREAD 3: Buenos Aires — texto izq, fotos der -->
+        <div class="viaje-spread">
+            <div class="viaje-text">
+                <div class="viaje-eyebrow">Argentina · Exposición Colectiva</div>
+                <h3>Buenos Aires</h3>
+                <div class="viaje-country">♥ La Meca del Arte Latinoamericano</div>
+                <p>
+                    La gran metrópoli nos abrió sus puertas. Nuestros artistas exhibieron en el barrio palermitano de
+                    las galerías, recibiendo críticas elogiosas de coleccionistas y curadores internacionales.
+                </p>
+                <p>
+                    El encuentro con otros artistas de Latinoamérica encendió en nuestro equipo una llama que sigue
+                    ardiendo en cada obra.
+                </p>
+            </div>
+            <div class="viaje-photos">
+                <img class="viaje-photo-secondary" src="./img/portada1.jpg" alt="Buenos Aires">
+                <img class="viaje-photo-main" src="./img/Peña.JPG" alt="Exposición Buenos Aires">
+                <div class="viaje-annotation" style="top: 42%; left: 30%; transform:rotate(-8deg);">la gran ciudad…
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <footer class="crearte-footer">
+        <div class="footer-wave-divider">
+            <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+                <path fill="#000"
+                    d="M0,64L120,74.7C240,85,480,107,720,106.7C960,107,1200,85,1320,74.7L1440,64L1440,120L1320,120C1200,120,960,120,720,120C480,120,240,120,120,120L0,120Z">
+                </path>
+            </svg>
+        </div>
+        <div class="footer-main">
+            <div class="uk-container">
+                <div class="uk-grid-large uk-child-width-1-2 uk-child-width-1-4@m" uk-grid>
+                    <div class="footer-column">
+                        <h5>Explorar</h5>
+                        <ul>
+                            <li><a href="pagina_principal.html">Inicio</a></li>
+                            <li><a href="quienes_somos.html">Quiénes Somos</a></li>
+                            <li><a href="talleres.html">Talleres</a></li>
+                            <li><a href="puertas_al_mundo.html">Puertas al Mundo</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h5>Seguinos</h5>
+                        <ul>
+                            <li><a href="404.html">Instagram</a></li>
+                            <li><a href="404.html">Facebook</a></li>
+                            <li><a href="404.html">Twitter</a></li>
+                            <li><a href="404.html">YouTube</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h5>Contacto</h5>
+                        <ul>
+                            <li>Quaglia 540</li>
+                            <li>Bariloche, Río Negro</li>
+                            <li>Argentina</li>
+                        </ul>
+                    </div>
+                    <div class="footer-column uk-text-right@m">
+                        <img src="./img/LOGO.png" width="90" alt="Logo Footer">
+                        <p class="uk-margin-small-top uk-text-bold">CRE ARTE</p>
+                    </div>
+                </div>
+                <div class="footer-legal">
+                    <div>© 2026 Cre Arte Bariloche.</div>
+                    <div>Created by <strong class="sacaraat-trigger">SACRAART</strong></div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ── REVEAL VIAJES ──────────────────────────────────────────────
+        const revealTargets = document.querySelectorAll('.viaje-photos, .viaje-text');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15 });
+        revealTargets.forEach(el => observer.observe(el));
+
+        // ── PARALLAX 3D FLOTANTE ───────────────────────────────────────
+        // Cada imagen tiene una velocidad distinta que simula distancia al observador.
+        // fimg1 (primer plano)  → se mueve MÁS: sensación de objeto cercano
+        // fimg2 (capa media)    → velocidad intermedia
+        // fimg3 (fondo/atrás)   → se mueve MENOS: sensación de objeto lejano
+
+        const parallaxItems = [
+            { el: document.getElementById('fimg1'), speed: 0.28 },   // rápido = cerca
+            { el: document.getElementById('fimg2'), speed: 0.14 },   // medio
+            { el: document.getElementById('fimg3'), speed: 0.06 },   // lento = lejos
+        ];
+
+        // Leve rotación suave con el mouseove para reforzar el efecto 3D
+        let mx = 0, my = 0;
+        document.addEventListener('mousemove', e => {
+            mx = (e.clientX / window.innerWidth - 0.5) * 2;  // -1 a 1
+            my = (e.clientY / window.innerHeight - 0.5) * 2;
+        });
+
+        function animateParallax() {
+            const scrollY = window.scrollY;
+            parallaxItems.forEach(({ el, speed }, i) => {
+                if (!el) return;
+                // Desplazamiento vertical según scroll
+                const yShift = scrollY * speed;
+                // Leve tilt 3D por mouseove (más pronunciado en el primer plano)
+                const tiltX = my * (6 - i * 2);   // fimg1=6°, fimg2=4°, fimg3=2°
+                const tiltY = mx * (6 - i * 2);
+                const rotZ = mx * (2 - i * 0.5); // rotación sutil en Z
+                el.style.transform =
+                    `translateY(${-yShift}px) ` +
+                    `perspective(600px) ` +
+                    `rotateX(${tiltX}deg) rotateY(${tiltY}deg) rotateZ(${rotZ}deg)`;
+            });
+            requestAnimationFrame(animateParallax);
+        }
+
+        animateParallax();
+    </script>
+
+
+    <script>
+        const triggerSac = document.querySelector('.sacaraat-trigger');
+        if (triggerSac) {
+            triggerSac.addEventListener('mousemove', (e) => {
+                const heart = document.createElement('span');
+                heart.innerHTML = '❤';
+                heart.className = 'heart-particle';
+
+                const x = e.clientX - 10;
+                const y = e.clientY - 10;
+
+                heart.style.left = x + 'px';
+                heart.style.top = y + 'px';
+                heart.style.position = 'fixed';
+
+                const size = Math.random() * 0.8 + 0.5;
+                heart.style.setProperty('--scale', size); // Use CSS variable for scale
+
+                document.body.appendChild(heart);
+
+                setTimeout(() => heart.remove(), 1000);
+            });
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Quiénes Somos - Cre Arte</title>
+    <link rel="icon" type="image/png" href="./img/LOGO.png" />
+
+    <!-- Fuentes para la estética Revista (Magazine) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Caveat:wght@700&family=Inter:wght@300;400;600;800&display=swap"
+        rel="stylesheet">
+
+    <!-- UIkit (Solo por si acaso se necesitan íconos, aunque la maquetación es a medida) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.19.4/dist/css/uikit.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.19.4/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.19.4/dist/js/uikit-icons.min.js"></script>
+
+    <style>
+        body {
+            background-color: #fff;
+            margin: 0;
+            padding: 0;
+            color: #111;
+            font-family: 'EB Garamond', serif;
+            overflow-x: hidden;
+            animation: fadeInPage 1.5s ease-out forwards;
+        }
+
+        @keyframes fadeInPage {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #e65c00;
+            transition: color 0.3s ease;
+        }
+
+        /* ===== NAVEGACIÓN UNIFICADA ===== */
+        .t-nav {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 28px 6%;
+        }
+
+        .t-nav-logo img {
+            height: 120px;
+            width: auto;
+            display: block;
+            filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.4));
+            transition: transform 0.3s ease;
+        }
+
+        .t-nav-logo:hover img {
+            transform: scale(1.05);
+        }
+
+        .t-nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .t-nav-links a {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.72rem;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: #111;
+        }
+
+        .t-nav-links a:hover {
+            color: #e65c00;
+        }
+
+        @media (max-width: 860px) {
+            .t-nav-links {
+                display: none;
+            }
+        }
+
+        /* ===== HERO SECTION (Top Half) ===== */
+        .mag-hero {
+            position: relative;
+            width: 100%;
+            height: 60vh;
+            min-height: 500px;
+            background-image: url('./img/Roma.JPG');
+            background-size: cover;
+            background-position: center;
+            overflow: hidden;
+        }
+
+        /* Olas Blancas superpuestas */
+        .mag-waves {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .mag-waves path {
+            fill: none;
+            stroke: rgba(255, 255, 255, 0.4);
+            stroke-width: 40;
+            stroke-linecap: round;
+        }
+
+        /* Gran Título en la parte superior izquierda */
+        .mag-hero-title-container {
+            position: absolute;
+            top: 25%;
+            left: 4%;
+            z-index: 20;
+            max-width: 500px;
+        }
+
+        .mag-hero-title {
+            font-family: 'Playfair Display', serif;
+            font-weight: 900;
+            font-size: clamp(3rem, 8vw, 5.5rem);
+            line-height: 0.85;
+            color: #6a1a1c;
+            margin: 0;
+            letter-spacing: -2px;
+        }
+
+        /* Texto introductorio a la izquierda sobre la imagen */
+        .mag-hero-intro {
+            position: absolute;
+            bottom: 15%;
+            left: 4%;
+            width: 300px;
+            z-index: 20;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 15px;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .drop-cap {
+            float: left;
+            font-size: 3.5rem;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            font-family: 'Playfair Display', serif;
+            color: #6a1a1c;
+        }
+
+        /* Texto cursivo "Bordes/Handwritten" a la derecha */
+        .mag-hero-handwritten {
+            position: absolute;
+            top: 30%;
+            right: 8%;
+            z-index: 20;
+            font-family: 'Caveat', cursive;
+            color: #fff;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+            font-size: 2.5rem;
+            line-height: 1.1;
+            transform: rotate(-5deg);
+            text-align: center;
+        }
+
+        /* ===== MAIN CONTENT (ABOUT US LAYOUT) ===== */
+        .about-us-section {
+            background-color: #f6f3eb;
+            position: relative;
+        }
+
+        .about-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 80px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .about-img-left {
+            width: 28%;
+            position: relative;
+        }
+
+        .about-img-left img {
+            width: 100%;
+            height: auto;
+            display: block;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .circle-stamp {
+            position: absolute;
+            top: -40px;
+            right: -40px;
+            width: 120px;
+            height: 120px;
+            border: 2px dashed #333;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.6rem;
+            color: #333;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-align: center;
+            padding: 10px;
+            animation: rotateStamp 20s linear infinite;
+        }
+
+        @keyframes rotateStamp {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .about-text-center {
+            width: 35%;
+            text-align: center;
+            padding-top: 40px;
+        }
+
+        .about-welcome {
+            font-family: 'Caveat', cursive;
+            font-size: 2.8rem;
+            color: #615a4c;
+            margin-bottom: 5px;
+        }
+
+        .about-headline {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            color: #7b8b64;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 0 0 20px 0;
+            line-height: 1.1;
+        }
+
+        .about-desc {
+            font-family: 'EB Garamond', serif;
+            font-size: 1.1rem;
+            color: #444;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .btn-story {
+            display: inline-block;
+            background-color: #f2cb7b;
+            color: #333;
+            text-decoration: none;
+            padding: 12px 35px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: background-color 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-story:hover {
+            background-color: #e5b962;
+        }
+
+        .about-img-right {
+            width: 28%;
+            margin-top: 150px;
+        }
+
+        .about-img-right img {
+            width: 100%;
+            height: auto;
+            display: block;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-bottom-banner {
+            width: 100%;
+            height: 60vh;
+            min-height: 500px;
+            background: url('./img/Peña.JPG') center/cover no-repeat;
+            position: relative;
+        }
+
+        .bottom-handwritten {
+            position: absolute;
+            top: 15%;
+            left: 10%;
+            font-family: 'Caveat', cursive;
+            font-size: 2.5rem;
+            color: #1a4941;
+            max-width: 500px;
+            line-height: 1.2;
+            transform: rotate(-3deg);
+        }
+
+        /* ===== NUESTRO STAFF ===== */
+        .our-people-section {
+            position: relative;
+            padding: 80px 5%;
+            background-color: #fff;
+            background-image: radial-gradient(#ddd 1.5px, transparent 1.5px);
+            background-size: 30px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 20px auto;
+            overflow: hidden;
+            min-height: 700px;
+        }
+
+        .op-content-left {
+            flex: 0 0 40%;
+            padding-right: 50px;
+        }
+
+        .op-title {
+            margin: 0;
+            line-height: 0.9;
+            font-family: 'Inter', sans-serif;
+            font-size: 5.5rem;
+            font-weight: 900;
+            color: #e65c00;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+        }
+
+        .op-title span {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 5rem;
+            color: #e65c00;
+            font-weight: 500;
+            text-transform: none;
+            letter-spacing: normal;
+        }
+
+        .op-desc {
+            font-family: 'EB Garamond', serif;
+            font-size: 1.25rem;
+            color: #333;
+            line-height: 1.5;
+            margin-top: 30px;
+            max-width: 450px;
+        }
+
+        .op-images-right {
+            flex: 0 0 60%;
+            position: relative;
+            height: 700px;
+        }
+
+        .op-card {
+            position: absolute;
+            background: #fdfdfd;
+            padding: 10px;
+            box-shadow: -5px 15px 25px rgba(0, 0, 0, 0.15);
+            border: 1px solid #eaeaea;
+            transition: transform 0.3s ease, z-index 0s;
+        }
+
+        .op-card img {
+            width: 280px;
+            height: 350px;
+            object-fit: cover;
+            filter: grayscale(100%);
+            display: block;
+            transition: filter 0.3s ease;
+        }
+
+        .op-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 15px;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease;
+            text-align: center;
+        }
+
+        .op-card:hover .op-info {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .op-info h4 {
+            font-family: 'Playfair Display', serif;
+            margin: 0;
+            font-size: 1.2rem;
+            color: #e65c00;
+        }
+
+        .op-info p {
+            font-family: 'EB Garamond', serif;
+            margin: 5px 0 0;
+            font-size: 0.9rem;
+            color: #333;
+        }
+
+        .op-card .op-number {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            color: #e65c00;
+            z-index: 2;
+            font-weight: 600;
+        }
+
+        .op-card:hover {
+            transform: scale(1.05) rotate(0deg) !important;
+            z-index: 50 !important;
+        }
+
+        .op-card:hover img {
+            filter: grayscale(0%);
+        }
+
+        .op-card-1 {
+            top: 0;
+            left: 20%;
+            transform: rotate(-5deg);
+            z-index: 10;
+        }
+
+        .op-card-2 {
+            top: 80px;
+            right: 15%;
+            transform: rotate(8deg);
+            z-index: 11;
+        }
+
+        .op-card-3 {
+            bottom: 30%;
+            left: 10%;
+            transform: rotate(-3deg);
+            z-index: 12;
+        }
+
+        .op-card-4 {
+            bottom: 0;
+            right: 25%;
+            transform: rotate(4deg);
+            z-index: 13;
+        }
+
+        /* ===== HISTORIA ===== */
+        .history-section {
+            position: relative;
+            width: 100%;
+            min-height: 450px;
+            background: url('./img/crearte.jpg') center/cover no-repeat fixed;
+            display: flex;
+            align-items: center;
+            padding: 80px 10%;
+            color: #fff;
+        }
+
+        .history-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.75);
+            z-index: 1;
+        }
+
+        .history-container {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 50px;
+        }
+
+        .history-title {
+            flex: 1;
+            margin: 0;
+            line-height: 0.9;
+            font-family: 'Inter', sans-serif;
+            font-size: 5.5rem;
+            font-weight: 900;
+            color: #f2cb7b;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+        }
+
+        .history-title span {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 5rem;
+            color: #f2cb7b;
+            font-weight: 500;
+        }
+
+        .history-text {
+            flex: 2;
+            font-family: 'EB Garamond', serif;
+            font-size: 1.25rem;
+            line-height: 1.5;
+            color: #ccc;
+        }
+
+        .mag-footer {
+            text-align: center;
+            padding: 40px;
+            background: #111;
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 900px) {
+
+            .history-container,
+            .about-top,
+            .our-people-section {
+                flex-direction: column;
+                gap: 40px;
+            }
+
+            .op-content-left,
+            .op-images-right {
+                flex: none;
+                width: 100%;
+            }
+
+            .op-images-right {
+                height: auto;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 20px;
+            }
+
+            .op-card {
+                position: static;
+                transform: none !important;
+            }
+
+            .op-card img {
+                width: 100%;
+                height: auto;
+            }
+
+            .history-title,
+            .op-title {
+                font-size: 3rem;
+            }
+
+            .history-title span,
+            .op-title span {
+                font-size: 2.8rem;
+            }
+
+            .mag-hero-handwritten {
+                display: none;
+            }
+        }
+
+        /* === NEW PREMIUM FOOTER === */
+        .crearte-footer {
+            background-color: #829068;
+            color: #111;
+            margin-top: 0;
+        }
+
+        .footer-wave-divider {
+            line-height: 0;
+        }
+
+        .footer-main {
+            padding: 20px 0 40px;
+            background-color: #829068;
+        }
+
+        .footer-column h5 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 900;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            margin-bottom: 25px;
+            color: #111;
+        }
+
+        .footer-column ul {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-column ul li a {
+            color: #333;
+            font-size: 0.9rem;
+            transition: opacity 0.3s;
+        }
+
+        .footer-column ul li a:hover {
+            opacity: 0.6;
+        }
+
+        .footer-legal {
+            margin-top: 60px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Hearts Animation */
+        .sacaraat-trigger {
+            position: relative;
+            cursor: pointer;
+            display: inline-block;
+            color: #111;
+            transition: transform 0.3s;
+        }
+
+        .sacaraat-trigger:hover {
+            transform: scale(1.1);
+        }
+
+        .heart-particle {
+            position: fixed;
+            pointer-events: none;
+            color: #ff4d4d;
+            font-size: 1.2rem;
+            animation: floatUp 1s ease-out forwards;
+            z-index: 9999;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) scale(0) rotate(0deg);
+                opacity: 0;
+            }
+
+            20% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-60px) scale(1.8) rotate(20deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ── NAVEGACIÓN ─────────────────────────── -->
+    <nav class="t-nav">
+        <a href="./pagina_principal.html" class="t-nav-logo">
+            <img src="./img/LOGO.png" alt="Cre Arte Logo">
+        </a>
+        <div class="t-nav-links">
+            <a href="./pagina_principal.html">Inicio</a>
+            <a href="./talleres.html">Talleres</a>
+            <a href="./quienes_somos.html">Quiénes Somos</a>
+            <a href="./puertas_al_mundo.html">Puertas al Mundo</a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header class="mag-hero">
+        <svg class="mag-waves" viewBox="0 0 1440 600" preserveAspectRatio="xMidYMid slice">
+            <path d="M-100,150 C200,50 400,300 700,100 C1000,-100 1200,250 1600,150" />
+            <path d="M-50,300 C250,200 450,450 750,250 C1050,50 1250,400 1650,300" stroke-width="30" />
+            <path d="M-100,450 C200,350 400,600 700,400 C1000,200 1200,550 1600,450" />
+            <path d="M-100,600 C200,500 400,750 700,550 C1000,350 1200,700 1600,600 L1600,650 L-100,650 Z"
+                fill="rgba(255, 255, 255, 0.3)" stroke="none" />
+        </svg>
+
+        <div class="mag-hero-title-container">
+            <h1 class="mag-hero-title">Quiénes Somos</h1>
+        </div>
+
+        <div class="mag-hero-handwritten">
+            "MANTENIENDO<br>ASPECTOS<br>DE NUESTRA<br>HISTORIA"
+        </div>
+
+        <div class="mag-hero-intro">
+            <p><span class="drop-cap">E</span>s interesante recordar que nuestra historia comenzó no solo en estos
+                espacios creativos, sino como un legado familiar. A través de los años, Cre Arte se convirtió en una
+                institución que alberga arte, pasión y creatividad artesanal.</p>
+        </div>
+    </header>
+
+    <!-- ABOUT SECTION -->
+    <section class="about-us-section" id="historia">
+        <div class="about-top">
+            <div class="about-img-left">
+                <div class="circle-stamp">CRE ARTE • EST. 2006 •</div>
+                <img src="./img/pintor.webp" alt="Pintor">
+            </div>
+            <div class="about-text-center">
+                <div class="about-welcome">Bienvenido!</div>
+                <h2 class="about-headline">SOMOS CRE ARTE!</h2>
+                <p class="about-desc">Artistas, Educadores, Creadores Apasionados. Amantes del arte y del impacto
+                    cultural. Estamos aquí para guiarte en este hermoso viaje explorando juntos la pintura y las mejores
+                    historias desde nuestro espacio artístico.</p>
+                <a href="#staff" class="btn-story">Nuestra Historia</a>
+            </div>
+            <div class="about-img-right">
+                <img src="./img/Tony Mora. Autoretrato. 0,61 x 0,62 Acrilico 2007.jpg" alt="Tony Mora">
+            </div>
+        </div>
+        <div class="about-bottom-banner">
+            <div class="bottom-handwritten">
+                Creemos en disfrutar la vida simple,<br>regresar a nuestras raíces estéticas,<br>y ayudar a otros a
+                pintar.
+            </div>
+        </div>
+    </section>
+
+    <!-- HISTORY SECTION -->
+    <section class="history-section">
+        <div class="history-container">
+            <h2 class="history-title"><span>Nuestra</span><br>Historia</h2>
+            <div class="history-text">
+                <p>Todo comenzó en 2006, impulsados por la creencia de que el arte es un lenguaje universal que
+                    trasciende fronteras. Nuestra misión ha sido siempre empoderar a las mentes creativas, brindándoles
+                    un espacio donde la tradición se encuentra con la innovación.</p>
+                <p>A través de los años, hemos crecido de ser un pequeño taller familiar a convertirnos en un referente
+                    cultural en Bariloche, formando a cientos de artistas que hoy llevan nuestra impronta por todo el
+                    mundo.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- STAFF SECTION -->
+    <section class="our-people-section" id="staff">
+        <div class="op-content-left">
+            <h2 class="op-title"><span>Nuestra</span><br>GENTE</h2>
+            <p class="op-desc">Nuestro talentoso equipo de profesores se compromete a brindarte la más cálida educación
+                y orientación artística.</p>
+        </div>
+        <div class="op-images-right">
+            <div class="op-card op-card-1">
+                <span class="op-number">01</span>
+                <img src="./img/Tony Mora. Autoretrato. 0,61 x 0,62 Acrilico 2007.jpg" alt="Tony Mora">
+                <div class="op-info">
+                    <h4>Tony Mora</h4>
+                    <p>Fundador y Maestro.</p>
+                </div>
+            </div>
+            <div class="op-card op-card-2">
+                <span class="op-number">02</span>
+                <img src="./img/Lolo Perez. Acrilico 60x62cm.JPG" alt="Lolo">
+                <div class="op-info">
+                    <h4>Lolo Pérez</h4>
+                    <p>Maestro del color.</p>
+                </div>
+            </div>
+            <div class="op-card op-card-3">
+                <span class="op-number">03</span>
+                <img src="./img/pintor.webp" alt="Ana">
+                <div class="op-info">
+                    <h4>Ana Rossi</h4>
+                    <p>Coordinadora.</p>
+                </div>
+            </div>
+            <div class="op-card op-card-4">
+                <span class="op-number">04</span>
+                <img src="./img/Acrilico.JPG" alt="Marta">
+                <div class="op-info">
+                    <h4>Marta Gómez</h4>
+                    <p>Especialista creativa.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="crearte-footer" style="background-color: #829068; margin-top: 0;">
+        <div class="footer-wave-divider">
+            <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+                <path fill="#829068"
+                    d="M0,64L120,74.7C240,85,480,107,720,106.7C960,107,1200,85,1320,74.7L1440,64L1440,120L1320,120C1200,120,960,120,720,120C480,120,240,120,120,120L0,120Z">
+                </path>
+            </svg>
+        </div>
+        <div class="footer-main">
+            <div class="uk-container">
+                <div class="uk-grid-large uk-child-width-1-2 uk-child-width-1-4@m" uk-grid>
+                    <div class="footer-column">
+                        <h5>Explorar</h5>
+                        <ul>
+                            <li><a href="pagina_principal.html">Inicio</a></li>
+                            <li><a href="quienes_somos.html">Quiénes Somos</a></li>
+                            <li><a href="talleres.html">Talleres</a></li>
+                            <li><a href="puertas_al_mundo.html">Puertas al Mundo</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h5>Seguinos</h5>
+                        <ul>
+                            <li><a href="404.html">Instagram</a></li>
+                            <li><a href="404.html">Facebook</a></li>
+                            <li><a href="404.html">Twitter</a></li>
+                            <li><a href="404.html">YouTube</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h5>Contacto</h5>
+                        <ul>
+                            <li>Quaglia 540</li>
+                            <li>Bariloche, Río Negro</li>
+                            <li>Argentina</li>
+                        </ul>
+                    </div>
+                    <div class="footer-column uk-text-right@m">
+                        <img src="./img/LOGO.png" width="90" alt="Logo Footer">
+                        <p class="uk-margin-small-top uk-text-bold">CRE ARTE</p>
+                    </div>
+                </div>
+                <div class="footer-legal">
+                    <div>© 2026 Cre Arte Bariloche.</div>
+                    <div>Created by <strong class="sacaraat-trigger">SACRAART</strong></div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const sacTrigger = document.querySelector('.sacaraat-trigger');
+        if (sacTrigger) {
+            sacTrigger.addEventListener('mousemove', (e) => {
+                const heart = document.createElement('span');
+                heart.innerHTML = '❤';
+                heart.className = 'heart-particle';
+
+                const x = e.clientX - 10;
+                const y = e.clientY - 10;
+
+                heart.style.left = x + 'px';
+                heart.style.top = y + 'px';
+                heart.style.position = 'fixed';
+
+                const size = Math.random() * 0.8 + 0.5;
+                heart.style.transform = `scale(${size})`;
+
+                document.body.appendChild(heart);
+
+                setTimeout(() => heart.remove(), 1000);
+            });
+        }
+    </script>
+</body>
+
+</html>

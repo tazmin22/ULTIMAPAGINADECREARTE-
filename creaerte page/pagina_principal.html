@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cre Arte Bariloche</title>
+  <link rel="icon" type="image/png" href="./img/LOGO.png" />
+
+  <!-- UIkit -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.19.4/dist/css/uikit.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/uikit@3.19.4/dist/js/uikit.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/uikit@3.19.4/dist/js/uikit-icons.min.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/tachyons@4.12.0/css/tachyons.min.css" />
+
+
+  <!-- Fuente -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --uba-azul: #cacaca;
+      --gris: #ffffff;
+      --gris-texto: #000000;
+      --lemon: #f0850b;
+
+    }
+
+    html,
+    body {
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans";
+      margin: 0;
+      padding: 0;
+      color: #0a0a0a;
+    }
+
+    .brand-badge {
+      background: var(--uba-celeste);
+      color: white;
+      border-radius: 999px;
+      padding: 2px 10px;
+      font-weight: 700;
+    }
+
+    .hero-overlay {
+      background: linear-gradient(180deg, rgba(0, 0, 0, .45) 0%, rgba(0, 0, 0, .55) 40%, rgba(0, 0, 0, .75) 100%);
+    }
+
+    .no-margin {
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+
+    .uk-section {
+      margin: 0 !important;
+    }
+
+    /* Mosaico */
+    .tile {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .tile .hover-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, .22);
+      opacity: 0;
+      transition: opacity .35s ease;
+    }
+
+    .tile img[uk-cover] {
+      opacity: 0;
+      transform: scale(1.02);
+      transition: opacity .45s ease, transform .45s ease;
+    }
+
+    .uk-transition-toggle:hover .hover-overlay {
+      opacity: .32;
+    }
+
+    .uk-transition-toggle:hover img[uk-cover] {
+      opacity: 1;
+      transform: scale(1.07);
+    }
+
+    .tile .title .uk-h2 {
+      text-shadow: 0 2px 8px rgba(0, 0, 0, .35);
+    }
+
+    /* Overlay de color en hover */
+    .tile.colorize {
+      position: relative;
+    }
+
+    .tile.colorize .hover-color {
+      position: absolute;
+      inset: 0;
+      background: var(--hover-color, #f0850b);
+      mix-blend-mode: var(--hover-blend, multiply);
+      opacity: 0;
+      transition: opacity .35s ease;
+      z-index: 1;
+    }
+
+    .uk-transition-toggle:hover .hover-color {
+      opacity: var(--hover-opacity, .55);
+    }
+
+    .tile.colorize .title {
+      position: relative;
+      z-index: 2;
+    }
+
+    .cta-hero {
+      position: relative;
+      min-height: 380px;
+      display: flex;
+      align-items: center;
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-image: url('./img/footer.png');
+      margin-bottom: 1.5rem !important;
+      /* fuerza el espacio */
+    }
+
+    .cta-hero .uk-container {
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta-hero .cta-ribbon {
+      display: none !important;
+    }
+
+    /* Botón del CTA transparente y elegante */
+    .cta-hero .uk-button {
+      background: transparent;
+      color: #fff;
+      border: 2px solid #fff;
+      font-weight: 500;
+      transition: all .35s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-hero .uk-button::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(255, 255, 255, 0.15);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .4s ease;
+      z-index: 0;
+    }
+
+    .cta-hero .uk-button:hover::before {
+      transform: scaleX(1);
+    }
+
+    .cta-hero .uk-button:hover {
+      color: #fff;
+      border-color: #fff;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.35);
+      transform: translateY(-2px);
+    }
+
+
+    /* Footer artístico */
+    .footer-art {
+      position: relative;
+      background: var(--lemon);
+      background: #b9b07c;
+      /* gris con matiz amarillo */
+      color: #0c0c0c;
+      overflow: hidden;
+    }
+
+    .footer-art a {
+      color: #0c0c0c;
+      text-decoration: underline;
+    }
+
+    .footer-art .bg-lines {
+      position: absolute;
+      inset: -20% 0 -40% 0;
+      pointer-events: none;
+      z-index: 0;
+      opacity: .95;
+    }
+
+    .footer-art .uk-container {
+      position: relative;
+      z-index: 1;
+    }
+
+    @keyframes scribble {
+      0% {
+        stroke-dashoffset: 1000;
+        opacity: 0;
+      }
+
+      10% {
+        opacity: 1;
+      }
+
+      50% {
+        stroke-dashoffset: 0;
+        opacity: 1;
+      }
+
+      90% {
+        opacity: 1;
+      }
+
+      100% {
+        stroke-dashoffset: 1000;
+        opacity: 0;
+      }
+    }
+
+    .footer-art .bg-lines path {
+      fill: none;
+      stroke: var(--linea);
+      stroke-width: 1.4;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 1000;
+      stroke-dashoffset: 1000;
+      animation: scribble 16s ease-in-out infinite;
+    }
+
+    .footer-art .bg-lines path:nth-child(2) {
+      animation-duration: 18s;
+      animation-delay: .8s;
+    }
+
+    .footer-art .bg-lines path:nth-child(3) {
+      animation-duration: 20s;
+      animation-delay: 1.6s;
+    }
+
+    .footer-art .bg-lines path:nth-child(4) {
+      animation-duration: 22s;
+      animation-delay: 2.4s;
+    }
+
+    .footer-art .bg-lines path:nth-child(5) {
+      animation-duration: 24s;
+      animation-delay: 3.2s;
+    }
+
+    .underline-input {
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid #111;
+      width: 100%;
+      max-width: 360px;
+      padding: .4rem 2.2rem .4rem .1rem;
+      outline: none;
+      color: #111;
+      font-size: 1rem;
+    }
+
+    .underline-input::placeholder {
+      color: #222;
+      opacity: .9;
+    }
+
+    .send-arrow {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-60%);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2rem;
+      height: 2rem;
+    }
+
+    .copyright {
+      font-size: .9rem;
+      margin-top: 2rem;
+      color: #111;
+    }
+
+    /* Botones compactos en mosaico combinado */
+    .tile .uk-button.uk-button-small {
+      border-radius: 999px;
+      padding: 4px 12px;
+    }
+
+    /* ===== SECCIÓN MAPA MODERNA ===== */
+    .map-section {
+      background: linear-gradient(180deg, #fff 0%, #f8f8f8 100%);
+      padding: 5rem 0;
+      color: #0a0a0a;
+    }
+
+    .map-content h2 {
+      font-size: 2.2rem;
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+    }
+
+    .map-content p.uk-text-lead {
+      font-size: 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .map-info p {
+      font-size: 1.05rem;
+      margin: .5rem 0;
+    }
+
+    .map-wrap {
+      position: relative;
+      height: 280px;
+      overflow: hidden;
+    }
+
+    .map-embed {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    /* ===== SECCIÓN DÓNDE ESTAMOS ===== */
+    .where-section {
+      position: relative;
+      background-image: url('./img/frente.jpeg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      padding: 6rem 0 5rem;
+      color: #fff;
+    }
+
+    .where-section::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.55);
+    }
+
+    .where-section .uk-container {
+      position: relative;
+      z-index: 2;
+    }
+
+    .where-section h2 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 0.3rem;
+    }
+
+    .where-section p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+    }
+
+    .where-section .map-wrap {
+      position: relative;
+      z-index: 2;
+      max-width: 1000px;
+      margin: 0 auto;
+      height: 300px;
+      overflow: hidden;
+    }
+
+    /* Más espacio entre el texto y el mapa en "Dónde estamos" */
+    .where-section p.uk-text-lead {
+      margin-bottom: 2.5rem;
+      /* antes era 2rem o menos */
+    }
+
+
+    /* === IMAGEN PEQUEÑA ENCIMA === */
+    .t-nav {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 28px 6%;
+    }
+
+    .t-nav-logo img {
+      height: 120px;
+      width: auto;
+      display: block;
+      filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.4));
+      transition: transform 0.3s ease;
+    }
+
+    .t-nav-logo:hover img {
+      transform: scale(1.05);
+    }
+
+    .t-nav-links {
+      display: flex;
+      gap: 2.5rem;
+    }
+
+    .t-nav-links a {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .85);
+      text-shadow: 0 1px 4px rgba(0, 0, 0, .4);
+    }
+
+    .t-nav-links a:hover {
+      color: #fff;
+    }
+
+    @media (max-width: 860px) {
+      .t-nav-links {
+        display: none;
+      }
+    }
+
+    .where-section {
+      margin-bottom: 2rem;
+      /* agrega espacio blanco antes del footer */
+    }
+
+    /* === NUEVO: efecto "mostrar imagen solo en hover", sin animación === */
+    .tile.hover-reveal img[uk-cover] {
+      opacity: 0;
+      transform: none;
+      transition: none;
+    }
+
+    .uk-transition-toggle:hover .tile.hover-reveal img[uk-cover] {
+      opacity: 1;
+    }
+
+    .tile.hover-reveal .hover-overlay {
+      display: none;
+    }
+
+    .tile.colorize img[uk-cover] {
+      opacity: 1 !important;
+      /* visible siempre */
+      transform: none !important;
+    }
+
+
+    /* Logo sobreposicionado en la esquina inferior derecha del footer */
+    .footer-logo-fixed {
+      position: absolute;
+      bottom: 1rem;
+      right: 1.5rem;
+      z-index: 50;
+      /* se asegura que quede sobre todo */
+    }
+
+    .footer-logo-fixed img {
+      width: 90px;
+      /* ajustá según tu diseño */
+      height: auto;
+      opacity: 0.95;
+      transition: transform .3s ease, opacity .3s ease;
+    }
+
+    .footer-logo-fixed img:hover {
+      transform: scale(1.05);
+      opacity: 1;
+    }
+
+
+    /* === NEWS GRID SECTION === */
+    .news-section {
+      padding: 60px 0;
+      background: #fff;
+    }
+
+    .news-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 15px;
+    }
+
+    .news-header h2 {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin: 0;
+    }
+
+    .news-filters a {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-left: 20px;
+      color: #999;
+      font-weight: 600;
+    }
+
+    .news-filters a.active,
+    .news-filters a:hover {
+      color: #000;
+    }
+
+    .news-card-large {
+      position: relative;
+      height: 550px;
+      overflow: hidden;
+    }
+
+    .news-card-large img {
+      transition: transform 0.8s ease;
+    }
+
+    .news-card-large:hover img {
+      transform: scale(1.05);
+    }
+
+    .news-card-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 40px;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 100%);
+      color: #fff;
+    }
+
+    .news-card-overlay h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      line-height: 1.1;
+      margin-bottom: 15px;
+      color: #fff;
+    }
+
+    .news-meta {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .news-meta img {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .news-card-small {
+      margin-bottom: 25px;
+    }
+
+    .news-card-small .uk-cover-container {
+      height: 180px;
+      margin-bottom: 15px;
+      overflow: hidden;
+    }
+
+    .news-card-small h4 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      line-height: 1.3;
+      margin: 0 0 10px 0;
+      color: #111;
+    }
+
+    .news-tag {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: #7b8b64;
+      letter-spacing: 1px;
+      margin-right: 15px;
+    }
+
+    .news-date {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.7rem;
+      color: #999;
+    }
+
+    /* === NEW PREMIUM FOOTER === */
+    .crearte-footer {
+      background-color: #829068;
+      color: #111;
+      margin-top: 0;
+    }
+
+    .footer-wave-divider {
+      line-height: 0;
+    }
+
+    .footer-main {
+      padding: 0 0 40px;
+      background-color: #829068;
+    }
+
+    .footer-column h5 {
+      font-family: 'Inter', sans-serif;
+      font-weight: 900;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+      margin-bottom: 25px;
+      color: #111;
+    }
+
+    .footer-column ul {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+
+    .footer-column ul li {
+      margin-bottom: 12px;
+    }
+
+    .footer-column ul li a {
+      color: #333;
+      font-size: 0.9rem;
+      transition: opacity 0.3s;
+    }
+
+    .footer-column ul li a:hover {
+      opacity: 0.6;
+    }
+
+    .footer-legal {
+      margin-top: 60px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(0, 0, 0, 0.1);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* Hearts Animation */
+    .sacaraat-trigger {
+      position: relative;
+      cursor: pointer;
+      display: inline-block;
+      color: #111;
+      transition: transform 0.3s;
+    }
+
+    .sacaraat-trigger:hover {
+      transform: scale(1.1);
+    }
+
+    .heart-particle {
+      position: absolute;
+      pointer-events: none;
+      color: #ff4d4d;
+      font-size: 1.2rem;
+      animation: floatUp 1s ease-out forwards;
+      z-index: 9999;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) scale(0) rotate(0deg);
+        opacity: 0;
+      }
+
+      20% {
+        opacity: 1;
+      }
+
+      100% {
+        transform: translateY(-60px) scale(1.8) rotate(20deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+
+<!-- ── NAVEGACIÓN ─────────────────────────── -->
+<nav class="t-nav">
+  <a href="./pagina_principal.html" class="t-nav-logo">
+    <img src="./img/LOGO.png" alt="Cre Arte Logo">
+  </a>
+  <div class="t-nav-links">
+    <a href="./pagina_principal.html">Inicio</a>
+    <a href="./talleres.html">Talleres</a>
+    <a href="./quienes_somos.html">Quiénes Somos</a>
+    <a href="./puertas_al_mundo.html">Puertas al Mundo</a>
+  </div>
+</nav>
+
+<body>
+
+  <!-- Hero Video -->
+  <section class="uk-section uk-section-remove-padding uk-position-relative uk-overflow-hidden"
+    style="height: 100vh; min-height: 600px;">
+    <video src="./img/video.mp4" autoplay loop muted playsinline uk-cover></video>
+    <div class="uk-position-cover hero-overlay"></div>
+    <div class="uk-position-center uk-text-center uk-light">
+      <div class="uk-container">
+        <h1 class="uk-heading-medium uk-text-bold uk-margin-small">CRE ARTE BARILOCHE</h1>
+        <p class="uk-text-lead">Donde el arte y la comunidad se encuentran.</p>
+        <div class="uk-margin-medium-top">
+
+        </div>
+      </div>
+  </section>
+
+  <!-- Mosaico principal -->
+  <section class="uk-section uk-section-remove-padding no-margin">
+    <div class="uk-grid-collapse uk-child-width-1-1 uk-child-width-1-2@m uk-child-width-1-3@l" uk-grid>
+
+      <!-- QUIENES SOMOS -->
+      <div id="ingreso">
+        <a href="./quienes_somos.html" class="uk-inline-clip uk-transition-toggle uk-display-block">
+          <div class="uk-cover-container tile hover-reveal" style="background:#7b8b64;">
+            <canvas width="800" height="560"></canvas>
+            <img src="./img/Murga.jpg" alt="" uk-cover>
+            <div class="hover-overlay"></div>
+            <div class="uk-position-center uk-text-center uk-light title">
+              <div class="uk-h2 uk-text-bold uk-margin-remove">QUIENES SOMOS</div>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <!-- TALLERES -->
+      <div id="facultades">
+        <a href="./talleres.html" class="uk-inline-clip uk-transition-toggle uk-display-block">
+          <div class="uk-cover-container tile hover-reveal" style="background:#f2cb7b">
+            <canvas width="800" height="560"></canvas>
+            <img src="./img/Peña.JPG" alt="Facultades y carreras" uk-cover>
+            <div class="hover-overlay"></div>
+            <div class="uk-position-center uk-text-center uk-light title">
+              <div class="uk-h2 uk-text-bold uk-margin-remove">TALLERES</div>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <!-- GALERIA -->
+      <div>
+        <a href="./puertas_al_mundo.html" class="uk-inline-clip uk-transition-toggle uk-display-block">
+          <div class="uk-cover-container tile hover-reveal" style="background:#806419;">
+            <canvas width="800" height="560"></canvas>
+            <img src="./img/banner.jpg" alt="Galeria" uk-cover>
+            <div class="hover-overlay"></div>
+            <div class="uk-position-center uk-text-center uk-light title">
+              <div class="uk-h2 uk-text-bold uk-margin-remove">PUERTAS AL MUNDO</div>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <!-- HISTORIA + INVESTIGACIÓN con color en hover (igual que tenías) -->
+      <div class="uk-width-2-3@l uk-width-1-1@m">
+        <a href="404.html" class="uk-inline-clip uk-transition-toggle uk-display-block">
+          <div class="uk-cover-container tile colorize" style="background:#0f2940;
+                      --hover-color:#000000;
+                      --hover-opacity:.55;
+                      --hover-blend:multiply;">
+            <canvas width="1600" height="560"></canvas>
+            <img src="./img/slide2.jpg.jpg" alt="Historia e Investigación" uk-cover>
+            <div class="hover-color" aria-hidden="true"></div>
+            <div class="uk-position-center uk-text-center uk-light title">
+              <div class="uk-h2 uk-text-bold uk-margin-small">OBRAS</div>
+              <div class="uk-margin-small-top uk-flex uk-flex-center uk-flex-middle uk-grid-small" uk-grid>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <!-- INTERNACIONALES -->
+      <div id="internacionales">
+        <a href="404.html" class="uk-inline-clip uk-transition-toggle uk-display-block">
+          <div class="uk-cover-container tile hover-reveal" style="background:#1E2458;">
+            <img src="./img/pintor.webp" alt="Internacionales" uk-cover>
+            <canvas width="800" height="560"></canvas>
+            <div class="hover-overlay"></div>
+            <div class="uk-position-center uk-text-center uk-light title">
+              <div class="uk-h2 uk-text-bold uk-margin-remove">GALERIA</div>
+            </div>
+          </div>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <img src="./img/separador.png" alt="">
+  <img src="./img/separador.png" alt="">
+
+
+  <!-- CTA -->
+  <section class="uk-section cta-hero uk-light uk-animation-scale-up uk-animation-toggle">
+    <div class="uk-container">
+      <div class="uk-grid-large uk-flex-middle" uk-grid>
+        <div class="uk-width-expand">
+          <h2 class="uk-margin-remove">¡Conocé más sobre nuestra escuela!</h2>
+          <p class="uk-text-lead uk-margin-small">Programas, cultura, deportes y más.</p>
+        </div>
+        <div class="uk-width-auto">
+          <a class="uk-button uk-button-default uk-button-large" href="404.html">Ver más</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- News Grid Section -->
+  <section class="news-section" uk-filter="target: .js-filter">
+    <div class="uk-container">
+      <div class="news-header">
+        <h2>Recién Agregado</h2>
+        <div class="news-filters uk-visible@m">
+          <a href="#" uk-filter-control>Todo</a>
+          <a href="#" uk-filter-control="filter: [data-type='talleres']">Talleres</a>
+          <a href="#" uk-filter-control="filter: [data-type='internacional']">Internacional</a>
+          <a href="#" uk-filter-control="filter: [data-type='cultura']">Cultura</a>
+          <a href="#" uk-filter-control="filter: [data-type='agenda']">Agenda</a>
+        </div>
+      </div>
+
+      <div class="uk-grid-medium js-filter" uk-grid>
+        <!-- Principal Left -->
+        <div class="uk-width-3-5@l uk-width-1-1" data-type="cultura">
+          <div class="news-card-large uk-cover-container">
+            <img src="./img/Murga.jpg" alt="Featured News" uk-cover>
+            <div class="news-card-overlay">
+              <h3>El impacto de la murga en la inclusión social de Bariloche.</h3>
+              <div class="news-meta">
+                <img src="./img/pintor.webp" alt="Author">
+                <span>Por Juan Pérez</span>
+                <span>•</span>
+                <span>12 Marzo, 2026</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sidebar Right (2x2) -->
+        <div class="uk-width-2-5@l uk-width-1-1">
+          <div class="uk-child-width-1-2@s uk-child-width-1-1 js-filter" uk-grid>
+            <div data-type="talleres">
+              <div class="news-card-small">
+                <div class="uk-cover-container">
+                  <img src="./img/Peña.JPG" alt="Short 1" uk-cover>
+                </div>
+                <div>
+                  <span class="news-tag">Talleres</span>
+                  <span class="news-date">8 Mar</span>
+                  <h4>Nueva peña folclórica este sábado.</h4>
+                </div>
+              </div>
+            </div>
+            <div data-type="internacional">
+              <div class="news-card-small">
+                <div class="uk-cover-container">
+                  <img src="./img/Roma.JPG" alt="Short 2" uk-cover>
+                </div>
+                <div>
+                  <span class="news-tag">Internacional</span>
+                  <span class="news-date">5 Mar</span>
+                  <h4>Nuestras obras viajan al museo de Roma.</h4>
+                </div>
+              </div>
+            </div>
+            <div data-type="cultura">
+              <div class="news-card-small">
+                <div class="uk-cover-container">
+                  <img src="./img/pintura.jpg" alt="Short 3" uk-cover>
+                </div>
+                <div>
+                  <span class="news-tag">Cultura</span>
+                  <span class="news-date">3 Mar</span>
+                  <h4>Técnicas de acrílico al aire libre.</h4>
+                </div>
+              </div>
+            </div>
+            <div data-type="talleres">
+              <div class="news-card-small">
+                <div class="uk-cover-container">
+                  <img src="./img/computacion.png" alt="Short 4" uk-cover>
+                </div>
+                <div>
+                  <span class="news-tag">Talleres</span>
+                  <span class="news-date">1 Mar</span>
+                  <h4>Computación: Arte digital para todos.</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <img src="./img/separador.png" alt="">
+  <!-- Sección "Dónde estamos" (idéntica a la tuya) -->
+  <section class="where-section uk-light">
+    <div class="uk-container uk-text-center">
+      <h2 class="uk-heading-medium uk-text-bold">Dónde estamos</h2>
+      <p class="uk-text-lead">Encontranos fácilmente y vení a conocernos</p>
+    </div>
+
+    <div class="map-wrap">
+      <iframe class="map-embed"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3283.707509987516!2d-58.38159242477931!3d-34.61178125949167!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bccacf48a79bb1%3A0x76d8a2c9da56e3b3!2sUniversidad%20de%20Buenos%20Aires!5e0!3m2!1ses!2sar!4v1693235845670!5m2!1ses!2sar"
+        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+  </section>
+
+  <!-- Footer (idéntico al tuyo) -->
+  <footer class="crearte-footer">
+    <div class="footer-wave-divider">
+      <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+        <path fill="#829068"
+          d="M0,64L120,74.7C240,85,480,107,720,106.7C960,107,1200,85,1320,74.7L1440,64L1440,120L1320,120C1200,120,960,120,720,120C480,120,240,120,120,120L0,120Z">
+        </path>
+      </svg>
+    </div>
+
+    <!-- Capa 4: Contenido Principal Mostaza -->
+    <div class="footer-main" style="background-color: #829068; color: #111;">
+      <div class="uk-container">
+        <div class="uk-grid-large uk-child-width-1-2 uk-child-width-1-4@m" uk-grid>
+          <div class="footer-column">
+            <h5>Explorar</h5>
+            <ul>
+              <li><a href="pagina_principal.html">Inicio</a></li>
+              <li><a href="quienes_somos.html">Quiénes Somos</a></li>
+              <li><a href="talleres.html">Talleres</a></li>
+              <li><a href="puertas_al_mundo.html">Puertas al Mundo</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h5>Seguinos</h5>
+            <ul>
+              <li><a href="404.html">Instagram</a></li>
+              <li><a href="404.html">Facebook</a></li>
+              <li><a href="404.html">Twitter</a></li>
+              <li><a href="404.html">YouTube</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h5>Contacto</h5>
+            <ul>
+              <li>Quaglia 540</li>
+              <li>Bariloche, Río Negro</li>
+              <li>Argentina</li>
+            </ul>
+          </div>
+          <div class="footer-column uk-text-right@m">
+            <img src="./img/LOGO.png" width="90" alt="Logo Footer">
+            <p class="uk-margin-small-top uk-text-bold">CRE ARTE</p>
+          </div>
+        </div>
+
+        <div class="footer-legal">
+          <div>© 2026 Cre Arte Bariloche.</div>
+          <div>Created by <strong class="sacaraat-trigger">SACRAART</strong></div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <a href="404.html" uk-totop uk-scroll class="uk-position-fixed uk-position-bottom-right uk-position-small"></a>
+
+  <style>
+    .heart-particle {
+      position: fixed;
+      font-size: 20px;
+      color: red;
+      pointer-events: none;
+      opacity: 1;
+      animation: fadeOutAndMoveUp 1s forwards;
+      z-index: 9999;
+    }
+
+    @keyframes fadeOutAndMoveUp {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+
+      100% {
+        transform: translateY(-50px) scale(0);
+        opacity: 0;
+      }
+    }
+  </style>
+
+  <script>
+    const trigger = document.querySelector('.sacaraat-trigger');
+    if (trigger) {
+      trigger.addEventListener('mousemove', (e) => {
+        const heart = document.createElement('span');
+        heart.innerHTML = '❤';
+        heart.className = 'heart-particle';
+
+        // Offset to center hearts on cursor
+        const x = e.clientX - 10;
+        const y = e.clientY - 10;
+
+        heart.style.left = x + 'px';
+        heart.style.top = y + 'px';
+        heart.style.position = 'fixed';
+
+        const size = Math.random() * 0.8 + 0.5;
+        heart.style.transform = `scale(${size})`;
+
+        document.body.appendChild(heart);
+
+        setTimeout(() => heart.remove(), 1000);
+      });
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>404 - Cre Arte</title>
+    <link rel="icon" type="image/png" href="./img/LOGO.png" />
+
+    <!-- UIkit -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.19.4/dist/css/uikit.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.19.4/dist/js/uikit.min.js"></script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #f2f2f2;
+            color: #111;
+            font-family: 'Inter', sans-serif;
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .error-container {
+            max-width: 600px;
+            padding: 40px;
+        }
+
+        .triangle-eyes {
+            width: 120px;
+            height: auto;
+            margin: 0 auto 20px;
+        }
+
+        .error-code {
+            font-size: 120px;
+            font-weight: 900;
+            line-height: 1;
+            margin: 0;
+            letter-spacing: -5px;
+        }
+
+        .error-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin: 20px 0 10px;
+        }
+
+        .error-text {
+            font-size: 0.95rem;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .back-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border: 2px solid #111;
+            color: #111;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: #111;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="error-container">
+        <!-- Ilustración del triángulo con ojos (Basada en la referencia) -->
+        <svg class="triangle-eyes" viewBox="0 0 100 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M50 0L100 80L0 80L50 0Z" fill="black" />
+            <circle cx="40" cy="55" r="8" fill="white" />
+            <circle cx="60" cy="55" r="8" fill="white" />
+            <circle cx="40" cy="55" r="3" fill="black" />
+            <circle cx="60" cy="55" r="3" fill="black" />
+        </svg>
+
+        <h1 class="error-code">404</h1>
+
+        <h2 class="error-title">Página en construcción</h2>
+
+        <p class="error-text">
+            ¡Ups! Parece que este rincón de la escuela aún se está pintando.<br>
+            Regresa pronto para ver las novedades.
+        </p>
+
+        <a href="pagina_principal.html" class="back-btn">Volver al Inicio</a>
+    </div>
+
+</body>
+
+</html>

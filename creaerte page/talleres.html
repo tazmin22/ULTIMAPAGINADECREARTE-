@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Talleres - Cre Arte Bariloche</title>
+    <meta name="description"
+        content="Descubrí los talleres de pintura, dibujo y expresión artística de Cre Arte en Bariloche. Para todos los niveles y edades." />
+    <link rel="icon" type="image/png" href="./img/LOGO.png" />
+
+    <!-- UIkit -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.19.4/dist/css/uikit.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.19.4/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.19.4/dist/js/uikit-icons.min.js"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Caveat:wght@600;700&family=Inter:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        :root {
+            --cream: #f5f0e8;
+            --cream2: #ede5d4;
+            --dark: #1a1209;
+            --wine: #6a1a1c;
+            --orange: #e65c00;
+            --gold: #c8a96e;
+            --text: #2a2018;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: var(--cream);
+            color: var(--text);
+            font-family: 'EB Garamond', serif;
+            overflow-x: hidden;
+            animation: fadeIn 1s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: var(--orange);
+            transition: color .3s ease;
+        }
+
+        /* ── NAV ─────────────────────────────────────────────────────── */
+        .t-nav {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 28px 6%;
+        }
+
+        .t-nav-logo img {
+            height: 120px;
+            width: auto;
+            display: block;
+            filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.4));
+            transition: transform 0.3s ease;
+        }
+
+        .t-nav-logo:hover img {
+            transform: scale(1.05);
+        }
+
+        .t-nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .t-nav-links a {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.72rem;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .85);
+            text-shadow: 0 1px 4px rgba(0, 0, 0, .4);
+        }
+
+        .t-nav-links a:hover {
+            color: #fff;
+        }
+
+        /* ── HERO ────────────────────────────────────────────────────── */
+        .t-hero {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            min-height: 600px;
+            overflow: hidden;
+        }
+
+        .t-hero-bg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .t-hero-bg.loaded {
+            transform: scale(1);
+        }
+
+        .t-hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom,
+                    rgba(15, 8, 2, .30) 0%,
+                    rgba(15, 8, 2, .15) 40%,
+                    rgba(15, 8, 2, .55) 100%);
+        }
+
+        .t-hero-content {
+            position: relative;
+            z-index: 10;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 6%;
+        }
+
+        .t-hero-eyebrow {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.68rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 18px;
+        }
+
+        .t-hero-title {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-weight: 700;
+            font-size: clamp(3rem, 7vw, 6.5rem);
+            line-height: 0.9;
+            color: #fff;
+            margin: 0 0 28px;
+            text-shadow: 0 4px 30px rgba(0, 0, 0, .4);
+            letter-spacing: -1px;
+        }
+
+        .t-hero-sub {
+            font-family: 'EB Garamond', serif;
+            font-size: clamp(1rem, 1.6vw, 1.3rem);
+            color: rgba(255, 255, 255, .82);
+            max-width: 480px;
+            line-height: 1.55;
+            margin-bottom: 36px;
+        }
+
+        .t-hero-btn {
+            display: inline-block;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.72rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #fff;
+            border: 1.5px solid rgba(255, 255, 255, .6);
+            padding: 13px 34px;
+            transition: background .3s ease, border-color .3s ease;
+        }
+
+        .t-hero-btn:hover {
+            background: rgba(255, 255, 255, .12);
+            border-color: #fff;
+            color: #fff;
+        }
+
+        /* ── INTRO SPLIT ─────────────────────────────────────────────── */
+        .t-intro {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            background: var(--cream);
+        }
+
+        .t-intro-text {
+            padding: 100px 8%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .t-intro-label {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.65rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--wine);
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .t-intro-title {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: clamp(2.8rem, 4.5vw, 4.5rem);
+            line-height: 0.92;
+            color: var(--dark);
+            margin: 0 0 28px;
+            letter-spacing: -1px;
+        }
+
+        .t-intro-title em {
+            font-style: italic;
+            color: var(--wine);
+        }
+
+        .t-intro-body {
+            font-size: 1.15rem;
+            line-height: 1.75;
+            color: #4a3c2a;
+            max-width: 420px;
+            margin-bottom: 32px;
+        }
+
+        .t-intro-link {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--wine);
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .t-intro-link::after {
+            content: '→';
+            font-size: 1rem;
+            transition: transform .3s ease;
+        }
+
+        .t-intro-link:hover::after {
+            transform: translateX(5px);
+        }
+
+        .t-intro-link:hover {
+            color: var(--orange);
+        }
+
+        .t-intro-img {
+            position: relative;
+            overflow: hidden;
+            min-height: 520px;
+        }
+
+        .t-intro-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 6s ease;
+        }
+
+        .t-intro-img:hover img {
+            transform: scale(1.04);
+        }
+
+        /* Handwritten note on image */
+        .t-intro-note {
+            position: absolute;
+            bottom: 40px;
+            left: -20px;
+            font-family: 'Caveat', cursive;
+            font-size: 1.5rem;
+            color: var(--dark);
+            background: var(--cream);
+            padding: 10px 20px 10px 30px;
+            transform: rotate(-3deg);
+            box-shadow: 3px 3px 12px rgba(0, 0, 0, .12);
+        }
+
+        /* ── OFERTA SECTION ──────────────────────────────────────────── */
+        .t-offer {
+            background: var(--cream);
+            padding: 90px 0 60px;
+        }
+
+        .t-offer-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .t-offer-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.6rem, 3vw, 2.5rem);
+            font-style: italic;
+            font-weight: 400;
+            color: var(--dark);
+            letter-spacing: 2px;
+            margin: 0;
+        }
+
+        .t-offer-header h2::before,
+        .t-offer-header h2::after {
+            content: '  ✦  ';
+            font-style: normal;
+            font-size: 0.7rem;
+            color: var(--gold);
+            vertical-align: middle;
+        }
+
+        /* Cards horizontales */
+        .t-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        .t-card {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 560px;
+            overflow: hidden;
+            position: relative;
+            background: var(--cream2);
+        }
+
+        .t-card.alt {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .t-card-text {
+            padding: 80px 8%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .t-card.alt .t-card-text {
+            order: 2;
+        }
+
+        .t-card-label {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.65rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: #000000;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .t-card-title {
+            font-family: 'Inter', sans-serif;
+            font-size: clamp(2.2rem, 4vw, 3.8rem);
+            font-weight: 800;
+            text-transform: uppercase;
+            color: var(--orange);
+            line-height: 0.85;
+            margin: 0 0 12px;
+            letter-spacing: -2px;
+        }
+
+        .t-card-title em {
+            display: block;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-weight: 400;
+            text-transform: none;
+            font-size: 0.45em;
+            letter-spacing: 1px;
+            margin-bottom: 2px;
+            color: #000000;
+        }
+
+        .t-card-subtitle {
+            font-family: 'Caveat', cursive;
+            font-size: 1.4rem;
+            color: #000000;
+            margin-bottom: 28px;
+        }
+
+        .t-card-desc {
+            font-size: 1.1rem;
+            line-height: 1.75;
+            color: #4a3c2a;
+            margin-bottom: 30px;
+        }
+
+        .t-card-cta-wrap {
+            display: flex;
+            gap: 28px;
+        }
+
+        .t-card-cta {
+            display: inline-block;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--dark);
+            border-bottom: 1.5px solid #000000;
+            padding-bottom: 4px;
+            transition: color .3s ease;
+        }
+
+        .t-card-cta:hover {
+            color: var(--wine);
+        }
+
+        .t-card-img {
+            position: relative;
+            overflow: hidden;
+            min-height: 560px;
+        }
+
+        .t-card.alt .t-card-img {
+            order: 1;
+        }
+
+        .t-card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform .5s ease;
+        }
+
+        .t-card:hover .t-card-img img {
+            transform: scale(1.04);
+        }
+
+        /* Hover reveal label */
+        .t-card-hover-label {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(106, 26, 28, .0);
+            transition: background .3s ease;
+        }
+
+        .t-card:hover .t-card-hover-label {
+            background: rgba(106, 26, 28, .15);
+        }
+
+        /* ── BIO / INSTRUCTOR ────────────────────────────────────────── */
+        .t-bio {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            margin-top: 4px;
+            background: var(--cream);
+        }
+
+        .t-bio-img {
+            position: relative;
+            overflow: hidden;
+            min-height: 560px;
+        }
+
+        .t-bio-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top;
+            display: block;
+        }
+
+        .t-bio-img-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(15, 8, 2, .7), transparent);
+            padding: 40px 30px 20px;
+            color: rgba(255, 255, 255, .7);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.68rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .t-bio-text {
+            padding: 80px 8%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: var(--cream2);
+        }
+
+        .t-bio-label {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.65rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--wine);
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .t-bio-name {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 3.5vw, 3.2rem);
+            font-weight: 700;
+            color: var(--dark);
+            margin: 0 0 6px;
+            line-height: 1;
+        }
+
+        .t-bio-role {
+            font-family: 'Caveat', cursive;
+            font-size: 1.4rem;
+            color: var(--wine);
+            margin-bottom: 28px;
+        }
+
+        .t-bio-body {
+            font-size: 1.1rem;
+            line-height: 1.75;
+            color: #4a3c2a;
+            margin-bottom: 30px;
+        }
+
+        .t-bio-cta {
+            display: inline-block;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--dark);
+            border-bottom: 1.5px solid var(--wine);
+            padding-bottom: 4px;
+            margin-right: 28px;
+            transition: color .3s ease;
+        }
+
+        .t-bio-cta:hover {
+            color: var(--wine);
+        }
+
+        /* ── QUOTE BAND ───────────────────────────────────────────────── */
+        .t-quote {
+            text-align: center;
+            padding: 90px 8%;
+            background: var(--cream);
+            position: relative;
+        }
+
+        .t-quote::before {
+            content: '"';
+            font-family: 'Playfair Display', serif;
+            font-size: 18rem;
+            color: rgba(106, 26, 28, .06);
+            position: absolute;
+            top: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            line-height: 1;
+            pointer-events: none;
+        }
+
+        .t-quote q {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: clamp(1.4rem, 2.5vw, 2.1rem);
+            color: var(--wine);
+            line-height: 1.45;
+            max-width: 700px;
+            display: block;
+            margin: 0 auto 18px;
+        }
+
+        .t-quote-author {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #888;
+        }
+
+        /* ── FOOTER ─────────────────────────────────────────────────── */
+        .t-footer {
+            background: var(--dark);
+            color: var(--cream);
+            text-align: center;
+            padding: 44px 6%;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.78rem;
+            letter-spacing: 1px;
+        }
+
+        .t-footer a {
+            color: var(--gold);
+        }
+
+        .t-footer a:hover {
+            color: var(--orange);
+        }
+
+        /* ── RESPONSIVE ─────────────────────────────────────────────── */
+        @media (max-width: 860px) {
+
+            .t-intro,
+            .t-bio {
+                grid-template-columns: 1fr;
+            }
+
+            .t-intro-img {
+                min-height: 320px;
+                order: -1;
+            }
+
+            .t-intro-note {
+                display: none;
+            }
+
+            .t-intro-text {
+                padding: 50px 6%;
+            }
+
+            .t-card,
+            .t-card.alt {
+                grid-template-columns: 1fr;
+            }
+
+            .t-card-img {
+                min-height: 220px;
+            }
+
+            .t-card.alt .t-card-img {
+                order: 0;
+            }
+
+            .t-card.alt .t-card-text {
+                order: 0;
+            }
+
+            .t-bio-img {
+                min-height: 320px;
+            }
+
+            .t-bio-text {
+                padding: 50px 6%;
+            }
+
+            .t-nav-links {
+                display: none;
+            }
+        }
+
+        /* === NEW PREMIUM FOOTER === */
+        .crearte-footer {
+            background-color: #829068;
+            color: #111;
+            margin-top: 0;
+        }
+
+        .footer-wave-divider {
+            line-height: 0;
+        }
+
+        .footer-main {
+            padding: 20px 0 40px;
+            background-color: #829068;
+        }
+
+        .footer-column h5 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 900;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            margin-bottom: 25px;
+            color: #111;
+        }
+
+        .footer-column ul {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-column ul li a {
+            color: #333;
+            font-size: 0.9rem;
+            transition: opacity 0.3s;
+        }
+
+        .footer-column ul li a:hover {
+            opacity: 0.6;
+        }
+
+        .footer-legal {
+            margin-top: 60px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Hearts Animation */
+        .sacaraat-trigger {
+            position: relative;
+            cursor: pointer;
+            display: inline-block;
+            color: #111;
+            transition: transform 0.3s;
+        }
+
+        .sacaraat-trigger:hover {
+            transform: scale(1.1);
+        }
+
+        .heart-particle {
+            position: fixed;
+            pointer-events: none;
+            color: #ff4d4d;
+            font-size: 1.2rem;
+            animation: floatUp 1s ease-out forwards;
+            z-index: 9999;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) scale(0) rotate(0deg);
+                opacity: 0;
+            }
+
+            20% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-60px) scale(1.8) rotate(20deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ── NAVEGACIÓN ─────────────────────────── -->
+    <nav class="t-nav">
+        <a href="./pagina_principal.html" class="t-nav-logo">
+            <img src="./img/LOGO.png" alt="Cre Arte Logo">
+        </a>
+        <div class="t-nav-links">
+            <a href="./pagina_principal.html">Inicio</a>
+            <a href="./quienes_somos.html">Quiénes Somos</a>
+            <a href="./puertas_al_mundo.html">Puertas al Mundo</a>
+        </div>
+    </nav>
+
+    <!-- ── HERO ──────────────────────────────── -->
+    <header class="t-hero">
+        <div class="t-hero-bg"
+            uk-slideshow="animation: fade; autoplay: true; autoplay-interval: 4000; pause-on-hover: false;">
+            <ul class="uk-slideshow-items" style="min-height: 100vh;">
+                <li>
+                    <img src="./img/Murga.jpg" alt="Slide 1" uk-cover>
+                </li>
+                <li>
+                    <img src="./img/Roma.JPG" alt="Slide 2" uk-cover>
+                </li>
+                <li>
+                    <img src="./img/Peña.JPG" alt="Slide 3" uk-cover>
+                </li>
+            </ul>
+        </div>
+        <div class="t-hero-overlay"></div>
+        <div class="t-hero-content">
+            <h1 class="t-hero-title">
+                El arte<br>de crear
+            </h1>
+            <a href="#talleres" class="t-hero-btn">Ver talleres</a>
+        </div>
+    </header>
+
+    <!-- ── INTRO SPLIT ────────────────────────── -->
+    <section class="t-intro">
+        <div class="t-intro-text">
+            <div class="t-intro-label">Nuestra filosofía</div>
+            <h2 class="t-intro-title">
+                El arte<br>
+                <em>comienza</em><br>
+                en el hacer
+            </h2>
+            <p class="t-intro-body">
+                En Cre Arte creemos que cada persona lleva adentro un artista que espera ser despertado. Nuestros
+                talleres son espacios de encuentro, exploración y crecimiento donde la técnica se enseña con paciencia y
+                la creatividad se libera sin juicios.
+            </p>
+            <p class="t-intro-body">
+                Desde pintura al óleo hasta acrílico, desde el dibujo figurativo hasta la expresión libre — hay un
+                taller para cada camino.
+            </p>
+            <a href="#talleres" class="t-intro-link">Explorar talleres</a>
+        </div>
+        <div class="t-intro-img">
+            <img src="./img/Antonio Mora. Mujer con sombrero. 0,89 x 0,70. Oleo- 2006.jpg" alt="Obra de Tony Mora">
+            <div class="t-intro-note">la magia del óleo…</div>
+        </div>
+    </section>
+
+    <!-- ── QUOTE ─────────────────────────────── -->
+    <div class="t-quote">
+        <q>El arte es el lenguaje universal de la humanidad.</q>
+        <div class="t-quote-author">— Henry Wadsworth Longfellow</div>
+    </div>
+
+    <!-- ── TALLERES (oferta)  ─────────────────── -->
+    <section class="t-offer" id="talleres">
+        <div class="t-offer-header">
+            <h2>Nuestros Talleres</h2>
+        </div>
+
+        <div class="t-cards">
+
+            <!-- Taller 1: Pintura -->
+            <div class="t-card">
+                <div class="t-card-text">
+                    <div class="t-card-label">Taller 01</div>
+                    <h3 class="t-card-title"><em>Taller de</em>Pintura</h3>
+                    <p class="t-card_subtitle t-card-subtitle">El arte de la mirada</p>
+                    <p class="t-card-desc">
+                        Exploramos el color, la forma y la emoción a través del pincel. Un espacio para descubrir tu
+                        propia voz artística mediante técnicas de óleo, acrílico y dibujo. Trabajamos en la técnica pero
+                        sobre todo en la libertad del trazo.
+                    </p>
+                    <div class="t-card-cta-wrap">
+                        <a href="404.html" class="t-card-cta">Ver galería</a>
+                    </div>
+                </div>
+                <div class="t-card-img">
+                    <img src="./img/pintura.jpg" alt="Taller de Pintura">
+                </div>
+            </div>
+
+            <!-- Taller 2: Murga -->
+            <div class="t-card alt">
+                <div class="t-card-img">
+                    <img src="./img/Murga.jpg" alt="Taller de Murga">
+                </div>
+                <div class="t-card-text">
+                    <div class="t-card-label">Taller 02</div>
+                    <h3 class="t-card-title"><em>Taller de</em>Murga</h3>
+                    <p class="t-card_subtitle t-card-subtitle">El latido del barrio</p>
+                    <p class="t-card-desc">
+                        El latido del barrio y la expresión colectiva. Danza, percusión y canto se unen en este espacio
+                        de alegría, color y compromiso social. Una experiencia comunitaria única en Bariloche.
+                    </p>
+                    <div class="t-card-cta-wrap">
+                        <a href="404.html" class="t-card-cta">Ver galería</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Taller 3: Computación -->
+            <div class="t-card">
+                <div class="t-card-text">
+                    <div class="t-card-label">Taller 03</div>
+                    <h3 class="t-card-title"><em>Clases de</em>Computación</h3>
+                    <p class="t-card_subtitle t-card-subtitle">Puente hacia el mundo</p>
+                    <p class="t-card-desc">
+                        Aprendemos herramientas informáticas, comunicación y diseño, adaptando la tecnología a las
+                        necesidades de cada participante. Un espacio de aprendizaje mutuo y conexión digital.
+                    </p>
+                    <div class="t-card-cta-wrap">
+                        <a href="404.html" class="t-card-cta">Ver galería</a>
+                    </div>
+                </div>
+                <div class="t-card-img">
+                    <img src="./img/computacion.png" alt="Taller de Computación">
+                </div>
+            </div>
+
+            <!-- Taller 4: Radio -->
+            <div class="t-card alt">
+                <div class="t-card-img">
+                    <img src="./img/radio.png" alt="Taller de Radio">
+                </div>
+                <div class="t-card-text">
+                    <div class="t-card-label">Taller 04</div>
+                    <h3 class="t-card-title"><em>Espacio de</em>Radio</h3>
+                    <p class="t-card_subtitle t-card-subtitle">Tu voz al aire</p>
+                    <p class="t-card-desc">
+                        Tu voz al aire. Producción, locución y creatividad sonora. Un taller para contar nuestras
+                        historias y conectar con la comunidad a través de las ondas decoradas y el aire en vivo.
+                    </p>
+                    <div class="t-card-cta-wrap">
+                        <a href="404.html" class="t-card-cta">Escuchar</a>
+                        <a href="404.html" class="t-card-cta">Ver galería</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+
+    <!-- ── FOOTER ────────────────────────────── -->
+    <footer class="crearte-footer">
+        <div class="footer-wave-divider">
+            <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+                <path fill="#829068"
+                    d="M0,64L120,74.7C240,85,480,107,720,106.7C960,107,1200,85,1320,74.7L1440,64L1440,120L1320,120C1200,120,960,120,720,120C480,120,240,120,120,120L0,120Z">
+                </path>
+            </svg>
+        </div>
+        <div class="footer-main">
+            <div class="uk-container">
+                <div class="uk-grid-large uk-child-width-1-2 uk-child-width-1-4@m" uk-grid>
+                    <div class="footer-column">
+                        <h5>Explorar</h5>
+                        <ul>
+                            <li><a href="pagina_principal.html">Inicio</a></li>
+                            <li><a href="quienes_somos.html">Quiénes Somos</a></li>
+                            <li><a href="talleres.html">Talleres</a></li>
+                            <li><a href="puertas_al_mundo.html">Puertas al Mundo</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h5>Seguinos</h5>
+                        <ul>
+                            <li><a href="404.html">Instagram</a></li>
+                            <li><a href="404.html">Facebook</a></li>
+                            <li><a href="404.html">Twitter</a></li>
+                            <li><a href="404.html">YouTube</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h5>Contacto</h5>
+                        <ul>
+                            <li>Quaglia 540</li>
+                            <li>Bariloche, Río Negro</li>
+                            <li>Argentina</li>
+                        </ul>
+                    </div>
+                    <div class="footer-column uk-text-right@m">
+                        <img src="./img/LOGO.png" width="90" alt="Logo Footer">
+                        <p class="uk-margin-small-top uk-text-bold">CRE ARTE</p>
+                    </div>
+                </div>
+                <div class="footer-legal">
+                    <div>© 2026 Cre Arte Bariloche.</div>
+                    <div>Created by <strong class="sacaraat-trigger">SACRAART</strong></div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Inicio suave del hero bg
+        window.addEventListener('load', () => {
+            // document.getElementById('heroBg').classList.add('loaded');
+        });
+
+        // Parallax suave en el hero al hacer scroll
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
+            const bg = document.getElementById('heroBg');
+            if (bg) {
+                bg.style.transform = `scale(1) translateY(${scrollY * 0.3}px)`;
+            }
+        }, { passive: true });
+    </script>
+
+    <script>
+        const trigger = document.querySelector('.sacaraat-trigger');
+        if (trigger) {
+            trigger.addEventListener('mousemove', (e) => {
+                const heart = document.createElement('span');
+                heart.innerHTML = '❤';
+                heart.className = 'heart-particle';
+
+                const x = e.clientX - 10;
+                const y = e.clientY - 10;
+
+                heart.style.left = x + 'px';
+                heart.style.top = y + 'px';
+                heart.style.position = 'fixed';
+
+                const size = Math.random() * 0.8 + 0.5;
+                heart.style.setProperty('--scale', size); /* Use CSS variable for animation */
+
+                document.body.appendChild(heart);
+
+                setTimeout(() => heart.remove(), 1000);
+            });
+        }
+    </script>
+</body>
+
+</html>
