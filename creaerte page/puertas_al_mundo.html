@@ -61,6 +61,34 @@
             transition: color 0.3s ease;
         }
 
+        /* ===== SCROLL SCRIBBLE ===== */
+        .scroll-scribble-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1; /* Forzar estar detrás de todo */
+            opacity: 0.15;
+            overflow: hidden;
+        }
+
+
+        #scroll-path-1, #scroll-path-2 {
+            fill: none;
+            stroke: #e65c00;
+            stroke-width: 25;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        #scroll-path-2 {
+            stroke: #6a1a1c; /* Color vino para el segundo trazo */
+            stroke-width: 15;
+            opacity: 0.6;
+        }
+
         .t-nav {
             position: fixed;
             top: 0;
@@ -289,7 +317,10 @@
             max-width: 1250px;
             margin: 0 auto;
             padding: 60px 5%;
+            position: relative;
+            z-index: 10;
         }
+
 
         /* ===== ANIMACIÓN REVEAL (Alianzas y Festivales) ===== */
         .pm-reveal {
@@ -1067,6 +1098,14 @@
 
 <body>
     
+    <!-- SCRIBBLE SVG (Movido al inicio) -->
+    <div class="scroll-scribble-container">
+        <svg width="100%" height="100%" viewBox="0 0 1000 7000" preserveAspectRatio="none">
+            <path id="scroll-path-1" d="M -50 200 Q 200 600 100 1200 T 300 2000 T 50 3000 T 400 4000 T 100 5000 T 600 6000 T -50 7000" />
+            <path id="scroll-path-2" d="M 1050 400 Q 800 800 900 1400 T 700 2200 T 950 3200 T 600 4200 T 900 5200 T 400 6200 T 1050 7200" />
+        </svg>
+    </div>
+
     <style>
         @keyframes pulse {
             0% { transform: scale(1); opacity: 0.8; }
@@ -1462,5 +1501,29 @@
         // Ejecutar una vez al inicio para que el título y estado inicial sean correctos
         window.dispatchEvent(new Event('scroll'));
     </script>
+
+    <script>
+
+        // Scribble Scroll Animation
+        const path1 = document.querySelector('#scroll-path-1');
+        const path2 = document.querySelector('#scroll-path-2');
+        const pathLength1 = path1.getTotalLength();
+        const pathLength2 = path2.getTotalLength();
+
+        path1.style.strokeDasharray = pathLength1 + ' ' + pathLength1;
+        path1.style.strokeDashoffset = pathLength1;
+        path2.style.strokeDasharray = pathLength2 + ' ' + pathLength2;
+        path2.style.strokeDashoffset = pathLength2;
+
+        window.addEventListener('scroll', () => {
+            const scrollPercentage = (document.documentElement.scrollTop + document.body.scrollTop) / (document.documentElement.scrollHeight - document.documentElement.clientHeight);
+            
+            path1.style.strokeDashoffset = pathLength1 - (pathLength1 * scrollPercentage);
+            path2.style.strokeDashoffset = pathLength2 - (pathLength2 * scrollPercentage);
+        });
+    </script>
+
+
 </body>
+
 </html>
