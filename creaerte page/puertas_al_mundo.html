@@ -332,8 +332,8 @@
         /* ===== ANIMACIÓN REVEAL (Alianzas y Festivales) ===== */
         .pm-reveal {
             opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            transform: translateY(15px); /* Desplazamiento más sutil */
+            transition: all 1.2s cubic-bezier(0.2, 0.8, 0.2, 1); /* Más lento y elegante */
             will-change: opacity, transform;
         }
 
@@ -1207,9 +1207,9 @@
 
     <!-- ===== ALIANZAS ===== -->
     <section class="pm-section" id="alianzas" style="position: relative;">
-        <!-- Imagen decorativa del frasco en la esquina derecha -->
-        <img src="./img/1.png" alt="Mermelada"
-            style="position: absolute; top: -40px; right: 2%; width: 600px; z-index: 20; transform: rotate(10deg); filter: drop-shadow(0 8px 24px rgba(0,0,0,0.2)); opacity: 0.9;">
+        <!-- Imagen decorativa del mapa en la esquina derecha -->
+        <img src="./img/1.png" alt="Mapa Mundial Vintage"
+            style="position: absolute; top: -40px; right: 2%; width: 600px; z-index: 2; transform: rotate(10deg); filter: drop-shadow(0 8px 24px rgba(0,0,0,0.2)); opacity: 0.9;">
 
         <div class="pm-sec-header pm-reveal">
             <div class="pm-sec-title"><span>Nuestras</span><br>ALIANZAS</div>
