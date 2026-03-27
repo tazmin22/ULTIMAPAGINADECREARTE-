@@ -61,16 +61,16 @@
             transition: color 0.3s ease;
         }
 
-        /* ===== SCROLL SCRIBBLE ===== */
+        /* ===== SCROLL SCRIBBLE (ELEMENTO EDITORIAL) ===== */
         .scroll-scribble-container {
-            position: fixed;
+            position: absolute; /* Cambiado de fixed para evitar quedar oculto detrás del body background */
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             pointer-events: none;
-            z-index: -1; /* Forzar estar detrás de todo */
-            opacity: 0.15;
+            z-index: 1; /* Fondo < TRAZOS (1) < Contenido (10+) */
+            opacity: 0.3; /* Leve ajuste de visibilidad */
             overflow: hidden;
         }
 
@@ -78,15 +78,15 @@
         #scroll-path-1, #scroll-path-2 {
             fill: none;
             stroke: #e65c00;
-            stroke-width: 25;
+            stroke-width: 30; /* Más presencia */
             stroke-linecap: round;
             stroke-linejoin: round;
         }
 
         #scroll-path-2 {
             stroke: #6a1a1c; /* Color vino para el segundo trazo */
-            stroke-width: 15;
-            opacity: 0.6;
+            stroke-width: 18;
+            opacity: 0.7;
         }
 
         .t-nav {
@@ -125,10 +125,12 @@
             transform: scale(1.05);
         }
 
-        /* Nav links centrados y negros ahora que el fondo es blanco */
+        /* NAV LINKS CENTRADOS Y NEGROS */
         .t-nav-links {
             display: flex;
             gap: 2.5rem;
+            position: relative;
+            z-index: 15; /* Asegurar links sobre trazos */
         }
 
         .t-nav-links a {
@@ -156,8 +158,9 @@
         .scroll-travel-wrapper {
             position: relative;
             width: 100%;
-            height: 600vh; /* Aumentado para un scroll mucho más lento y pausado */
-            background-color: #fff;
+            height: 500vh;
+            background-color: transparent; /* Importante: sin fondo para ver trazos */
+            z-index: 5; 
         }
 
         .travel-sticky-view {
@@ -193,7 +196,7 @@
             color: #111;
             text-transform: uppercase;
             text-align: center;
-            z-index: 5;
+            z-index: 20; /* Sobre los scribbles */
             margin: 0;
             pointer-events: none;
             will-change: transform, opacity, filter;
@@ -230,6 +233,7 @@
             will-change: transform, opacity;
             opacity: 0; 
             pointer-events: auto;
+            z-index: 25; /* Elevado sobre trazos */
         }
 
         .t-card img {
@@ -259,7 +263,7 @@
             opacity: 0;
             will-change: transform, opacity;
             transform: translate(-50%, -50%);
-            /* Eliminados los fondos y bordes por pedido del usuario */
+            z-index: 20; /* Elevado sobre trazos */
         }
 
         .t-text h3 {
@@ -295,7 +299,10 @@
             align-items: center;
             justify-content: center;
             gap: 18px;
-            padding: 50px 6%;
+            padding: 5px 6% 0;
+            margin-top: -10px;
+            position: relative;
+            z-index: 10; /* Asegurar que ornamentos estén sobre trazos si se desea */
         }
 
         .pm-divider-line {
@@ -316,9 +323,9 @@
         .pm-section {
             max-width: 1250px;
             margin: 0 auto;
-            padding: 60px 5%;
+            padding: 10px 5% 60px;
             position: relative;
-            z-index: 10;
+            z-index: 10; /* Contenido sobre trazos */
         }
 
 
@@ -381,6 +388,7 @@
             position: relative;
             overflow: hidden;
             cursor: default;
+            z-index: 10; /* Tarjeta completa sobre trazos */
         }
 
         .pm-card img {
@@ -579,6 +587,8 @@
             object-fit: cover;
             display: block;
             box-shadow: 8px 8px 0 #ecd5b6;
+            position: relative;
+            z-index: 10; /* Imagen siempre sobre trazos */
         }
 
         .pm-feature-img .pm-img-caption {
@@ -603,6 +613,8 @@
             line-height: 1.7;
             color: #333;
             margin-bottom: 18px;
+            position: relative;
+            z-index: 10;
         }
 
         .pm-feature-label {
@@ -623,6 +635,8 @@
             text-align: center;
             border-top: 1px solid #eee;
             scroll-snap-align: start;
+            position: relative;
+            z-index: 15; /* Sello de pie sobre trazos */
         }
 
         .footer-logo {
@@ -973,7 +987,7 @@
             width: clamp(100px, 12vw, 180px);
             top: 18vh;
             right: 3%;
-            z-index: 200;
+            z-index: 500; /* Siempre encima */
             /* POR ENCIMA de heroes, secciones, nav */
             transform-origin: center center;
         }
@@ -983,7 +997,7 @@
             width: clamp(80px, 10vw, 150px);
             top: 55vh;
             left: 2%;
-            z-index: 6;
+            z-index: 100; /* Sobre la capa de trazos */
             /* Encima de contenido base pero debajo de overlays */
         }
 
@@ -992,7 +1006,7 @@
             width: clamp(90px, 11vw, 160px);
             top: 82vh;
             right: 6%;
-            z-index: 0;
+            z-index: 100; /* Sobre la capa de trazos */
             /* DETRÁS de las secciones con fondo */
             opacity: 0.6;
             filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.15)) blur(0.5px);
@@ -1100,9 +1114,9 @@
     
     <!-- SCRIBBLE SVG (Movido al inicio) -->
     <div class="scroll-scribble-container">
-        <svg width="100%" height="100%" viewBox="0 0 1000 7000" preserveAspectRatio="none">
-            <path id="scroll-path-1" d="M -50 200 Q 200 600 100 1200 T 300 2000 T 50 3000 T 400 4000 T 100 5000 T 600 6000 T -50 7000" />
-            <path id="scroll-path-2" d="M 1050 400 Q 800 800 900 1400 T 700 2200 T 950 3200 T 600 4200 T 900 5200 T 400 6200 T 1050 7200" />
+        <svg width="100%" height="100%" viewBox="0 0 1000 7500" preserveAspectRatio="none">
+            <path id="scroll-path-1" d="M -50 0 Q 300 400 100 1000 T 400 2000 T 50 3000 T 450 4000 T 150 5000 T 600 6000 T -50 7200" />
+            <path id="scroll-path-2" d="M 1050 50 Q 800 600 900 1200 T 700 2200 T 950 3200 T 600 4200 T 900 5200 T 400 6200 T 1050 7200" />
         </svg>
     </div>
 
@@ -1116,7 +1130,7 @@
 
 
     <!-- LOGO INDEPENDIENTE -->
-    <a href="./index.html" class="floating-logo">
+    <a href="./index.html" class="floating-logo" style="z-index: 2000;">
         <img src="./img/LOGO.png" alt="Cre Arte Logo">
     </a>
 
@@ -1195,7 +1209,7 @@
     <section class="pm-section" id="alianzas" style="position: relative;">
         <!-- Imagen decorativa del frasco en la esquina derecha -->
         <img src="./img/1.png" alt="Mermelada"
-            style="position: absolute; top: -40px; right: 2%; width: 600px; z-index: -1; transform: rotate(10deg); filter: drop-shadow(0 8px 24px rgba(0,0,0,0.2)); opacity: 0.9;">
+            style="position: absolute; top: -40px; right: 2%; width: 600px; z-index: 20; transform: rotate(10deg); filter: drop-shadow(0 8px 24px rgba(0,0,0,0.2)); opacity: 0.9;">
 
         <div class="pm-sec-header pm-reveal">
             <div class="pm-sec-title"><span>Nuestras</span><br>ALIANZAS</div>
@@ -1402,14 +1416,14 @@
             
             const rect = travelWrapper.getBoundingClientRect();
             const totalScroll = rect.height - window.innerHeight;
-            // Progreso de 0 a 1
+            // Progreso de 0 a 1 (sobre 400vh de scroll real)
             let p = -rect.top / totalScroll;
             p = Math.max(0, Math.min(1, p));
-
+            
             const vw = window.innerWidth;
             const vh = window.innerHeight;
-
-            // FASE inicial (Título)
+            
+            // Título
             const titleFadeEnd = 0.15; 
             let titleOpacity = 1 - (p / titleFadeEnd);
             let titleFilter = p > 0.05 ? `blur(${p * 40}px)` : 'blur(0px)';
@@ -1419,23 +1433,25 @@
                 travelTitle.style.filter = titleFilter;
             }
 
-            // Definición de trayectorias MATEMÁTICAS (Sincronizadas exactamente con los Snaps a 100vh, 200vh, etc.)
-            // Cada viaje centrado en su fase correspondiente del scroll (p=0.2, 0.4, 0.6, 0.8)
+            // Definición de trayectorias MATEMÁTICAS
+            // Ajustamos las trayectorias para el nuevo rango de scroll (0 a 1 sobre 400vh)
+            // Trip centers: 0.25, 0.5, 0.75, 1.0 (o similar)
+            // Mantendremos la lógica de dist-al-centro pero adecuada al nuevo wrapper
             const cardPaths = [
-                // Viaje 1 (Roma) - p=0.2 (Snap en 100vh)
+                // Viaje 1 (Roma)
                 { layout: { dx: -vw*0.22, dy: vh*1.0 - (vh*0.1) } }, { layout: { dx: -vw*0.35, dy: vh*1.0 + (vh*0.1) } },
-                // Viaje 2 (Latam) - p=0.4 (Snap en 200vh)
+                // Viaje 2 (Latam)
                 { layout: { dx: vw*0.22, dy: vh*2.0 - (vh*0.1) } }, { layout: { dx: vw*0.35, dy: vh*2.0 + (vh*0.1) } },
-                // Viaje 3 (Patagonia) - p=0.6 (Snap en 300vh)
+                // Viaje 3 (Patagonia)
                 { layout: { dx: -vw*0.22, dy: vh*3.0 - (vh*0.1) } }, { layout: { dx: -vw*0.35, dy: vh*3.0 + (vh*0.1) } },
-                // Viaje 4 (Nuevos Rumbos) - p=0.8 (Snap en 400vh)
+                // Viaje 4 (Nuevos Rumbos)
                 { layout: { dx: vw*0.22, dy: vh*4.0 - (vh*0.1) } }, { layout: { dx: vw*0.35, dy: vh*4.0 + (vh*0.1) } }
             ];
 
-            const maxVirtualScroll = vh * 5.0; // 500vh de scroll total utilizable
+            const maxVirtualScroll = vh * 4.0; // Cambiado de 5.0 a 4.0 para el nuevo height de 500vh
             const globalScrollY = p * maxVirtualScroll;
 
-            // CAMBIO DINÁMICO DE FONDO (Blancos/Pasteles muy sutiles)
+            // CAMBIO DINÁMICO DE FONDO AL BODY (Trazos quedan entre el fondo y la imagen)
             const bgColors = [
                 '#ffffff', // Inicio / Roma
                 '#faf9f6', // Alabastro (Roma sutil)
@@ -1464,20 +1480,20 @@
             };
 
             const currentBG = interpolateColor(bgColors[colorIndex], bgColors[nextColorIndex], colorProgress);
-            travelWrapper.style.backgroundColor = currentBG;
+            document.body.style.backgroundColor = currentBG;
 
             tCards.forEach((card, i) => {
                 const conf = cardPaths[i];
                 const tripIndex = Math.floor(i / 2) + 1; // 1, 2, 3, 4
                 const text = tTexts[tripIndex - 1];
 
-                // El centro de cada viaje coincide milimétricamente con su Snap
-                const tripCenter = tripIndex * 0.2; // 0.2, 0.4, 0.6, 0.8
-
-                // Opacidad: Meseta súper ancha. Llega a ser 100% nítida mucho ANTES del centro.
+                // El centro de cada viaje coincide con su Snap (25%, 50%, 75%, 100%) en el scroll de 400vh
+                const tripCenter = (tripIndex * 0.25); // 0.25, 0.5, 0.75, 1.0 (para el nuevo rango)
+                
+                // Con el nuevo wrapper más corto, ajustamos la sensibilidad del foco
                 const distToCenter = Math.abs(p - tripCenter);
-                let rawFocus = 1 - (distToCenter / 0.12);
-                let focusOpacity = Math.max(0, Math.min(1, rawFocus * 3.5)); // Se estabiliza en 1 rápido y dura
+                let rawFocus = 1 - (distToCenter / 0.15); // Un poco más de margen
+                let focusOpacity = Math.max(0, Math.min(1, rawFocus * 4.0));
 
                 // Animación pop: Termina completamente antes de llegar al centro (Snap)
                 const localP = Math.max(0, Math.min(1, (p - (tripCenter - 0.15)) / 0.1));

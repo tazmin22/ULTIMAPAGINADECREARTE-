@@ -41,13 +41,13 @@
 
 
         body {
-            background-color: #fff;
+            background-color: #efedeb; /* Color base movido aquí para ver trazos */
             margin: 0;
             padding: 0;
             color: #111;
-            font-family: 'EB Garamond', serif;
-            overflow-x: hidden;
-            animation: fadeInPage 1.2s ease-out forwards;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden; /* Evitar scroll horizontal */
+            animation: fadeInPage 1.2s ease-out;
         }
 
 
@@ -61,6 +61,33 @@
                 opacity: 1;
                 transform: translateY(0);
             }
+        }
+
+        /* ===== SCROLL SCRIBBLE (ELEMENTO EDITORIAL) ===== */
+        .scroll-scribble-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1; /* Fondo < TRAZOS (1) < Contenido (10+) */
+            opacity: 0.3;
+            overflow: hidden;
+        }
+
+        #scroll-path-1, #scroll-path-2 {
+            fill: none;
+            stroke: #e65c00;
+            stroke-width: 30; /* Más grueso */
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        #scroll-path-2 {
+            stroke: #6a1a1c;
+            stroke-width: 18;
+            opacity: 0.6;
         }
 
         a {
@@ -198,14 +225,10 @@
         /* ===== MAGAZINE SPREAD SECTION (BIENVENIDOS) ===== */
 
         .about-us-section {
-            background-color: #efedeb;
+            background-color: transparent; /* Fondo en body para ver trazos */
             position: relative;
-            z-index: 50;
-            margin: 0;
-            /* ASEGURAR 0 MARGIN */
-            color: #111;
-            padding: 120px 8%;
-            /* Reducir padding superior un poco si se siente como 'espacio' */
+            z-index: 10;
+            padding: 100px 5%;
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -245,6 +268,8 @@
             text-transform: none;
             letter-spacing: normal;
             display: block;
+            position: relative;
+            z-index: 15; /* Asegurar visibilidad */
         }
 
         /* Bloques de texto editorial */
@@ -277,6 +302,7 @@
             position: absolute;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
             overflow: hidden;
+            z-index: 10; /* Sobre trazos */
         }
 
         .spread-photo img {
@@ -301,7 +327,7 @@
             left: 80px;
             width: 320px;
             height: 400px;
-            z-index: 10;
+            z-index: 100; /* Asegurado sobre trazos */
         }
 
         .sp-3 {
@@ -317,7 +343,7 @@
             right: -50px;
             width: 200px;
             height: 260px;
-            z-index: 5;
+            z-index: 100; /* Asegurado sobre trazos */
         }
 
         /* Línea vertical de revista */
@@ -359,7 +385,7 @@
             background: #fff;
             padding: 15px;
             box-shadow: 0 15px 45px rgba(0, 0, 0, 0.15);
-            z-index: 10;
+            z-index: 20; /* Elevado sobre trazos */
             transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
 
@@ -419,7 +445,7 @@
 
         /* ===== STAFF SECTION (MOSAIC STYLE) ===== */
         .staff-mosaic-section {
-            background-color: #efedeb;
+            background-color: transparent;
             /* Color hueso de fondo */
             padding: 100px 5%;
             display: flex;
@@ -448,6 +474,7 @@
             align-items: center;
             position: relative;
             overflow: hidden;
+            z-index: 20; /* Elevado sobre trazos */
         }
 
         /* Colores de la referencia */
@@ -488,6 +515,8 @@
             filter: grayscale(100%) contrast(1.15);
             /* Efecto blanco y negro fuerte */
             transition: transform 0.6s ease, filter 0.4s ease;
+            position: relative;
+            z-index: 10; /* Siempre sobre trazos */
         }
 
         .mosaic-hover-info {
@@ -583,7 +612,7 @@
 
         /* ===== HISTORY (SCRAPBOOK) SECTION ===== */
         .history-section {
-            background-color: #dfdad0;
+            background-color: transparent;
             /* Color más oscuro y cálido para contraste */
             min-height: 100vh;
             /* Altura suficiente para el collage */
@@ -610,7 +639,7 @@
             transition: transform 0.4s ease;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
             /* Sombra para dar relieve 3D */
-            z-index: 10;
+            z-index: 20; /* Elevado sobre trazos */
         }
 
         .scrap-piece img {
@@ -1011,6 +1040,15 @@
 
 <body>
 
+    <!-- SCRIBBLE SVG (Fondo dinámico editorial) -->
+    <div class="scroll-scribble-container">
+        <svg width="100%" height="100%" viewBox="0 0 1000 7000" preserveAspectRatio="none">
+            <!-- Trazo que cruza la página desde el inicio -->
+            <path id="scroll-path-1" d="M -50 0 Q 300 400 100 1000 T 400 2000 T 50 3000 T 450 4000 T 150 5000 T 600 6000 T -50 7200" />
+            <path id="scroll-path-2" d="M 1050 50 Q 800 600 900 1200 T 700 2200 T 950 3200 T 600 4200 T 900 5200 T 400 6200 T 1050 7200" />
+        </svg>
+    </div>
+
     <!-- CABECERA PRINCIPAL -->
     <header class="hero-splash" id="portada">
         <img src="./img/grupal.jpg" alt="Cre Arte Portada">
@@ -1097,7 +1135,7 @@
                 </div>
             </div>
 
-            <!-- Postal -->
+            <!-- Postal pequeña inferior (Firma/Fecha) -->
             <div class="scrap-piece scrap-postal fade-in-right stagger-6">
                 <div style="width: 100%;">
                     "Transformando realidades<br>con arte y pasión..." <br><br>
@@ -1178,7 +1216,7 @@
             </div>
             <div class="mosaic-box color-burgundy fade-in-place stagger-14"></div>
             <!-- TEXT BOX (Span 2x2) -->
-            <div class="mosaic-box mosaic-text-box fade-in-place stagger-10">
+            <div class="mosaic-box mosaic-text-box fade-in-place stagger-10" style="z-index: 25;">
                 <div class="mosaic-names"><span>Gente</span>CRE ARTE</div>
                 <div class="mosaic-subtitle">Nuestro Staff</div>
             </div>
@@ -1341,7 +1379,7 @@
                 nav.style.padding = '20px 0';
                 navLinks.forEach(link => link.style.color = '#111');
             } else {
-                nav.style.backgroundColor = 'transparent';
+                nav.style.backgroundColor = 'transparent'; // Reverted to original as per instruction clarification
                 nav.style.backdropFilter = 'none';
                 nav.style.padding = '35px 0';
                 navLinks.forEach(link => link.style.color = '#fff');
@@ -1349,5 +1387,26 @@
         });
 
 
+        // --- SCRIBBLE SCROLL ANIMATION ---
+        const path1 = document.querySelector('#scroll-path-1');
+        const path2 = document.querySelector('#scroll-path-2');
+        if (path1 && path2) {
+            const pathLength1 = path1.getTotalLength();
+            const pathLength2 = path2.getTotalLength();
+
+            path1.style.strokeDasharray = pathLength1 + ' ' + pathLength1;
+            path1.style.strokeDashoffset = pathLength1;
+            path2.style.strokeDasharray = pathLength2 + ' ' + pathLength2;
+            path2.style.strokeDashoffset = pathLength2;
+
+            window.addEventListener('scroll', () => {
+                const scrollPos = window.pageYOffset || document.documentElement.scrollTop;
+                const totalHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const scrollPercentage = Math.max(0, Math.min(1, scrollPos / totalHeight));
+                
+                path1.style.strokeDashoffset = pathLength1 - (pathLength1 * scrollPercentage);
+                path2.style.strokeDashoffset = pathLength2 - (pathLength2 * scrollPercentage);
+            });
+        }
     </script>
 </body>
