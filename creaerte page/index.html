@@ -15,9 +15,9 @@
 
 
   <!-- Fuente -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+    rel="stylesheet">
 
   <style>
     :root {
@@ -30,10 +30,17 @@
 
     html,
     body {
-      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans";
+      font-family: 'Inter', sans-serif;
       margin: 0;
       padding: 0;
       color: #0a0a0a;
+    }
+
+    .text-accent {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-weight: 400;
+      text-transform: none !important;
     }
 
     .brand-badge {
@@ -333,55 +340,288 @@
       border: 0;
     }
 
-    /* ===== SECCIÓN DÓNDE ESTAMOS ===== */
+    /* === NEW SPLIT DÓNDE ESTAMOS === */
     .where-section {
-      position: relative;
-      background-image: url('./img/frente.jpeg');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      padding: 6rem 0 5rem;
+      background: #fdfdfc;
+      padding: 0;
+      overflow: hidden;
+      margin: 40px 0 !important;
+      /* Reduced top margin */
+    }
+
+    .where-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 700px;
+    }
+
+    .where-content-col {
+      padding: 100px 8%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background-color: #fdfdfc;
+    }
+
+    .where-headline {
+      font-family: 'Inter', sans-serif;
+      font-weight: 900;
+      font-size: clamp(2.5rem, 5vw, 3.8rem);
+      line-height: 0.95;
       color: #fff;
+      margin-bottom: 40px;
+      text-transform: uppercase;
+      transform: rotate(-1.5deg);
     }
 
-    .where-section::before {
-      content: "";
+    .where-highlight {
+      background: #6a1a1c;
+      /* Wine / Bordo */
+      color: #fff;
+      display: inline-block;
+      padding: 10px 20px;
+      margin-bottom: 8px;
+      box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.05);
+    }
+
+    .where-headline span.accent {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-weight: 400;
+      text-transform: none;
+      color: #fff;
+      display: inline-block;
+    }
+
+    .hand-pointer-trigger {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+    }
+
+    /* Hand pointing to Map */
+    .pointing-hand-map {
       position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.55);
+      top: -100px;
+      right: -20px;
+      width: 130px;
+      opacity: 0;
+      transform: translateY(30px) rotate(-15deg);
+      transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+      pointer-events: none;
+      filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.2));
+      z-index: 100;
     }
 
-    .where-section .uk-container {
-      position: relative;
-      z-index: 2;
+    .where-content-col:hover .pointing-hand-map {
+      opacity: 1;
+      transform: translateY(0) rotate(-15deg);
     }
 
-    .where-section h2 {
-      font-size: 2.5rem;
-      font-weight: 800;
-      margin-bottom: 0.3rem;
+    .where-text-details {
+      max-width: 450px;
+      margin-bottom: 40px;
     }
 
-    .where-section p {
-      font-size: 1.2rem;
-      margin-bottom: 2rem;
+    .where-text-details p {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #444;
+      margin-bottom: 25px;
     }
 
-    .where-section .map-wrap {
-      position: relative;
-      z-index: 2;
-      max-width: 1000px;
-      margin: 0 auto;
-      height: 300px;
+    .where-meta {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #666;
+    }
+
+    .where-meta li {
+      margin-bottom: 15px;
+      display: flex;
+      gap: 15px;
+      align-items: center;
+    }
+
+    .where-meta span {
+      color: #829068;
+    }
+
+    /* Small map embedded */
+    .where-small-map-wrap {
+      width: 100%;
+      height: 220px;
+      margin-top: 40px;
+      border: 1px solid #eee;
+      border-radius: 4px;
       overflow: hidden;
     }
 
-    /* Más espacio entre el texto y el mapa en "Dónde estamos" */
-    .where-section p.uk-text-lead {
-      margin-bottom: 2.5rem;
-      /* antes era 2rem o menos */
+    .where-image-col {
+      position: relative;
+      background: url('./talleres/talleres10.JPG') center/cover;
     }
 
+    .where-image-col::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(106, 26, 28, 0.05);
+      /* Subtle wine overlay */
+    }
+
+    @media (max-width: 960px) {
+      .where-split {
+        grid-template-columns: 1fr;
+      }
+
+      .where-image-col {
+        height: 400px;
+        order: -1;
+      }
+
+      .where-content-col {
+        padding: 60px 5%;
+      }
+    }
+
+    /* === PREMIUM DIVIDER === */
+    .mag-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      max-width: 80%;
+      margin: 20px auto;
+      /* Reduced margin */
+    }
+
+    .mag-divider-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, transparent, rgba(106, 26, 28, 0.4), transparent);
+    }
+
+    .mag-divider-diamond {
+      width: 12px;
+      height: 12px;
+      background-color: rgba(106, 26, 28, 0.6);
+      transform: rotate(45deg);
+      margin: 0 25px;
+    }
+
+
+    /* === STEPS SECTION (Process) === */
+    .steps-section {
+      padding: 0 0 40px;
+      /* Reduced bottom padding */
+      margin-top: -100px !important;
+      /* Reduced overlap to avoid text */
+      position: relative;
+      z-index: 20;
+    }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 30px;
+    }
+
+    .step-card {
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+
+    /* Staggered offsets like the image */
+    .step-card:nth-child(1) {
+      margin-top: 0;
+    }
+
+    .step-card:nth-child(2) {
+      margin-top: 80px;
+    }
+
+    .step-card:nth-child(3) {
+      margin-top: 160px;
+    }
+
+    .step-card:nth-child(4) {
+      margin-top: 240px;
+    }
+
+    .step-image-wrap {
+      width: 100%;
+      aspect-ratio: 3/4;
+      overflow: hidden;
+      margin-bottom: 25px;
+      filter: grayscale(1);
+      transition: filter 0.5s ease;
+    }
+
+    .step-card:hover .step-image-wrap {
+      filter: grayscale(0);
+    }
+
+    .step-image-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.8s ease;
+    }
+
+    .step-card:hover .step-image-wrap img {
+      transform: scale(1.05);
+    }
+
+    .step-content h3 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: #111;
+      margin: 0 0 10px;
+      line-height: 1.2;
+    }
+
+    .step-content p {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      color: #666;
+      line-height: 1.6;
+      margin: 0;
+      max-width: 90%;
+    }
+
+    @media (max-width: 960px) {
+      .steps-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px;
+      }
+
+      .step-card:nth-child(n) {
+        margin-top: 0;
+      }
+
+      /* Reset offsets on mobile */
+      .step-card:nth-child(even) {
+        margin-top: 40px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .steps-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .step-card:nth-child(n) {
+        margin-top: 0 !important;
+      }
+    }
 
     /* === IMAGEN PEQUEÑA ENCIMA === */
     .t-nav {
@@ -482,126 +722,162 @@
     }
 
 
-    /* === NEWS GRID SECTION === */
-    .news-section {
-      padding: 60px 0;
-      background: #fff;
-    }
-
-    .news-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 30px;
-      border-bottom: 1px solid #eee;
-      padding-bottom: 15px;
-    }
-
-    .news-header h2 {
-      font-family: 'Inter', sans-serif;
-      font-weight: 700;
-      font-size: 1rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin: 0;
-    }
-
-    .news-filters a {
-      font-family: 'Inter', sans-serif;
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-left: 20px;
-      color: #999;
-      font-weight: 600;
-    }
-
-    .news-filters a.active,
-    .news-filters a:hover {
-      color: #000;
-    }
-
-    .news-card-large {
-      position: relative;
-      height: 550px;
-      overflow: hidden;
-    }
-
-    .news-card-large img {
-      transition: transform 0.8s ease;
-    }
-
-    .news-card-large:hover img {
-      transform: scale(1.05);
-    }
-
-    .news-card-overlay {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      padding: 40px;
-      background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 100%);
-      color: #fff;
-    }
-
-    .news-card-overlay h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.2rem;
-      line-height: 1.1;
-      margin-bottom: 15px;
-      color: #fff;
-    }
-
-    .news-meta {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      font-family: 'Inter', sans-serif;
-      font-size: 0.8rem;
-      color: rgba(255, 255, 255, 0.7);
-    }
-
-    .news-meta img {
-      width: 35px;
-      height: 35px;
-      border-radius: 50%;
-      object-fit: cover;
-    }
-
-    .news-card-small {
-      margin-bottom: 25px;
-    }
-
-    .news-card-small .uk-cover-container {
-      height: 180px;
-      margin-bottom: 15px;
-      overflow: hidden;
-    }
-
-    .news-card-small h4 {
-      font-family: 'Playfair Display', serif;
-      font-weight: 700;
-      font-size: 1.1rem;
-      line-height: 1.3;
-      margin: 0 0 10px 0;
-      color: #111;
-    }
-
-    .news-tag {
-      font-family: 'Inter', sans-serif;
-      font-size: 0.7rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      color: #7b8b64;
-      letter-spacing: 1px;
-      margin-right: 15px;
-    }
-
     .news-date {
       font-family: 'Inter', sans-serif;
       font-size: 0.7rem;
       color: #999;
+    }
+
+    /* === SOCIAL SECTION === */
+    .social-section {
+      background: #f4efe6;
+      padding: 120px 0;
+      overflow: visible;
+      position: relative;
+    }
+
+    .social-headline {
+      font-family: 'Inter', sans-serif;
+      font-weight: 900;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      line-height: 0.95;
+      color: #6a1a1c;
+      margin-top: -220px;
+      /* Pulls only the text further onto the image above */
+      margin-bottom: 50px;
+      text-transform: uppercase;
+      animation: floatHeadline 5s ease-in-out infinite;
+      transform-origin: center;
+      position: relative;
+      z-index: 50;
+    }
+
+    @keyframes floatHeadline {
+
+      0%,
+      100% {
+        transform: translateY(0) rotate(-1.5deg);
+      }
+
+      50% {
+        transform: translateY(-25px) rotate(-3.5deg);
+      }
+    }
+
+    .social-highlight {
+      background: #829068;
+      /* Changed to Sage from Pink */
+      color: #fff;
+      display: inline-block;
+      padding: 8px 15px;
+      margin-bottom: 5px;
+      box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.05);
+    }
+
+    .social-text {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.15rem;
+      color: #6a1a1c;
+      max-width: 400px;
+      line-height: 1.5;
+      font-weight: 500;
+    }
+
+    .social-card {
+      display: block;
+      background: #fff;
+      padding: 40px;
+      height: 100%;
+      text-decoration: none !important;
+      position: relative;
+      transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+      border: 1px solid rgba(106, 26, 28, 0.08);
+    }
+
+    .social-card:hover {
+      transform: translateY(-10px) rotate(1deg);
+      box-shadow: 30px 30px 60px rgba(0, 0, 0, 0.1);
+      background: #829068;
+      /* Changed to Sage on hover */
+      color: #fff;
+    }
+
+    .social-card:hover .social-card-inner {
+      color: #fff;
+    }
+
+    .social-card:hover .social-card-inner p {
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .social-card:hover .social-card-arrow {
+      color: #fff;
+      opacity: 1;
+    }
+
+    /* Hand appearing on hover */
+    .social-card-hand {
+      position: absolute;
+      bottom: -60px;
+      left: 50%;
+      transform: translateX(-50%) translateY(40px);
+      width: 120px;
+      height: auto;
+      opacity: 0;
+      transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+      z-index: 5;
+      pointer-events: none;
+      filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.1));
+    }
+
+    .social-card:hover .social-card-hand {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .social-card-inner {
+      color: #6a1a1c;
+    }
+
+    .social-card-inner h4 {
+      font-family: 'Inter', sans-serif;
+      font-weight: 900;
+      text-transform: uppercase;
+      font-size: 1.4rem;
+      margin: 20px 0 10px;
+      color: inherit;
+    }
+
+    .social-card-inner p {
+      font-size: 0.95rem;
+      color: rgba(106, 26, 28, 0.7);
+      margin: 0;
+      line-height: 1.4;
+    }
+
+    .social-card-arrow {
+      position: absolute;
+      top: 30px;
+      right: 30px;
+      color: #6a1a1c;
+      opacity: 0.3;
+      transition: opacity 0.3s;
+    }
+
+    .social-card:hover .social-card-arrow {
+      opacity: 1;
+    }
+
+    @media (max-width: 960px) {
+      .social-headline {
+        transform: none;
+        text-align: center;
+      }
+
+      .social-text {
+        text-align: center;
+        margin: 0 auto 40px;
+      }
     }
 
     /* === NEW PREMIUM FOOTER === */
@@ -699,6 +975,51 @@
         opacity: 0;
       }
     }
+
+    /* 3D Decorative Head */
+    .social-decor-img {
+      position: absolute;
+      bottom: -20px;
+      right: 5px;
+      max-width: 170px;
+      z-index: 500;
+      pointer-events: none;
+      filter: drop-shadow(15px 10px 30px rgba(0, 0, 0, 0.15));
+      transform: rotate(-12deg);
+    }
+
+    /* Static Decorative Image */
+    .social-decor-img {
+      position: absolute;
+      bottom: -20px;
+      right: 5px;
+      max-width: 170px;
+      /* Larger */
+      z-index: 500;
+      /* Stay in front of cards */
+      pointer-events: none;
+      filter: drop-shadow(15px 10px 30px rgba(0, 0, 0, 0.15));
+      transform: rotate(-12deg);
+      /* Constant rotation, no anim */
+    }
+
+    @media (max-width: 960px) {
+      .social-decor-img {
+        display: none;
+      }
+    }
+
+    @media (max-width: 960px) {
+      .social-headline {
+        transform: none;
+        text-align: center;
+      }
+
+      .social-text {
+        text-align: center;
+        margin: 0 auto 40px;
+      }
+    }
   </style>
 </head>
 
@@ -708,7 +1029,6 @@
     <img src="./img/LOGO.png" alt="Cre Arte Logo">
   </a>
   <div class="t-nav-links">
-    <a href="./index.html">Inicio</a>
     <a href="./talleres.html">Talleres</a>
     <a href="./quienes_somos.html">Quiénes Somos</a>
     <a href="./puertas_al_mundo.html">Puertas al Mundo</a>
@@ -717,31 +1037,53 @@
 
 <body>
 
-  <!-- Hero Video -->
-  <section class="uk-section uk-section-remove-padding uk-position-relative uk-overflow-hidden"
-    style="height: 100vh; min-height: 600px;">
-    <video src="./img/video.mp4" autoplay loop muted playsinline uk-cover></video>
-    <div class="uk-position-cover hero-overlay"></div>
-    <div class="uk-position-center uk-text-center uk-light">
-      <div class="uk-container">
-        <h1 class="uk-heading-medium uk-text-bold uk-margin-small">CRE ARTE BARILOCHE</h1>
-        <p class="uk-text-lead">Donde el arte y la comunidad se encuentran.</p>
-        <div class="uk-margin-medium-top">
+  <!-- Hero Image -->
+  <section class="uk-section uk-section-remove-padding uk-position-relative uk-overflow-hidden hero-static"
+    style="height: 100vh; min-height: 600px;" uk-scrollspy="cls: uk-animation-fade; delay: 300">
+    <!-- Single Hero Image -->
+    <div class="hero-slide-static"
+      style="background-image: url('./img/JACOBACCI.JPG'); 
+         position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center;"></div>
 
-        </div>
+    <!-- Overlay remains for readability -->
+    <div class="uk-position-cover hero-overlay" style="z-index: 1;"></div>
+
+    <div class="uk-position-center uk-text-center uk-light" style="z-index: 2;">
+      <div class="uk-container">
+        <h1 class="uk-heading-medium uk-text-bold uk-margin-small">
+          CRE-<span class="text-accent">arte</span>
+        </h1>
+        <p class="uk-text-lead uk-text-uppercase" style="letter-spacing: 5px;">Bariloche</p>
+        <div class="uk-margin-medium-top"></div>
       </div>
+    </div>
   </section>
 
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const slideshow = document.querySelector('.hero-slide-static');
+
+      // Parallax effect on scroll
+      window.addEventListener('scroll', () => {
+        let scrollPos = window.pageYOffset;
+        if (slideshow) {
+          slideshow.style.transform = `translateY(${scrollPos * 0.3}px)`;
+        }
+      });
+    });
+  </script>
+
   <!-- Mosaico principal -->
-  <section class="uk-section uk-section-remove-padding no-margin">
+  <section class="uk-section uk-section-remove-padding no-margin"
+    uk-scrollspy="cls: uk-animation-fade; target: .tile; delay: 200">
     <div class="uk-grid-collapse uk-child-width-1-1 uk-child-width-1-2@m uk-child-width-1-3@l" uk-grid>
 
       <!-- QUIENES SOMOS -->
       <div id="ingreso">
         <a href="./quienes_somos.html" class="uk-inline-clip uk-transition-toggle uk-display-block">
-          <div class="uk-cover-container tile hover-reveal" style="background:#7b8b64;">
+          <div class="uk-cover-container tile hover-reveal" style="background:#829068;">
             <canvas width="800" height="560"></canvas>
-            <img src="./img/Murga.jpg" alt="" uk-cover>
+            <img src="./talleres/talleres21.jpg" alt="" uk-cover>
             <div class="hover-overlay"></div>
             <div class="uk-position-center uk-text-center uk-light title">
               <div class="uk-h2 uk-text-bold uk-margin-remove">QUIENES SOMOS</div>
@@ -753,9 +1095,9 @@
       <!-- TALLERES -->
       <div id="facultades">
         <a href="./talleres.html" class="uk-inline-clip uk-transition-toggle uk-display-block">
-          <div class="uk-cover-container tile hover-reveal" style="background:#f2cb7b">
+          <div class="uk-cover-container tile hover-reveal" style="background:#eeba5e">
             <canvas width="800" height="560"></canvas>
-            <img src="./img/Peña.JPG" alt="Facultades y carreras" uk-cover>
+            <img src="./talleres/talleres13.jpg" alt="Facultades y carreras" uk-cover>
             <div class="hover-overlay"></div>
             <div class="uk-position-center uk-text-center uk-light title">
               <div class="uk-h2 uk-text-bold uk-margin-remove">TALLERES</div>
@@ -767,9 +1109,9 @@
       <!-- GALERIA -->
       <div>
         <a href="./puertas_al_mundo.html" class="uk-inline-clip uk-transition-toggle uk-display-block">
-          <div class="uk-cover-container tile hover-reveal" style="background:#806419;">
+          <div class="uk-cover-container tile hover-reveal" style="background:#b19453;">
             <canvas width="800" height="560"></canvas>
-            <img src="./img/banner.jpg" alt="Galeria" uk-cover>
+            <img src="./img/MONTAÑAS.jpg" alt="Galeria" uk-cover>
             <div class="hover-overlay"></div>
             <div class="uk-position-center uk-text-center uk-light title">
               <div class="uk-h2 uk-text-bold uk-margin-remove">PUERTAS AL MUNDO</div>
@@ -781,7 +1123,7 @@
       <!-- HISTORIA + INVESTIGACIÓN con color en hover (igual que tenías) -->
       <div class="uk-width-2-3@l uk-width-1-1@m">
         <a href="404.html" class="uk-inline-clip uk-transition-toggle uk-display-block">
-          <div class="uk-cover-container tile colorize" style="background:#0f2940;
+          <div class="uk-cover-container tile colorize" style="background:#1b263b;
                       --hover-color:#000000;
                       --hover-opacity:.55;
                       --hover-blend:multiply;">
@@ -800,8 +1142,8 @@
       <!-- INTERNACIONALES -->
       <div id="internacionales">
         <a href="404.html" class="uk-inline-clip uk-transition-toggle uk-display-block">
-          <div class="uk-cover-container tile hover-reveal" style="background:#1E2458;">
-            <img src="./img/pintor.webp" alt="Internacionales" uk-cover>
+          <div class="uk-cover-container tile hover-reveal" style="background:#0f2940;">
+            <img src="./talleres/talleres26.JPG" alt="Internacionales" uk-cover>
             <canvas width="800" height="560"></canvas>
             <div class="hover-overlay"></div>
             <div class="uk-position-center uk-text-center uk-light title">
@@ -814,12 +1156,14 @@
     </div>
   </section>
 
-  <img src="./img/separador.png" alt="">
-  <img src="./img/separador.png" alt="">
-
+  <div class="mag-divider" uk-scrollspy="cls: uk-animation-scale-up; delay: 100">
+    <div class="mag-divider-line"></div>
+    <div class="mag-divider-diamond"></div>
+    <div class="mag-divider-line"></div>
+  </div>
 
   <!-- CTA -->
-  <section class="uk-section cta-hero uk-light uk-animation-scale-up uk-animation-toggle">
+  <section class="uk-section cta-hero uk-light" uk-scrollspy="cls: uk-animation-slide-bottom-medium; delay: 200">
     <div class="uk-container">
       <div class="uk-grid-large uk-flex-middle" uk-grid>
         <div class="uk-width-expand">
@@ -833,167 +1177,204 @@
     </div>
   </section>
 
-  <!-- News Grid Section -->
-  <section class="news-section" uk-filter="target: .js-filter">
+  <!-- Social Networks Section -->
+  <section class="social-section" uk-scrollspy="cls: uk-animation-fade; delay: 300">
     <div class="uk-container">
-      <div class="news-header">
-        <h2>Recién Agregado</h2>
-        <div class="news-filters uk-visible@m">
-          <a href="#" uk-filter-control>Todo</a>
-          <a href="#" uk-filter-control="filter: [data-type='talleres']">Talleres</a>
-          <a href="#" uk-filter-control="filter: [data-type='internacional']">Internacional</a>
-          <a href="#" uk-filter-control="filter: [data-type='cultura']">Cultura</a>
-          <a href="#" uk-filter-control="filter: [data-type='agenda']">Agenda</a>
+      <div class="uk-grid-large uk-flex-middle" uk-grid>
+        <!-- Text Column -->
+        <div class="uk-width-2-5@m uk-width-1-1">
+          <h2 class="social-headline">
+            <span class="social-highlight">las historias</span> <br>
+            <span class="social-highlight">nos unen.</span>
+          </h2>
+          <p class="social-text">
+            Seguinos en nuestras plataformas sociales y sumate a la conversación artística de Bariloche.
+          </p>
         </div>
-      </div>
 
-      <div class="uk-grid-medium js-filter" uk-grid>
-        <!-- Principal Left -->
-        <div class="uk-width-3-5@l uk-width-1-1" data-type="cultura">
-          <div class="news-card-large uk-cover-container">
-            <img src="./img/Murga.jpg" alt="Featured News" uk-cover>
-            <div class="news-card-overlay">
-              <h3>El impacto de la murga en la inclusión social de Bariloche.</h3>
-              <div class="news-meta">
-                <img src="./img/pintor.webp" alt="Author">
-                <span>Por Juan Pérez</span>
-                <span>•</span>
-                <span>12 Marzo, 2026</span>
-              </div>
+        <!-- Cards Column -->
+        <div class="uk-width-3-5@m uk-width-1-1">
+          <div class="uk-grid-medium uk-child-width-1-2@s" uk-grid>
+            <!-- Instagram Card -->
+            <div uk-scrollspy="cls: uk-animation-slide-bottom-small; delay: 500">
+              <a href="https://www.instagram.com/crearte_bariloche/" target="_blank" class="social-card">
+                <div class="social-card-inner">
+                  <span uk-icon="icon: instagram; ratio: 2.2"></span>
+                  <h4>Instagram</h4>
+                  <p>Galería visual diaria y procesos creativos.</p>
+                </div>
+                <div class="social-card-arrow" uk-icon="icon: arrow-right"></div>
+                <!-- Hand holding the card -->
+                <img src="./img/mano.png" alt="" class="social-card-hand">
+              </a>
+            </div>
+            <!-- Facebook Card -->
+            <div uk-scrollspy="cls: uk-animation-slide-bottom-small; delay: 700">
+              <a href="https://www.facebook.com/creartebariloche" target="_blank" class="social-card">
+                <div class="social-card-inner">
+                  <span uk-icon="icon: facebook; ratio: 2.2"></span>
+                  <h4>Facebook</h4>
+                  <p>Eventos, peñas y novedades comunitarias en vivo.</p>
+                </div>
+                <div class="social-card-arrow" uk-icon="icon: arrow-right"></div>
+                <!-- Hand holding the card -->
+                <img src="./img/mano.png" alt="" class="social-card-hand">
+              </a>
             </div>
           </div>
         </div>
+      </div>
+    </div>
 
-        <!-- Sidebar Right (2x2) -->
-        <div class="uk-width-2-5@l uk-width-1-1">
-          <div class="uk-child-width-1-2@s uk-child-width-1-1 js-filter" uk-grid>
-            <div data-type="talleres">
-              <div class="news-card-small">
-                <div class="uk-cover-container">
-                  <img src="./img/Peña.JPG" alt="Short 1" uk-cover>
-                </div>
-                <div>
-                  <span class="news-tag">Talleres</span>
-                  <span class="news-date">8 Mar</span>
-                  <h4>Nueva peña folclórica este sábado.</h4>
-                </div>
-              </div>
-            </div>
-            <div data-type="internacional">
-              <div class="news-card-small">
-                <div class="uk-cover-container">
-                  <img src="./img/roma.jpg" alt="Short 2" uk-cover>
-                </div>
-                <div>
-                  <span class="news-tag">Internacional</span>
-                  <span class="news-date">5 Mar</span>
-                  <h4>Nuestras obras viajan al museo de Roma.</h4>
-                </div>
-              </div>
-            </div>
-            <div data-type="cultura">
-              <div class="news-card-small">
-                <div class="uk-cover-container">
-                  <img src="./img/pintura.jpg" alt="Short 3" uk-cover>
-                </div>
-                <div>
-                  <span class="news-tag">Cultura</span>
-                  <span class="news-date">3 Mar</span>
-                  <h4>Técnicas de acrílico al aire libre.</h4>
-                </div>
-              </div>
-            </div>
-            <div data-type="talleres">
-              <div class="news-card-small">
-                <div class="uk-cover-container">
-                  <img src="./img/computacion.png" alt="Short 4" uk-cover>
-                </div>
-                <div>
-                  <span class="news-tag">Talleres</span>
-                  <span class="news-date">1 Mar</span>
-                  <h4>Computación: Arte digital para todos.</h4>
-                </div>
-              </div>
-            </div>
+
+
+  </section>
+
+  <section class="steps-section">
+    <div class="uk-container">
+      <div class="steps-grid">
+        <!-- Step 01 -->
+        <div class="step-card" uk-scrollspy="cls: uk-animation-slide-bottom-medium; delay: 100">
+          <div class="step-image-wrap">
+            <img src="./talleres/talleres21.jpg" alt="Inclusión">
+          </div>
+        </div>
+
+        <!-- Step 02 -->
+        <div class="step-card" uk-scrollspy="cls: uk-animation-slide-bottom-medium; delay: 400">
+          <div class="step-image-wrap">
+            <img src="./talleres/talleres31.JPG" alt="Creatividad">
+          </div>
+        </div>
+
+        <!-- Step 03 -->
+        <div class="step-card" uk-scrollspy="cls: uk-animation-slide-bottom-medium; delay: 700">
+          <div class="step-image-wrap">
+            <img src="./talleres/talleres22.jpg" alt="Comunidad">
+          </div>
+        </div>
+
+        <!-- Step 04 -->
+        <div class="step-card" uk-scrollspy="cls: uk-animation-slide-bottom-medium; delay: 1000">
+          <div class="step-image-wrap">
+            <img src="./talleres/talleres29.JPG" alt="Transformación">
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <img src="./img/separador.png" alt="">
-  <!-- Sección "Dónde estamos" (idéntica a la tuya) -->
-  <section class="where-section uk-light">
-    <div class="uk-container uk-text-center">
-      <h2 class="uk-heading-medium uk-text-bold">Dónde estamos</h2>
-      <p class="uk-text-lead">Encontranos fácilmente y vení a conocernos</p>
-    </div>
+  <div class="mag-divider" uk-scrollspy="cls: uk-animation-scale-up; delay: 200">
+    <div class="mag-divider-line"></div>
+    <div class="mag-divider-diamond"></div>
+    <div class="mag-divider-line"></div>
+  </div>
+  <!-- Dónde estamos SPLIT -->
+  <section class="where-section" id="ubicacion">
+    <div class="where-split">
+      <!-- Content Column -->
+      <div class="where-content-col" uk-scrollspy="cls: uk-animation-slide-left-small; delay: 200">
+        <h2 class="where-headline">
+          <span class="where-highlight">
+            <span class="hand-pointer-trigger">
+              Encontranos
+              <img src="./img/manoabajo.png" class="pointing-hand-map" alt="" style="display:none;">
+              <!-- Hidden from here, moved to map wrapper -->
+            </span>
+          </span><br>
+          <span class="where-highlight">
+            <span class="accent">aquí</span>
+          </span>
+        </h2>
 
-    <div class="map-wrap">
-      <iframe class="map-embed"
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3283.707509987516!2d-58.38159242477931!3d-34.61178125949167!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bccacf48a79bb1%3A0x76d8a2c9da56e3b3!2sUniversidad%20de%20Buenos%20Aires!5e0!3m2!1ses!2sar!4v1693235845670!5m2!1ses!2sar"
-        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-      </iframe>
+        <div class="where-text-details">
+          <p>Un espacio de encuentro, arte y comunidad en el corazón de San Carlos de Bariloche.</p>
+
+          <ul class="where-meta">
+            <li><span uk-icon="icon: location"></span> Quaglia 540, Bariloche, Río Negro</li>
+            <li><span uk-icon="icon: clock"></span> Lun a Vie: 09:00 - 18:00 hs</li>
+            <li><span uk-icon="icon: receiver"></span> +54 (294) 442-XXXX</li>
+          </ul>
+        </div>
+
+        <!-- Small Map Wrapper (Hand + Map) -->
+        <div class="where-map-container" style="position: relative; overflow: visible;">
+          <img src="./img/manoabajo.png" class="pointing-hand-map" alt="">
+          <div class="where-small-map-wrap">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3004.811797828!2d-71.306!3d-41.134!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x961a7b1520012bfd%3A0x334aa1031853ba53!2sGdor.%20Le%C3%B3n%20Quaglia%20540%2C%20R8400%20San%20Carlos%20de%20Bariloche%2C%20R%C3%ADo%20Negro!5e0!3m2!1ses!2sar!4v1711410000000"
+              width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
+            </iframe>
+          </div>
+        </div>
+      </div>
+
+      <!-- Image Column -->
+      <div class="where-image-col" uk-scrollspy="cls: uk-animation-fade; delay: 400">
+      </div>
     </div>
   </section>
 
   <!-- Footer (idéntico al tuyo) -->
-  <footer class="crearte-footer">
-    <div class="footer-wave-divider">
-      <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
-        <path fill="#829068"
-          d="M0,64L120,74.7C240,85,480,107,720,106.7C960,107,1200,85,1320,74.7L1440,64L1440,120L1320,120C1200,120,960,120,720,120C480,120,240,120,120,120L0,120Z">
-        </path>
-      </svg>
+  <!-- FOOTER -->
+  <footer class="mag-footer" uk-scrollspy="cls: uk-animation-slide-bottom-small; delay: 200">
+    <img src="./img/LOGO.png" alt="Cre Arte" class="footer-logo">
+    <div class="footer-links">
+      <a href="./index.html">Inicio</a>
+      <a href="./talleres.html">Talleres</a>
+      <a href="./quienes_somos.html">Quiénes Somos</a>
+      <a href="./puertas_al_mundo.html">Puertas al Mundo</a>
     </div>
-
-    <!-- Capa 4: Contenido Principal Mostaza -->
-    <div class="footer-main" style="background-color: #829068; color: #111;">
-      <div class="uk-container">
-        <div class="uk-grid-large uk-child-width-1-2 uk-child-width-1-4@m" uk-grid>
-          <div class="footer-column">
-            <h5>Explorar</h5>
-            <ul>
-              <li><a href="index.html">Inicio</a></li>
-              <li><a href="quienes_somos.html">Quiénes Somos</a></li>
-              <li><a href="talleres.html">Talleres</a></li>
-              <li><a href="puertas_al_mundo.html">Puertas al Mundo</a></li>
-            </ul>
-          </div>
-          <div class="footer-column">
-            <h5>Seguinos</h5>
-            <ul>
-              <li><a href="404.html">Instagram</a></li>
-              <li><a href="404.html">Facebook</a></li>
-              <li><a href="404.html">Twitter</a></li>
-              <li><a href="404.html">YouTube</a></li>
-            </ul>
-          </div>
-          <div class="footer-column">
-            <h5>Contacto</h5>
-            <ul>
-              <li>Quaglia 540</li>
-              <li>Bariloche, Río Negro</li>
-              <li>Argentina</li>
-            </ul>
-          </div>
-          <div class="footer-column uk-text-right@m">
-            <img src="./img/LOGO.png" width="90" alt="Logo Footer">
-            <p class="uk-margin-small-top uk-text-bold">CRE ARTE</p>
-          </div>
-        </div>
-
-        <div class="footer-legal">
-          <div>© 2026 Cre Arte Bariloche.</div>
-          <div>Created by <strong class="sacaraat-trigger">SACRAART</strong></div>
-        </div>
-      </div>
+    <div class="footer-bottom">
+      &copy; 2026 Cre Arte Bariloche. Todos los derechos reservados.
     </div>
   </footer>
 
   <a href="404.html" uk-totop uk-scroll class="uk-position-fixed uk-position-bottom-right uk-position-small"></a>
 
   <style>
+    /* ===== FOOTER ===== */
+    .mag-footer {
+      padding: 80px 10%;
+      background: #f9f7f2;
+      text-align: center;
+      border-top: 1px solid #eee;
+      scroll-snap-align: start;
+    }
+
+    .footer-logo {
+      height: 80px;
+      margin-bottom: 30px;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-links a {
+      font-family: 'Inter', sans-serif;
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      color: #666;
+      transition: color 0.3s;
+      text-decoration: none;
+    }
+
+    .footer-links a:hover {
+      color: #6a1a1c;
+    }
+
+    .footer-bottom {
+      font-size: 0.8rem;
+      color: #999;
+      border-top: 1px solid #eee;
+      padding-top: 30px;
+    }
+
     .heart-particle {
       position: fixed;
       font-size: 20px;

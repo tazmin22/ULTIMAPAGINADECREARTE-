@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" style="scroll-snap-type: y mandatory; scroll-behavior: smooth;">
 
 <head>
     <meta charset="utf-8" />
@@ -62,29 +62,42 @@
         }
 
         .t-nav {
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
-            right: 0;
-            z-index: 1000;
+            width: 100%;
+            z-index: 2000; /* Higher than other fixed elements */
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
-            padding: 28px 6%;
+            padding: 25px 0; /* Slightly more compact for scrolling */
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            transition: padding 0.3s ease, background-color 0.3s ease;
         }
 
-        .t-nav-logo img {
-            height: 120px;
+        /* ===== LOGO INDEPENDIENTE ===== */
+        .floating-logo {
+            position: fixed;
+            top: 20px;
+            left: 5%;
+            z-index: 2100;
+            transition: all 0.3s ease;
+        }
+
+        .floating-logo img {
+            height: 60px; /* More compact for the sticky state */
             width: auto;
-            display: block;
-            filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.4));
-            transition: transform 0.3s ease;
+            filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.2));
+            transition: height 0.3s ease;
         }
 
-        .t-nav-logo:hover img {
+        .floating-logo:hover {
             transform: scale(1.05);
         }
 
+        /* Nav links centrados y negros ahora que el fondo es blanco */
         .t-nav-links {
             display: flex;
             gap: 2.5rem;
@@ -95,12 +108,12 @@
             font-size: 0.72rem;
             letter-spacing: 2.5px;
             text-transform: uppercase;
-            color: #fff;
-            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+            color: #111;
+            /* Color oscuro para mayor contraste sobre blanco */
         }
 
         .t-nav-links a:hover {
-            color: #f2cb7b;
+            color: #e65c00;
         }
 
         @media (max-width: 860px) {
@@ -111,80 +124,141 @@
 
 
 
-        /* ===== HERO ===== */
-        .pm-hero {
+        /* ===== SCROLL SCATTER HERO (NUESTROS VIAJES) ===== */
+        .scroll-travel-wrapper {
             position: relative;
             width: 100%;
-            height: 65vh;
-            min-height: 520px;
-            background-image: url('./img/Fractales.jpg');
-            background-size: cover;
-            background-position: center;
-            overflow: hidden;
+            height: 600vh; /* Aumentado para un scroll mucho más lento y pausado */
+            background-color: #fff;
         }
 
-        /* Ondas SVG blancas — idénticas a quienes_somos */
-        .mag-waves {
-            position: absolute;
+        .travel-sticky-view {
+            position: sticky;
             top: 0;
-            left: 0;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Soporte para Scroll Snap */
+        section, footer, .scroll-travel-wrapper {
+            scroll-snap-align: start;
+        }
+
+        .snap-anchor {
+            position: absolute;
+            width: 1px;
+            height: 100vh;
+            pointer-events: none;
+            scroll-snap-align: start;
+        }
+
+        .travel-huge-title {
+            position: absolute;
+            font-family: 'Inter', sans-serif;
+            font-size: clamp(4rem, 12vw, 10rem);
+            font-weight: 900;
+            line-height: 0.9;
+            color: #111;
+            text-transform: uppercase;
+            text-align: center;
+            z-index: 5;
+            margin: 0;
+            pointer-events: none;
+            will-change: transform, opacity, filter;
+        }
+
+        .travel-huge-title span {
+            display: block;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-weight: 500;
+            color: #e65c00;
+            text-transform: none;
+            font-size: clamp(3rem, 9vw, 8rem);
+        }
+
+        .travel-cards-wrapper {
+            position: absolute;
             width: 100%;
             height: 100%;
-            pointer-events: none;
             z-index: 10;
-        }
-
-        /* Imagen flotante esquina superior derecha */
-        .header-corner-img {
-            position: absolute;
-            top: 20px;
-            right: 0;
-            width: 280px;
-            z-index: 5;
             pointer-events: none;
-            opacity: 0.8;
-            filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.1));
         }
 
-        .mag-waves path {
-            fill: none;
-            stroke: rgba(255, 255, 255, 0.4);
-            stroke-width: 40;
-            stroke-linecap: round;
-        }
-
-        /* Título hero */
-        .pm-hero-title-wrap {
+        .t-card {
             position: absolute;
-            top: 28%;
-            left: 6%;
-            z-index: 20;
+            top: 50%;
+            left: 50%;
+            width: 25vw;
+            max-width: 320px;
+            min-width: 240px;
+            aspect-ratio: 3/4;
+            transform: translate(-50%, -50%); /* Posición base centrada */
+            overflow: hidden;
+            will-change: transform, opacity;
+            opacity: 0; 
+            pointer-events: auto;
         }
 
-        .pm-hero-title {
-            font-family: 'Playfair Display', serif;
+        .t-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .t-card:hover img {
+            transform: scale(1.08); /* Making it slightly more visible */
+        }
+
+        .travel-texts-wrapper {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 15;
+            pointer-events: none;
+        }
+
+        .t-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300px;
+            opacity: 0;
+            will-change: transform, opacity;
+            transform: translate(-50%, -50%);
+            /* Eliminados los fondos y bordes por pedido del usuario */
+        }
+
+        .t-text h3 {
+            font-family: 'Inter', sans-serif;
             font-weight: 900;
-            font-size: 5.5rem;
-            line-height: 0.85;
-            color: #fff;
-            margin: 0;
-            letter-spacing: -2px;
-            text-shadow: 2px 4px 12px rgba(0, 0, 0, 0.5);
+            font-size: 1.8rem;
+            color: #e65c00;
+            margin: 0 0 10px 0;
+            text-transform: uppercase;
         }
 
-        /* Texto lateral derecho */
-        .pm-hero-handwritten {
-            position: absolute;
-            top: 30%;
-            right: 8%;
-            z-index: 20;
-            font-family: 'Caveat', cursive;
-            color: #fff;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-            font-size: 2.2rem;
-            line-height: 1.1;
-            transform: rotate(-4deg);
-            text-align: center;
+        .t-text p {
+            font-family: 'EB Garamond', serif;
+            font-size: 1.1rem;
+            line-height: 1.4;
+            color: #444;
+            margin: 0;
+        }
+
+        /* En móvil cancelamos la animación y apilamos */
+        @media (max-width: 900px) {
+            .scroll-travel-wrapper { height: auto; }
+            .travel-sticky-view { position: static; height: auto; flex-direction: column; padding: 100px 5%; overflow: visible; }
+            .travel-huge-title { position: static; margin-bottom: 50px; }
+            .travel-cards-wrapper, .travel-texts-wrapper { position: static; display: flex; flex-direction: column; gap: 40px; align-items: center; margin-bottom: 40px;}
+            .t-card, .t-text { position: static; transform: none !important; opacity: 1 !important; width: 100%; margin: 0; }
+            .t-text { text-align: center; }
         }
 
         /* ===== SEPARADOR ===== */
@@ -215,6 +289,19 @@
             max-width: 1250px;
             margin: 0 auto;
             padding: 60px 5%;
+        }
+
+        /* ===== ANIMACIÓN REVEAL (Alianzas y Festivales) ===== */
+        .pm-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            will-change: opacity, transform;
+        }
+
+        .pm-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* Encabezado de sección con estilo "Nuestra GENTE" */
@@ -500,21 +587,43 @@
 
         /* ===== FOOTER ===== */
         .mag-footer {
+            padding: 80px 10%;
+            background: #f9f7f2;
             text-align: center;
-            padding: 40px;
-            background: #111;
-            color: #fff;
+            border-top: 1px solid #eee;
+            scroll-snap-align: start;
+        }
+
+        .footer-logo {
+            height: 80px;
+            margin-bottom: 30px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-links a {
             font-family: 'Inter', sans-serif;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            color: #666;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #6a1a1c;
+        }
+
+        .footer-bottom {
             font-size: 0.8rem;
-            margin-top: 40px;
-        }
-
-        .mag-footer a {
-            color: #f2cb7b;
-        }
-
-        .mag-footer a:hover {
-            color: #e65c00;
+            color: #999;
+            border-top: 1px solid #eee;
+            padding-top: 30px;
         }
 
         /* ===== DECORATIVOS: ESTRELLAS Y FLORES ===== */
@@ -957,13 +1066,23 @@
 </head>
 
 <body>
+    
+    <style>
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.05); opacity: 1; }
+            100% { transform: scale(1); opacity: 0.8; }
+        }
+    </style>
 
 
-    <!-- ── NAVEGACIÓN ─────────────────────────── -->
+    <!-- LOGO INDEPENDIENTE -->
+    <a href="./index.html" class="floating-logo">
+        <img src="./img/LOGO.png" alt="Cre Arte Logo">
+    </a>
+
+    <!-- ── NAVEGACIÓN (Solo Links) ─────────────────────────── -->
     <nav class="t-nav">
-        <a href="./index.html" class="t-nav-logo">
-            <img src="./img/LOGO.png" alt="Cre Arte Logo">
-        </a>
         <div class="t-nav-links">
             <a href="./index.html">Inicio</a>
             <a href="./talleres.html">Talleres</a>
@@ -972,18 +1091,59 @@
         </div>
     </nav>
 
-    <!-- HERO -->
-    <header class="pm-hero">
+    <!-- ANIMACIÓN SCATTER: NUESTROS VIAJES -->
+    <section class="scroll-travel-wrapper" id="scroll-travel-wrapper">
+        <!-- Puntos clave de Snap sincronizados 100vh -->
+        <div class="snap-anchor" style="position: absolute; top: 0; height: 1px; width: 100%; scroll-snap-align: start;"></div>
+        <div class="snap-anchor" style="position: absolute; top: 100vh; height: 1px; width: 100%; scroll-snap-align: start;"></div>
+        <div class="snap-anchor" style="position: absolute; top: 200vh; height: 1px; width: 100%; scroll-snap-align: start;"></div>
+        <div class="snap-anchor" style="position: absolute; top: 300vh; height: 1px; width: 100%; scroll-snap-align: start;"></div>
+        <div class="snap-anchor" style="position: absolute; top: 400vh; height: 1px; width: 100%; scroll-snap-align: start;"></div>
 
-        <div class="pm-hero-title-wrap">
-            <h1 class="pm-hero-title">
-                Puertas<br>al<br>Mundo
+        <div class="travel-sticky-view">
+            <h1 class="travel-huge-title" id="travel-title">
+                <span>Nuestros</span>
+                Viajes
             </h1>
+            
+            <div class="travel-cards-wrapper">
+                <!-- Viaje 1 (Roma) -->
+                <div class="t-card tc-1a"><img src="./img/ROMA2.JPG" alt="Viaje 1a"></div>
+                <div class="t-card tc-1b"><img src="./img/ROMA1.JPG" alt="Viaje 1b"></div>
+                
+                <!-- Viaje 2 (Latam) -->
+                <div class="t-card tc-2a"><img src="./img/EUROPA.JPG" alt="Viaje 2a"></div>
+                <div class="t-card tc-2b"><img src="./img/Fractales.jpg" alt="Viaje 2b"></div>
+                
+                <!-- Viaje 3 (Patagonia) -->
+                <div class="t-card tc-3a"><img src="./img/JACOBACCI.JPG" alt="Viaje 3a"></div>
+                <div class="t-card tc-3b"><img src="./img/Peña.JPG" alt="Viaje 3b"></div>
+                
+                <!-- Viaje 4 (Nuevos Rumbos) -->
+                <div class="t-card tc-4a"><img src="./img/Murga.jpg" alt="Viaje 4a"></div>
+                <div class="t-card tc-4b"><img src="./img/tiempo de amar.JPG" alt="Viaje 4b"></div>
+            </div>
+            
+            <div class="travel-texts-wrapper">
+                <div class="t-text tt-1">
+                    <h3>Roma, Italia</h3>
+                    <p>Participación estelar en festivales europeos, rompiendo los esquemas del arte dogmático y conectando pasiones transoceánicas.</p>
+                </div>
+                <div class="t-text tt-2">
+                    <h3>Latinoamérica</h3>
+                    <p>Nuestras giras por toda la región fomentan un encuentro humano donde las diferencias construyen y no dividen.</p>
+                </div>
+                <div class="t-text tt-3">
+                    <h3>Patagonia</h3>
+                    <p>Uniendo el sur del mundo a través de caravanas artísticas que empoderan realidades originarias.</p>
+                </div>
+                <div class="t-text tt-4">
+                    <h3>Nuevos Rumbos</h3>
+                    <p>Cre Arte se posiciona como estandarte de la inclusión, preparando permanentemente sus valijas hacia nuevos destinos artísticos.</p>
+                </div>
+            </div>
         </div>
-        <div class="pm-hero-handwritten">
-            "ARTE SIN<br>FRONTERAS,<br>CULTURA<br>SIN LÍMITES"
-        </div>
-    </header>
+    </section>
 
     <!-- SEPARADOR -->
     <div class="pm-divider">
@@ -998,7 +1158,7 @@
         <img src="./img/1.png" alt="Mermelada"
             style="position: absolute; top: -40px; right: 2%; width: 600px; z-index: -1; transform: rotate(10deg); filter: drop-shadow(0 8px 24px rgba(0,0,0,0.2)); opacity: 0.9;">
 
-        <div class="pm-sec-header">
+        <div class="pm-sec-header pm-reveal">
             <div class="pm-sec-title"><span>Nuestras</span><br>ALIANZAS</div>
             <p class="pm-sec-desc">
                 Construimos vínculos duraderos con instituciones culturales, universidades y centros de arte de toda
@@ -1008,7 +1168,7 @@
         </div>
 
         <div class="pm-cards-grid">
-            <div class="pm-card">
+            <div class="pm-card pm-reveal" style="transition-delay: 0.1s;">
                 <img src="./img/crearte.jpg" alt="Alianza Cultural">
                 <div class="pm-card-info">
                     <div class="pm-card-tag">Buenos Aires</div>
@@ -1017,7 +1177,7 @@
                         Buenos Aires y Bariloche.</p>
                 </div>
             </div>
-            <div class="pm-card">
+            <div class="pm-card pm-reveal" style="transition-delay: 0.2s;">
                 <img src="./img/Fractales.jpg" alt="Alianza Internacional">
                 <div class="pm-card-info">
                     <div class="pm-card-tag">Europa</div>
@@ -1026,7 +1186,7 @@
                         local con el público internacional.</p>
                 </div>
             </div>
-            <div class="pm-card">
+            <div class="pm-card pm-reveal" style="transition-delay: 0.3s;">
                 <img src="./img/cuadros.webp" alt="Alianza Regional">
                 <div class="pm-card-info">
                     <div class="pm-card-tag">Región</div>
@@ -1038,71 +1198,7 @@
         </div>
     </section>
 
-    <!-- CITA -->
-    <div class="pm-quote-section">
-        <p class="pm-quote">
-            "Una alianza entre artistas es el contrato más honesto que puede firmar la humanidad."
-        </p>
-        <div class="pm-quote-author">— Julián Rivera, fundador de Cre Arte</div>
-    </div>
 
-    <!-- ===== EXPOSICIONES – Banner oscuro ===== -->
-    <div class="pm-dark-banner" style="background-image: url('./img/Peña.JPG');">
-        <div class="pm-dark-banner-inner">
-            <h2 class="pm-dark-banner-title"><span>Nuestras</span><br>EXPO&shy;SICIONES</h2>
-            <div class="pm-dark-banner-text">
-                <p>
-                    Las exposiciones de Cre Arte son ventanas abiertas al universo creativo de nuestros artistas. Desde
-                    muestras íntimas en nuestro espacio hasta grandes montajes en escenarios internacionales, cada
-                    exhibición cuenta una historia única de color, forma y emoción.
-                </p>
-                <p>
-                    Hemos llevado obras a galerías de Buenos Aires, Santiago de Chile, Madrid y Berlín, demostrando que
-                    el arte de la Patagonia tiene algo poderoso que decirle al mundo.
-                </p>
-            </div>
-        </div>
-    </div>
-
-    <!-- EXPOSICIONES – Feature grid -->
-    <div class="pm-feature" id="exposiciones">
-        <div class="pm-feature-img">
-            <img src="./img/Antonio Mora. Mujer con sombrero. 0,89 x 0,70. Oleo- 2006.jpg" alt="Exposición obra">
-            <div class="pm-img-caption">Mujer con sombrero — Julián Rivera. Óleo, 2006</div>
-        </div>
-        <div class="pm-feature-text">
-            <div class="pm-feature-label">Exhibición permanente</div>
-            <h3>El legado de Julián Rivera en el mundo</h3>
-            <p>
-                La obra de nuestro fundador ha recorrido continentes. Sus retratos cargados de profundidad psicológica y
-                su uso magistral del óleo han capturado la atención de coleccionistas y críticos de arte de múltiples
-                países.
-            </p>
-            <p>
-                Cada exposición itinerante lleva consigo no solo lienzos, sino el espíritu de Bariloche: su montaña, su
-                cielo y la energía de quienes eligieron al arte como forma de vida.
-            </p>
-        </div>
-    </div>
-
-    <div class="pm-feature reverse">
-        <div class="pm-feature-img">
-            <img src="./img/pintura.jpg" alt="Exposición colectiva">
-            <div class="pm-img-caption">Exposición colectiva — alumnos y docentes Cre Arte</div>
-        </div>
-        <div class="pm-feature-text">
-            <div class="pm-feature-label">Muestras colectivas</div>
-            <h3>Muchas voces, un solo lenguaje</h3>
-            <p>
-                Nuestras exposiciones colectivas celebran la diversidad dentro de la unidad. Cada alumno y cada docente
-                aporta su visión personal, creando conjuntos de obras que dialogan entre sí y con el espectador.
-            </p>
-            <p>
-                Estas muestras se realizan anualmente y en colaboración con espacios culturales locales e
-                internacionales.
-            </p>
-        </div>
-    </div>
 
     <!-- SEPARADOR -->
     <div class="pm-divider">
@@ -1113,7 +1209,7 @@
 
     <!-- ===== FESTIVALES ===== -->
     <section class="pm-section" id="festivales">
-        <div class="pm-sec-header">
+        <div class="pm-sec-header pm-reveal">
             <div class="pm-sec-title"><span>Nuestros</span><br>FESTIVALES</div>
             <p class="pm-sec-desc">
                 Los festivales son el corazón palpitante de Cre Arte. Encuentros donde la música, la danza, la pintura y
@@ -1123,7 +1219,7 @@
         </div>
 
         <div class="pm-cards-grid">
-            <div class="pm-card">
+            <div class="pm-card pm-reveal" style="transition-delay: 0.1s;">
                 <img src="./img/Murga.jpg" alt="Festival de Arte Urbano">
                 <div class="pm-card-info">
                     <div class="pm-card-tag">Anual · Julio</div>
@@ -1132,7 +1228,7 @@
                         colectivos y encuentros con artistas invitados.</p>
                 </div>
             </div>
-            <div class="pm-card">
+            <div class="pm-card pm-reveal" style="transition-delay: 0.2s;">
                 <img src="./img/Peña.JPG" alt="Noche de Arte">
                 <div class="pm-card-info">
                     <div class="pm-card-tag">Mensual</div>
@@ -1141,7 +1237,7 @@
                         sus obras en un ambiente íntimo y vibrante.</p>
                 </div>
             </div>
-            <div class="pm-card">
+            <div class="pm-card pm-reveal" style="transition-delay: 0.3s;">
                 <img src="./img/tiempo de amar.JPG" alt="Festival Internacional">
                 <div class="pm-card-info">
                     <div class="pm-card-tag">Bienal · Noviembre</div>
@@ -1160,138 +1256,25 @@
         <div class="pm-divider-line"></div>
     </div>
 
-    <!-- ===== VIAJES ===== -->
-    <section class="viajes-section" id="viajes">
+    <!-- El antiguo bloque de Viajes fue eliminado de aquí porque ya está animado arriba. -->
 
-        <div class="viajes-header">
-            <div class="pm-sec-title"><span>Nuestros</span><br>VIAJES</div>
-            <p class="pm-sec-desc">
-                Cada viaje es un lienzo nuevo. Llevamos a nuestros alumnos y docentes a explorar destinos que inspiran,
-                para que el mundo se convierta en su musa.
-            </p>
+    <!-- FOOTER -->
+    <footer class="mag-footer">
+        <img src="./img/LOGO.png" alt="Cre Arte" class="footer-logo">
+        <div class="footer-links">
+            <a href="./index.html">Inicio</a>
+            <a href="./talleres.html">Talleres</a>
+            <a href="./quienes_somos.html">Quiénes Somos</a>
+            <a href="./puertas_al_mundo.html">Puertas al Mundo</a>
         </div>
-
-        <!-- SPREAD 1: Roma — texto izq, fotos der -->
-        <div class="viaje-spread">
-            <div class="viaje-text">
-                <div class="viaje-eyebrow">Italia · Exposición Internacional</div>
-                <h3>Roma</h3>
-                <div class="viaje-country">♥ La Ciudad Eterna</div>
-                <p>
-                    En la cuna misma del arte occidental, nuestros artistas participaron de una muestra colectiva en la
-                    Galleria Nazionale. Caminar por sus calles milenarias fue encontrar inspiración en cada piedra, en
-                    cada fresco, en cada plaza.
-                </p>
-                <p>
-                    Fue un encuentro con la historia del arte que transformó por completo la mirada de quienes viajaron.
-                </p>
-            </div>
-            <div class="viaje-photos">
-                <img class="viaje-photo-secondary" src="./img/roma.jpg" alt="Roma">
-                <img class="viaje-photo-main" src="./img/Fractales.jpg" alt="Arte en Roma">
-                <div class="viaje-annotation" style="bottom: 38%; left: 44%;">la città eterna…</div>
-            </div>
-        </div>
-
-        <!-- SPREAD 2: Patagonia — fotos izq (.flip), texto der -->
-        <div class="viaje-spread flip">
-            <div class="viaje-text">
-                <div class="viaje-eyebrow">Patagonia · Residencia Artística</div>
-                <h3>El Bolsón</h3>
-                <div class="viaje-country">♥ Tierra de Arte y Montaña</div>
-                <p>
-                    A tan solo horas de Bariloche, El Bolsón nos regaló una semana de residencia artística plena.
-                    Pinturas al aire libre, encuentros con artesanos locales y talleres bajo el cielo patagónico.
-                </p>
-                <p>
-                    Un viaje que nos recordó que la inspiración siempre está más cerca de lo que imaginamos.
-                </p>
-            </div>
-            <div class="viaje-photos">
-                <img class="viaje-photo-secondary" src="./img/crearte.jpg" alt="El Bolsón">
-                <img class="viaje-photo-main" src="./img/Murga.jpg" alt="Patagonia">
-                <div class="viaje-annotation" style="top: 30%; right: 42%; transform:rotate(5deg);">entre cerros…</div>
-            </div>
-        </div>
-
-        <!-- SPREAD 3: Buenos Aires — texto izq, fotos der -->
-        <div class="viaje-spread">
-            <div class="viaje-text">
-                <div class="viaje-eyebrow">Argentina · Exposición Colectiva</div>
-                <h3>Buenos Aires</h3>
-                <div class="viaje-country">♥ La Meca del Arte Latinoamericano</div>
-                <p>
-                    La gran metrópoli nos abrió sus puertas. Nuestros artistas exhibieron en el barrio palermitano de
-                    las galerías, recibiendo críticas elogiosas de coleccionistas y curadores internacionales.
-                </p>
-                <p>
-                    El encuentro con otros artistas de Latinoamérica encendió en nuestro equipo una llama que sigue
-                    ardiendo en cada obra.
-                </p>
-            </div>
-            <div class="viaje-photos">
-                <img class="viaje-photo-secondary" src="./img/portada1.jpg" alt="Buenos Aires">
-                <img class="viaje-photo-main" src="./img/Peña.JPG" alt="Exposición Buenos Aires">
-                <div class="viaje-annotation" style="top: 42%; left: 30%; transform:rotate(-8deg);">la gran ciudad…
-                </div>
-            </div>
-        </div>
-
-    </section>
-
-    <footer class="crearte-footer" style="background-color: #829068; margin-top: 0;">
-        <div class="footer-wave-divider">
-            <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
-                <path fill="#829068"
-                    d="M0,64L120,74.7C240,85,480,107,720,106.7C960,107,1200,85,1320,74.7L1440,64L1440,120L1320,120C1200,120,960,120,720,120C480,120,240,120,120,120L0,120Z">
-                </path>
-            </svg>
-        </div>
-        <div class="footer-main" style="color: #111;">
-            <div class="uk-container">
-                <div class="uk-grid-large uk-child-width-1-2 uk-child-width-1-4@m" uk-grid>
-                    <div class="footer-column">
-                        <h5>Explorar</h5>
-                        <ul>
-                            <li><a href="index.html">Inicio</a></li>
-                            <li><a href="quienes_somos.html">Quiénes Somos</a></li>
-                            <li><a href="talleres.html">Talleres</a></li>
-                            <li><a href="puertas_al_mundo.html">Puertas al Mundo</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-column">
-                        <h5>Seguinos</h5>
-                        <ul>
-                            <li><a href="404.html">Instagram</a></li>
-                            <li><a href="404.html">Facebook</a></li>
-                            <li><a href="404.html">Twitter</a></li>
-                            <li><a href="404.html">YouTube</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-column">
-                        <h5>Contacto</h5>
-                        <ul>
-                            <li>Quaglia 540</li>
-                            <li>Bariloche, Río Negro</li>
-                            <li>Argentina</li>
-                        </ul>
-                    </div>
-                    <div class="footer-column uk-text-right@m">
-                        <img src="./img/LOGO.png" width="90" alt="Logo Footer">
-                        <p class="uk-margin-small-top uk-text-bold">CRE ARTE</p>
-                    </div>
-                </div>
-                <div class="footer-legal">
-                    <div>© 2026 Cre Arte Bariloche.</div>
-                    <div>Created by <strong class="sacaraat-trigger">SACRAART</strong></div>
-                </div>
-            </div>
+        <div class="footer-bottom">
+            &copy; 2026 Cre Arte Bariloche. Todos los derechos reservados.
         </div>
     </footer>
 
     <script>
-        // ── REVEAL VIAJES ──────────────────────────────────────────────
-        const revealTargets = document.querySelectorAll('.viaje-photos, .viaje-text');
+        // ── REVEAL ALIANZAS Y FESTIVALES ──────────────────────────────────────────────
+        const revealTargets = document.querySelectorAll('.pm-reveal');
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -1366,7 +1349,118 @@
                 setTimeout(() => heart.remove(), 1000);
             });
         }
+
+        // ============================================
+        // LÓGICA SCROLL ANIMATION (VIAJES SCATTER)
+        // ============================================
+        const travelWrapper = document.getElementById('scroll-travel-wrapper');
+        const travelTitle = document.getElementById('travel-title');
+        const tCards = document.querySelectorAll('.t-card');
+        const tTexts = document.querySelectorAll('.t-text');
+
+        window.addEventListener('scroll', () => {
+            if (!travelWrapper || window.innerWidth <= 900) return;
+            
+            const rect = travelWrapper.getBoundingClientRect();
+            const totalScroll = rect.height - window.innerHeight;
+            // Progreso de 0 a 1
+            let p = -rect.top / totalScroll;
+            p = Math.max(0, Math.min(1, p));
+
+            const vw = window.innerWidth;
+            const vh = window.innerHeight;
+
+            // FASE inicial (Título)
+            const titleFadeEnd = 0.15; 
+            let titleOpacity = 1 - (p / titleFadeEnd);
+            let titleFilter = p > 0.05 ? `blur(${p * 40}px)` : 'blur(0px)';
+            if (travelTitle) {
+                travelTitle.style.transform = `translateY(${p * -300}px)`;
+                travelTitle.style.opacity = Math.max(0, titleOpacity);
+                travelTitle.style.filter = titleFilter;
+            }
+
+            // Definición de trayectorias MATEMÁTICAS (Sincronizadas exactamente con los Snaps a 100vh, 200vh, etc.)
+            // Cada viaje centrado en su fase correspondiente del scroll (p=0.2, 0.4, 0.6, 0.8)
+            const cardPaths = [
+                // Viaje 1 (Roma) - p=0.2 (Snap en 100vh)
+                { layout: { dx: -vw*0.22, dy: vh*1.0 - (vh*0.1) } }, { layout: { dx: -vw*0.35, dy: vh*1.0 + (vh*0.1) } },
+                // Viaje 2 (Latam) - p=0.4 (Snap en 200vh)
+                { layout: { dx: vw*0.22, dy: vh*2.0 - (vh*0.1) } }, { layout: { dx: vw*0.35, dy: vh*2.0 + (vh*0.1) } },
+                // Viaje 3 (Patagonia) - p=0.6 (Snap en 300vh)
+                { layout: { dx: -vw*0.22, dy: vh*3.0 - (vh*0.1) } }, { layout: { dx: -vw*0.35, dy: vh*3.0 + (vh*0.1) } },
+                // Viaje 4 (Nuevos Rumbos) - p=0.8 (Snap en 400vh)
+                { layout: { dx: vw*0.22, dy: vh*4.0 - (vh*0.1) } }, { layout: { dx: vw*0.35, dy: vh*4.0 + (vh*0.1) } }
+            ];
+
+            const maxVirtualScroll = vh * 5.0; // 500vh de scroll total utilizable
+            const globalScrollY = p * maxVirtualScroll;
+
+            // CAMBIO DINÁMICO DE FONDO (Blancos/Pasteles muy sutiles)
+            const bgColors = [
+                '#ffffff', // Inicio / Roma
+                '#faf9f6', // Alabastro (Roma sutil)
+                '#f5f5f0', // Isabelline (Latam)
+                '#fdfcf0', // Cosmic Latte (Patagonia)
+                '#f4f7f6'  // Mint White (Nuevos Rumbos)
+            ];
+
+            // Calculamos qué color aplicar basado en el progreso p (0 a 1)
+            const colorIndex = Math.min(bgColors.length - 2, Math.floor(p / 0.2));
+            const nextColorIndex = colorIndex + 1;
+            const colorProgress = (p % 0.2) / 0.2;
+
+            // Función simple para interpolar colores hexadecimales (muy básica)
+            const interpolateColor = (c1, c2, f) => {
+                const r1 = parseInt(c1.substring(1, 3), 16);
+                const g1 = parseInt(c1.substring(3, 5), 16);
+                const b1 = parseInt(c1.substring(5, 7), 16);
+                const r2 = parseInt(c2.substring(1, 3), 16);
+                const g2 = parseInt(c2.substring(3, 5), 16);
+                const b2 = parseInt(c2.substring(5, 7), 16);
+                const r = Math.round(r1 + (r2 - r1) * f);
+                const g = Math.round(g1 + (g2 - g1) * f);
+                const b = Math.round(b1 + (b2 - b1) * f);
+                return `rgb(${r}, ${g}, ${b})`;
+            };
+
+            const currentBG = interpolateColor(bgColors[colorIndex], bgColors[nextColorIndex], colorProgress);
+            travelWrapper.style.backgroundColor = currentBG;
+
+            tCards.forEach((card, i) => {
+                const conf = cardPaths[i];
+                const tripIndex = Math.floor(i / 2) + 1; // 1, 2, 3, 4
+                const text = tTexts[tripIndex - 1];
+
+                // El centro de cada viaje coincide milimétricamente con su Snap
+                const tripCenter = tripIndex * 0.2; // 0.2, 0.4, 0.6, 0.8
+
+                // Opacidad: Meseta súper ancha. Llega a ser 100% nítida mucho ANTES del centro.
+                const distToCenter = Math.abs(p - tripCenter);
+                let rawFocus = 1 - (distToCenter / 0.12);
+                let focusOpacity = Math.max(0, Math.min(1, rawFocus * 3.5)); // Se estabiliza en 1 rápido y dura
+
+                // Animación pop: Termina completamente antes de llegar al centro (Snap)
+                const localP = Math.max(0, Math.min(1, (p - (tripCenter - 0.15)) / 0.1));
+                
+                const cr = (i % 2 === 1 ? 8 : -8) * (1 - focusOpacity);
+                const cs = 0.9 + (0.1 * focusOpacity);
+                
+                // Aplicamos transformación
+                card.style.opacity = focusOpacity;
+                card.style.transform = `translate(calc(-50% + ${conf.layout.dx}px), calc(-50% + ${conf.layout.dy - globalScrollY}px)) rotate(${cr}deg) scale(${cs})`;
+
+                if (text && i % 2 === 0) {
+                    const tx = (tripIndex - 1) % 2 === 0 ? (vw * 0.2) : (-vw * 0.2);
+                    const ty = (conf.layout.dy + vh*0.1) - globalScrollY; // Centrado en el par
+                    text.style.opacity = focusOpacity;
+                    text.style.transform = `translate(calc(-50% + ${tx}px), calc(-50% + ${ty}px))`;
+                }
+            });
+        });
+
+        // Ejecutar una vez al inicio para que el título y estado inicial sean correctos
+        window.dispatchEvent(new Event('scroll'));
     </script>
 </body>
-
 </html>

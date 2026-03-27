@@ -30,6 +30,8 @@
 
         :root {
             --cream: #f5f0e8;
+            --sage: #7a8471;
+            /* New background color from reference */
             --cream2: #ede5d4;
             --dark: #1a1209;
             --wine: #6a1a1c;
@@ -41,10 +43,12 @@
         body {
             margin: 0;
             padding: 0;
-            background: var(--cream);
-            color: var(--text);
+            background: #fff;
+            color: #111;
             font-family: 'EB Garamond', serif;
             overflow-x: hidden;
+            overflow-y: auto;
+            /* Scroll enabled */
             animation: fadeIn 1s ease-out forwards;
         }
 
@@ -70,32 +74,46 @@
 
         /* ── NAV ─────────────────────────────────────────────────────── */
         .t-nav {
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
-            right: 0;
-            z-index: 100;
+            width: 100%;
+            z-index: 2000;
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
-            padding: 28px 6%;
+            padding: 25px 5%;
+            background: transparent;
+            transition: background 0.3s ease, border-bottom 0.3s ease;
         }
 
-        .t-nav-logo img {
-            height: 120px;
-            width: auto;
-            display: block;
-            filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.4));
+        .t-nav.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            padding: 15px 5%;
+        }
+
+        /* ===== LOGO INDEPENDIENTE ===== */
+        .top-logo {
+            margin-right: auto;
             transition: transform 0.3s ease;
+            display: block;
         }
 
-        .t-nav-logo:hover img {
-            transform: scale(1.05);
+        .top-logo img {
+            height: 70px;
+            width: auto;
+            filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.2));
+            transition: height 0.3s ease;
         }
 
         .t-nav-links {
+            flex: 1;
             display: flex;
+            justify-content: center;
             gap: 2.5rem;
+            margin-right: 70px;
         }
 
         .t-nav-links a {
@@ -103,102 +121,430 @@
             font-size: 0.72rem;
             letter-spacing: 2.5px;
             text-transform: uppercase;
-            color: rgba(255, 255, 255, .85);
-            text-shadow: 0 1px 4px rgba(0, 0, 0, .4);
+            color: #111;
+            opacity: 0.8;
+            transition: opacity 0.3s ease, color 0.3s ease;
         }
 
         .t-nav-links a:hover {
-            color: #fff;
+            opacity: 1;
+            color: var(--orange);
         }
 
-        /* ── HERO ────────────────────────────────────────────────────── */
-        .t-hero {
+        /* ── MAGAZINE HERO ───────────────────────────────────────────── */
+        .mag-talleres-hero {
             position: relative;
             width: 100%;
             height: 100vh;
-            min-height: 600px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+
+        .mag-talleres-title {
+            position: relative;
+            z-index: 10;
+            font-family: 'Inter', sans-serif;
+            font-weight: 900;
+            font-size: clamp(3rem, 8vw, 7rem);
+            line-height: 0.9;
+            text-transform: uppercase;
+            text-align: center;
+            color: #111;
+            letter-spacing: -2px;
+            pointer-events: none;
+        }
+
+        .mag-talleres-title span {
+            display: block;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-weight: 400;
+            font-size: 0.45em;
+            letter-spacing: 4px;
+            color: #e65c00;
+            margin-bottom: 10px;
+        }
+
+        /* Scattered images layout */
+        .mag-scatter-img {
+            position: absolute;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            transition: transform 1.2s cubic-bezier(0.165, 0.84, 0.44, 1), opacity 1.2s ease;
+            will-change: transform;
+            cursor: pointer;
+            z-index: 5;
+            opacity: 0;
+            transform: translateY(120vh) rotate(0deg);
+            /* Start off-screen */
+        }
+
+        .mag-scatter-img.entered {
+            opacity: 1;
+        }
+
+        .mag-scatter-img:hover {
+            transform: scale(1.05) rotate(0deg) !important;
+            z-index: 20;
+        }
+
+        .mag-scatter-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .mag-scatter-img:hover img {
+            transform: scale(1.05);
+            /* Subtle inner zoom */
+        }
+
+        .ms-1.entered {
+            top: 15%;
+            left: 5%;
+            width: 220px;
+            height: 300px;
+            transform: rotate(-5deg);
+        }
+
+        .ms-2.entered {
+            top: 10%;
+            right: 10%;
+            width: 250px;
+            height: 350px;
+            transform: rotate(3deg);
+        }
+
+        .ms-3.entered {
+            bottom: 10%;
+            left: 12%;
+            width: 280px;
+            height: 200px;
+            transform: rotate(-2deg);
+        }
+
+        .ms-4.entered {
+            bottom: 15%;
+            right: 7%;
+            width: 200px;
+            height: 280px;
+            transform: rotate(4deg);
+        }
+
+        .ms-5.entered {
+            top: 45%;
+            left: 2%;
+            width: 140px;
+            height: 180px;
+            transform: rotate(-8deg);
+        }
+
+        .ms-6.entered {
+            top: 50%;
+            right: 3%;
+            width: 160px;
+            height: 220px;
+            transform: rotate(6deg);
+        }
+
+        .mag-scatter-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .mag-talleres-subtitle {
+            position: absolute;
+            bottom: 15%;
+            right: 25%;
+            max-width: 300px;
+            font-family: 'EB Garamond', serif;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #444;
+            text-align: left;
+            font-style: italic;
+        }
+
+        /* ── SECCIÓN DE TALLERES (LISTA) ── */
+        .t-offer {
+            background: #fff;
+            padding: 90px 0 60px;
+        }
+
+        .t-offer-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .t-offer-header h2 {
+            font-family: 'Inter', sans-serif;
+            font-size: clamp(2rem, 5vw, 4rem);
+            font-weight: 900;
+            color: #111;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            margin: 0;
+        }
+
+        .t-offer-header h2 span {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-weight: 400;
+            font-size: 0.8em;
+            color: #e65c00;
+            display: block;
+            text-transform: none;
+            letter-spacing: 0;
+        }
+
+        .t-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            width: 100%;
+        }
+
+        .t-card {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 560px;
+            overflow: hidden;
+            position: relative;
+            background: #f9f7f2;
+            border-top: 1px solid #eee;
+        }
+
+        .t-card-text {
+            padding: 80px 8%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .t-card.alt .t-card-text {
+            order: 2;
+        }
+
+        .t-card-label {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.65rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: #888;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .t-card-title {
+            font-family: 'Inter', sans-serif;
+            font-size: clamp(2.2rem, 4.5vw, 4.2rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            color: #111;
+            line-height: 0.85;
+            margin: 0 0 12px;
+            letter-spacing: -2px;
+        }
+
+        .t-card-title em {
+            display: block;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-weight: 400;
+            text-transform: none;
+            font-size: 0.45em;
+            letter-spacing: 1px;
+            margin-bottom: 2px;
+            color: #e65c00;
+        }
+
+        .t-card-subtitle {
+            font-family: 'Caveat', cursive;
+            font-size: 1.4rem;
+            color: #6a1a1c;
+            margin-bottom: 28px;
+        }
+
+        .t-card-desc {
+            font-size: 1.15rem;
+            line-height: 1.7;
+            color: #444;
+            margin-bottom: 30px;
+        }
+
+        .t-card-cta {
+            display: inline-block;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #111;
+            border-bottom: 1.5px solid #ddd;
+            padding-bottom: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .t-card-cta:hover {
+            color: #e65c00;
+            border-color: #e65c00;
+        }
+
+        .t-card-img {
+            position: relative;
             overflow: hidden;
         }
 
-        .t-hero-bg {
-            position: absolute;
-            inset: 0;
+        .t-card.alt .t-card-img {
+            order: 1;
+        }
+
+        .t-card-img img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
 
-        .t-hero-bg.loaded {
-            transform: scale(1);
+        /* ── WORKSHOP LIST REDESIGN ── */
+        .workshop-list-section {
+            padding: 12vw 5vw 4vw;
+            background: #f5f5f5;
+            text-align: center;
+            position: relative;
+            z-index: 1;
         }
 
-        .t-hero-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to bottom,
-                    rgba(15, 8, 2, .30) 0%,
-                    rgba(15, 8, 2, .15) 40%,
-                    rgba(15, 8, 2, .55) 100%);
-        }
-
-        .t-hero-content {
+        .workshop-title-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
             position: relative;
             z-index: 10;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 0 6%;
         }
 
-        .t-hero-eyebrow {
+        .workshop-grid-bg {
+            padding: 10vw 5vw;
+            background: linear-gradient(rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.1)), url('./img/portada2.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            position: relative;
+        }
+
+        .workshop-title-large {
             font-family: 'Inter', sans-serif;
-            font-size: 0.68rem;
-            letter-spacing: 5px;
+            font-weight: 800;
+            font-size: clamp(3rem, 7.5vw, 10rem);
+            line-height: 0.85;
+            color: #111;
             text-transform: uppercase;
-            color: var(--gold);
-            margin-bottom: 18px;
-        }
-
-        .t-hero-title {
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
-            font-weight: 700;
-            font-size: clamp(3rem, 7vw, 6.5rem);
-            line-height: 0.9;
-            color: #fff;
-            margin: 0 0 28px;
-            text-shadow: 0 4px 30px rgba(0, 0, 0, .4);
-            letter-spacing: -1px;
-        }
-
-        .t-hero-sub {
-            font-family: 'EB Garamond', serif;
-            font-size: clamp(1rem, 1.6vw, 1.3rem);
-            color: rgba(255, 255, 255, .82);
-            max-width: 480px;
-            line-height: 1.55;
-            margin-bottom: 36px;
-        }
-
-        .t-hero-btn {
+            letter-spacing: -4px;
             display: inline-block;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.72rem;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: #fff;
-            border: 1.5px solid rgba(255, 255, 255, .6);
-            padding: 13px 34px;
-            transition: background .3s ease, border-color .3s ease;
+            position: relative;
+            z-index: 10; /* Above images */
         }
 
-        .t-hero-btn:hover {
-            background: rgba(255, 255, 255, .12);
-            border-color: #fff;
-            color: #fff;
+        /* ── FLOATING BG IMAGES ── */
+        .w-floating-img {
+            position: absolute;
+            width: 200px;
+            height: auto;
+            pointer-events: none;
+            opacity: 0;
+            z-index: 1; /* Behind text */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            animation: floatUpFade 8s ease-in-out forwards;
+        }
+
+        @keyframes floatUpFade {
+            0% {
+                transform: translateY(300px) rotate(-3deg);
+                opacity: 0;
+            }
+            20% {
+                opacity: 1; /* Full sharp visibility */
+                transform: translateY(80px) rotate(-1deg);
+            }
+            80% {
+                opacity: 1;
+                transform: translateY(-80px) rotate(1deg);
+            }
+            100% {
+                transform: translateY(-250px) rotate(3deg);
+                opacity: 0;
+            }
+        }
+
+        .w-desc-inline {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 400;
+            text-transform: none;
+            letter-spacing: 0;
+            line-height: 1.4;
+            display: inline-block;
+            vertical-align: middle;
+            max-width: 250px;
+            text-align: left;
+            margin: 0 20px;
+            color: #333;
+            border-left: 1px solid #ddd;
+            padding-left: 20px;
+        }
+
+        .workshop-scatter-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 60px 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .workshop-item {
+            position: relative;
+            padding: 20px 0;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            cursor: pointer;
+            will-change: transform;
+        }
+
+        .w-num {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 800;
+            color: #111;
+            display: block;
+            margin-bottom: 5px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+        .w-name {
+            font-family: 'Inter', sans-serif;
+            font-weight: 800;
+            font-size: 1.15rem;
+            color: #111;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            line-height: 1.1;
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+
+        .workshop-item:hover {
+            transform: translateY(-8px) scale(1.05) !important;
+        }
+
+        .workshop-item:hover .w-name {
+            color: #111;
         }
 
         /* ── INTRO SPLIT ─────────────────────────────────────────────── */
@@ -309,32 +655,34 @@
 
         /* ── OFERTA SECTION ──────────────────────────────────────────── */
         .t-offer {
-            background: var(--cream);
+            background: var(--sage);
             padding: 90px 0 60px;
         }
 
         .t-offer-header {
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 80px;
         }
 
         .t-offer-header h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(1.6rem, 3vw, 2.5rem);
-            font-style: italic;
-            font-weight: 400;
-            color: var(--dark);
-            letter-spacing: 2px;
+            font-family: 'Inter', sans-serif;
+            font-size: clamp(2rem, 5vw, 4rem);
+            font-weight: 900;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: -1px;
             margin: 0;
         }
 
-        .t-offer-header h2::before,
-        .t-offer-header h2::after {
-            content: '  ✦  ';
-            font-style: normal;
-            font-size: 0.7rem;
-            color: var(--gold);
-            vertical-align: middle;
+        .t-offer-header h2 span {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-weight: 400;
+            font-size: 0.8em;
+            color: rgba(255, 255, 255, 0.6);
+            display: block;
+            text-transform: none;
+            letter-spacing: 0;
         }
 
         /* Cards horizontales */
@@ -353,7 +701,8 @@
             min-height: 560px;
             overflow: hidden;
             position: relative;
-            background: var(--cream2);
+            background: rgba(255, 255, 255, 0.03);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .t-card.alt {
@@ -376,17 +725,17 @@
             font-size: 0.65rem;
             letter-spacing: 4px;
             text-transform: uppercase;
-            color: #000000;
+            color: rgba(255, 255, 255, 0.5);
             font-weight: 600;
             margin-bottom: 10px;
         }
 
         .t-card-title {
             font-family: 'Inter', sans-serif;
-            font-size: clamp(2.2rem, 4vw, 3.8rem);
-            font-weight: 800;
+            font-size: clamp(2.2rem, 4.5vw, 4.2rem);
+            font-weight: 900;
             text-transform: uppercase;
-            color: var(--orange);
+            color: #fff;
             line-height: 0.85;
             margin: 0 0 12px;
             letter-spacing: -2px;
@@ -401,20 +750,20 @@
             font-size: 0.45em;
             letter-spacing: 1px;
             margin-bottom: 2px;
-            color: #000000;
+            color: rgba(255, 255, 255, 0.7);
         }
 
         .t-card-subtitle {
             font-family: 'Caveat', cursive;
             font-size: 1.4rem;
-            color: #000000;
+            color: var(--orange);
             margin-bottom: 28px;
         }
 
         .t-card-desc {
-            font-size: 1.1rem;
-            line-height: 1.75;
-            color: #4a3c2a;
+            font-size: 1.15rem;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.8);
             margin-bottom: 30px;
         }
 
@@ -429,14 +778,15 @@
             font-size: 0.7rem;
             letter-spacing: 3px;
             text-transform: uppercase;
-            color: var(--dark);
-            border-bottom: 1.5px solid #000000;
+            color: #fff;
+            border-bottom: 1.5px solid rgba(255, 255, 255, 0.3);
             padding-bottom: 4px;
-            transition: color .3s ease;
+            transition: all 0.3s ease;
         }
 
         .t-card-cta:hover {
-            color: var(--wine);
+            color: var(--orange);
+            border-color: var(--orange);
         }
 
         .t-card-img {
@@ -682,61 +1032,45 @@
         }
 
         /* === NEW PREMIUM FOOTER === */
-        .crearte-footer {
-            background-color: #829068;
-            color: #111;
-            margin-top: 0;
+        .mag-footer {
+            padding: 80px 10%;
+            background: #f9f7f2;
+            text-align: center;
+            border-top: 1px solid #eee;
+            scroll-snap-align: start;
         }
 
-        .footer-wave-divider {
-            line-height: 0;
+        .footer-logo {
+            height: 80px;
+            margin-bottom: 30px;
         }
 
-        .footer-main {
-            padding: 20px 0 40px;
-            background-color: #829068;
-        }
-
-        .footer-column h5 {
-            font-family: 'Inter', sans-serif;
-            font-weight: 900;
-            text-transform: uppercase;
-            font-size: 0.8rem;
-            letter-spacing: 2px;
-            margin-bottom: 25px;
-            color: #111;
-        }
-
-        .footer-column ul {
-            padding: 0;
-            margin: 0;
-            list-style: none;
-        }
-
-        .footer-column ul li {
-            margin-bottom: 12px;
-        }
-
-        .footer-column ul li a {
-            color: #333;
-            font-size: 0.9rem;
-            transition: opacity 0.3s;
-        }
-
-        .footer-column ul li a:hover {
-            opacity: 0.6;
-        }
-
-        .footer-legal {
-            margin-top: 60px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(0, 0, 0, 0.1);
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+        .footer-links {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-links a {
+            font-family: 'Inter', sans-serif;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            color: #666;
+            transition: color 0.3s;
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: var(--wine);
+        }
+
+        .footer-bottom {
+            font-size: 0.8rem;
+            color: #999;
+            border-top: 1px solid #eee;
+            padding-top: 30px;
         }
 
         /* Hearts Animation */
@@ -776,263 +1110,497 @@
                 opacity: 0;
             }
         }
+
+        /* ── DRAGGABLE SCATTER GALLERY ── */
+        .t-carousel-section {
+            padding: 120px 0;
+            background: #ffffff;
+            overflow: hidden;
+            position: relative;
+            cursor: grab;
+        }
+
+        .t-carousel-section:active {
+            cursor: grabbing;
+        }
+
+        .t-carousel-track {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            padding: 0;
+            width: max-content;
+            transform: translateX(0);
+            will-change: transform;
+        }
+
+        .t-carousel-item {
+            flex: 0 0 auto;
+            height: 400px; 
+            margin-left: -30px; 
+            user-select: none;
+            position: relative;
+            will-change: transform;
+            background: transparent;
+        }
+
+        .t-carousel-inner {
+            width: 100%;
+            height: 100%;
+            transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.6s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            background: #fff;
+            overflow: hidden;
+            pointer-events: auto; /* Ensure hover works on inner */
+        }
+
+        /* Varied sizes */
+        .t-carousel-item:nth-child(4n+1) { width: 250px; height: 350px; }
+        .t-carousel-item:nth-child(4n+2) { width: 290px; height: 400px; }
+        .t-carousel-item:nth-child(4n+3) { width: 230px; height: 320px; }
+        .t-carousel-item:nth-child(4n+4) { width: 310px; height: 380px; }
+
+        .t-carousel-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            pointer-events: none;
+        }
+
+        /* Focusing effect: subtle narrowing and shrinking for non-focused items */
+        .t-carousel-track:hover .t-carousel-item:not(:hover) .t-carousel-inner {
+            transform: scaleX(0.92) scaleY(0.96); 
+            opacity: 0.85;
+        }
+
+        /* Subtler Hovered item prominence */
+        
+        .t-carousel-item:hover {
+            z-index: 100 !important;
+        }
+        
+        .t-carousel-item:hover .t-carousel-inner {
+            transform: scale(1.06); 
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            opacity: 1;
+        }
     </style>
 </head>
 
 <body>
-
-    <!-- ── NAVEGACIÓN ─────────────────────────── -->
-    <nav class="t-nav">
-        <a href="./index.html" class="t-nav-logo">
-            <img src="./img/LOGO.png" alt="Cre Arte Logo">
+    <!-- ── NAV ─────────────────────────────────────────────────────── -->
+    <nav class="t-nav" id="mainNav">
+        <a href="./index.html" class="top-logo">
+            <img src="./img/LOGO.png" alt="Cre Arte">
         </a>
         <div class="t-nav-links">
             <a href="./index.html">Inicio</a>
-            <a href="./talleres">Talleres</a>
+            <a href="./talleres.html">Talleres</a>
             <a href="./quienes_somos.html">Quiénes Somos</a>
             <a href="./puertas_al_mundo.html">Puertas al Mundo</a>
         </div>
     </nav>
 
-    <!-- ── HERO ──────────────────────────────── -->
-    <header class="t-hero">
-        <div class="t-hero-bg"
-            uk-slideshow="animation: fade; autoplay: true; autoplay-interval: 4000; pause-on-hover: false;">
-            <ul class="uk-slideshow-items" style="min-height: 100vh;">
-                <li>
-                    <img src="./img/Murga.jpg" alt="Slide 1" uk-cover>
-                </li>
-                <li>
-                    <img src="./img/roma.jpg" alt="Slide 2" uk-cover>
-                </li>
-                <li>
-                    <img src="./img/Peña.JPG" alt="Slide 3" uk-cover>
-                </li>
-            </ul>
-        </div>
-        <div class="t-hero-overlay"></div>
-        <div class="t-hero-content">
-            <h1 class="t-hero-title">
-                El arte<br>de crear
+
+
+    <!-- ── LISTADO COMPLETO DE TALLERES (GRILLA) ────────── -->
+    <section class="workshop-list-section" id="talleres">
+        <div class="workshop-title-container">
+            <h1 class="workshop-title-large">
+                Conocé nuestros <br> 
+                Talleres
+                <span class="w-desc-inline">
+                    Un recorrido por nuestros espacios de expresión y aprendizaje, donde la creatividad florece en cada rincón de Bariloche.
+                </span>
             </h1>
-
-        </div>
-    </header>
-
-    <!-- ── INTRO SPLIT ────────────────────────── -->
-    <section class="t-intro">
-        <div class="t-intro-text">
-            <div class="t-intro-label">Nuestra filosofía</div>
-            <h2 class="t-intro-title">
-                El arte<br>
-                <em>comienza</em><br>
-                en el hacer
-            </h2>
-            <p class="t-intro-body">
-                En Cre Arte creemos que cada persona lleva adentro un artista que espera ser despertado. Nuestros
-                talleres son espacios de encuentro, exploración y crecimiento donde la técnica se enseña con paciencia y
-                la creatividad se libera sin juicios.
-            </p>
-            <p class="t-intro-body">
-                Desde pintura al óleo hasta acrílico, desde el dibujo figurativo hasta la expresión libre — hay un
-                taller para cada camino.
-            </p>
-            <a href="#talleres" class="t-intro-link">Explorar talleres</a>
-        </div>
-        <div class="t-intro-img">
-            <img src="./img/Antonio Mora. Mujer con sombrero. 0,89 x 0,70. Oleo- 2006.jpg" alt="Obra de Julián Rivera">
-            <div class="t-intro-note">la magia del óleo…</div>
         </div>
     </section>
 
-    <!-- ── QUOTE ─────────────────────────────── -->
-    <div class="t-quote">
-        <q>El arte es el lenguaje universal de la humanidad.</q>
-        <div class="t-quote-author">— Henry Wadsworth Longfellow</div>
+    <div class="workshop-grid-bg">
+        <div class="workshop-scatter-container">
+            <div class="workshop-item"><span class="w-num">01</span><span class="w-name">Prácticas ludomotrices</span></div>
+            <div class="workshop-item"><span class="w-num">02</span><span class="w-name">Técnica de Pc</span></div>
+            <div class="workshop-item"><span class="w-num">03</span><span class="w-name">Batik/grabado</span></div>
+            <div class="workshop-item"><span class="w-num">04</span><span class="w-name">Joyería</span></div>
+            <div class="workshop-item"><span class="w-num">05</span><span class="w-name">Conciencia corporal</span></div>
+            <div class="workshop-item"><span class="w-num">06</span><span class="w-name">Fútbol callejero</span></div>
+            <div class="workshop-item"><span class="w-num">07</span><span class="w-name">Reflexión</span></div>
+            <div class="workshop-item"><span class="w-num">08</span><span class="w-name">Masculinidades</span></div>
+            <div class="workshop-item"><span class="w-num">09</span><span class="w-name">Bordado</span></div>
+            <div class="workshop-item"><span class="w-num">10</span><span class="w-name">guitarra/cuerdas</span></div>
+            <div class="workshop-item"><span class="w-num">11</span><span class="w-name">fotografía</span></div>
+            <div class="workshop-item"><span class="w-num">12</span><span class="w-name">Diseño visual</span></div>
+            <div class="workshop-item"><span class="w-num">13</span><span class="w-name">Bordado creativo</span></div>
+            <div class="workshop-item"><span class="w-num">14</span><span class="w-name">Instalaciones</span></div>
+            <div class="workshop-item"><span class="w-num">15</span><span class="w-name">Ensamble musical</span></div>
+            <div class="workshop-item"><span class="w-num">16</span><span class="w-name">Fenix</span></div>
+            <div class="workshop-item"><span class="w-num">17</span><span class="w-name">Percusión</span></div>
+            <div class="workshop-item"><span class="w-num">18</span><span class="w-name">cocina</span></div>
+            <div class="workshop-item"><span class="w-num">19</span><span class="w-name">Objetos de arte</span></div>
+            <div class="workshop-item"><span class="w-num">20</span><span class="w-name">cine</span></div>
+            <div class="workshop-item"><span class="w-num">21</span><span class="w-name">hidroponia</span></div>
+            <div class="workshop-item"><span class="w-num">22</span><span class="w-name">documentales</span></div>
+            <div class="workshop-item"><span class="w-num">23</span><span class="w-name">gestión</span></div>
+            <div class="workshop-item"><span class="w-num">24</span><span class="w-name">ciudadanía</span></div>
+            <div class="workshop-item"><span class="w-num">25</span><span class="w-name">Fusion textil</span></div>
+            <div class="workshop-item"><span class="w-num">26</span><span class="w-name">collage</span></div>
+            <div class="workshop-item"><span class="w-num">27</span><span class="w-name">títeres</span></div>
+            <div class="workshop-item"><span class="w-num">28</span><span class="w-name">cestería</span></div>
+            <div class="workshop-item"><span class="w-num">29</span><span class="w-name">Mural</span></div>
+        </div>
     </div>
-
-    <!-- ── TALLERES (oferta)  ─────────────────── -->
-    <section class="t-offer" id="talleres">
-        <div class="t-offer-header">
-            <h2>Nuestros Talleres</h2>
-        </div>
-
-        <div class="t-cards">
-
-            <!-- Taller 1: Pintura -->
-            <div class="t-card">
-                <div class="t-card-text">
-                    <div class="t-card-label">Taller 01</div>
-                    <h3 class="t-card-title"><em>Taller de</em>Pintura</h3>
-                    <p class="t-card_subtitle t-card-subtitle">El arte de la mirada</p>
-                    <p class="t-card-desc">
-                        Exploramos el color, la forma y la emoción a través del pincel. Un espacio para descubrir tu
-                        propia voz artística mediante técnicas de óleo, acrílico y dibujo. Trabajamos en la técnica pero
-                        sobre todo en la libertad del trazo.
-                    </p>
-                    <div class="t-card-cta-wrap">
-                        <a href="404.html" class="t-card-cta">Ver galería</a>
-                    </div>
-                </div>
-                <div class="t-card-img">
-                    <img src="./img/pintura.jpg" alt="Taller de Pintura">
-                </div>
+        <!-- ── DYNAMIC CAROUSEL SECTION ─────────────────── -->
+        <section class="t-carousel-section" id="gallerySection">
+            <div class="t-offer-header" style="margin-bottom: 80px;">
+                <h2 style="color: #fff; opacity: 0.9;"><span>Explora</span></h2>
             </div>
 
-            <!-- Taller 2: Murga -->
-            <div class="t-card alt">
-                <div class="t-card-img">
-                    <img src="./img/Murga.jpg" alt="Taller de Murga">
-                </div>
-                <div class="t-card-text">
-                    <div class="t-card-label">Taller 02</div>
-                    <h3 class="t-card-title"><em>Taller de</em>Murga</h3>
-                    <p class="t-card_subtitle t-card-subtitle">El latido del barrio</p>
-                    <p class="t-card-desc">
-                        El latido del barrio y la expresión colectiva. Danza, percusión y canto se unen en este espacio
-                        de alegría, color y compromiso social. Una experiencia comunitaria única en Bariloche.
-                    </p>
-                    <div class="t-card-cta-wrap">
-                        <a href="404.html" class="t-card-cta">Ver galería</a>
-                    </div>
-                </div>
+            <div class="t-carousel-track" id="galleryTrack">
+                <!-- Original set from talleres folder (All 41 available images) -->
+                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres2.JPG" alt="Taller"></div></div>
+                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres3.JPG" alt="Taller"></div></div>
+                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres4.JPG" alt="Taller"></div></div>
+                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres5.JPG" alt="Taller"></div></div>
+                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres6.JPG" alt="Taller"></div></div>
+                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres7.JPG" alt="Taller"></div></div>
+                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres8.JPG" alt="Taller"></div></div>
+                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres9.JPG" alt="Taller"></div></div>
+                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres10.JPG" alt="Taller"></div></div>
+                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres11.JPG" alt="Taller"></div></div>
+                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres12.JPG" alt="Taller"></div></div>
+                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres13.JPG" alt="Taller"></div></div>
+                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres14.JPG" alt="Taller"></div></div>
+                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres15.JPG" alt="Taller"></div></div>
+                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres16.JPG" alt="Taller"></div></div>
+                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres17.JPG" alt="Taller"></div></div>
+                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres19.JPG" alt="Taller"></div></div>
+                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres20.JPG" alt="Taller"></div></div>
+                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres21.jpg" alt="Taller"></div></div>
+                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres22.jpg" alt="Taller"></div></div>
+                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres23.jpg" alt="Taller"></div></div>
+                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres24.JPG" alt="Taller"></div></div>
+                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres25.JPG" alt="Taller"></div></div>
+                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres26.JPG" alt="Taller"></div></div>
+                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres27.JPG" alt="Taller"></div></div>
+                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres28.JPG" alt="Taller"></div></div>
+                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres29.JPG" alt="Taller"></div></div>
+                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres30.JPG" alt="Taller"></div></div>
+                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres31.JPG" alt="Taller"></div></div>
+                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres32.JPG" alt="Taller"></div></div>
+                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres33.JPG" alt="Taller"></div></div>
+                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres34.JPG" alt="Taller"></div></div>
+                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres35.JPG" alt="Taller"></div></div>
+                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres36.JPG" alt="Taller"></div></div>
+                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres37.JPG" alt="Taller"></div></div>
+                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres38.JPG" alt="Taller"></div></div>
+                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres39.JPG" alt="Taller"></div></div>
+                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres40.JPG" alt="Taller"></div></div>
+                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres41.JPG" alt="Taller"></div></div>
+                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres42.JPG" alt="Taller"></div></div>
+                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/lucestalleres.JPG" alt="Taller"></div></div>
+                
+                <!-- Cloned set for loop -->
+                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres2.JPG" alt="Taller"></div></div>
+                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres3.JPG" alt="Taller"></div></div>
+                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres4.JPG" alt="Taller"></div></div>
+                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres5.JPG" alt="Taller"></div></div>
+                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres6.JPG" alt="Taller"></div></div>
+                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres7.JPG" alt="Taller"></div></div>
+                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres8.JPG" alt="Taller"></div></div>
+                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres9.JPG" alt="Taller"></div></div>
+                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres10.JPG" alt="Taller"></div></div>
+                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres11.JPG" alt="Taller"></div></div>
+                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres12.JPG" alt="Taller"></div></div>
+                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres13.JPG" alt="Taller"></div></div>
+                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres14.JPG" alt="Taller"></div></div>
+                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres15.JPG" alt="Taller"></div></div>
+                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres16.JPG" alt="Taller"></div></div>
+                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres17.JPG" alt="Taller"></div></div>
+                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres19.JPG" alt="Taller"></div></div>
+                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres20.JPG" alt="Taller"></div></div>
+                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres21.jpg" alt="Taller"></div></div>
+                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres22.jpg" alt="Taller"></div></div>
+                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres23.jpg" alt="Taller"></div></div>
+                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres24.JPG" alt="Taller"></div></div>
+                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres25.JPG" alt="Taller"></div></div>
+                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres26.JPG" alt="Taller"></div></div>
+                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres27.JPG" alt="Taller"></div></div>
+                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres28.JPG" alt="Taller"></div></div>
+                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres29.JPG" alt="Taller"></div></div>
+                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres30.JPG" alt="Taller"></div></div>
+                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres31.JPG" alt="Taller"></div></div>
+                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres32.JPG" alt="Taller"></div></div>
+                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres33.JPG" alt="Taller"></div></div>
+                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres34.JPG" alt="Taller"></div></div>
+                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres35.JPG" alt="Taller"></div></div>
+                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres36.JPG" alt="Taller"></div></div>
+                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres37.JPG" alt="Taller"></div></div>
+                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres38.JPG" alt="Taller"></div></div>
+                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres39.JPG" alt="Taller"></div></div>
+                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres40.JPG" alt="Taller"></div></div>
+                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres41.JPG" alt="Taller"></div></div>
+                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres42.JPG" alt="Taller"></div></div>
+                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/lucestalleres.JPG" alt="Taller"></div></div>
             </div>
-
-            <!-- Taller 3: Computación -->
-            <div class="t-card">
-                <div class="t-card-text">
-                    <div class="t-card-label">Taller 03</div>
-                    <h3 class="t-card-title"><em>Clases de</em>Computación</h3>
-                    <p class="t-card_subtitle t-card-subtitle">Puente hacia el mundo</p>
-                    <p class="t-card-desc">
-                        Aprendemos herramientas informáticas, comunicación y diseño, adaptando la tecnología a las
-                        necesidades de cada participante. Un espacio de aprendizaje mutuo y conexión digital.
-                    </p>
-                    <div class="t-card-cta-wrap">
-                        <a href="404.html" class="t-card-cta">Ver galería</a>
-                    </div>
-                </div>
-                <div class="t-card-img">
-                    <img src="./img/computacion.png" alt="Taller de Computación">
-                </div>
-            </div>
-
-            <!-- Taller 4: Radio -->
-            <div class="t-card alt">
-                <div class="t-card-img">
-                    <img src="./img/radio.png" alt="Taller de Radio">
-                </div>
-                <div class="t-card-text">
-                    <div class="t-card-label">Taller 04</div>
-                    <h3 class="t-card-title"><em>Espacio de</em>Radio</h3>
-                    <p class="t-card_subtitle t-card-subtitle">Tu voz al aire</p>
-                    <p class="t-card-desc">
-                        Tu voz al aire. Producción, locución y creatividad sonora. Un taller para contar nuestras
-                        historias y conectar con la comunidad a través de las ondas decoradas y el aire en vivo.
-                    </p>
-                    <div class="t-card-cta-wrap">
-                        <a href="404.html" class="t-card-cta">Escuchar</a>
-                        <a href="404.html" class="t-card-cta">Ver galería</a>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </section>
+        </section>
 
 
 
-    <!-- ── FOOTER ────────────────────────────── -->
-    <footer class="crearte-footer">
-        <div class="footer-wave-divider">
-            <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
-                <path fill="#829068"
-                    d="M0,64L120,74.7C240,85,480,107,720,106.7C960,107,1200,85,1320,74.7L1440,64L1440,120L1320,120C1200,120,960,120,720,120C480,120,240,120,120,120L0,120Z">
-                </path>
-            </svg>
-        </div>
-        <div class="footer-main">
-            <div class="uk-container">
-                <div class="uk-grid-large uk-child-width-1-2 uk-child-width-1-4@m" uk-grid>
-                    <div class="footer-column">
-                        <h5>Explorar</h5>
-                        <ul>
-                            <li><a href="index.html">Inicio</a></li>
-                            <li><a href="quienes_somos.html">Quiénes Somos</a></li>
-                            <li><a href="talleres.html">Talleres</a></li>
-                            <li><a href="puertas_al_mundo.html">Puertas al Mundo</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-column">
-                        <h5>Seguinos</h5>
-                        <ul>
-                            <li><a href="404.html">Instagram</a></li>
-                            <li><a href="404.html">Facebook</a></li>
-                            <li><a href="404.html">Twitter</a></li>
-                            <li><a href="404.html">YouTube</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-column">
-                        <h5>Contacto</h5>
-                        <ul>
-                            <li>Quaglia 540</li>
-                            <li>Bariloche, Río Negro</li>
-                            <li>Argentina</li>
-                        </ul>
-                    </div>
-                    <div class="footer-column uk-text-right@m">
-                        <img src="./img/LOGO.png" width="90" alt="Logo Footer">
-                        <p class="uk-margin-small-top uk-text-bold">CRE ARTE</p>
-                    </div>
-                </div>
-                <div class="footer-legal">
-                    <div>© 2026 Cre Arte Bariloche.</div>
-                    <div>Created by <strong class="sacaraat-trigger">SACRAART</strong></div>
-                </div>
-            </div>
-        </div>
-    </footer>
+        <script>
+            // Ethereal Floating Background for Title
+            const titleContainer = document.querySelector('.workshop-title-container');
+            const floatingImages = [
+                './img/Peña.JPG', 
+                './img/TRABAJANDO.JPG', 
+                './img/roma.jpg', 
+                './img/Murga.jpg', 
+                './img/DAMIPINTANDO.jpg',
+                './img/SONRIENDO.JPG'
+            ];
 
-    <script>
-        // Inicio suave del hero bg
-        window.addEventListener('load', () => {
-            // document.getElementById('heroBg').classList.add('loaded');
-        });
+            function spawnFloatingImage() {
+                if (!titleContainer) return;
+                
+                const imgWrap = document.createElement('div');
+                imgWrap.className = 'w-floating-img';
+                
+                // Modest size variation for a more elegant, subtle look
+                const width = Math.floor(Math.random() * 100) + 140; // 140 to 240
+                imgWrap.style.width = width + 'px';
 
-        // Parallax suave en el hero al hacer scroll
-        window.addEventListener('scroll', () => {
-            const scrollY = window.scrollY;
-            const bg = document.getElementById('heroBg');
-            if (bg) {
-                bg.style.transform = `scale(1) translateY(${scrollY * 0.3}px)`;
+                const img = document.createElement('img');
+                img.src = floatingImages[Math.floor(Math.random() * floatingImages.length)];
+                img.style.width = '100%';
+                imgWrap.appendChild(img);
+
+                // Strategic position: bias towards left/right sides to avoid blocking centered text
+                // 40% chance far left, 40% chance far right, 20% center area
+                const rand = Math.random();
+                let x;
+                if (rand < 0.4) {
+                    x = Math.random() * 20; // 0-20% (Far Left)
+                } else if (rand < 0.8) {
+                    x = Math.random() * 20 + 80; // 80-100% (Far Right)
+                } else {
+                    x = Math.random() * 40 + 30; // 30-70% (Centerish)
+                }
+                
+                imgWrap.style.left = `${x}%`;
+                imgWrap.style.bottom = `0`;
+                imgWrap.style.top = `auto`;
+
+                titleContainer.appendChild(imgWrap);
+
+                setTimeout(() => imgWrap.remove(), 8500);
             }
-        }, { passive: true });
-    </script>
 
-    <script>
-        const trigger = document.querySelector('.sacaraat-trigger');
-        if (trigger) {
-            trigger.addEventListener('mousemove', (e) => {
-                const heart = document.createElement('span');
-                heart.innerHTML = '❤';
-                heart.className = 'heart-particle';
-
-                const x = e.clientX - 10;
-                const y = e.clientY - 10;
-
-                heart.style.left = x + 'px';
-                heart.style.top = y + 'px';
-                heart.style.position = 'fixed';
-
-                const size = Math.random() * 0.8 + 0.5;
-                heart.style.setProperty('--scale', size); /* Use CSS variable for animation */
-
-                document.body.appendChild(heart);
-
-                setTimeout(() => heart.remove(), 1000);
+            // Start spawning
+            window.addEventListener('load', () => {
+                // Slower spawning for more focus on individual images
+                setInterval(spawnFloatingImage, 2800);
             });
-        }
-    </script>
+
+
+            // Navbar scroll effect
+            window.addEventListener('scroll', () => {
+                const nav = document.getElementById('mainNav');
+                if (window.scrollY > 50) {
+                    nav.classList.add('scrolled');
+                } else {
+                    nav.classList.remove('scrolled');
+                }
+            });
+
+
+            // Magnetic attraction effect for workshops
+            const container = document.querySelector('.workshop-scatter-container');
+            const workshopElements = document.querySelectorAll('.workshop-item');
+
+            if (container) {
+                container.addEventListener('mousemove', (e) => {
+                    const { clientX, clientY } = e;
+                    
+                    workshopElements.forEach((item) => {
+                        const rect = item.getBoundingClientRect();
+                        const centerX = rect.left + rect.width / 2;
+                        const centerY = rect.top + rect.height / 2;
+                        
+                        const distX = clientX - centerX;
+                        const distY = clientY - centerY;
+                        const distance = Math.hypot(distX, distY);
+                        
+                        const maxDist = 300; // Attraction range
+                        
+                        if (distance < maxDist) {
+                            const strength = (1 - distance / maxDist) * 20; // Max 20px move
+                            const moveX = (distX / distance) * strength;
+                            const moveY = (distY / distance) * strength;
+                            item.style.transform = `translate(${moveX}px, ${moveY}px)`;
+                        } else {
+                            item.style.transform = `translate(0, 0)`;
+                        }
+                    });
+                });
+
+                container.addEventListener('mouseleave', () => {
+                    workshopElements.forEach(item => {
+                        item.style.transform = `translate(0, 0)`;
+                    });
+                });
+            }
+
+            // Optimized Carousel Gallery Logic
+            const gallerySection = document.getElementById('gallerySection');
+            const galleryTrack = document.getElementById('galleryTrack');
+            const galleryItems = document.querySelectorAll('.t-carousel-item');
+
+            if (gallerySection && galleryTrack) {
+                let currentX = 0;
+                let targetX = 0;
+                let isDragging = false;
+                let startX = 0;
+                let velocity = 0;
+                let lastMouseX = 0;
+                const lerpAmount = 0.08;
+
+                // Initialize Items (Upright, no initial rotation)
+                galleryItems.forEach((item, index) => {
+                    const offset = (index % 4 === 0) ? 20 : (index % 4 === 1) ? -20 : (index % 4 === 2) ? 40 : -10;
+                    item.dataset.baseY = offset;
+                    item.style.transform = `translateY(${offset}px)`;
+                });
+
+                const getTrackWidth = () => galleryTrack.scrollWidth / 2;
+
+                const update = () => {
+                    const width = getTrackWidth();
+                    
+                    // Seamless loop
+                    if (targetX > 0) {
+                        targetX -= width;
+                        currentX -= width;
+                        startX += width; // Adjust startX to keep drag consistent
+                    }
+                    if (targetX < -width) {
+                        targetX += width;
+                        currentX += width;
+                        startX -= width;
+                    }
+
+                    if (!isDragging) {
+                        targetX += velocity;
+                        velocity *= 0.95; // Friction
+                    }
+
+                    currentX += (targetX - currentX) * lerpAmount;
+                    galleryTrack.style.transform = `translateX(${currentX}px)`;
+
+                    // Dynamic item movement (The "Fluidity" and "Re-accommodation")
+                    const moveSpeed = (targetX - currentX) * 0.05;
+                    galleryItems.forEach((item, index) => {
+                        const baseY = parseFloat(item.dataset.baseY);
+                        
+                        // Vertical "wave" based on velocity - SUBTLE
+                        const yReaction = Math.abs(moveSpeed) * 1.5; 
+                        
+                        // Subtle breathing re-accommodation
+                        const breath = Math.sin(Date.now() * 0.001 + index) * 0.8;
+                        
+                        item.style.transform = `translateY(${baseY + yReaction + breath}px)`;
+                    });
+
+                    requestAnimationFrame(update);
+                };
+
+                update();
+
+                // Mouse Events
+                gallerySection.addEventListener('mousedown', (e) => {
+                    isDragging = true;
+                    startX = e.pageX - targetX;
+                    lastMouseX = e.pageX;
+                    velocity = 0;
+                    gallerySection.style.cursor = 'grabbing';
+                });
+
+                window.addEventListener('mousemove', (e) => {
+                    if (!isDragging) return;
+                    targetX = e.pageX - startX;
+                    velocity = e.pageX - lastMouseX;
+                    lastMouseX = e.pageX;
+                });
+
+                window.addEventListener('mouseup', () => {
+                    isDragging = false;
+                    gallerySection.style.cursor = 'grab';
+                });
+
+                window.addEventListener('mouseleave', () => {
+                    if (isDragging) {
+                        isDragging = false;
+                        gallerySection.style.cursor = 'grab';
+                    }
+                });
+
+                // Touch Events
+                gallerySection.addEventListener('touchstart', (e) => {
+                    isDragging = true;
+                    startX = e.touches[0].pageX - targetX;
+                    lastMouseX = e.touches[0].pageX;
+                    velocity = 0;
+                }, { passive: true });
+
+                window.addEventListener('touchmove', (e) => {
+                    if (!isDragging) return;
+                    targetX = e.touches[0].pageX - startX;
+                    velocity = e.touches[0].pageX - lastMouseX;
+                    lastMouseX = e.touches[0].pageX;
+                }, { passive: true });
+
+                window.addEventListener('touchend', () => {
+                    isDragging = false;
+                });
+            }
+        </script>
+
+        <footer class="mag-footer">
+            <img src="./img/LOGO.png" alt="Cre Arte" class="footer-logo">
+            <div class="footer-links">
+                <a href="./index.html">Inicio</a>
+                <a href="./talleres.html">Talleres</a>
+                <a href="./quienes_somos.html">Quiénes Somos</a>
+                <a href="./puertas_al_mundo.html">Puertas al Mundo</a>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2026 Cre Arte Bariloche. Todos los derechos reservados.
+            </div>
+        </footer>
+
+        <script>
+            const trigger = document.querySelector('.sacaraat-trigger');
+            if (trigger) {
+                trigger.addEventListener('mousemove', (e) => {
+                    const heart = document.createElement('span');
+                    heart.innerHTML = '❤';
+                    heart.className = 'heart-particle';
+
+                    const x = e.clientX - 10;
+                    const y = e.clientY - 10;
+
+                    heart.style.left = x + 'px';
+                    heart.style.top = y + 'px';
+                    heart.style.position = 'fixed';
+
+                    const size = Math.random() * 0.8 + 0.5;
+                    heart.style.setProperty('--scale', size); /* Use CSS variable for animation */
+
+                    document.body.appendChild(heart);
+
+                    setTimeout(() => heart.remove(), 1000);
+                });
+            }
+        </script>
 </body>
 
 </html>
