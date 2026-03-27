@@ -428,57 +428,50 @@
         }
 
         .workshop-grid-bg {
-            padding: 10vw 5vw;
-            background: linear-gradient(rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.1)), url('./img/portada2.png');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
+            padding: 10vw 5vw 40px;
+            background: #fdfdfc;
             position: relative;
         }
 
         .workshop-title-large {
             font-family: 'Inter', sans-serif;
-            font-weight: 800;
-            font-size: clamp(3rem, 7.5vw, 10rem);
-            line-height: 0.85;
-            color: #111;
+            font-weight: 900;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            line-height: 1.1;
+            color: #fff;
             text-transform: uppercase;
-            letter-spacing: -4px;
+            letter-spacing: -1px;
             display: inline-block;
             position: relative;
-            z-index: 10; /* Above images */
+            z-index: 10;
         }
 
-        /* ── FLOATING BG IMAGES ── */
-        .w-floating-img {
-            position: absolute;
-            width: 200px;
-            height: auto;
-            pointer-events: none;
-            opacity: 0;
-            z-index: 1; /* Behind text */
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            animation: floatUpFade 8s ease-in-out forwards;
+        .workshop-title-label {
+            background: #6a1a1c;
+            color: #fff;
+            display: inline-block;
+            padding: 10px 25px;
+            margin-bottom: 12px;
+            box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.05);
+            transform: rotate(-1.5deg);
         }
 
-        @keyframes floatUpFade {
-            0% {
-                transform: translateY(300px) rotate(-3deg);
-                opacity: 0;
-            }
-            20% {
-                opacity: 1; /* Full sharp visibility */
-                transform: translateY(80px) rotate(-1deg);
-            }
-            80% {
-                opacity: 1;
-                transform: translateY(-80px) rotate(1deg);
-            }
-            100% {
-                transform: translateY(-250px) rotate(3deg);
-                opacity: 0;
-            }
+        .workshop-title-label.accent {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-weight: 400;
+            text-transform: none;
+            transform: rotate(2deg);
+            margin-top: -5px;
+            margin-left: 10px;
+            position: relative;
+            background: #6a1a1c;
+            padding: 10px 30px;
         }
+
+
+        /* No animation for background images */
+
 
         .w-desc-inline {
             font-family: 'Inter', sans-serif;
@@ -517,7 +510,7 @@
         .w-num {
             font-family: 'Inter', sans-serif;
             font-size: 0.75rem;
-            font-weight: 800;
+            font-weight: 400;
             color: #111;
             display: block;
             margin-bottom: 5px;
@@ -529,7 +522,7 @@
 
         .w-name {
             font-family: 'Inter', sans-serif;
-            font-weight: 800;
+            font-weight: 400;
             font-size: 1.15rem;
             color: #111;
             text-transform: uppercase;
@@ -1113,7 +1106,7 @@
 
         /* ── DRAGGABLE SCATTER GALLERY ── */
         .t-carousel-section {
-            padding: 120px 0;
+            padding: 20px 0 120px;
             background: #ffffff;
             overflow: hidden;
             position: relative;
@@ -1208,8 +1201,8 @@
     <section class="workshop-list-section" id="talleres">
         <div class="workshop-title-container">
             <h1 class="workshop-title-large">
-                Conocé nuestros <br> 
-                Talleres
+                <span class="workshop-title-label">Conocé nuestros</span> <br> 
+                <span class="workshop-title-label accent">Talleres</span>
                 <span class="w-desc-inline">
                     Un recorrido por nuestros espacios de expresión y aprendizaje, donde la creatividad florece en cada rincón de Bariloche.
                 </span>
@@ -1252,7 +1245,7 @@
     </div>
         <!-- ── DYNAMIC CAROUSEL SECTION ─────────────────── -->
         <section class="t-carousel-section" id="gallerySection">
-            <div class="t-offer-header" style="margin-bottom: 80px;">
+            <div class="t-offer-header" style="margin-bottom: 30px;">
                 <h2 style="color: #fff; opacity: 0.9;"><span>Explora</span></h2>
             </div>
 
@@ -1348,58 +1341,7 @@
 
 
         <script>
-            // Ethereal Floating Background for Title
-            const titleContainer = document.querySelector('.workshop-title-container');
-            const floatingImages = [
-                './img/Peña.JPG', 
-                './img/TRABAJANDO.JPG', 
-                './img/roma.jpg', 
-                './img/Murga.jpg', 
-                './img/DAMIPINTANDO.jpg',
-                './img/SONRIENDO.JPG'
-            ];
 
-            function spawnFloatingImage() {
-                if (!titleContainer) return;
-                
-                const imgWrap = document.createElement('div');
-                imgWrap.className = 'w-floating-img';
-                
-                // Modest size variation for a more elegant, subtle look
-                const width = Math.floor(Math.random() * 100) + 140; // 140 to 240
-                imgWrap.style.width = width + 'px';
-
-                const img = document.createElement('img');
-                img.src = floatingImages[Math.floor(Math.random() * floatingImages.length)];
-                img.style.width = '100%';
-                imgWrap.appendChild(img);
-
-                // Strategic position: bias towards left/right sides to avoid blocking centered text
-                // 40% chance far left, 40% chance far right, 20% center area
-                const rand = Math.random();
-                let x;
-                if (rand < 0.4) {
-                    x = Math.random() * 20; // 0-20% (Far Left)
-                } else if (rand < 0.8) {
-                    x = Math.random() * 20 + 80; // 80-100% (Far Right)
-                } else {
-                    x = Math.random() * 40 + 30; // 30-70% (Centerish)
-                }
-                
-                imgWrap.style.left = `${x}%`;
-                imgWrap.style.bottom = `0`;
-                imgWrap.style.top = `auto`;
-
-                titleContainer.appendChild(imgWrap);
-
-                setTimeout(() => imgWrap.remove(), 8500);
-            }
-
-            // Start spawning
-            window.addEventListener('load', () => {
-                // Slower spawning for more focus on individual images
-                setInterval(spawnFloatingImage, 2800);
-            });
 
 
             // Navbar scroll effect
