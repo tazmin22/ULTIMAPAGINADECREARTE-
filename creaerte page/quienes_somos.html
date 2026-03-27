@@ -20,7 +20,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Caveat:wght@600;700&family=Inter:wght@300;400;600;700;900&display=swap"
         rel="stylesheet">
-    
+
     <!-- Lenis Smooth Scroll -->
     <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/lenis@1.1.20/dist/lenis.css">
@@ -35,7 +35,8 @@
         }
 
         html {
-            scroll-behavior: auto; /* Desactivar para que Lenis tome el control */
+            scroll-behavior: auto;
+            /* Desactivar para que Lenis tome el control */
         }
 
 
@@ -113,7 +114,7 @@
             letter-spacing: 2.5px;
             text-transform: uppercase;
             color: #fff;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
         }
 
         .t-nav-links a:hover {
@@ -1012,7 +1013,7 @@
 
     <!-- CABECERA PRINCIPAL -->
     <header class="hero-splash" id="portada">
-        <img src="./img/JACOBACCI.JPG" alt="Cre Arte Portada">
+        <img src="./img/grupal.jpg" alt="Cre Arte Portada">
         <div class="hero-splash-title">
             <h1><span>Bienvenidos</span></h1>
         </div>
@@ -1286,7 +1287,7 @@
 
         lenis.on('scroll', () => {
             if (isSnapping) return;
-            
+
             // Detectar cuando el scroll se detiene para hacer el snap
             clearTimeout(window.snapTimeout);
             window.snapTimeout = setTimeout(() => {
@@ -1296,7 +1297,7 @@
 
         function snapToSection() {
             if (isSnapping) return;
-            
+
             let closest = null;
             let minDistance = Infinity;
             const scrollPos = window.scrollY;
@@ -1311,7 +1312,7 @@
 
             if (closest && minDistance > 50 && minDistance < 500) {
                 isSnapping = true;
-                lenis.scrollTo(closest, { 
+                lenis.scrollTo(closest, {
                     duration: 1,
                     onComplete: () => { isSnapping = false; }
                 });
