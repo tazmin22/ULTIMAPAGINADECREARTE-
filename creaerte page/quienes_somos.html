@@ -45,6 +45,7 @@
             animation: fadeInPage 1.2s ease-out forwards;
         }
 
+
         @keyframes fadeInPage {
             from {
                 opacity: 0;
@@ -75,7 +76,7 @@
             padding: 25px 0;
             background-color: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(0,0,0,0.05);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
             transition: padding 0.3s ease, background-color 0.3s ease;
         }
 
@@ -111,174 +112,65 @@
             color: #e65c00;
         }
 
-
-        /* ===== NEW SCATTERED HERO ( MAGAZINE STYLE ) ===== */
-        .mag-hero {
-            position: relative;
-            /* Volver a relativo para que se desplace naturalmente */
+        .hero-splash {
             width: 100%;
-            height: 95vh;
-            background-color: #fff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            height: 100vh;
+            background: #111;
+            position: relative;
             overflow: hidden;
-            z-index: 10;
-            margin: 0;
-            /* ASEGURAR 0 MARGIN */
-            transform-origin: center center;
-            will-change: transform;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             scroll-snap-align: start;
-            /* Snap al inicio del Hero */
         }
 
-        .mag-hero-title {
-            position: absolute;
-            font-family: 'Inter', sans-serif;
-            font-size: clamp(3.5rem, 10vw, 8rem);
-            font-weight: 900;
-            line-height: 0.9;
-            color: #111;
-            text-transform: uppercase;
-            text-align: center;
-            z-index: 50;
-            margin: 0;
-            pointer-events: none;
-        }
-
-        .mag-hero-title span {
-            display: block;
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
-            font-weight: 500;
-            color: #e65c00;
-            text-transform: none;
-            font-size: clamp(3rem, 9vw, 7rem);
-            letter-spacing: normal;
-        }
-
-
-
-
-        /* Imágenes flotantes en el Hero */
-        .hero-scatter-img {
-            position: absolute;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
-            /* Sombra suave para despegar del fondo */
-            z-index: 10;
-            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), filter 0.3s;
-            /* Transición suave para zoom */
-            filter: grayscale(20%);
-            will-change: transform;
-            cursor: pointer;
-        }
-
-        .hero-scatter-img:hover {
-            transform: scale(1.4);
-            /* Zoom ajustado y equilibrado */
-            z-index: 100;
-            /* Asegurar que se vea por encima de las demás */
-            filter: grayscale(0%);
-            /* Recuperar todo el color al pasar el mouse */
-            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.35);
-        }
-
-        /* Desactivar zoom solo para las fotos claras del fondo (hs-9 y hs-10) */
-        .hs-9:hover,
-        .hs-10:hover {
-            transform: none !important;
-            cursor: default;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12) !important;
-            z-index: 5 !important;
-            filter: grayscale(20%) !important;
-            opacity: 0.45 !important;
-        }
-
-        .hero-scatter-img img {
+        .hero-splash img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            display: block;
+            opacity: 0.7;
+            filter: grayscale(20%) contrast(1.1);
+            animation: slowZoom 8s ease-out forwards;
         }
 
+        @keyframes slowZoom {
+            from {
+                transform: scale(1);
+            }
 
-
-        /* Posiciones específicas rectas */
-        .hs-1 {
-            top: 11%;
-            left: 7%;
-            width: 190px;
-            height: 250px;
+            to {
+                transform: scale(1.1);
+            }
         }
 
-        .hs-2 {
-            top: 14%;
-            right: 9%;
-            width: 210px;
-            height: 270px;
+        .hero-splash-title {
+            position: absolute;
+            z-index: 10;
+            color: #fff;
+            text-align: center;
         }
 
-        .hs-3 {
-            bottom: 9%;
-            left: 14%;
-            width: 250px;
-            height: 320px;
+        .hero-splash-title h1 {
+            font-family: 'Inter', sans-serif;
+            font-size: clamp(3rem, 10vw, 8rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+            margin-bottom: 0;
+            line-height: 0.9;
+            color: #ffffff;
         }
 
-        .hs-4 {
-            bottom: 14%;
-            right: 16%;
-            width: 190px;
-            height: 250px;
-        }
-
-        .hs-5 {
-            top: 44%;
-            left: 4%;
-            width: 140px;
-            height: 190px;
-        }
-
-        .hs-6 {
-            top: 50%;
-            right: 3%;
-            width: 150px;
-            height: 200px;
-        }
-
-        .hs-7 {
-            top: 6%;
-            left: 45%;
-            width: 130px;
-            height: 170px;
-        }
-
-        .hs-8 {
-            bottom: 5%;
-            left: 52%;
-            width: 170px;
-            height: 230px;
-        }
-
-        .hs-9 {
-            top: 29%;
-            left: 27%;
-            width: 150px;
-            height: 190px;
-            z-index: 5;
-            opacity: 0.45;
-        }
-
-        .hs-10 {
-            bottom: 23%;
-            right: 31%;
-            width: 160px;
-            height: 200px;
-            z-index: 5;
-            opacity: 0.45;
+        .hero-splash-title p {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: clamp(1.5rem, 4vw, 3rem);
+            margin-top: 10px;
+            font-weight: 400;
         }
 
         /* ===== MAGAZINE SPREAD SECTION (BIENVENIDOS) ===== */
+
         .about-us-section {
             background-color: #efedeb;
             position: relative;
@@ -1094,6 +986,13 @@
 <body>
 
     <!-- CABECERA PRINCIPAL -->
+    <header class="hero-splash" id="portada">
+        <img src="./img/Campamento.JPG" alt="Cre Arte Portada">
+        <div class="hero-splash-title">
+
+        </div>
+    </header>
+
     <a href="./index.html" class="floating-logo">
         <img src="./img/LOGO.png" alt="Cre Arte Logo">
     </a>
@@ -1108,27 +1007,10 @@
     </nav>
 
 
-    <header class="mag-hero">
-        <h1 class="mag-hero-title visible">
-            <span>Bienvenidos</span>
-            Quiénes Somos
-        </h1>
 
-        <!-- Imágenes flotantes rodeando el texto -->
-        <div class="hero-scatter-img hs-1"><img
-                src="./img/Antonio Mora. Mujer con sombrero. 0,89 x 0,70. Oleo- 2006.jpg" alt="Obra"></div>
-        <div class="hero-scatter-img hs-2"><img src="./img/SONRIENDO.JPG" alt="Roma"></div>
-        <div class="hero-scatter-img hs-3"><img src="./img/DIBUJANDO.JPG" alt="Pintura"></div>
-        <div class="hero-scatter-img hs-4"><img src="./img/TRABAJANDO.JPG" alt="Peña"></div>
-        <div class="hero-scatter-img hs-5"><img src="./img/DAMIPINTANDO.jpg" alt="Talleres"></div>
-        <div class="hero-scatter-img hs-6"><img src="./img/Fractales.jpg" alt="Arte"></div>
-        <div class="hero-scatter-img hs-7"><img src="./img/CUADRADO2.jpg" alt="Radio"></div>
-        <div class="hero-scatter-img hs-8"><img src="./img/SONRIENTE2.JPG" alt="Murga"></div>
-        <div class="hero-scatter-img hs-9"><img src="./img/JACOBACCI.JPG" alt="Jacobs"></div>
-        <div class="hero-scatter-img hs-10"><img src="./img/Campamento.JPG" alt="Camp"></div>
+    <!-- Imágenes flotantes rodeando el texto -->
 
 
-    </header>
 
     <!-- MAGAZINE SPREAD SECTION (BIENVENIDOS) -->
     <section class="about-us-section">
@@ -1299,13 +1181,12 @@
     </section>
 
     <!-- CLOSURE BANNER -->
-    <section class="closure-banner fade-in-up">
-        <img src="./img/Campamento.JPG" alt="Cierre">
-        <div class="closure-overlay fade-in-up stagger-3">
+    <section class="closure-banner fade-in-up" style="background-color: #f9f7f2; height: 30vh;">
+        <div class="closure-overlay visible" style="color: #6a1a1c;">
             <p>Donde el arte nos une</p>
-
         </div>
     </section>
+
 
     <!-- FOOTER -->
     <footer class="mag-footer">
@@ -1351,6 +1232,15 @@
         document.querySelectorAll('.fade-in-up, .fade-in-right, .fade-in-place, .zoom-pop').forEach((el) => {
             animateObserver.observe(el);
         });
+
+        // Auto-scroll desde la portada splash
+        setTimeout(() => {
+            const firstSection = document.querySelector('.about-us-section');
+            if (firstSection && window.scrollY < 100) { // Solo si el usuario no ha scrolleado ya
+                firstSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        }, 2500);
+
 
     </script>
 </body>
