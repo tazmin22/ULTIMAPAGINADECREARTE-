@@ -20,7 +20,6 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Caveat:wght@600;700&family=Inter:wght@300;400;600;700;900&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="responsive.css">
 
     <!-- Lenis Smooth Scroll -->
     <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"></script>
@@ -42,7 +41,7 @@
 
 
         body {
-            background-color: #f9f7f2; /* Unificado: Blanco crema editorial */
+            background-color: #fff;
             margin: 0;
             padding: 0;
             color: #111;
@@ -73,7 +72,7 @@
 
         /* ===== NAVEGACIÓN Y LOGO (CABECERA) ===== */
         .t-nav {
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
@@ -83,10 +82,13 @@
             align-items: center;
             padding: 35px 0;
             background-color: transparent;
+            backdrop-filter: none;
+            border-bottom: none;
+            transition: padding 0.3s ease, background-color 0.3s ease;
         }
 
         .floating-logo {
-            position: absolute;
+            position: fixed;
             top: 25px;
             left: 5%;
             z-index: 2100;
@@ -98,30 +100,27 @@
             height: 65px;
             width: auto;
             filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.2));
-            transition: height 0.3s ease, filter 0.4s ease;
+            transition: height 0.3s ease;
         }
+
 
 
         .t-nav-links {
             display: flex;
             gap: 2.5rem;
-            margin-right: 15%; /* Para equilibrar visualmente con el logo a la izquierda */
         }
 
         .t-nav-links a {
             font-family: 'Inter', sans-serif;
-            text-transform: uppercase;
-            font-size: 0.72rem;
+            font-size: 0.75rem;
             letter-spacing: 2.5px;
-            color: #111;
-            opacity: 0.9;
-            transition: all 0.4s ease;
-            text-decoration: none;
+            text-transform: uppercase;
+            color: #fff;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
         }
 
         .t-nav-links a:hover {
-            opacity: 1;
-            color: var(--orange);
+            color: #f2cb7b;
         }
 
 
@@ -201,7 +200,7 @@
         /* ===== MAGAZINE SPREAD SECTION (BIENVENIDOS) ===== */
 
         .about-us-section {
-            background-color: #f9f7f2; /* Unificado */
+            background-color: #efedeb;
             position: relative;
             z-index: 50;
             margin: 0;
@@ -213,6 +212,7 @@
             justify-content: center;
             scroll-snap-align: start;
             overflow: hidden;
+            /* Recortar las fotos que sobresalen un poco */
         }
 
         .about-spread {
@@ -423,7 +423,8 @@
 
         /* ===== STAFF SECTION (MOSAIC STYLE) ===== */
         .staff-mosaic-section {
-            background-color: #f9f7f2; /* Unificado */
+            background-color: #efedeb;
+            /* Color hueso de fondo */
             padding: 100px 5%;
             display: flex;
             justify-content: center;
@@ -590,13 +591,18 @@
 
         /* ===== HISTORY (SCRAPBOOK) SECTION ===== */
         .history-section {
-            background-color: #f9f7f2; /* Unificado */
+            background-color: #dfdad0;
+            /* Color más oscuro y cálido para contraste */
             min-height: 100vh;
+            /* Altura suficiente para el collage */
+            padding: 100px 5%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             position: relative;
-            padding-top: 50px;
+            overflow: hidden;
             scroll-snap-align: start;
             z-index: 5;
-            overflow: hidden;
         }
 
         .scrapbook-container {
@@ -612,7 +618,8 @@
             transition: transform 0.4s ease;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
             /* Sombra para dar relieve 3D */
-            z-index: 20; /* Elevado sobre trazos */
+            z-index: 20;
+            /* Elevado sobre trazos */
         }
 
         .scrap-piece img {
@@ -735,8 +742,8 @@
         /* ===== SCROLL ANIMATIONS ===== */
         .fade-in-up {
             opacity: 0;
-            transform: translateY(15px); /* Menos agresivo */
-            transition: all 1.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.165, 0.84, 0.44, 1), transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
             will-change: opacity, transform;
         }
 
@@ -747,9 +754,9 @@
 
         .fade-in-right {
             opacity: 0;
-            transform: translateX(15px);
+            transform: translateX(60px);
             /* Empieza desplazado a la derecha */
-            transition: all 1.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+            transition: opacity 0.8s cubic-bezier(0.165, 0.84, 0.44, 1), transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
             will-change: opacity, transform;
         }
 
@@ -759,10 +766,6 @@
             /* Termina en su posición original */
         }
 
-        .fade-in-place {
-            opacity: 0;
-            transition: opacity 1.2s ease-out;
-        }
         .fade-in-place.visible {
             opacity: 1;
             transform: scale(1);
@@ -772,8 +775,9 @@
         /* Animación Zoom (Efecto Pop) */
         .zoom-pop {
             opacity: 0;
-            transform: scale(0.98); /* Sutil */
-            transition: all 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform: scale(0.6);
+            transition: opacity 1s cubic-bezier(0.165, 0.84, 0.44, 1),
+                transform 1s cubic-bezier(0.34, 1.56, 0.64, 1);
             /* El overshoot crea el efecto pop */
             will-change: opacity, transform;
         }
@@ -936,10 +940,9 @@
             font-family: 'Inter', sans-serif;
             text-transform: uppercase;
             font-size: 0.75rem;
-            letter-spacing: 4px;
-            color: #777;
+            letter-spacing: 2px;
+            color: #666;
             transition: color 0.3s;
-            text-decoration: none;
         }
 
         .footer-links a:hover {
@@ -947,9 +950,7 @@
         }
 
         .footer-bottom {
-            font-family: 'Inter', sans-serif;
-            font-size: 0.85rem;
-            letter-spacing: 1px;
+            font-size: 0.8rem;
             color: #999;
             border-top: 1px solid #eee;
             padding-top: 30px;
@@ -1014,60 +1015,6 @@
                 margin: 0;
             }
         }
-
-        /* ESTILO PARA EL ENLACE QIELL */
-        .link-qiell {
-            color: inherit;
-            text-decoration: none;
-            font-weight: 700;
-            position: relative;
-            display: inline-block;
-            transition: all 0.3s ease;
-            padding: 0 5px;
-        }
-
-        .link-qiell:hover {
-            color: #6a1a1c;
-            text-shadow: 0 0 10px rgba(106, 26, 28, 0.2);
-        }
-
-        /* Estrellas decorativas */
-        .link-qiell::before,
-        .link-qiell::after {
-            content: '✦';
-            position: absolute;
-            font-size: 14px;
-            color: #6a1a1c;
-            opacity: 0;
-            pointer-events: none;
-            transition: all 0.3s ease;
-        }
-
-        .link-qiell:hover::before {
-            top: -12px;
-            left: -10px;
-            opacity: 1;
-            animation: star-sparkle 0.8s infinite alternate;
-        }
-
-        .link-qiell:hover::after {
-            bottom: -10px;
-            right: -10px;
-            opacity: 1;
-            animation: star-sparkle 1s infinite alternate-reverse;
-        }
-
-        @keyframes star-sparkle {
-            0% {
-                transform: scale(0.5) rotate(0deg);
-                text-shadow: 0 0 5px #6a1a1c;
-            }
-
-            100% {
-                transform: scale(1.6) rotate(180deg);
-                text-shadow: 0 0 15px #6a1a1c, 0 0 25px rgba(106, 26, 28, 0.4);
-            }
-        }
     </style>
 </head>
 
@@ -1086,32 +1033,14 @@
         <img src="./img/LOGO.png" alt="Cre Arte Logo">
     </a>
 
-    <nav class="t-nav nav-light">
+    <nav class="t-nav">
         <div class="t-nav-links">
             <a href="./index.html">Inicio</a>
             <a href="./talleres.html">Talleres</a>
             <a href="./quienes_somos.html">Quiénes Somos</a>
             <a href="./puertas_al_mundo.html">Puertas al Mundo</a>
-            <a href="./galeria.html">Galería</a>
-            <a href="./obras.html">Obras</a>
         </div>
-        <button class="mobile-nav-toggle" aria-label="Abrir Menú">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
     </nav>
-
-    <div class="mobile-menu">
-        <ul class="mobile-menu-links">
-            <li><a href="./index.html">Inicio</a></li>
-            <li><a href="./talleres.html">Talleres</a></li>
-            <li><a href="./quienes_somos.html">Quiénes Somos</a></li>
-            <li><a href="./puertas_al_mundo.html">Puertas al Mundo</a></li>
-            <li><a href="./galeria.html">Galería</a></li>
-            <li><a href="./obras.html">Obras</a></li>
-        </ul>
-    </div>
 
 
 
@@ -1311,8 +1240,7 @@
             <a href="./puertas_al_mundo.html">Puertas al Mundo</a>
         </div>
         <div class="footer-bottom">
-            &copy; 2026 Cre Arte Bariloche. Todos los derechos reservados.<br>
-            Tienda Desarollada por <span class="link-qiell">Qiell</span>
+            &copy; 2026 Cre Arte Bariloche. Todos los derechos reservados.
         </div>
     </footer>
 
@@ -1394,7 +1322,7 @@
             if (closest && minDistance > 50 && minDistance < 500) {
                 isSnapping = true;
                 lenis.scrollTo(closest, {
-                    duration: 1.5, /* Snapping mucho más lento y suave */
+                    duration: 1,
                     onComplete: () => { isSnapping = false; }
                 });
             }
@@ -1430,7 +1358,5 @@
         });
 
 
-    <script src="script.js"></script>
-</body>
-</html>
+    </script>
 </body>
