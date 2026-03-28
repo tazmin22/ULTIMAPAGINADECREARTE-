@@ -248,8 +248,8 @@
             font-family: 'Inter', sans-serif;
             text-transform: uppercase;
             font-size: 0.75rem;
-            letter-spacing: 2px;
-            color: #666;
+            letter-spacing: 4px;
+            color: #777;
             transition: color 0.3s;
             text-decoration: none;
         }
@@ -259,7 +259,9 @@
         }
 
         .footer-bottom {
-            font-size: 0.8rem;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
             color: #999;
             border-top: 1px solid #eee;
             padding-top: 30px;
@@ -277,6 +279,60 @@
 
             .gallery-item:nth-child(odd) {
                 margin-top: 0;
+            }
+        }
+
+        /* ESTILO PARA EL ENLACE QIELL */
+        .link-qiell {
+            color: inherit;
+            text-decoration: none;
+            font-weight: 700;
+            position: relative;
+            display: inline-block;
+            transition: all 0.3s ease;
+            padding: 0 5px;
+        }
+
+        .link-qiell:hover {
+            color: #6a1a1c;
+            text-shadow: 0 0 10px rgba(106, 26, 28, 0.2);
+        }
+
+        /* Estrellas decorativas */
+        .link-qiell::before,
+        .link-qiell::after {
+            content: '✦';
+            position: absolute;
+            font-size: 14px;
+            color: #6a1a1c;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s ease;
+        }
+
+        .link-qiell:hover::before {
+            top: -12px;
+            left: -10px;
+            opacity: 1;
+            animation: star-sparkle 0.8s infinite alternate;
+        }
+
+        .link-qiell:hover::after {
+            bottom: -10px;
+            right: -10px;
+            opacity: 1;
+            animation: star-sparkle 1s infinite alternate-reverse;
+        }
+
+        @keyframes star-sparkle {
+            0% {
+                transform: scale(0.5) rotate(0deg);
+                text-shadow: 0 0 5px #6a1a1c;
+            }
+
+            100% {
+                transform: scale(1.6) rotate(180deg);
+                text-shadow: 0 0 15px #6a1a1c, 0 0 25px rgba(106, 26, 28, 0.4);
             }
         }
     </style>
@@ -347,7 +403,8 @@
             <a href="./puertas_al_mundo.html">Puertas al Mundo</a>
         </div>
         <div class="footer-bottom">
-            &copy; 2026 Cre Arte Bariloche. Todos los derechos reservados.
+            &copy; 2026 Cre Arte Bariloche. Todos los derechos reservados.<br>
+            Tienda Desarollada por <span class="link-qiell">Qiell</span>
         </div>
     </footer>
 

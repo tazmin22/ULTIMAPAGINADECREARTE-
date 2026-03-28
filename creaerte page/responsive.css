@@ -1,0 +1,239 @@
+/* 
+  CRE ARTE - Global Responsive Design System
+  This file handles responsiveness across all pages to maintain a premium editorial feel.
+*/
+
+:root {
+  --mobile-nav-bg: #f9f7f2;
+  --accent-color: #6a1a1c;
+  --transition-speed: 0.4s;
+}
+
+/* --- Mobile Navigation --- */
+.mobile-nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 21px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 3000;
+}
+
+.mobile-nav-toggle span {
+  width: 100%;
+  height: 2px;
+  background-color: #111;
+  transition: all var(--transition-speed) ease-in-out;
+}
+
+/* White bars for pages with dark backgrounds */
+.nav-light .mobile-nav-toggle span {
+  background-color: #fff;
+}
+
+.mobile-nav-toggle.active span:nth-child(1) {
+  transform: translateY(9px) rotate(45deg);
+}
+
+.mobile-nav-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.mobile-nav-toggle.active span:nth-child(3) {
+  transform: translateY(-9px) rotate(-45deg);
+}
+
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 100%;
+  height: 100vh;
+  background-color: var(--mobile-nav-bg);
+  z-index: 2500;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: right var(--transition-speed) cubic-bezier(0.77, 0, 0.175, 1);
+  padding: 2rem;
+}
+
+.mobile-menu.active {
+  right: 0;
+}
+
+.mobile-menu-links {
+  list-style: none;
+  padding: 0;
+  text-align: center;
+}
+
+.mobile-menu-links li {
+  margin: 1.5rem 0;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.4s ease forwards;
+}
+
+.mobile-menu.active .mobile-menu-links li {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.mobile-menu.active .mobile-menu-links li:nth-child(1) { transition-delay: 0.1s; }
+.mobile-menu.active .mobile-menu-links li:nth-child(2) { transition-delay: 0.2s; }
+.mobile-menu.active .mobile-menu-links li:nth-child(3) { transition-delay: 0.3s; }
+.mobile-menu.active .mobile-menu-links li:nth-child(4) { transition-delay: 0.4s; }
+
+.mobile-menu-links a {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #111;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.mobile-menu-links a:hover {
+  color: var(--accent-color);
+}
+
+/* --- Global Media Queries --- */
+
+@media (max-width: 960px) {
+  .t-nav-links {
+    display: none !important;
+  }
+  
+  .mobile-nav-toggle {
+    display: flex;
+  }
+
+  .t-nav {
+    padding: 20px 5% !important;
+    justify-content: space-between !important;
+  }
+  
+  .top-logo img, .t-nav-logo img, .floating-logo img {
+    height: 60px !important;
+  }
+
+  /* Padding adjustments */
+  section {
+    padding: 60px 5% !important;
+  }
+
+  /* Fluid headings */
+  h1, .uk-heading-medium {
+    font-size: 3rem !important;
+  }
+  
+  h2, .uk-h2 {
+    font-size: 2.2rem !important;
+  }
+}
+
+@media (max-width: 640px) {
+  h1, .uk-heading-medium {
+    font-size: 2.5rem !important;
+  }
+
+  .mag-divider {
+    max-width: 100% !important;
+    margin: 40px 0 !important;
+  }
+  
+  .footer-links {
+    flex-direction: column !important;
+    gap: 15px !important;
+  }
+}
+
+/* Index Specific Fixes */
+@media (max-width: 960px) {
+  .cta-hero .uk-grid-large {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .cta-hero .uk-width-auto {
+    margin-top: 20px;
+  }
+}
+
+/* Layout adjustments for absolute positioned elements */
+@media (max-width: 1100px) {
+  /* Common for Quienes Somos / Puertas */
+  .about-spread {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
+  
+  .spread-photo, .scattered-photo, .mag-scatter-img {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    transform: none !important;
+    width: 100% !important;
+    height: auto !important;
+    margin-bottom: 30px !important;
+    aspect-ratio: 4/3 !important;
+  }
+  
+  .about-spread-title, .about-spread-text, .about-spread-body {
+    grid-column: 1 !important;
+    max-width: 100% !important;
+    text-align: center !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+  
+  .staff-mosaic {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  
+  .mosaic-text-box {
+    grid-column: span 2 !important;
+    grid-row: span 1 !important;
+    aspect-ratio: auto !important;
+    padding: 60px 20px !important;
+  }
+  
+  .scrapbook-container {
+    height: auto !important;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+  
+  .scrap-piece {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    transform: none !important;
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 4/3 !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .staff-mosaic {
+    grid-template-columns: 1fr !important;
+  }
+  
+  .mosaic-text-box {
+    grid-column: span 1 !important;
+  }
+}
