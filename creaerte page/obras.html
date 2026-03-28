@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Obras | Cre Arte</title>
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;700;900&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap"
+        rel="stylesheet">
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
+    <style>
+        :root {
+            --paper: #f9f7f2;
+            --orange: #e65c00;
+            --text: #111;
+        }
+
+        body {
+            background-color: var(--paper);
+            margin: 0;
+            padding: 0;
+            color: var(--text);
+            font-family: 'EB Garamond', serif;
+            overflow-x: hidden;
+            animation: fadeInPage 1.2s ease-out;
+        }
+
+        @keyframes fadeInPage {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Nav & Logo */
+        .t-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 35px 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+        }
+
+        .t-nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .t-nav-links a {
+            font-family: 'Inter', sans-serif;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            font-weight: 400;
+            /* Unificado */
+            letter-spacing: 2px;
+            color: #111;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .t-nav-links a:hover {
+            color: var(--orange);
+        }
+
+        .floating-logo {
+            position: fixed;
+            top: 25px;
+            left: 40px;
+            z-index: 2000;
+        }
+
+        .floating-logo img {
+            height: 60px;
+        }
+
+        /* ===== OBRAS BENTO GRID ===== */
+        .obras-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 160px 20px 100px;
+        }
+
+        .obras-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: 200px;
+            gap: 15px;
+        }
+
+        .obra-item {
+            background: #eee;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.4s ease;
+        }
+
+        .obra-item:hover {
+            transform: scale(1.02);
+            z-index: 10;
+        }
+
+        /* TEXT TILES (Como "FEB", "JAN" en la captura) */
+        .obra-text-tile {
+            background: transparent;
+            font-family: 'Inter', sans-serif;
+            font-weight: 900;
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            color: #111;
+        }
+
+        /* VARIACIONES DE TAMAÑO (Estilo Bento de la captura) */
+        .w-2 {
+            grid-column: span 2;
+        }
+
+        .h-2 {
+            grid-row: span 2;
+        }
+
+        /* Ajustes específicos para recrear el layout de la captura */
+        .pos-1 {
+            grid-column: 2;
+            grid-row: 1;
+        }
+
+        /* FEB position offset */
+        .pos-top-tall {
+            grid-column: 3;
+            grid-row: 1 / span 2;
+        }
+
+        /* La foto central alta */
+        .pos-small-top {
+            grid-column: 4;
+            grid-row: 1;
+        }
+
+        .pos-small-mid {
+            grid-column: 4;
+            grid-row: 2;
+        }
+
+        .obra-item::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.05));
+        }
+
+        /* Footer */
+        .mag-footer {
+            padding: 80px 10%;
+            background: #fdfaf5;
+            text-align: center;
+            border-top: 1px solid #eee;
+        }
+
+        .footer-logo {
+            height: 60px;
+            margin-bottom: 30px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-links a {
+            font-family: 'Inter', sans-serif;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            color: #666;
+            text-decoration: none;
+        }
+
+        .footer-bottom {
+            font-size: 0.8rem;
+            color: #999;
+            border-top: 1px solid #eee;
+            padding-top: 30px;
+        }
+
+        @media (max-width: 800px) {
+            .obras-grid {
+                grid-template-columns: repeat(2, 1fr);
+                grid-auto-rows: 150px;
+            }
+
+            .w-2,
+            .pos-top-tall {
+                grid-column: span 2;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <a href="./index.html" class="floating-logo">
+        <img src="./img/LOGO.png" alt="Cre Arte Logo">
+    </a>
+
+    <nav class="t-nav">
+        <div class="t-nav-links">
+            <a href="./talleres.html">Talleres</a>
+            <a href="./quienes_somos.html">Quiénes Somos</a>
+            <a href="./puertas_al_mundo.html">Puertas al Mundo</a>
+            <a href="./galeria.html">Galería</a>
+            <a href="./obras.html">Obras</a>
+        </div>
+    </nav>
+
+    <main class="obras-container">
+        <div class="obras-grid">
+            <!-- Fila 1 -->
+            <div class="obra-item obra-text-tile pos-1">FEB</div>
+            <div class="obra-item pos-top-tall h-2"></div> <!-- Foto Central Alta -->
+            <div class="obra-item pos-small-top"></div>
+
+            <!-- Fila 2 -->
+            <div class="obra-item"></div>
+            <div class="obra-item"></div>
+            <div class="obra-item pos-small-mid"></div>
+
+            <!-- Fila 3 -->
+            <div class="obra-item"></div>
+            <div class="obra-item obra-text-tile">JAN</div>
+            <div class="obra-item w-2"></div>
+
+            <!-- Fila 4 -->
+            <div class="obra-item h-2"></div>
+            <div class="obra-item w-2"></div>
+            <div class="obra-item"></div>
+            <div class="obra-item"></div>
+        </div>
+    </main>
+
+    <footer class="mag-footer">
+        <img src="./img/LOGO.png" alt="Cre Arte" class="footer-logo">
+        <div class="footer-links">
+            <a href="./index.html">Inicio</a>
+            <a href="./talleres.html">Talleres</a>
+            <a href="./quienes_somos.html">Quiénes Somos</a>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Cre Arte Bariloche. Todos los derechos reservados.
+        </div>
+    </footer>
+
+    <script>
+        const lenis = new Lenis({ duration: 1.5, smoothWheel: true });
+        function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+        requestAnimationFrame(raf);
+    </script>
+</body>
+
+</html>

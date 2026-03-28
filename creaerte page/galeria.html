@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galería | Cre Arte</title>
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;700;900&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap"
+        rel="stylesheet">
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
+    <style>
+        :root {
+            --paper: #f9f7f2;
+            --wine: #6a1a1c;
+            --orange: #e65c00;
+            --text: #111;
+        }
+
+        body {
+            background-color: var(--paper);
+            margin: 0;
+            padding: 0;
+            color: var(--text);
+            font-family: 'EB+Garamond', serif;
+            overflow-x: hidden;
+            animation: fadeInPage 1.2s ease-out;
+        }
+
+        @keyframes fadeInPage {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* ===== NAVIGATION ===== */
+        .t-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 35px 0;
+            z-index: 1000;
+            transition: all 0.4s ease;
+            display: flex;
+            justify-content: center;
+        }
+
+        .t-nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .t-nav-links a {
+            font-family: 'Inter', sans-serif;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            font-weight: 400;
+            letter-spacing: 2px;
+            color: #fff;
+            /* Inicialmente blanco para la portada */
+            transition: all 0.4s ease;
+            text-decoration: none;
+        }
+
+        .t-nav.scrolled {
+            background-color: var(--paper);
+            padding: 20px 0;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .t-nav.scrolled .t-nav-links a {
+            color: #111;
+            /* Negro al scrollear */
+        }
+
+        .t-nav-links a:hover {
+            color: var(--orange);
+        }
+
+        /* ===== FLOATING LOGO ===== */
+        .floating-logo {
+            position: fixed;
+            top: 25px;
+            left: 40px;
+            z-index: 2000;
+        }
+
+        .floating-logo img {
+            height: 110px;
+            /* Tamaño inicial grande */
+            transition: height 0.3s ease, transform 0.3s ease;
+        }
+
+        .floating-logo.scrolled img {
+            height: 60px;
+            /* Tamaño reducido al scrollear */
+        }
+
+        .floating-logo:hover img {
+            transform: scale(1.05);
+        }
+
+        /* ===== GALLERY HERO (PORTADA) ===== */
+        .gallery-hero {
+            position: relative;
+            width: 100%;
+            height: 80vh;
+            /* Portada de gran impacto */
+            overflow: hidden;
+            background: #eee;
+            margin-bottom: 80px;
+        }
+
+        .gallery-hero img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.85);
+            /* Mejorar legibilidad de texto */
+        }
+
+        .gallery-hero-content {
+            position: absolute;
+            bottom: 10%;
+            /* Más abajo */
+            left: 8%;
+            z-index: 10;
+        }
+
+        .gallery-title-block {
+            display: inline-block;
+            background: var(--wine);
+            padding: 12px 35px;
+            /* Más chico */
+            color: #fff;
+            transform: rotate(-1.5deg);
+            box-shadow: 6px 6px 25px rgba(0, 0, 0, 0.15);
+            margin-bottom: 5px;
+        }
+
+        .gallery-title-block h2 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 900;
+            font-size: clamp(2rem, 5vw, 3.8rem);
+            /* Más chico */
+            text-transform: uppercase;
+            margin: 0;
+            line-height: 1;
+            letter-spacing: 2px;
+        }
+
+        .gallery-title-block.accent {
+            transform: rotate(2deg) translateY(-8px) translateX(30px);
+            /* Menos desfase */
+            background: var(--wine);
+            padding: 8px 30px;
+            /* Más chico */
+        }
+
+        .gallery-title-block.accent h3 {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-weight: 400;
+            font-size: clamp(2rem, 5vw, 3.8rem);
+            /* Más chico */
+            margin: 0;
+            line-height: 1;
+            text-transform: none;
+        }
+
+        .gallery-hero-desc {
+            font-family: 'Inter', sans-serif;
+            max-width: 400px;
+            color: #fff;
+            margin-top: 40px;
+            margin-left: 50px;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        /* ===== GALLERY SECTION GRID ===== */
+        .gallery-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 5% 100px;
+        }
+
+        /* ===== STAGGERED GRID LAYOUT ===== */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            align-items: start;
+        }
+
+        .gallery-item {
+            position: relative;
+            background: #eee;
+            /* Placeholder bg */
+            aspect-ratio: 3/4;
+            overflow: hidden;
+            transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* El efecto escalonado (Staggered) */
+        .gallery-item:nth-child(4n+2) {
+            margin-top: 50px;
+        }
+
+        .gallery-item:nth-child(4n+3) {
+            margin-top: 100px;
+        }
+
+        .gallery-item:nth-child(4n+4) {
+            margin-top: 150px;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .gallery-item::after {
+            content: 'CRE ARTE';
+            font-family: 'Inter', sans-serif;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            color: #aaa;
+            opacity: 0.5;
+        }
+
+        /* ===== FOOTER ===== */
+        .mag-footer {
+            padding: 80px 10%;
+            background: #fdfaf5;
+            text-align: center;
+            border-top: 1px solid #eee;
+        }
+
+        .footer-logo {
+            height: 60px;
+            margin-bottom: 30px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-links a {
+            font-family: 'Inter', sans-serif;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            color: #666;
+            transition: color 0.3s;
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: var(--wine);
+        }
+
+        .footer-bottom {
+            font-size: 0.8rem;
+            color: #999;
+            border-top: 1px solid #eee;
+            padding-top: 30px;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .gallery-item:nth-child(even) {
+                margin-top: 50px;
+            }
+
+            .gallery-item:nth-child(odd) {
+                margin-top: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <a href="./index.html" class="floating-logo">
+        <img src="./img/LOGO.png" alt="Cre Arte Logo">
+    </a>
+
+    <nav class="t-nav">
+        <div class="t-nav-links">
+
+            <a href="./talleres.html">Talleres</a>
+            <a href="./quienes_somos.html">Quiénes Somos</a>
+            <a href="./puertas_al_mundo.html">Puertas al Mundo</a>
+            <a href="./galeria.html">Galería</a>
+            <a href="./obras.html">Obras</a>
+        </div>
+    </nav>
+
+    <section class="gallery-hero">
+        <img src="./img/galeria_portada.JPG" alt="Galería Portada">
+        <div class="gallery-hero-content">
+            <div class="gallery-title-block">
+                <h2>Nuestros</h2>
+            </div>
+            <br>
+            <div class="gallery-title-block accent">
+                <h3>Recuerdos</h3>
+            </div>
+            <div class="gallery-hero-desc">
+                Un recorrido visual por nuestra historia, capturando la esencia
+                de cada encuentro, taller y viaje compartido.
+            </div>
+        </div>
+    </section>
+
+    <main class="gallery-container">
+        <div class="gallery-grid">
+            <!-- BLOQUE 1 -->
+            <div class="gallery-item"></div>
+            <div class="gallery-item"></div>
+            <div class="gallery-item"></div>
+            <div class="gallery-item"></div>
+
+            <!-- BLOQUE 2 -->
+            <div class="gallery-item"></div>
+            <div class="gallery-item"></div>
+            <div class="gallery-item"></div>
+            <div class="gallery-item"></div>
+
+            <!-- BLOQUE 3 -->
+            <div class="gallery-item"></div>
+            <div class="gallery-item"></div>
+            <div class="gallery-item"></div>
+            <div class="gallery-item"></div>
+        </div>
+    </main>
+
+    <footer class="mag-footer">
+        <img src="./img/LOGO.png" alt="Cre Arte" class="footer-logo">
+        <div class="footer-links">
+            <a href="./index.html">Inicio</a>
+            <a href="./talleres.html">Talleres</a>
+            <a href="./quienes_somos.html">Quiénes Somos</a>
+            <a href="./puertas_al_mundo.html">Puertas al Mundo</a>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Cre Arte Bariloche. Todos los derechos reservados.
+        </div>
+    </footer>
+
+    <script>
+        const lenis = new Lenis({
+            duration: 1.5,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            smoothWheel: true,
+        });
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+
+        // --- DINÁMICA DE NAVBAR ---
+        const nav = document.querySelector('.t-nav');
+        const logo = document.querySelector('.floating-logo');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                nav.classList.add('scrolled');
+                logo.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+                logo.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+
+</html>

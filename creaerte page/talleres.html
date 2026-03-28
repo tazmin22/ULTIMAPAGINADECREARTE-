@@ -88,10 +88,11 @@
         }
 
         .t-nav.scrolled {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(0, 0, 0, 0.05);
             padding: 15px 5%;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
         }
 
         /* ===== LOGO INDEPENDIENTE ===== */
@@ -102,10 +103,14 @@
         }
 
         .top-logo img {
-            height: 70px;
+            height: 110px; /* Larger initially */
             width: auto;
             filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.2));
             transition: height 0.3s ease;
+        }
+
+        .t-nav.scrolled .top-logo img {
+            height: 60px; /* Shrunk on scroll */
         }
 
         .t-nav-links {
@@ -121,9 +126,19 @@
             font-size: 0.72rem;
             letter-spacing: 2.5px;
             text-transform: uppercase;
+            color: #fff;
+            /* Blanco inicial */
+            opacity: 0.9;
+            transition: all 0.4s ease;
+            text-decoration: none;
+        }
+
+
+
+        .t-nav.scrolled .t-nav-links a {
             color: #111;
-            opacity: 0.8;
-            transition: opacity 0.3s ease, color 0.3s ease;
+            /* Negro al scrollear */
+            opacity: 1;
         }
 
         .t-nav-links a:hover {
@@ -131,44 +146,81 @@
             color: var(--orange);
         }
 
-        /* ── MAGAZINE HERO ───────────────────────────────────────────── */
-        .mag-talleres-hero {
+        /* ── TALLERES HERO (PORTADA) ── */
+        .t-hero {
             position: relative;
             width: 100%;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            height: 80vh;
             overflow: hidden;
-            padding-top: 80px;
+            background: #222;
         }
 
-        .mag-talleres-title {
-            position: relative;
+        .t-hero img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.85);
+        }
+
+        .t-hero-content {
+            position: absolute;
+            bottom: 10%;
+            left: 8%;
             z-index: 10;
+        }
+
+        .t-title-block {
+            display: inline-block;
+            background: var(--wine);
+            padding: 12px 35px;
+            color: #fff;
+            transform: rotate(-1.5deg);
+            box-shadow: 6px 6px 25px rgba(0, 0, 0, 0.2);
+            margin-bottom: 5px;
+        }
+
+        .t-title-block h2 {
             font-family: 'Inter', sans-serif;
             font-weight: 900;
-            font-size: clamp(3rem, 8vw, 7rem);
-            line-height: 0.9;
+            font-size: clamp(2rem, 5vw, 3.8rem);
             text-transform: uppercase;
-            text-align: center;
-            color: #111;
-            letter-spacing: -2px;
-            pointer-events: none;
+            color: #fff;
+            /* Forza color blanco */
+            margin: 0;
+            line-height: 1;
+            letter-spacing: 2px;
         }
 
-        .mag-talleres-title span {
-            display: block;
+        .t-title-block.accent {
+            transform: rotate(2deg) translateY(-8px) translateX(30px);
+            background: var(--wine);
+            padding: 8px 30px;
+        }
+
+        .t-title-block.accent h3 {
             font-family: 'Playfair Display', serif;
             font-style: italic;
             font-weight: 400;
-            font-size: 0.45em;
-            letter-spacing: 4px;
-            color: #e65c00;
-            margin-bottom: 10px;
+            font-size: clamp(2rem, 5vw, 3.8rem);
+            color: #fff;
+            /* Forza color blanco */
+            margin: 0;
+            line-height: 1;
+            text-transform: none;
         }
 
-        /* Scattered images layout */
+        .t-hero-desc {
+            font-family: 'Inter', sans-serif;
+            max-width: 450px;
+            color: #fff;
+            margin-top: 40px;
+            margin-left: 50px;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        /* ── MAG TALLERES SCATTERED IMAGES (OPCIONAL/RESTANTE) ── */
         .mag-scatter-img {
             position: absolute;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
@@ -178,7 +230,6 @@
             z-index: 5;
             opacity: 0;
             transform: translateY(120vh) rotate(0deg);
-            /* Start off-screen */
         }
 
         .mag-scatter-img.entered {
@@ -196,11 +247,6 @@
             object-fit: cover;
             display: block;
             transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
-        }
-
-        .mag-scatter-img:hover img {
-            transform: scale(1.05);
-            /* Subtle inner zoom */
         }
 
         .ms-1.entered {
@@ -1048,8 +1094,10 @@
         .footer-links a {
             font-family: 'Inter', sans-serif;
             text-transform: uppercase;
-            font-size: 0.75rem;
-            letter-spacing: 2px;
+            font-size: 0.7rem;
+            font-weight: 400;
+            /* Unificado sin negrita */
+            letter-spacing: 2.5px;
             color: #666;
             transition: color 0.3s;
             text-decoration: none;
@@ -1129,8 +1177,8 @@
 
         .t-carousel-item {
             flex: 0 0 auto;
-            height: 400px; 
-            margin-left: -30px; 
+            height: 400px;
+            margin-left: -30px;
             user-select: none;
             position: relative;
             will-change: transform;
@@ -1144,14 +1192,30 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             background: #fff;
             overflow: hidden;
-            pointer-events: auto; /* Ensure hover works on inner */
+            pointer-events: auto;
+            /* Ensure hover works on inner */
         }
 
         /* Varied sizes */
-        .t-carousel-item:nth-child(4n+1) { width: 250px; height: 350px; }
-        .t-carousel-item:nth-child(4n+2) { width: 290px; height: 400px; }
-        .t-carousel-item:nth-child(4n+3) { width: 230px; height: 320px; }
-        .t-carousel-item:nth-child(4n+4) { width: 310px; height: 380px; }
+        .t-carousel-item:nth-child(4n+1) {
+            width: 250px;
+            height: 350px;
+        }
+
+        .t-carousel-item:nth-child(4n+2) {
+            width: 290px;
+            height: 400px;
+        }
+
+        .t-carousel-item:nth-child(4n+3) {
+            width: 230px;
+            height: 320px;
+        }
+
+        .t-carousel-item:nth-child(4n+4) {
+            width: 310px;
+            height: 380px;
+        }
 
         .t-carousel-item img {
             width: 100%;
@@ -1163,18 +1227,18 @@
 
         /* Focusing effect: subtle narrowing and shrinking for non-focused items */
         .t-carousel-track:hover .t-carousel-item:not(:hover) .t-carousel-inner {
-            transform: scaleX(0.92) scaleY(0.96); 
+            transform: scaleX(0.92) scaleY(0.96);
             opacity: 0.85;
         }
 
         /* Subtler Hovered item prominence */
-        
+
         .t-carousel-item:hover {
             z-index: 100 !important;
         }
-        
+
         .t-carousel-item:hover .t-carousel-inner {
-            transform: scale(1.06); 
+            transform: scale(1.06);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
             opacity: 1;
         }
@@ -1192,57 +1256,74 @@
             <a href="./talleres.html">Talleres</a>
             <a href="./quienes_somos.html">Quiénes Somos</a>
             <a href="./puertas_al_mundo.html">Puertas al Mundo</a>
+            <a href="./galeria.html">Galería</a>
+            <a href="./obras.html">Obras</a>
         </div>
     </nav>
 
 
 
-    <!-- ── LISTADO COMPLETO DE TALLERES (GRILLA) ────────── -->
-    <section class="workshop-list-section" id="talleres">
-        <div class="workshop-title-container">
-            <h1 class="workshop-title-large">
-                <span class="workshop-title-label">Conocé nuestros</span> <br> 
-                <span class="workshop-title-label accent">Talleres</span>
-                <span class="w-desc-inline">
-                    Un recorrido por nuestros espacios de expresión y aprendizaje, donde la creatividad florece en cada rincón de Bariloche.
-                </span>
-            </h1>
+    <!-- Portada Hero -->
+    <section class="t-hero">
+        <img src="./talleres/talleres25.JPG" alt="Talleres Portada">
+        <div class="t-hero-content">
+            <div class="t-title-block">
+                <h2>Conocé nuestros</h2>
+            </div>
+            <br>
+            <div class="t-title-block accent">
+                <h3>Talleres</h3>
+            </div>
+            <p class="t-hero-desc">
+                Un recorrido por nuestros espacios de expresión y aprendizaje,
+                donde la creatividad florece en cada rincón de Bariloche.
+            </p>
         </div>
     </section>
 
-    <div class="workshop-grid-bg">
-        <div class="workshop-scatter-container">
-            <div class="workshop-item"><span class="w-num">01</span><span class="w-name">Prácticas ludomotrices</span></div>
-            <div class="workshop-item"><span class="w-num">02</span><span class="w-name">Técnica de Pc</span></div>
-            <div class="workshop-item"><span class="w-num">03</span><span class="w-name">Batik/grabado</span></div>
-            <div class="workshop-item"><span class="w-num">04</span><span class="w-name">Joyería</span></div>
-            <div class="workshop-item"><span class="w-num">05</span><span class="w-name">Conciencia corporal</span></div>
-            <div class="workshop-item"><span class="w-num">06</span><span class="w-name">Fútbol callejero</span></div>
-            <div class="workshop-item"><span class="w-num">07</span><span class="w-name">Reflexión</span></div>
-            <div class="workshop-item"><span class="w-num">08</span><span class="w-name">Masculinidades</span></div>
-            <div class="workshop-item"><span class="w-num">09</span><span class="w-name">Bordado</span></div>
-            <div class="workshop-item"><span class="w-num">10</span><span class="w-name">guitarra/cuerdas</span></div>
-            <div class="workshop-item"><span class="w-num">11</span><span class="w-name">fotografía</span></div>
-            <div class="workshop-item"><span class="w-num">12</span><span class="w-name">Diseño visual</span></div>
-            <div class="workshop-item"><span class="w-num">13</span><span class="w-name">Bordado creativo</span></div>
-            <div class="workshop-item"><span class="w-num">14</span><span class="w-name">Instalaciones</span></div>
-            <div class="workshop-item"><span class="w-num">15</span><span class="w-name">Ensamble musical</span></div>
-            <div class="workshop-item"><span class="w-num">16</span><span class="w-name">Fenix</span></div>
-            <div class="workshop-item"><span class="w-num">17</span><span class="w-name">Percusión</span></div>
-            <div class="workshop-item"><span class="w-num">18</span><span class="w-name">cocina</span></div>
-            <div class="workshop-item"><span class="w-num">19</span><span class="w-name">Objetos de arte</span></div>
-            <div class="workshop-item"><span class="w-num">20</span><span class="w-name">cine</span></div>
-            <div class="workshop-item"><span class="w-num">21</span><span class="w-name">hidroponia</span></div>
-            <div class="workshop-item"><span class="w-num">22</span><span class="w-name">documentales</span></div>
-            <div class="workshop-item"><span class="w-num">23</span><span class="w-name">gestión</span></div>
-            <div class="workshop-item"><span class="w-num">24</span><span class="w-name">ciudadanía</span></div>
-            <div class="workshop-item"><span class="w-num">25</span><span class="w-name">Fusion textil</span></div>
-            <div class="workshop-item"><span class="w-num">26</span><span class="w-name">collage</span></div>
-            <div class="workshop-item"><span class="w-num">27</span><span class="w-name">títeres</span></div>
-            <div class="workshop-item"><span class="w-num">28</span><span class="w-name">cestería</span></div>
-            <div class="workshop-item"><span class="w-num">29</span><span class="w-name">Mural</span></div>
+    <!-- ── LISTADO COMPLETO DE TALLERES (GRILLA) ────────── -->
+    <section class="workshop-list-section" id="talleres" style="padding-top: 80px;">
+
+        <div class="workshop-grid-bg">
+            <div class="workshop-scatter-container">
+                <div class="workshop-item"><span class="w-num">01</span><span class="w-name">Prácticas
+                        ludomotrices</span></div>
+                <div class="workshop-item"><span class="w-num">02</span><span class="w-name">Técnica de Pc</span></div>
+                <div class="workshop-item"><span class="w-num">03</span><span class="w-name">Batik/grabado</span></div>
+                <div class="workshop-item"><span class="w-num">04</span><span class="w-name">Joyería</span></div>
+                <div class="workshop-item"><span class="w-num">05</span><span class="w-name">Conciencia corporal</span>
+                </div>
+                <div class="workshop-item"><span class="w-num">06</span><span class="w-name">Fútbol callejero</span>
+                </div>
+                <div class="workshop-item"><span class="w-num">07</span><span class="w-name">Reflexión</span></div>
+                <div class="workshop-item"><span class="w-num">08</span><span class="w-name">Masculinidades</span></div>
+                <div class="workshop-item"><span class="w-num">09</span><span class="w-name">Bordado</span></div>
+                <div class="workshop-item"><span class="w-num">10</span><span class="w-name">guitarra/cuerdas</span>
+                </div>
+                <div class="workshop-item"><span class="w-num">11</span><span class="w-name">fotografía</span></div>
+                <div class="workshop-item"><span class="w-num">12</span><span class="w-name">Diseño visual</span></div>
+                <div class="workshop-item"><span class="w-num">13</span><span class="w-name">Bordado creativo</span>
+                </div>
+                <div class="workshop-item"><span class="w-num">14</span><span class="w-name">Instalaciones</span></div>
+                <div class="workshop-item"><span class="w-num">15</span><span class="w-name">Ensamble musical</span>
+                </div>
+                <div class="workshop-item"><span class="w-num">16</span><span class="w-name">Fenix</span></div>
+                <div class="workshop-item"><span class="w-num">17</span><span class="w-name">Percusión</span></div>
+                <div class="workshop-item"><span class="w-num">18</span><span class="w-name">cocina</span></div>
+                <div class="workshop-item"><span class="w-num">19</span><span class="w-name">Objetos de arte</span>
+                </div>
+                <div class="workshop-item"><span class="w-num">20</span><span class="w-name">cine</span></div>
+                <div class="workshop-item"><span class="w-num">21</span><span class="w-name">hidroponia</span></div>
+                <div class="workshop-item"><span class="w-num">22</span><span class="w-name">documentales</span></div>
+                <div class="workshop-item"><span class="w-num">23</span><span class="w-name">gestión</span></div>
+                <div class="workshop-item"><span class="w-num">24</span><span class="w-name">ciudadanía</span></div>
+                <div class="workshop-item"><span class="w-num">25</span><span class="w-name">Fusion textil</span></div>
+                <div class="workshop-item"><span class="w-num">26</span><span class="w-name">collage</span></div>
+                <div class="workshop-item"><span class="w-num">27</span><span class="w-name">títeres</span></div>
+                <div class="workshop-item"><span class="w-num">28</span><span class="w-name">cestería</span></div>
+                <div class="workshop-item"><span class="w-num">29</span><span class="w-name">Mural</span></div>
+            </div>
         </div>
-    </div>
         <!-- ── DYNAMIC CAROUSEL SECTION ─────────────────── -->
         <section class="t-carousel-section" id="gallerySection">
             <div class="t-offer-header" style="margin-bottom: 30px;">
@@ -1251,90 +1332,254 @@
 
             <div class="t-carousel-track" id="galleryTrack">
                 <!-- Original set from talleres folder (All 41 available images) -->
-                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres2.JPG" alt="Taller"></div></div>
-                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres3.JPG" alt="Taller"></div></div>
-                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres4.JPG" alt="Taller"></div></div>
-                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres5.JPG" alt="Taller"></div></div>
-                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres6.JPG" alt="Taller"></div></div>
-                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres7.JPG" alt="Taller"></div></div>
-                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres8.JPG" alt="Taller"></div></div>
-                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres9.JPG" alt="Taller"></div></div>
-                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres10.JPG" alt="Taller"></div></div>
-                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres11.JPG" alt="Taller"></div></div>
-                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres12.JPG" alt="Taller"></div></div>
-                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres13.JPG" alt="Taller"></div></div>
-                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres14.JPG" alt="Taller"></div></div>
-                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres15.JPG" alt="Taller"></div></div>
-                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres16.JPG" alt="Taller"></div></div>
-                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres17.JPG" alt="Taller"></div></div>
-                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres19.JPG" alt="Taller"></div></div>
-                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres20.JPG" alt="Taller"></div></div>
-                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres21.jpg" alt="Taller"></div></div>
-                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres22.jpg" alt="Taller"></div></div>
-                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres23.jpg" alt="Taller"></div></div>
-                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres24.JPG" alt="Taller"></div></div>
-                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres25.JPG" alt="Taller"></div></div>
-                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres26.JPG" alt="Taller"></div></div>
-                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres27.JPG" alt="Taller"></div></div>
-                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres28.JPG" alt="Taller"></div></div>
-                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres29.JPG" alt="Taller"></div></div>
-                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres30.JPG" alt="Taller"></div></div>
-                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres31.JPG" alt="Taller"></div></div>
-                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres32.JPG" alt="Taller"></div></div>
-                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres33.JPG" alt="Taller"></div></div>
-                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres34.JPG" alt="Taller"></div></div>
-                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres35.JPG" alt="Taller"></div></div>
-                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres36.JPG" alt="Taller"></div></div>
-                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres37.JPG" alt="Taller"></div></div>
-                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres38.JPG" alt="Taller"></div></div>
-                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres39.JPG" alt="Taller"></div></div>
-                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres40.JPG" alt="Taller"></div></div>
-                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres41.JPG" alt="Taller"></div></div>
-                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres42.JPG" alt="Taller"></div></div>
-                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/lucestalleres.JPG" alt="Taller"></div></div>
-                
+                <div class="t-carousel-item">
+                    <div class="t-carousel-inner"><img src="./talleres/talleres2.JPG" alt="Taller"></div>
+                </div>
+                <div class="t-carousel-item">
+                    <div class="t-carousel-inner"><img src="./talleres/talleres3.JPG" alt="Taller"></div>
+                </div>
+                <div class="t-carousel-item">
+                    <div class="t-carousel-inner"><img src="./talleres/talleres4.JPG" alt="Taller"></div>
+                </div>
+                <div class="t-carousel-item">
+                    <div class="t-carousel-inner"><img src="./talleres/talleres5.JPG" alt="Taller"></div>
+                </div>
+                <div class="t-carousel-item">
+                    <div class="t-carousel-inner"><img src="./talleres/talleres6.JPG" alt="Taller"></div>
+                </div>
+                <div class="t-carousel-item">
+                    <div class="t-carousel-inner"><img src="./talleres/talleres7.JPG" alt="Taller"></div>
+                </div>
+                <div class="t-carousel-item">
+                    <div class="t-carousel-inner"><img src="./talleres/talleres8.JPG" alt="Taller"></div>
+                </div>
+                <div class="t-carousel-item">
+                    <div class="t-carousel-inner"><img src="./talleres/talleres9.JPG" alt="Taller"></div>
+                </div>
+                <div class="t-carousel-item">
+                    <div class="t-carousel-inner"><img src="./talleres/talleres10.JPG" alt="Taller"></div>
+                </div>
+                <div class="t-carousel-item">
+                    <div class="t-carousel-inner"><img src="./talleres/talleres11.JPG" alt="Taller"></div>
+                </div>
+                <div class="t-carousel-item">
+                    <div class="t-carousel-inner"><img src="./talleres/talleres12.JPG" alt="Taller"></div>
+                </div>
+                <div class="t-carousel-item">
+                    <div class="t-carousel-inner"><img src="./talleres/talleres13.JPG" alt="Taller"></div>
+                </div>
+                <div class="t-carousel-item">
+                    <div class="t-carousel-inner"><img src="./talleres/talleres14.JPG" alt="Taller"></div>
+                </div>
+                <div class="t-carousel-item">
+                    <div class="t-carousel-inner"><img src="./talleres/talleres15.JPG" alt="Taller"></div>
+                </div>
+                <div class="t-carousel-item">
+                    <div class="t-carousel-inner"><img src="./talleres/talleres16.JPG" alt="Taller"></div>
+                </div>
+                <div class="t-carousel-item">
+                    <div class="t-carousel-inner"><img src="./talleres/talleres17.JPG" alt="Taller"></div>
+                </div>
+                <div class="t-carousel-item">
+                    <div class="t-carousel-inner"><img src="./talleres/talleres19.JPG" alt="Taller"></div>
+                </div>
+                <div class="t-carousel-item">
+                    <div class="t-carousel-inner"><img src="./talleres/talleres20.JPG" alt="Taller"></div>
+                </div>
+                <div class="t-carousel-item">
+                    <div class="t-carousel-inner"><img src="./talleres/talleres21.jpg" alt="Taller"></div>
+                </div>
+                <div class="t-carousel-item">
+                    <div class="t-carousel-inner"><img src="./talleres/talleres22.jpg" alt="Taller"></div>
+                </div>
+                <div class="t-carousel-item">
+                    <div class="t-carousel-inner"><img src="./talleres/talleres23.jpg" alt="Taller"></div>
+                </div>
+                <div class="t-carousel-item">
+                    <div class="t-carousel-inner"><img src="./talleres/talleres24.JPG" alt="Taller"></div>
+                </div>
+                <div class="t-carousel-item">
+                    <div class="t-carousel-inner"><img src="./talleres/talleres25.JPG" alt="Taller"></div>
+                </div>
+                <div class="t-carousel-item">
+                    <div class="t-carousel-inner"><img src="./talleres/talleres26.JPG" alt="Taller"></div>
+                </div>
+                <div class="t-carousel-item">
+                    <div class="t-carousel-inner"><img src="./talleres/talleres27.JPG" alt="Taller"></div>
+                </div>
+                <div class="t-carousel-item">
+                    <div class="t-carousel-inner"><img src="./talleres/talleres28.JPG" alt="Taller"></div>
+                </div>
+                <div class="t-carousel-item">
+                    <div class="t-carousel-inner"><img src="./talleres/talleres29.JPG" alt="Taller"></div>
+                </div>
+                <div class="t-carousel-item">
+                    <div class="t-carousel-inner"><img src="./talleres/talleres30.JPG" alt="Taller"></div>
+                </div>
+                <div class="t-carousel-item">
+                    <div class="t-carousel-inner"><img src="./talleres/talleres31.JPG" alt="Taller"></div>
+                </div>
+                <div class="t-carousel-item">
+                    <div class="t-carousel-inner"><img src="./talleres/talleres32.JPG" alt="Taller"></div>
+                </div>
+                <div class="t-carousel-item">
+                    <div class="t-carousel-inner"><img src="./talleres/talleres33.JPG" alt="Taller"></div>
+                </div>
+                <div class="t-carousel-item">
+                    <div class="t-carousel-inner"><img src="./talleres/talleres34.JPG" alt="Taller"></div>
+                </div>
+                <div class="t-carousel-item">
+                    <div class="t-carousel-inner"><img src="./talleres/talleres35.JPG" alt="Taller"></div>
+                </div>
+                <div class="t-carousel-item">
+                    <div class="t-carousel-inner"><img src="./talleres/talleres36.JPG" alt="Taller"></div>
+                </div>
+                <div class="t-carousel-item">
+                    <div class="t-carousel-inner"><img src="./talleres/talleres37.JPG" alt="Taller"></div>
+                </div>
+                <div class="t-carousel-item">
+                    <div class="t-carousel-inner"><img src="./talleres/talleres38.JPG" alt="Taller"></div>
+                </div>
+                <div class="t-carousel-item">
+                    <div class="t-carousel-inner"><img src="./talleres/talleres39.JPG" alt="Taller"></div>
+                </div>
+                <div class="t-carousel-item">
+                    <div class="t-carousel-inner"><img src="./talleres/talleres40.JPG" alt="Taller"></div>
+                </div>
+                <div class="t-carousel-item">
+                    <div class="t-carousel-inner"><img src="./talleres/talleres41.JPG" alt="Taller"></div>
+                </div>
+                <div class="t-carousel-item">
+                    <div class="t-carousel-inner"><img src="./talleres/talleres42.JPG" alt="Taller"></div>
+                </div>
+                <div class="t-carousel-item">
+                    <div class="t-carousel-inner"><img src="./talleres/lucestalleres.JPG" alt="Taller"></div>
+                </div>
+
                 <!-- Cloned set for loop -->
-                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres2.JPG" alt="Taller"></div></div>
-                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres3.JPG" alt="Taller"></div></div>
-                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres4.JPG" alt="Taller"></div></div>
-                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres5.JPG" alt="Taller"></div></div>
-                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres6.JPG" alt="Taller"></div></div>
-                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres7.JPG" alt="Taller"></div></div>
-                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres8.JPG" alt="Taller"></div></div>
-                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres9.JPG" alt="Taller"></div></div>
-                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres10.JPG" alt="Taller"></div></div>
-                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres11.JPG" alt="Taller"></div></div>
-                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres12.JPG" alt="Taller"></div></div>
-                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres13.JPG" alt="Taller"></div></div>
-                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres14.JPG" alt="Taller"></div></div>
-                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres15.JPG" alt="Taller"></div></div>
-                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres16.JPG" alt="Taller"></div></div>
-                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres17.JPG" alt="Taller"></div></div>
-                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres19.JPG" alt="Taller"></div></div>
-                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres20.JPG" alt="Taller"></div></div>
-                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres21.jpg" alt="Taller"></div></div>
-                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres22.jpg" alt="Taller"></div></div>
-                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres23.jpg" alt="Taller"></div></div>
-                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres24.JPG" alt="Taller"></div></div>
-                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres25.JPG" alt="Taller"></div></div>
-                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres26.JPG" alt="Taller"></div></div>
-                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres27.JPG" alt="Taller"></div></div>
-                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres28.JPG" alt="Taller"></div></div>
-                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres29.JPG" alt="Taller"></div></div>
-                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres30.JPG" alt="Taller"></div></div>
-                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres31.JPG" alt="Taller"></div></div>
-                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres32.JPG" alt="Taller"></div></div>
-                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres33.JPG" alt="Taller"></div></div>
-                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres34.JPG" alt="Taller"></div></div>
-                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres35.JPG" alt="Taller"></div></div>
-                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres36.JPG" alt="Taller"></div></div>
-                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres37.JPG" alt="Taller"></div></div>
-                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres38.JPG" alt="Taller"></div></div>
-                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres39.JPG" alt="Taller"></div></div>
-                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres40.JPG" alt="Taller"></div></div>
-                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres41.JPG" alt="Taller"></div></div>
-                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/talleres42.JPG" alt="Taller"></div></div>
-                <div class="t-carousel-item"><div class="t-carousel-inner"><img src="./talleres/lucestalleres.JPG" alt="Taller"></div></div>
+                <div class="t-carousel-item">
+                    <div class="t-carousel-inner"><img src="./talleres/talleres2.JPG" alt="Taller"></div>
+                </div>
+                <div class="t-carousel-item">
+                    <div class="t-carousel-inner"><img src="./talleres/talleres3.JPG" alt="Taller"></div>
+                </div>
+                <div class="t-carousel-item">
+                    <div class="t-carousel-inner"><img src="./talleres/talleres4.JPG" alt="Taller"></div>
+                </div>
+                <div class="t-carousel-item">
+                    <div class="t-carousel-inner"><img src="./talleres/talleres5.JPG" alt="Taller"></div>
+                </div>
+                <div class="t-carousel-item">
+                    <div class="t-carousel-inner"><img src="./talleres/talleres6.JPG" alt="Taller"></div>
+                </div>
+                <div class="t-carousel-item">
+                    <div class="t-carousel-inner"><img src="./talleres/talleres7.JPG" alt="Taller"></div>
+                </div>
+                <div class="t-carousel-item">
+                    <div class="t-carousel-inner"><img src="./talleres/talleres8.JPG" alt="Taller"></div>
+                </div>
+                <div class="t-carousel-item">
+                    <div class="t-carousel-inner"><img src="./talleres/talleres9.JPG" alt="Taller"></div>
+                </div>
+                <div class="t-carousel-item">
+                    <div class="t-carousel-inner"><img src="./talleres/talleres10.JPG" alt="Taller"></div>
+                </div>
+                <div class="t-carousel-item">
+                    <div class="t-carousel-inner"><img src="./talleres/talleres11.JPG" alt="Taller"></div>
+                </div>
+                <div class="t-carousel-item">
+                    <div class="t-carousel-inner"><img src="./talleres/talleres12.JPG" alt="Taller"></div>
+                </div>
+                <div class="t-carousel-item">
+                    <div class="t-carousel-inner"><img src="./talleres/talleres13.JPG" alt="Taller"></div>
+                </div>
+                <div class="t-carousel-item">
+                    <div class="t-carousel-inner"><img src="./talleres/talleres14.JPG" alt="Taller"></div>
+                </div>
+                <div class="t-carousel-item">
+                    <div class="t-carousel-inner"><img src="./talleres/talleres15.JPG" alt="Taller"></div>
+                </div>
+                <div class="t-carousel-item">
+                    <div class="t-carousel-inner"><img src="./talleres/talleres16.JPG" alt="Taller"></div>
+                </div>
+                <div class="t-carousel-item">
+                    <div class="t-carousel-inner"><img src="./talleres/talleres17.JPG" alt="Taller"></div>
+                </div>
+                <div class="t-carousel-item">
+                    <div class="t-carousel-inner"><img src="./talleres/talleres19.JPG" alt="Taller"></div>
+                </div>
+                <div class="t-carousel-item">
+                    <div class="t-carousel-inner"><img src="./talleres/talleres20.JPG" alt="Taller"></div>
+                </div>
+                <div class="t-carousel-item">
+                    <div class="t-carousel-inner"><img src="./talleres/talleres21.jpg" alt="Taller"></div>
+                </div>
+                <div class="t-carousel-item">
+                    <div class="t-carousel-inner"><img src="./talleres/talleres22.jpg" alt="Taller"></div>
+                </div>
+                <div class="t-carousel-item">
+                    <div class="t-carousel-inner"><img src="./talleres/talleres23.jpg" alt="Taller"></div>
+                </div>
+                <div class="t-carousel-item">
+                    <div class="t-carousel-inner"><img src="./talleres/talleres24.JPG" alt="Taller"></div>
+                </div>
+                <div class="t-carousel-item">
+                    <div class="t-carousel-inner"><img src="./talleres/talleres25.JPG" alt="Taller"></div>
+                </div>
+                <div class="t-carousel-item">
+                    <div class="t-carousel-inner"><img src="./talleres/talleres26.JPG" alt="Taller"></div>
+                </div>
+                <div class="t-carousel-item">
+                    <div class="t-carousel-inner"><img src="./talleres/talleres27.JPG" alt="Taller"></div>
+                </div>
+                <div class="t-carousel-item">
+                    <div class="t-carousel-inner"><img src="./talleres/talleres28.JPG" alt="Taller"></div>
+                </div>
+                <div class="t-carousel-item">
+                    <div class="t-carousel-inner"><img src="./talleres/talleres29.JPG" alt="Taller"></div>
+                </div>
+                <div class="t-carousel-item">
+                    <div class="t-carousel-inner"><img src="./talleres/talleres30.JPG" alt="Taller"></div>
+                </div>
+                <div class="t-carousel-item">
+                    <div class="t-carousel-inner"><img src="./talleres/talleres31.JPG" alt="Taller"></div>
+                </div>
+                <div class="t-carousel-item">
+                    <div class="t-carousel-inner"><img src="./talleres/talleres32.JPG" alt="Taller"></div>
+                </div>
+                <div class="t-carousel-item">
+                    <div class="t-carousel-inner"><img src="./talleres/talleres33.JPG" alt="Taller"></div>
+                </div>
+                <div class="t-carousel-item">
+                    <div class="t-carousel-inner"><img src="./talleres/talleres34.JPG" alt="Taller"></div>
+                </div>
+                <div class="t-carousel-item">
+                    <div class="t-carousel-inner"><img src="./talleres/talleres35.JPG" alt="Taller"></div>
+                </div>
+                <div class="t-carousel-item">
+                    <div class="t-carousel-inner"><img src="./talleres/talleres36.JPG" alt="Taller"></div>
+                </div>
+                <div class="t-carousel-item">
+                    <div class="t-carousel-inner"><img src="./talleres/talleres37.JPG" alt="Taller"></div>
+                </div>
+                <div class="t-carousel-item">
+                    <div class="t-carousel-inner"><img src="./talleres/talleres38.JPG" alt="Taller"></div>
+                </div>
+                <div class="t-carousel-item">
+                    <div class="t-carousel-inner"><img src="./talleres/talleres39.JPG" alt="Taller"></div>
+                </div>
+                <div class="t-carousel-item">
+                    <div class="t-carousel-inner"><img src="./talleres/talleres40.JPG" alt="Taller"></div>
+                </div>
+                <div class="t-carousel-item">
+                    <div class="t-carousel-inner"><img src="./talleres/talleres41.JPG" alt="Taller"></div>
+                </div>
+                <div class="t-carousel-item">
+                    <div class="t-carousel-inner"><img src="./talleres/talleres42.JPG" alt="Taller"></div>
+                </div>
+                <div class="t-carousel-item">
+                    <div class="t-carousel-inner"><img src="./talleres/lucestalleres.JPG" alt="Taller"></div>
+                </div>
             </div>
         </section>
 
@@ -1362,18 +1607,18 @@
             if (container) {
                 container.addEventListener('mousemove', (e) => {
                     const { clientX, clientY } = e;
-                    
+
                     workshopElements.forEach((item) => {
                         const rect = item.getBoundingClientRect();
                         const centerX = rect.left + rect.width / 2;
                         const centerY = rect.top + rect.height / 2;
-                        
+
                         const distX = clientX - centerX;
                         const distY = clientY - centerY;
                         const distance = Math.hypot(distX, distY);
-                        
+
                         const maxDist = 300; // Attraction range
-                        
+
                         if (distance < maxDist) {
                             const strength = (1 - distance / maxDist) * 20; // Max 20px move
                             const moveX = (distX / distance) * strength;
@@ -1417,7 +1662,7 @@
 
                 const update = () => {
                     const width = getTrackWidth();
-                    
+
                     // Seamless loop
                     if (targetX > 0) {
                         targetX -= width;
@@ -1442,13 +1687,13 @@
                     const moveSpeed = (targetX - currentX) * 0.05;
                     galleryItems.forEach((item, index) => {
                         const baseY = parseFloat(item.dataset.baseY);
-                        
+
                         // Vertical "wave" based on velocity - SUBTLE
-                        const yReaction = Math.abs(moveSpeed) * 1.5; 
-                        
+                        const yReaction = Math.abs(moveSpeed) * 1.5;
+
                         // Subtle breathing re-accommodation
                         const breath = Math.sin(Date.now() * 0.001 + index) * 0.8;
-                        
+
                         item.style.transform = `translateY(${baseY + yReaction + breath}px)`;
                     });
 
@@ -1513,6 +1758,8 @@
                 <a href="./talleres.html">Talleres</a>
                 <a href="./quienes_somos.html">Quiénes Somos</a>
                 <a href="./puertas_al_mundo.html">Puertas al Mundo</a>
+                <a href="./galeria.html">Galería</a>
+                <a href="./obras.html">Obras</a>
             </div>
             <div class="footer-bottom">
                 &copy; 2026 Cre Arte Bariloche. Todos los derechos reservados.
