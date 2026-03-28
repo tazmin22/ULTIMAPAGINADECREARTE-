@@ -41,13 +41,12 @@
 
         /* ===== NAVIGATION ===== */
         .t-nav {
-            position: fixed;
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             padding: 35px 0;
             z-index: 1000;
-            transition: all 0.4s ease;
             display: flex;
             justify-content: center;
         }
@@ -69,16 +68,6 @@
             text-decoration: none;
         }
 
-        .t-nav.scrolled {
-            background-color: var(--paper);
-            padding: 20px 0;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-        }
-
-        .t-nav.scrolled .t-nav-links a {
-            color: #111;
-            /* Negro al scrollear */
-        }
 
         .t-nav-links a:hover {
             color: var(--orange);
@@ -93,14 +82,8 @@
         }
 
         .floating-logo img {
-            height: 110px;
-            /* Tamaño inicial grande */
-            transition: height 0.3s ease, transform 0.3s ease;
-        }
-
-        .floating-logo.scrolled img {
-            height: 60px;
-            /* Tamaño reducido al scrollear */
+            height: 100px; /* Tamaño grande fijo */
+            transition: transform 0.3s ease;
         }
 
         .floating-logo:hover img {
@@ -380,19 +363,6 @@
             requestAnimationFrame(raf);
         }
         requestAnimationFrame(raf);
-
-        // --- DINÁMICA DE NAVBAR ---
-        const nav = document.querySelector('.t-nav');
-        const logo = document.querySelector('.floating-logo');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 100) {
-                nav.classList.add('scrolled');
-                logo.classList.add('scrolled');
-            } else {
-                nav.classList.remove('scrolled');
-                logo.classList.remove('scrolled');
-            }
-        });
     </script>
 </body>
 

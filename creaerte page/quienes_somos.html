@@ -72,7 +72,7 @@
 
         /* ===== NAVEGACIÓN Y LOGO (CABECERA) ===== */
         .t-nav {
-            position: fixed;
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
@@ -82,13 +82,10 @@
             align-items: center;
             padding: 35px 0;
             background-color: transparent;
-            backdrop-filter: none;
-            border-bottom: none;
-            transition: padding 0.3s ease, background-color 0.3s ease;
         }
 
         .floating-logo {
-            position: fixed;
+            position: absolute;
             top: 25px;
             left: 5%;
             z-index: 2100;
@@ -103,33 +100,27 @@
             transition: height 0.3s ease, filter 0.4s ease;
         }
 
-        .t-nav.scrolled .floating-logo img {
-            filter: invert(1) drop-shadow(0 4px 10px rgba(0, 0, 0, 0.2));
-        }
-
 
         .t-nav-links {
             display: flex;
             gap: 2.5rem;
+            margin-right: 15%; /* Para equilibrar visualmente con el logo a la izquierda */
         }
 
         .t-nav-links a {
             font-family: 'Inter', sans-serif;
             text-transform: uppercase;
-            font-size: 0.75rem;
-            letter-spacing: 2px;
-            color: #fff; /* Inicialmente blanco para la hero */
+            font-size: 0.72rem;
+            letter-spacing: 2.5px;
+            color: #111;
+            opacity: 0.9;
             transition: all 0.4s ease;
             text-decoration: none;
         }
 
-        .t-nav.scrolled .t-nav-links a {
-            color: #111; /* Negro al scrollear */
-        }
-
         .t-nav-links a:hover {
-            color: #f2cb7b;
             opacity: 1;
+            color: var(--orange);
         }
 
 

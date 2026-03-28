@@ -74,7 +74,7 @@
 
         /* ── NAV ─────────────────────────────────────────────────────── */
         .t-nav {
-            position: fixed;
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
@@ -84,16 +84,8 @@
             align-items: center;
             padding: 25px 5%;
             background: transparent;
-            transition: background 0.3s ease, border-bottom 0.3s ease;
         }
 
-        .t-nav.scrolled {
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-            padding: 15px 5%;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-        }
 
         /* ===== LOGO INDEPENDIENTE ===== */
         .top-logo {
@@ -103,14 +95,10 @@
         }
 
         .top-logo img {
-            height: 110px; /* Larger initially */
+            height: 100px; /* Tamaño grande fijo */
             width: auto;
             filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.2));
-            transition: height 0.3s ease;
-        }
-
-        .t-nav.scrolled .top-logo img {
-            height: 60px; /* Shrunk on scroll */
+            transition: transform 0.3s ease;
         }
 
         .t-nav-links {
@@ -135,11 +123,6 @@
 
 
 
-        .t-nav.scrolled .t-nav-links a {
-            color: #111;
-            /* Negro al scrollear */
-            opacity: 1;
-        }
 
         .t-nav-links a:hover {
             opacity: 1;
@@ -1589,15 +1572,6 @@
 
 
 
-            // Navbar scroll effect
-            window.addEventListener('scroll', () => {
-                const nav = document.getElementById('mainNav');
-                if (window.scrollY > 50) {
-                    nav.classList.add('scrolled');
-                } else {
-                    nav.classList.remove('scrolled');
-                }
-            });
 
 
             // Magnetic attraction effect for workshops

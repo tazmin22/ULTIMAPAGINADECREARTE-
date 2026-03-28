@@ -87,33 +87,27 @@
             stroke: #cccccc; /* Gris claro en lugar de rosa por pedido */
             stroke-width: 18;
             opacity: 0.6;
-        }
-
-        .t-nav {
-            position: fixed;
+        }        .t-nav {
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
-            z-index: 2000; /* Higher than other fixed elements */
+            z-index: 2000;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 25px 0; /* Slightly more compact for scrolling */
-            background-color: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(0,0,0,0.05);
-            transition: padding 0.3s ease, background-color 0.3s ease;
+            padding: 25px 0;
+            background-color: transparent;
         }
 
         /* ===== LOGO INDEPENDIENTE ===== */
         .floating-logo {
-            position: fixed;
-            top: 20px;
+            position: absolute;
+            top: 25px;
             left: 5%;
             z-index: 2100;
-            transition: all 0.3s ease;
         }
-
+       
         .floating-logo img {
             height: 60px; /* More compact for the sticky state */
             width: auto;
