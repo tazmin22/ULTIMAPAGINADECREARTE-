@@ -499,24 +499,8 @@
         }
 
         .mosaic-hover-info {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(155, 40, 31, 0.85);
-            /* Fondo borravino semi-transparente */
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            transition: opacity 0.4s ease;
-            color: #fff;
-            text-align: center;
-            padding: 20px;
-            box-sizing: border-box;
-            z-index: 20;
+            display: none;
+            /* Removed as per request: no text over images */
         }
 
         .mosaic-img:hover img {
@@ -582,11 +566,37 @@
         }
 
         .mosaic-subtitle {
-            color: #333;
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
-            font-size: clamp(1.5rem, 3vw, 2.2rem);
-            font-weight: 400;
+            color: #9b281f;
+            /* Burgundy color from staff mosaic */
+            font-family: 'Inter', sans-serif;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            line-height: 1.8;
+            max-width: 80%;
+            margin-top: 15px;
+        }
+
+        .underline-reveal {
+            position: relative;
+            display: inline-block;
+            cursor: default;
+        }
+
+        .underline-reveal::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -2px;
+            width: 0;
+            height: 2px;
+            background-color: currentColor;
+            transition: width 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .underline-reveal.visible::after {
+            width: 100%;
         }
 
         /* ===== HISTORY (SCRAPBOOK) SECTION ===== */
@@ -956,6 +966,171 @@
             padding-top: 30px;
         }
 
+        .footer-donation {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 60px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 1s ease;
+        }
+
+        .footer-donation.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .qr-interactive-container {
+            position: relative;
+            width: 180px;
+            height: 180px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .qr-base {
+            width: 80px;
+            height: 80px;
+            background: #fff;
+            padding: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            border-radius: 10px;
+            z-index: 2;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .qr-base img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .qr-hands-reveal {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 220px;
+            /* Slightly larger than the QR to frame it */
+            height: auto;
+            transform: translate(-50%, -40%) scale(0.8);
+            opacity: 0;
+            z-index: 1;
+            pointer-events: none;
+            transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .footer-donation:hover .qr-hands-reveal {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .footer-donation:hover .qr-base {
+            transform: scale(1.1);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
+        }
+
+        .footer-donation span {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #6a1a1c;
+            font-weight: 700;
+            transition: opacity 0.3s ease;
+        }
+
+        /* ===== STICKY INTERACTIVE SECTION ===== */
+        .sticky-interactive-section {
+            background-color: #efedeb;
+            display: flex;
+            padding: 15vh 10%;
+            gap: 5%;
+            position: relative;
+            z-index: 10;
+            /* Seccion mas larga para dar room al scroll */
+        }
+
+        .sticky-text-wrapper {
+            flex: 1;
+            padding-bottom: 50vh;
+            /* Espacio para que el ultimo item llegue arriba */
+        }
+
+        .sticky-item {
+            margin-bottom: 60vh;
+            /* Increased for longer paragraphs */
+            opacity: 0.15;
+            transition: opacity 0.5s ease, transform 0.5s ease, color 0.5s ease;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .sticky-item.active {
+            opacity: 1;
+            transform: translateX(10px);
+        }
+
+        .sticky-image-wrapper {
+            flex: 1.2;
+            position: sticky;
+            top: 20vh;
+            height: 60vh;
+            border-radius: 0;
+            overflow: hidden;
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.2);
+            background: #ddd;
+        }
+
+        .sticky-scene {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .sticky-scene img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transform: scale(1.1);
+            transition: opacity 0.8s ease, transform 1.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .sticky-scene img.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .sticky-item p {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.7rem;
+            line-height: 2;
+            margin: 0;
+            color: #555;
+            /* Refined Charcoal */
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: all 0.6s ease;
+            max-width: 100%;
+            opacity: 0.4;
+            text-shadow: none;
+        }
+
+        .sticky-item.active p {
+            color: #555;
+            /* Consistent Charcoal */
+            opacity: 1;
+            font-weight: 600;
+        }
+
         /* ===== RESPONSIVE ===== */
         @media (max-width: 900px) {
             .mag-hero-title {
@@ -967,7 +1142,40 @@
                 height: 160px;
             }
 
-            .scattered-photo {
+            .sticky-interactive-section {
+                flex-direction: column;
+                padding: 10vh 8%;
+                gap: 5vh;
+            }
+
+            .sticky-image-wrapper {
+                position: relative;
+                top: 0;
+                height: 40vh;
+                width: 100%;
+                order: -1;
+                border-radius: 20px;
+                margin-bottom: 20px;
+            }
+
+            .sticky-text-wrapper {
+                flex: none;
+                padding-bottom: 0;
+            }
+
+            .sticky-item {
+                margin-bottom: 5vh;
+                transform: none !important;
+                opacity: 1 !important;
+            }
+
+            .sticky-item p {
+                font-size: 0.6rem;
+                letter-spacing: 1px;
+                opacity: 1 !important;
+            }
+
+            .item-icon {
                 display: none;
             }
 
@@ -1065,13 +1273,18 @@
             </h2>
 
             <div class="about-spread-text fade-in-right stagger-4">
-                Fundado en 2006, nuestro centro cultural nació con la convicción de que el arte es el puente definitivo
-                hacia la inclusión. Trabajamos cada día para que la creatividad sea el motor de cambio en Bariloche.
+                Cre-Arte nació en 1995 en San Carlos de Bariloche, en un contexto social complejo. Cuatro amigos
+                —Fabiola Quiroga, Patricia Capello, Verónica Quiroga y Luis “Chicho” Suero— decidieron impulsar un
+                proyecto innovador para la atención de personas con discapacidad. Su objetivo era crear un espacio
+                diferente, centrado en las capacidades y el potencial de cada persona, dejando atrás los modelos
+                tradicionales.
             </div>
 
             <div class="about-spread-body fade-in-right stagger-5">
-                Nuestros talleres de pintura, murga y radio no son solo espacios de aprendizaje, son lugares de
-                encuentro, pertenencia y libertad absoluta para cada uno de nuestros integrantes.
+                Gracias al apoyo de la comunidad, del Grupo Encuentro y de la parroquia Nuestra Señora del Carmen, el
+                proyecto pudo comenzar en un pequeño espacio, con apenas cinco participantes. Sin embargo, la propuesta
+                creció rápidamente, reflejando la necesidad que existía en la comunidad. Con el tiempo, Cre-Arte
+                consiguió su sede propia en calle Quaglia 540, donde continúa desarrollando sus actividades.
             </div>
         </div>
     </section>
@@ -1098,11 +1311,13 @@
 
             <!-- Tarjeta Central de Texto (Wild Muse style) -->
             <div class="scrap-piece scrap-text-box fade-in-up stagger-4">
-                <div class="scrap-title-top">Desde 2006</div>
+                <div class="scrap-title-top">Desde 1995</div>
                 <h2 class="scrap-title"><span>Nuestra</span>HISTORIA</h2>
                 <div class="scrap-desc">
-                    Un lenguaje universal que trasciende fronteras. Empoderando a las mentes creativas desde Bariloche
-                    para todo el mundo.
+                    Desde sus inicios, la institución se enfocó en el arte y la cultura como herramientas fundamentales
+                    para el desarrollo personal, la inclusión y la participación social. Su modelo educativo promueve la
+                    autonomía de los estudiantes, con docentes que acompañan los procesos de aprendizaje desde un rol
+                    más cercano y facilitador.
                 </div>
             </div>
 
@@ -1119,6 +1334,47 @@
     </section>
 
 
+    <!-- STICKY INTERACTIVE SECTION -->
+    <section class="sticky-interactive-section" id="interactivo">
+        <div class="sticky-text-wrapper">
+            <div class="sticky-item active" data-index="0">
+                <p>A lo largo de los años, Cre-Arte fue consolidando una propuesta educativa única. En 2020, logró un
+                    hito importante al convertirse en la primera institución de educación permanente para adultos con
+                    discapacidad en Argentina, gracias a un convenio con el gobierno de Río Negro.</p>
+            </div>
+            <div class="sticky-item" data-index="1">
+                <p>Actualmente, ofrece más de 50 disciplinas artísticas y culturales, como música, teatro, danza, artes
+                    plásticas, cerámica, fotografía, informática, cocina y jardinería. Cerca de 80 estudiantes
+                    participan en sus talleres, acompañados por un equipo de aproximadamente 30 personas.
+
+                    Su impacto trascendió el ámbito local, participando en festivales y presentaciones internacionales
+                    en países como Italia, España, Estados Unidos, Alemania, Suiza y Brasil, además de recibir numerosos
+                    reconocimientos a nivel nacional.</p>
+            </div>
+            <div class="sticky-item" data-index="2">
+                <p>Entre sus iniciativas más destacadas se encuentra el festival internacional Arte x Igual, que reúne
+                    artistas con discapacidad de distintos países, promoviendo el intercambio cultural y la inclusión.
+                </p>
+            </div>
+            <div class="sticky-item" data-index="3">
+                <p>Hoy, con más de 30 años de trayectoria, Cre-Arte continúa creciendo y proyectándose hacia el futuro,
+                    con el objetivo de fortalecer redes de artistas, promover la inclusión y mejorar la calidad de vida
+                    de sus estudiantes, dejando un legado duradero en la comunidad.</p>
+            </div>
+        </div>
+
+        <div class="sticky-image-wrapper">
+            <div class="sticky-scene">
+                <!-- Images for each phase -->
+                <img src="./img/frente.jpeg" class="active" data-index="0">
+                <img src="./img/PASEO.JPG" data-index="1">
+                <img src="./img/mujer_pintando.JPG" data-index="2">
+                <img src="./img/DAMIPINTANDO.jpg" data-index="3">
+            </div>
+        </div>
+    </section>
+
+
     <!-- NUESTRO STAFF (MOSAIC STYLE) -->
 
     <section class="staff-mosaic-section" id="staff">
@@ -1126,89 +1382,56 @@
             <!-- Fila 1 -->
             <div class="mosaic-box color-orange fade-in-place stagger-1"></div>
             <div class="mosaic-box mosaic-img fade-in-place stagger-2">
-                <img src="./img/crearte.jpg" alt="Alejandro">
-                <div class="mosaic-hover-info">
-                    <div class="mosaic-hover-name">Alejandro</div>
-                    <div class="mosaic-hover-role">Coordinador General</div>
-                </div>
+                <img src="./img/cocineros.JPG" alt="Alejandro">
             </div>
             <div class="mosaic-box color-bone-light fade-in-place stagger-3"></div>
             <div class="mosaic-box mosaic-img fade-in-place stagger-4">
-                <img src="./img/Fractales.jpg" alt="Gabriela">
-                <div class="mosaic-hover-info">
-                    <div class="mosaic-hover-name">Gabriela</div>
-                    <div class="mosaic-hover-role">Talleres de Pintura</div>
-                </div>
+                <img src="./img/cuadro1.png" alt="Gabriela">
             </div>
 
             <!-- Fila 2 -->
             <div class="mosaic-box mosaic-img fade-in-place stagger-5">
-                <img src="./img/footer2.png" alt="Roberto">
-                <div class="mosaic-hover-info">
-                    <div class="mosaic-hover-name">Roberto</div>
-                    <div class="mosaic-hover-role">Taller de Murga</div>
-                </div>
+                <img src="./img/cuadro2.png" alt="Roberto">
             </div>
             <div class="mosaic-box color-mustard fade-in-place stagger-6"></div>
             <div class="mosaic-box mosaic-img fade-in-place stagger-7">
                 <img src="./img/Antonio Mora. Mujer con sombrero. 0,89 x 0,70. Oleo- 2006.jpg" alt="Ana">
-                <div class="mosaic-hover-info">
-                    <div class="mosaic-hover-name">Ana</div>
-                    <div class="mosaic-hover-role">Arte Textil</div>
-                </div>
             </div>
             <div class="mosaic-box color-mustard fade-in-place stagger-8"></div>
 
             <!-- Fila 3 -->
             <div class="mosaic-box color-olive fade-in-place stagger-9"></div>
             <div class="mosaic-box mosaic-img fade-in-place stagger-10">
-                <img src="./img/Roma.JPG" alt="Marcos">
-                <div class="mosaic-hover-info">
-                    <div class="mosaic-hover-name">Marcos</div>
-                    <div class="mosaic-hover-role">Comunicación</div>
-                </div>
+                <img src="./img/cuadro3.png" alt="Marcos">
             </div>
             <div class="mosaic-box color-burgundy fade-in-place stagger-11"></div>
             <div class="mosaic-box mosaic-img fade-in-place stagger-12">
-                <img src="./img/Peña.JPG" alt="Laura">
-                <div class="mosaic-hover-info">
-                    <div class="mosaic-hover-name">Laura</div>
-                    <div class="mosaic-hover-role">Danza y Movimiento</div>
-                </div>
+                <img src="./img/cuadro4.png" alt="Laura">
             </div>
 
             <!-- Fila 4 -->
             <div class="mosaic-box mosaic-img fade-in-place stagger-13">
-                <img src="./img/radio.png" alt="Carlos">
-                <div class="mosaic-hover-info">
-                    <div class="mosaic-hover-name">Carlos</div>
-                    <div class="mosaic-hover-role">Taller de Radio</div>
-                </div>
+                <img src="./img/cuadro5.png" alt="Carlos">
             </div>
             <div class="mosaic-box color-burgundy fade-in-place stagger-14"></div>
             <!-- TEXT BOX (Span 2x2) -->
             <div class="mosaic-box mosaic-text-box fade-in-place stagger-10" style="z-index: 25;">
-                <div class="mosaic-names"><span>Gente</span>CRE ARTE</div>
-                <div class="mosaic-subtitle">Nuestro Staff</div>
+                <div class="mosaic-names"><span></span>CRE ARTE</div>
+                <div class="mosaic-subtitle">Se ha convertido en un lugar donde el arte es la vía para
+                    romper prejuicios, contribuir a la cultura comunitaria, forjar y ser protagonistas de
+                    los procesos históricos y crear una sociedad cada vez más <span
+                        class="underline-reveal">inclusiva.</span></div>
             </div>
 
             <!-- Fila 5 -->
             <div class="mosaic-box color-burgundy fade-in-place stagger-15"></div>
             <div class="mosaic-box mosaic-img fade-in-place stagger-16">
                 <img src="./img/pintura.jpg" alt="Sofia">
-                <div class="mosaic-hover-info">
-                    <div class="mosaic-hover-name">Sofia</div>
-                    <div class="mosaic-hover-role">Artes Visuales</div>
-                </div>
             </div>
 
             <!-- Fila 6 -->
             <div class="mosaic-box mosaic-img fade-in-place stagger-14">
-                <img src="./img/Murga.jpg" alt="Equipo">
-                <div class="mosaic-hover-info">
-                    <div class="mosaic-hover-name">Equipo Murga</div>
-                    <div class="mosaic-hover-role">Expresión Corporal</div>
-                </div>
+                <img src="./img/Despellejado.jpg" alt="Equipo">
             </div>
             <div class="mosaic-box color-bone-light fade-in-place stagger-15"></div>
             <div class="mosaic-box color-bone-light fade-in-place stagger-16"></div>
@@ -1232,6 +1455,15 @@
 
     <!-- FOOTER -->
     <footer class="mag-footer">
+        <div class="footer-donation fade-in-up">
+            <div class="qr-interactive-container">
+                <img src="./img/manos_donar.png" alt="Manos donar" class="qr-hands-reveal">
+                <div class="qr-base">
+                    <img src="./img/qr_solo.png" alt="Donar a Cre Arte">
+                </div>
+            </div>
+            <span>Doná y apoyá nuestra labor</span>
+        </div>
         <img src="./img/LOGO.png" alt="Cre Arte" class="footer-logo">
         <div class="footer-links">
             <a href="./index.html">Inicio</a>
@@ -1271,7 +1503,7 @@
         }, animateOptions);
 
         // Observar todos los elementos con animaciones estándar
-        document.querySelectorAll('.fade-in-up, .fade-in-right, .fade-in-place, .zoom-pop').forEach((el) => {
+        document.querySelectorAll('.fade-in-up, .fade-in-right, .fade-in-place, .zoom-pop, .underline-reveal').forEach((el) => {
             animateObserver.observe(el);
         });
 
@@ -1336,6 +1568,35 @@
             }
         }, 3000);
 
+
+
+        // --- STICKY INTERACTIVE SECTION LOGIC ---
+        const stickyItems = document.querySelectorAll('.sticky-item');
+        const stickyImages = document.querySelectorAll('.sticky-scene img');
+
+        const stickyObserverOptions = {
+            root: null,
+            threshold: 0.2, // Lowered for long paragraphs
+            rootMargin: "-10% 0% -10% 0%"
+        };
+
+        const stickyObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const index = entry.target.getAttribute('data-index');
+
+                    // Update active item
+                    stickyItems.forEach(item => item.classList.remove('active'));
+                    entry.target.classList.add('active');
+
+                    // Update active image
+                    stickyImages.forEach(img => img.classList.remove('active'));
+                    stickyImages[index].classList.add('active');
+                }
+            });
+        }, stickyObserverOptions);
+
+        stickyItems.forEach(item => stickyObserver.observe(item));
 
 
         // Cambio de estilo del Navbar al scrollear

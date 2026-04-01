@@ -63,31 +63,39 @@
 
         /* ===== SCROLL SCRIBBLE (ELEMENTO EDITORIAL) ===== */
         .scroll-scribble-container {
-            position: absolute; /* Cambiado de fixed para evitar quedar oculto detrás del body background */
+            position: absolute;
+            /* Cambiado de fixed para evitar quedar oculto detrás del body background */
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             pointer-events: none;
-            z-index: 1; /* Fondo < TRAZOS (1) < Contenido (10+) */
-            opacity: 0.3; /* Leve ajuste de visibilidad */
+            z-index: 1;
+            /* Fondo < TRAZOS (1) < Contenido (10+) */
+            opacity: 0.3;
+            /* Leve ajuste de visibilidad */
             overflow: hidden;
         }
 
 
-        #scroll-path-1, #scroll-path-2 {
+        #scroll-path-1,
+        #scroll-path-2 {
             fill: none;
             stroke: #e65c00;
-            stroke-width: 30; /* Más presencia */
+            stroke-width: 30;
+            /* Más presencia */
             stroke-linecap: round;
             stroke-linejoin: round;
         }
 
         #scroll-path-2 {
-            stroke: #cccccc; /* Gris claro en lugar de rosa por pedido */
+            stroke: #cccccc;
+            /* Gris claro en lugar de rosa por pedido */
             stroke-width: 18;
             opacity: 0.6;
-        }        .t-nav {
+        }
+
+        .t-nav {
             position: absolute;
             top: 0;
             left: 0;
@@ -107,9 +115,10 @@
             left: 5%;
             z-index: 2100;
         }
-       
+
         .floating-logo img {
-            height: 60px; /* More compact for the sticky state */
+            height: 60px;
+            /* More compact for the sticky state */
             width: auto;
             filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.2));
             transition: height 0.3s ease;
@@ -124,7 +133,8 @@
             display: flex;
             gap: 2.5rem;
             position: relative;
-            z-index: 15; /* Asegurar links sobre trazos */
+            z-index: 15;
+            /* Asegurar links sobre trazos */
         }
 
         .t-nav-links a {
@@ -153,8 +163,9 @@
             position: relative;
             width: 100%;
             height: 500vh;
-            background-color: transparent; /* Importante: sin fondo para ver trazos */
-            z-index: 5; 
+            background-color: transparent;
+            /* Importante: sin fondo para ver trazos */
+            z-index: 5;
         }
 
         .travel-sticky-view {
@@ -169,7 +180,9 @@
         }
 
         /* Soporte para Scroll Snap */
-        section, footer, .scroll-travel-wrapper {
+        section,
+        footer,
+        .scroll-travel-wrapper {
             scroll-snap-align: start;
         }
 
@@ -190,7 +203,8 @@
             color: #111;
             text-transform: uppercase;
             text-align: center;
-            z-index: 20; /* Sobre los scribbles */
+            z-index: 20;
+            /* Sobre los scribbles */
             margin: 0;
             pointer-events: none;
             will-change: transform, opacity, filter;
@@ -222,12 +236,14 @@
             max-width: 320px;
             min-width: 240px;
             aspect-ratio: 3/4;
-            transform: translate(-50%, -50%); /* Posición base centrada */
+            transform: translate(-50%, -50%);
+            /* Posición base centrada */
             overflow: hidden;
             will-change: transform, opacity;
-            opacity: 0; 
+            opacity: 0;
             pointer-events: auto;
-            z-index: 25; /* Elevado sobre trazos */
+            z-index: 25;
+            /* Elevado sobre trazos */
         }
 
         .t-card img {
@@ -238,7 +254,8 @@
         }
 
         .t-card:hover img {
-            transform: scale(1.08); /* Making it slightly more visible */
+            transform: scale(1.08);
+            /* Making it slightly more visible */
         }
 
         .travel-texts-wrapper {
@@ -257,7 +274,8 @@
             opacity: 0;
             will-change: transform, opacity;
             transform: translate(-50%, -50%);
-            z-index: 20; /* Elevado sobre trazos */
+            z-index: 20;
+            /* Elevado sobre trazos */
         }
 
         .t-text h3 {
@@ -279,12 +297,45 @@
 
         /* En móvil cancelamos la animación y apilamos */
         @media (max-width: 900px) {
-            .scroll-travel-wrapper { height: auto; }
-            .travel-sticky-view { position: static; height: auto; flex-direction: column; padding: 100px 5%; overflow: visible; }
-            .travel-huge-title { position: static; margin-bottom: 50px; }
-            .travel-cards-wrapper, .travel-texts-wrapper { position: static; display: flex; flex-direction: column; gap: 40px; align-items: center; margin-bottom: 40px;}
-            .t-card, .t-text { position: static; transform: none !important; opacity: 1 !important; width: 100%; margin: 0; }
-            .t-text { text-align: center; }
+            .scroll-travel-wrapper {
+                height: auto;
+            }
+
+            .travel-sticky-view {
+                position: static;
+                height: auto;
+                flex-direction: column;
+                padding: 100px 5%;
+                overflow: visible;
+            }
+
+            .travel-huge-title {
+                position: static;
+                margin-bottom: 50px;
+            }
+
+            .travel-cards-wrapper,
+            .travel-texts-wrapper {
+                position: static;
+                display: flex;
+                flex-direction: column;
+                gap: 40px;
+                align-items: center;
+                margin-bottom: 40px;
+            }
+
+            .t-card,
+            .t-text {
+                position: static;
+                transform: none !important;
+                opacity: 1 !important;
+                width: 100%;
+                margin: 0;
+            }
+
+            .t-text {
+                text-align: center;
+            }
         }
 
         /* ===== SEPARADOR ===== */
@@ -296,7 +347,8 @@
             padding: 5px 6% 0;
             margin-top: -10px;
             position: relative;
-            z-index: 10; /* Asegurar que ornamentos estén sobre trazos si se desea */
+            z-index: 10;
+            /* Asegurar que ornamentos estén sobre trazos si se desea */
         }
 
         .pm-divider-line {
@@ -319,15 +371,18 @@
             margin: 0 auto;
             padding: 10px 5% 60px;
             position: relative;
-            z-index: 10; /* Contenido sobre trazos */
+            z-index: 10;
+            /* Contenido sobre trazos */
         }
 
 
         /* ===== ANIMACIÓN REVEAL (Alianzas y Festivales) ===== */
         .pm-reveal {
             opacity: 0;
-            transform: translateY(15px); /* Desplazamiento más sutil */
-            transition: all 1.2s cubic-bezier(0.2, 0.8, 0.2, 1); /* Más lento y elegante */
+            transform: translateY(15px);
+            /* Desplazamiento más sutil */
+            transition: all 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+            /* Más lento y elegante */
             will-change: opacity, transform;
         }
 
@@ -382,7 +437,8 @@
             position: relative;
             overflow: hidden;
             cursor: default;
-            z-index: 10; /* Tarjeta completa sobre trazos */
+            z-index: 10;
+            /* Tarjeta completa sobre trazos */
         }
 
         .pm-card img {
@@ -582,7 +638,8 @@
             display: block;
             box-shadow: 8px 8px 0 #ecd5b6;
             position: relative;
-            z-index: 10; /* Imagen siempre sobre trazos */
+            z-index: 10;
+            /* Imagen siempre sobre trazos */
         }
 
         .pm-feature-img .pm-img-caption {
@@ -630,7 +687,8 @@
             border-top: 1px solid #eee;
             scroll-snap-align: start;
             position: relative;
-            z-index: 15; /* Sello de pie sobre trazos */
+            z-index: 15;
+            /* Sello de pie sobre trazos */
         }
 
         .footer-logo {
@@ -984,7 +1042,8 @@
             width: clamp(100px, 12vw, 180px);
             top: 18vh;
             right: 3%;
-            z-index: 500; /* Siempre encima */
+            z-index: 500;
+            /* Siempre encima */
             /* POR ENCIMA de heroes, secciones, nav */
             transform-origin: center center;
         }
@@ -994,7 +1053,8 @@
             width: clamp(80px, 10vw, 150px);
             top: 55vh;
             left: 2%;
-            z-index: 100; /* Sobre la capa de trazos */
+            z-index: 100;
+            /* Sobre la capa de trazos */
             /* Encima de contenido base pero debajo de overlays */
         }
 
@@ -1003,7 +1063,8 @@
             width: clamp(90px, 11vw, 160px);
             top: 82vh;
             right: 6%;
-            z-index: 100; /* Sobre la capa de trazos */
+            z-index: 100;
+            /* Sobre la capa de trazos */
             /* DETRÁS de las secciones con fondo */
             opacity: 0.6;
             filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.15)) blur(0.5px);
@@ -1162,20 +1223,33 @@
 </head>
 
 <body>
-    
+
     <!-- SCRIBBLE SVG (Movido al inicio) -->
     <div class="scroll-scribble-container">
         <svg width="100%" height="100%" viewBox="0 0 1000 7500" preserveAspectRatio="none">
-            <path id="scroll-path-1" d="M -50 0 Q 300 400 100 1000 T 400 2000 T 50 3000 T 450 4000 T 150 5000 T 600 6000 T -50 7200" />
-            <path id="scroll-path-2" d="M 1050 50 Q 800 600 900 1200 T 700 2200 T 950 3200 T 600 4200 T 900 5200 T 400 6200 T 1050 7200" />
+            <path id="scroll-path-1"
+                d="M -50 0 Q 300 400 100 1000 T 400 2000 T 50 3000 T 450 4000 T 150 5000 T 600 6000 T -50 7200" />
+            <path id="scroll-path-2"
+                d="M 1050 50 Q 800 600 900 1200 T 700 2200 T 950 3200 T 600 4200 T 900 5200 T 400 6200 T 1050 7200" />
         </svg>
     </div>
 
     <style>
         @keyframes pulse {
-            0% { transform: scale(1); opacity: 0.8; }
-            50% { transform: scale(1.05); opacity: 1; }
-            100% { transform: scale(1); opacity: 0.8; }
+            0% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+
+            50% {
+                transform: scale(1.05);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
         }
     </style>
 
@@ -1200,52 +1274,61 @@
     <!-- ANIMACIÓN SCATTER: NUESTROS VIAJES -->
     <section class="scroll-travel-wrapper" id="scroll-travel-wrapper">
         <!-- Puntos clave de Snap sincronizados 100vh -->
-        <div class="snap-anchor" style="position: absolute; top: 0; height: 1px; width: 100%; scroll-snap-align: start;"></div>
-        <div class="snap-anchor" style="position: absolute; top: 100vh; height: 1px; width: 100%; scroll-snap-align: start;"></div>
-        <div class="snap-anchor" style="position: absolute; top: 200vh; height: 1px; width: 100%; scroll-snap-align: start;"></div>
-        <div class="snap-anchor" style="position: absolute; top: 300vh; height: 1px; width: 100%; scroll-snap-align: start;"></div>
-        <div class="snap-anchor" style="position: absolute; top: 400vh; height: 1px; width: 100%; scroll-snap-align: start;"></div>
+        <div class="snap-anchor"
+            style="position: absolute; top: 0; height: 1px; width: 100%; scroll-snap-align: start;"></div>
+        <div class="snap-anchor"
+            style="position: absolute; top: 100vh; height: 1px; width: 100%; scroll-snap-align: start;"></div>
+        <div class="snap-anchor"
+            style="position: absolute; top: 200vh; height: 1px; width: 100%; scroll-snap-align: start;"></div>
+        <div class="snap-anchor"
+            style="position: absolute; top: 300vh; height: 1px; width: 100%; scroll-snap-align: start;"></div>
+        <div class="snap-anchor"
+            style="position: absolute; top: 400vh; height: 1px; width: 100%; scroll-snap-align: start;"></div>
 
         <div class="travel-sticky-view">
             <h1 class="travel-huge-title" id="travel-title">
                 <span>Nuestros</span>
                 Viajes
             </h1>
-            
+
             <div class="travel-cards-wrapper">
                 <!-- Viaje 1 (Roma) -->
                 <div class="t-card tc-1a"><img src="./img/ROMA2.JPG" alt="Viaje 1a"></div>
                 <div class="t-card tc-1b"><img src="./img/ROMA1.JPG" alt="Viaje 1b"></div>
-                
+
                 <!-- Viaje 2 (Latam) -->
                 <div class="t-card tc-2a"><img src="./img/EUROPA.JPG" alt="Viaje 2a"></div>
                 <div class="t-card tc-2b"><img src="./img/Fractales.jpg" alt="Viaje 2b"></div>
-                
+
                 <!-- Viaje 3 (Patagonia) -->
                 <div class="t-card tc-3a"><img src="./img/JACOBACCI.JPG" alt="Viaje 3a"></div>
                 <div class="t-card tc-3b"><img src="./img/Peña.JPG" alt="Viaje 3b"></div>
-                
+
                 <!-- Viaje 4 (Nuevos Rumbos) -->
                 <div class="t-card tc-4a"><img src="./img/Murga.jpg" alt="Viaje 4a"></div>
                 <div class="t-card tc-4b"><img src="./img/tiempo de amar.JPG" alt="Viaje 4b"></div>
             </div>
-            
+
             <div class="travel-texts-wrapper">
                 <div class="t-text tt-1">
                     <h3>Roma, Italia</h3>
-                    <p>Participación estelar en festivales europeos, rompiendo los esquemas del arte dogmático y conectando pasiones transoceánicas.</p>
+                    <p>Participación estelar en festivales europeos, rompiendo los esquemas del arte dogmático y
+                        conectando pasiones transoceánicas.</p>
                 </div>
                 <div class="t-text tt-2">
                     <h3>Latinoamérica</h3>
-                    <p>Nuestras giras por toda la región fomentan un encuentro humano donde las diferencias construyen y no dividen.</p>
+                    <p>Nuestras giras por toda la región fomentan un encuentro humano donde las diferencias construyen y
+                        no dividen.</p>
                 </div>
                 <div class="t-text tt-3">
                     <h3>Patagonia</h3>
-                    <p>Uniendo el sur del mundo a través de caravanas artísticas que empoderan realidades originarias.</p>
+                    <p>Uniendo el sur del mundo a través de caravanas artísticas que empoderan realidades originarias.
+                    </p>
                 </div>
                 <div class="t-text tt-4">
                     <h3>Nuevos Rumbos</h3>
-                    <p>Cre Arte se posiciona como estandarte de la inclusión, preparando permanentemente sus valijas hacia nuevos destinos artísticos.</p>
+                    <p>Cre Arte se posiciona como estandarte de la inclusión, preparando permanentemente sus valijas
+                        hacia nuevos destinos artísticos.</p>
                 </div>
             </div>
         </div>
@@ -1316,11 +1399,14 @@
     <!-- ===== FESTIVALES ===== -->
     <section class="pm-section" id="festivales">
         <div class="pm-sec-header pm-reveal">
-            <div class="pm-sec-title"><span>Nuestros</span><br>FESTIVALES</div>
+            <div class="pm-sec-title"><span>Nuestros</span><br>FESTIVAL</div>
             <p class="pm-sec-desc">
-                Los festivales son el corazón palpitante de Cre Arte. Encuentros donde la música, la danza, la pintura y
-                la comunidad se fusionan en celebraciones únicas que convocan a artistas y espectadores de toda la
-                región.
+                El festival nace como un espacio para vivir el arte como herramienta de transformación, inclusión y
+                reconocimiento de las personas con discapacidad. Buscamos no solo acercar propuestas artísticas al
+                público, sino también fomentar la creatividad y la expresión.
+
+                En ediciones como la de 2017, reunió a más de 100 artistas de todo el mundo, generando encuentros,
+                talleres y experiencias compartidas que fortalecieron una comunidad que perdura hasta hoy.
             </p>
         </div>
 
@@ -1467,18 +1553,18 @@
 
         window.addEventListener('scroll', () => {
             if (!travelWrapper || window.innerWidth <= 900) return;
-            
+
             const rect = travelWrapper.getBoundingClientRect();
             const totalScroll = rect.height - window.innerHeight;
             // Progreso de 0 a 1 (sobre 400vh de scroll real)
             let p = -rect.top / totalScroll;
             p = Math.max(0, Math.min(1, p));
-            
+
             const vw = window.innerWidth;
             const vh = window.innerHeight;
-            
+
             // Título
-            const titleFadeEnd = 0.15; 
+            const titleFadeEnd = 0.15;
             let titleOpacity = 1 - (p / titleFadeEnd);
             let titleFilter = p > 0.05 ? `blur(${p * 40}px)` : 'blur(0px)';
             if (travelTitle) {
@@ -1493,13 +1579,13 @@
             // Mantendremos la lógica de dist-al-centro pero adecuada al nuevo wrapper
             const cardPaths = [
                 // Viaje 1 (Roma)
-                { layout: { dx: -vw*0.22, dy: vh*1.0 - (vh*0.1) } }, { layout: { dx: -vw*0.35, dy: vh*1.0 + (vh*0.1) } },
+                { layout: { dx: -vw * 0.22, dy: vh * 1.0 - (vh * 0.1) } }, { layout: { dx: -vw * 0.35, dy: vh * 1.0 + (vh * 0.1) } },
                 // Viaje 2 (Latam)
-                { layout: { dx: vw*0.22, dy: vh*2.0 - (vh*0.1) } }, { layout: { dx: vw*0.35, dy: vh*2.0 + (vh*0.1) } },
+                { layout: { dx: vw * 0.22, dy: vh * 2.0 - (vh * 0.1) } }, { layout: { dx: vw * 0.35, dy: vh * 2.0 + (vh * 0.1) } },
                 // Viaje 3 (Patagonia)
-                { layout: { dx: -vw*0.22, dy: vh*3.0 - (vh*0.1) } }, { layout: { dx: -vw*0.35, dy: vh*3.0 + (vh*0.1) } },
+                { layout: { dx: -vw * 0.22, dy: vh * 3.0 - (vh * 0.1) } }, { layout: { dx: -vw * 0.35, dy: vh * 3.0 + (vh * 0.1) } },
                 // Viaje 4 (Nuevos Rumbos)
-                { layout: { dx: vw*0.22, dy: vh*4.0 - (vh*0.1) } }, { layout: { dx: vw*0.35, dy: vh*4.0 + (vh*0.1) } }
+                { layout: { dx: vw * 0.22, dy: vh * 4.0 - (vh * 0.1) } }, { layout: { dx: vw * 0.35, dy: vh * 4.0 + (vh * 0.1) } }
             ];
 
             const maxVirtualScroll = vh * 4.0; // Cambiado de 5.0 a 4.0 para el nuevo height de 500vh
@@ -1543,7 +1629,7 @@
 
                 // El centro de cada viaje coincide con su Snap (25%, 50%, 75%, 100%) en el scroll de 400vh
                 const tripCenter = (tripIndex * 0.25); // 0.25, 0.5, 0.75, 1.0 (para el nuevo rango)
-                
+
                 // Con el nuevo wrapper más corto, ajustamos la sensibilidad del foco
                 const distToCenter = Math.abs(p - tripCenter);
                 let rawFocus = 1 - (distToCenter / 0.15); // Un poco más de margen
@@ -1551,17 +1637,17 @@
 
                 // Animación pop: Termina completamente antes de llegar al centro (Snap)
                 const localP = Math.max(0, Math.min(1, (p - (tripCenter - 0.15)) / 0.1));
-                
+
                 const cr = (i % 2 === 1 ? 8 : -8) * (1 - focusOpacity);
                 const cs = 0.9 + (0.1 * focusOpacity);
-                
+
                 // Aplicamos transformación
                 card.style.opacity = focusOpacity;
                 card.style.transform = `translate(calc(-50% + ${conf.layout.dx}px), calc(-50% + ${conf.layout.dy - globalScrollY}px)) rotate(${cr}deg) scale(${cs})`;
 
                 if (text && i % 2 === 0) {
                     const tx = (tripIndex - 1) % 2 === 0 ? (vw * 0.2) : (-vw * 0.2);
-                    const ty = (conf.layout.dy + vh*0.1) - globalScrollY; // Centrado en el par
+                    const ty = (conf.layout.dy + vh * 0.1) - globalScrollY; // Centrado en el par
                     text.style.opacity = focusOpacity;
                     text.style.transform = `translate(calc(-50% + ${tx}px), calc(-50% + ${ty}px))`;
                 }
@@ -1587,7 +1673,7 @@
 
         window.addEventListener('scroll', () => {
             const scrollPercentage = (document.documentElement.scrollTop + document.body.scrollTop) / (document.documentElement.scrollHeight - document.documentElement.clientHeight);
-            
+
             path1.style.strokeDashoffset = pathLength1 - (pathLength1 * scrollPercentage);
             path2.style.strokeDashoffset = pathLength2 - (pathLength2 * scrollPercentage);
         });
