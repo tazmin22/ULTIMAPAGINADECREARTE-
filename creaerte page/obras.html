@@ -11,6 +11,7 @@
         rel="stylesheet">
     <!-- Lenis Smooth Scroll -->
     <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
+    <link rel="stylesheet" href="nav-footer.css">
     <style>
         :root {
             --paper: #f9f7f2;
@@ -52,7 +53,7 @@
 
         .t-nav-links {
             display: flex;
-            gap: 2.5rem;
+            gap: 4.5rem;
         }
 
         .t-nav-links a {
@@ -61,7 +62,7 @@
             font-size: 0.75rem;
             font-weight: 400;
             /* Unificado */
-            letter-spacing: 2px;
+            letter-spacing: 4px;
             color: #111;
             text-decoration: none;
             transition: color 0.3s;
@@ -160,110 +161,7 @@
             background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.05));
         }
 
-        /* Footer */
-        .mag-footer {
-            padding: 80px 10%;
-            background: #fdfaf5;
-            text-align: center;
-            border-top: 1px solid #eee;
-        }
 
-        .footer-logo {
-            height: 60px;
-            margin-bottom: 30px;
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-
-        .footer-links a {
-            font-family: 'Inter', sans-serif;
-            text-transform: uppercase;
-            font-size: 0.75rem;
-            letter-spacing: 4px;
-            color: #777;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .footer-bottom {
-            font-family: 'Inter', sans-serif;
-            font-size: 0.85rem;
-            letter-spacing: 1px;
-            color: #999;
-            border-top: 1px solid #eee;
-            padding-top: 30px;
-        }
-
-        @media (max-width: 800px) {
-            .obras-grid {
-                grid-template-columns: repeat(2, 1fr);
-                grid-auto-rows: 150px;
-            }
-
-            .w-2,
-            .pos-top-tall {
-                grid-column: span 2;
-            }
-        }
-
-        /* ESTILO PARA EL ENLACE QIELL */
-        .link-qiell {
-            color: inherit;
-            text-decoration: none;
-            font-weight: 700;
-            position: relative;
-            display: inline-block;
-            transition: all 0.3s ease;
-            padding: 0 5px;
-        }
-
-        .link-qiell:hover {
-            color: #6a1a1c;
-            text-shadow: 0 0 10px rgba(106, 26, 28, 0.2);
-        }
-
-        /* Estrellas decorativas */
-        .link-qiell::before,
-        .link-qiell::after {
-            content: '✦';
-            position: absolute;
-            font-size: 14px;
-            color: #6a1a1c;
-            opacity: 0;
-            pointer-events: none;
-            transition: all 0.3s ease;
-        }
-
-        .link-qiell:hover::before {
-            top: -12px;
-            left: -10px;
-            opacity: 1;
-            animation: star-sparkle 0.8s infinite alternate;
-        }
-
-        .link-qiell:hover::after {
-            bottom: -10px;
-            right: -10px;
-            opacity: 1;
-            animation: star-sparkle 1s infinite alternate-reverse;
-        }
-
-        @keyframes star-sparkle {
-            0% {
-                transform: scale(0.5) rotate(0deg);
-                text-shadow: 0 0 5px #6a1a1c;
-            }
-
-            100% {
-                transform: scale(1.6) rotate(180deg);
-                text-shadow: 0 0 15px #6a1a1c, 0 0 25px rgba(106, 26, 28, 0.4);
-            }
-        }
     </style>
 </head>
 
@@ -308,16 +206,27 @@
         </div>
     </main>
 
+    <!-- FOOTER -->
     <footer class="mag-footer">
+        <div class="footer-donation fade-in-up">
+            <div class="qr-interactive-container">
+                <img src="./img/manos_donar.png" alt="Manos donar" class="qr-hands-reveal">
+                <div class="qr-base">
+                    <img src="./img/qr_solo.png" alt="Donar a Cre Arte">
+                </div>
+            </div>
+            <span>Doná y apoyá nuestra labor</span>
+        </div>
         <img src="./img/LOGO.png" alt="Cre Arte" class="footer-logo">
         <div class="footer-links">
             <a href="./index.html">Inicio</a>
             <a href="./talleres.html">Talleres</a>
             <a href="./quienes_somos.html">Quiénes Somos</a>
+            <a href="./puertas_al_mundo.html">Puertas al Mundo</a>
         </div>
         <div class="footer-bottom">
             &copy; 2026 Cre Arte Bariloche. Todos los derechos reservados.<br>
-            Tienda Desarollada por <span class="link-qiell">Qiell</span>
+            Tienda Desarrolada por <span class="link-qiell">Qiell</span>
         </div>
     </footer>
 
@@ -325,6 +234,20 @@
         const lenis = new Lenis({ duration: 1.5, smoothWheel: true });
         function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
         requestAnimationFrame(raf);
+
+        // Animation for Footer Donation
+        const footerDonation = document.querySelector('.footer-donation');
+        const observerOptions = { threshold: 0.1 };
+
+        const footerObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        if (footerDonation) footerObserver.observe(footerDonation);
     </script>
 </body>
 

@@ -20,6 +20,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@300;400;600;800;900&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="nav-footer.css">
 
     <style>
         :root {
@@ -51,42 +52,47 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 25px 0;
-            background: rgba(255, 255, 255, 0.9);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
+            padding: 45px 0;
+            background: transparent;
+            border-bottom: none;
+            backdrop-filter: none;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
         .floating-logo {
             position: absolute;
-            top: 20px;
+            top: 30px;
             left: 5%;
+            z-index: 2100;
+            transition: all 0.4s ease;
         }
 
         .floating-logo img {
-            height: 50px;
+            height: 110px;
             width: auto;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.2));
         }
 
         .t-nav-links {
             display: flex;
-            gap: 2.5rem;
+            gap: 4.5rem;
         }
 
         .t-nav-links a {
-            font-size: 0.7rem;
-            letter-spacing: 3px;
+            font-size: 0.72rem;
+            letter-spacing: 4px;
             text-transform: uppercase;
-            color: #111;
-            /* Dark text for white background */
+            color: #fff;
             text-decoration: none;
-            font-weight: 600;
-            transition: color 0.3s ease;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            opacity: 0.9;
         }
 
         .t-nav-links a:hover {
-            color: var(--accent-color);
+            opacity: 1;
+            color: var(--accent-color) !important;
         }
 
         /* ===== STRIP HERO ===== */
@@ -320,45 +326,56 @@
         }
 
 
-        /* ===== FOOTER ===== */
-        .mag-footer {
-            padding: 80px 10%;
-            background: #fff;
-            text-align: center;
-            border-top: 1px solid #eee;
+
+
+        /* ===== HOVER REVEAL CARDS ===== */
+        .hover-text-card {
+            padding: 0 !important;
+            cursor: pointer;
+            border: none !important;
         }
 
-        .footer-logo {
-            height: 80px;
-            margin-bottom: 30px;
-        }
-
-        .footer-links {
+        .hover-text-card .card-content-reveal {
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+            width: 100%;
+            height: 100%;
             display: flex;
+            flex-direction: column;
             justify-content: center;
-            gap: 40px;
-            margin-bottom: 40px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.85);
+            box-sizing: border-box;
         }
 
-        .footer-links a {
-            font-family: 'Inter', sans-serif;
-            text-transform: uppercase;
-            font-size: 0.75rem;
-            letter-spacing: 2px;
-            color: #666;
-            transition: color 0.3s;
-            text-decoration: none;
+        .hover-text-card:hover .card-content-reveal {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
         }
 
-        .footer-links a:hover {
-            color: #bc8a2a;
+        .hover-text-card .ed-title,
+        .hover-text-card .ed-desc {
+            color: #fff !important;
+            text-align: center;
         }
 
-        .footer-bottom {
-            font-size: 0.8rem;
-            color: #999;
-            border-top: 1px solid #eee;
-            padding-top: 30px;
+        .hover-text-card .ed-title {
+            font-size: 1.52rem !important;
+            line-height: 1.1 !important;
+            margin-bottom: 12px !important;
+            font-weight: 500 !important;
+        }
+
+        .hover-text-card .ed-desc {
+            font-size: 0.72rem !important;
+            line-height: 1.4 !important;
+            letter-spacing: 0.2px !important;
+            text-transform: none !important;
+            margin-top: 0 !important;
+            font-weight: 400 !important;
         }
 
         /* ===== MODAL STYLE ===== */
@@ -449,8 +466,6 @@
             <a href="index.html">Inicio</a>
             <a href="quienes_somos.html">Quienes Somos</a>
             <a href="talleres.html">Talleres</a>
-            <a href="obras.html">Obras</a>
-            <a href="galeria.html">Galería</a>
             <a href="puertas_al_mundo.html">Puertas al Mundo</a>
         </div>
     </nav>
@@ -467,7 +482,7 @@
 
     <!-- SECTION: FESTIVAL -->
     <section class="editorial-section" uk-scrollspy="cls: uk-animation-fade; delay: 100"
-        style="padding: 0; overflow: visible; margin-bottom: 180px;">
+        style="padding: 0; overflow: visible; margin-bottom: 180px; margin-top: 100px;">
         <div class="festival-banner"
             style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('img/artexigual1.jpg'); background-size: cover; background-position: center; min-height: 550px; display: flex; align-items: center; justify-content: center; position: relative; overflow: visible; width: 100vw; margin-left: calc(-50vw + 50%);">
             <div class="content"
@@ -631,6 +646,69 @@
 
     <!-- BANNER SECTION: "EL TALLER" -->
     <section class="banner-section" uk-scrollspy="cls: uk-animation-fade; delay: 300">
+        <!-- Twinkling Stars -->
+        <div class="star" style="top: 15%; left: 15%; width: 2px; height: 2px; animation: twinkle 3s infinite 0.5s;">
+        </div>
+        <div class="star" style="top: 8%; left: 45%; width: 3px; height: 3px; animation: twinkle 4s infinite 1.2s;">
+        </div>
+        <div class="star" style="top: 12%; left: 75%; width: 2px; height: 2px; animation: twinkle 5s infinite 2.5s;">
+        </div>
+        <div class="star"
+            style="top: 22%; left: 30%; width: 1.5px; height: 1.5px; animation: twinkle 3.5s infinite 0.8s;"></div>
+        <div class="star"
+            style="top: 18%; left: 85%; width: 2.5px; height: 2.5px; animation: twinkle 4.5s infinite 1.5s;"></div>
+        <div class="star" style="top: 5%; left: 10%; width: 2px; height: 2px; animation: twinkle 6s infinite 3s;"></div>
+        <div class="star" style="top: 20%; left: 55%; width: 2px; height: 2px; animation: twinkle 4.2s infinite 0.2s;">
+        </div>
+        <div class="star"
+            style="top: 23%; left: 50%; width: 1.5px; height: 1.5px; animation: twinkle 3.8s infinite 2s;"></div>
+        <div class="star" style="top: 14%; left: 80%; width: 3px; height: 3px; animation: twinkle 5.5s infinite 1.1s;">
+        </div>
+        <div class="star" style="top: 6%; left: 40%; width: 2px; height: 2px; animation: twinkle 4.7s infinite 0.6s;">
+        </div>
+        <div class="star"
+            style="top: 12%; left: 25%; width: 1.5px; height: 1.5px; animation: twinkle 3.2s infinite 1.8s;"></div>
+        <div class="star" style="top: 10%; left: 95%; width: 2px; height: 2px; animation: twinkle 5s infinite 0.4s;">
+        </div>
+        <div class="star"
+            style="top: 12%; left: 65%; width: 2.5px; height: 2.5px; animation: twinkle 4.1s infinite 2.2s;"></div>
+        <div class="star" style="top: 13%; left: 20%; width: 2px; height: 2px; animation: twinkle 3.6s infinite 0.9s;">
+        </div>
+        <div class="star" style="top: 21%; left: 70%; width: 2px; height: 2px; animation: twinkle 4.9s infinite 1.3s;">
+        </div>
+
+        <!-- Additional Stars -->
+        <div class="star" style="top: 3%; left: 25%; width: 2px; height: 2px; animation: twinkle 4s infinite 0.7s;">
+        </div>
+        <div class="star"
+            style="top: 7%; left: 60%; width: 1.5px; height: 1.5px; animation: twinkle 5.2s infinite 1.4s;"></div>
+        <div class="star"
+            style="top: 19%; left: 35%; width: 2.5px; height: 2.5px; animation: twinkle 3.7s infinite 2.1s;"></div>
+        <div class="star" style="top: 4%; left: 12%; width: 2px; height: 2px; animation: twinkle 4.8s infinite 0.3s;">
+        </div>
+        <div class="star"
+            style="top: 4%; left: 88%; width: 1.5px; height: 1.5px; animation: twinkle 5.5s infinite 1.9s;"></div>
+        <div class="star" style="top: 11%; left: 62%; width: 2px; height: 2px; animation: twinkle 3.1s infinite 0.6s;">
+        </div>
+        <div class="star" style="top: 16%; left: 92%; width: 2px; height: 2px; animation: twinkle 4.3s infinite 1.2s;">
+        </div>
+        <div class="star"
+            style="top: 11%; left: 5%; width: 2.5px; height: 2.5px; animation: twinkle 5.8s infinite 2.4s;"></div>
+        <div class="star"
+            style="top: 14%; left: 42%; width: 1.5px; height: 1.5px; animation: twinkle 3.4s infinite 0.9s;"></div>
+        <div class="star" style="top: 6%; left: 78%; width: 2px; height: 2px; animation: twinkle 4.6s infinite 1.7s;">
+        </div>
+        <div class="star" style="top: 21%; left: 18%; width: 3px; height: 3px; animation: twinkle 5.1s infinite 0.5s;">
+        </div>
+        <div class="star"
+            style="top: 5%; left: 54%; width: 1.5px; height: 1.5px; animation: twinkle 3.9s infinite 2.2s;"></div>
+        <div class="star" style="top: 9%; left: 33%; width: 2px; height: 2px; animation: twinkle 4.5s infinite 1.1s;">
+        </div>
+        <div class="star"
+            style="top: 13%; left: 82%; width: 2.5px; height: 2.5px; animation: twinkle 5.3s infinite 0.8s;"></div>
+        <div class="star" style="top: 13%; left: 48%; width: 2px; height: 2px; animation: twinkle 4.2s infinite 1.5s;">
+        </div>
+
         <div class="banner-content">
         </div>
     </section>
@@ -639,31 +717,37 @@
     <section class="editorial-section"
         style="padding-top: 0; margin-top: -180px; position: relative; z-index: 20; background-color: transparent;">
         <div class="ed-grid">
-            <!-- Card A -->
-            <div class="ed-card card-dark" uk-scrollspy="cls: uk-animation-slide-bottom-small; delay: 100"
-                style="background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('img/fondotexto.png'); background-size: cover; background-position: center;">
-                <div style="font-size: 0.7rem; letter-spacing: 2px; color: rgba(255,255,255,0.7);">NOCHES DE CRE ARTE
+            <!-- Card A (El bodegón) -->
+            <div class="ed-card hover-text-card" uk-scrollspy="cls: uk-animation-slide-bottom-small; delay: 100"
+                style="background: url('img/fondotexto.png'); background-size: cover; background-position: center; margin-right: -30px; z-index: 10;">
+                <div class="card-content-reveal">
+                    <div style="font-size: 0.7rem; letter-spacing: 2px; color: rgba(255,255,255,0.8);">NOCHES DE CRE
+                        ARTE
+                    </div>
+                    <div class="ed-title" style="font-size: 1.8rem; margin-top: 20px;">El bodegón </div>
+                    <div class="ed-desc">El evento "El Bodegón" propone compartir
+                        exquisitos platos elaborados por el equipo de cocina, integrado por profesores y alumnos de
+                        taller y
+                        además contar con la distinguida atención en el salón, de estudiantes que asisten diariamente a
+                        nuestro centro cultural.</div>
                 </div>
-                <div class="ed-title" style="font-size: 2.2rem; color: #fff; margin-top: 20px;">El bodegón </div>
-                <div class="ed-desc" style="color: rgba(255,255,255,0.9);">El evento "El Bodegón" propone compartir
-                    exquisitos platos elaborados por el equipo de cocina, integrado por profesores y alumnos de taller y
-                    además contar con la distinguida atención en el salón, de estudiantes que asisten diariamente a
-                    nuestro centro cultural y de esta forma, intentar fortalecer una red donde el arte y la cultura sean
-                    puntos de encuentro para construir una sociedad más abierta e inclusiva.</div>
             </div>
 
             <!-- Card B -->
             <div class="ed-card" uk-scrollspy="cls: uk-animation-slide-bottom-small; delay: 200"
-                style="padding: 0; background: #fff;">
+                style="padding: 0; background: #fff; height: 120%; margin-top: -100px; box-shadow: 0 40px 100px rgba(0,0,0,0.15);">
                 <img src="img/comida.jpg" alt="Art" style="width: 100%; height: 100%; object-fit: cover;">
             </div>
 
             <!-- Card C (Ciclo puertas) -->
-            <div class="ed-card card-gold" uk-scrollspy="cls: uk-animation-slide-bottom-small; delay: 300"
+            <div class="ed-card hover-text-card" uk-scrollspy="cls: uk-animation-slide-bottom-small; delay: 300"
                 style="background: url('img/cicloimg.png'); background-size: cover; background-position: center; border: none;">
-                <div class="ed-title"
-                    style="font-size: 3rem; line-height: 0.9; color: #fff; text-shadow: 0 4px 10px rgba(0,0,0,0.3);">
-                    <br> Ciclo puertas
+                <div class="card-content-reveal">
+                    <div class="ed-title" style="font-size: 3rem; line-height: 0.9;">
+                        Ciclo puertas
+                    </div>
+                    <div class="ed-desc">Encuentros artísticos que abren nuevas perspectivas y conectan nuestra
+                        comunidad con el mundo.</div>
                 </div>
             </div>
         </div>
@@ -672,15 +756,19 @@
     <style>
         /* Banner Style */
         .banner-section {
-            width: 100%;
-            height: 60vh;
+            width: 100vw;
+            margin-left: calc(-50vw + 50%);
+            height: 85vh;
             background-image: linear-gradient(to right, rgba(0, 0, 0, 0.6), transparent), url('img/noche.png');
             background-size: cover;
             background-position: center;
             display: flex;
             align-items: center;
             padding: 0 10%;
+            margin-top: -140px;
             margin-bottom: 80px;
+            position: relative;
+            z-index: 15;
         }
 
         .banner-content {
@@ -714,6 +802,30 @@
         .banner-btn:hover {
             background: #fff;
             color: #000;
+        }
+
+        /* Twinkling Stars Animation */
+        @keyframes twinkle {
+
+            0%,
+            100% {
+                opacity: 0.1;
+                transform: scale(0.8);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.2);
+            }
+        }
+
+        .star {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            pointer-events: none;
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+            z-index: 1;
         }
 
         @media (max-width: 768px) {
@@ -806,7 +918,7 @@
         <div class="video-container" uk-lightbox="video-autoplay: true">
             <a href="img/bodegon.mp4" data-caption="El Bodegón - Las Noches de Cre Arte">
                 <div class="video-poster">
-                    <img src="img/ques.png" alt=" Video Thumbnail">
+                    <img src="img/portada_video_bodegon.png" alt=" Video Thumbnail">
                     <div class="play-icon-wrapper">
                         <div class="play-icon">
                             <svg width="40" height="40" viewBox="0 0 24 24" fill="none"
@@ -901,15 +1013,22 @@
     </style>
 
     <!-- FOOTER -->
-    <footer class="mag-footer" uk-scrollspy="cls: uk-animation-slide-bottom-medium; delay: 200">
+    <footer class="mag-footer">
+        <div class="footer-donation fade-in-up">
+            <div class="qr-interactive-container">
+                <img src="./img/manos_donar.png" alt="Manos donar" class="qr-hands-reveal">
+                <div class="qr-base">
+                    <img src="./img/qr_solo.png" alt="Donar a Cre Arte">
+                </div>
+            </div>
+            <span>Doná y apoyá nuestra labor</span>
+        </div>
         <img src="./img/LOGO.png" alt="Cre Arte" class="footer-logo">
         <div class="footer-links">
-            <a href="index.html">Inicio</a>
-            <a href="quienes_somos.html">Quienes Somos</a>
-            <a href="talleres.html">Talleres</a>
-            <a href="obras.html">Obras</a>
-            <a href="galeria.html">Galería</a>
-            <a href="puertas_al_mundo.html">Puertas al Mundo</a>
+            <a href="./index.html">Inicio</a>
+            <a href="./talleres.html">Talleres</a>
+            <a href="./quienes_somos.html">Quiénes Somos</a>
+            <a href="./puertas_al_mundo.html">Puertas al Mundo</a>
         </div>
         <div class="footer-bottom">
             &copy; 2026 Cre Arte Bariloche. Todos los derechos reservados.
@@ -973,6 +1092,31 @@
         </div>
     </div>
 
+    <script>
+        // Animation for Footer Donation
+        const footerDonation = document.querySelector('.footer-donation');
+        const observerOptions = { threshold: 0.1 };
+
+        const footerObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        if (footerDonation) footerObserver.observe(footerDonation);
+
+        // Navbar Scroll Handler
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('.t-nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+    </script>
 </body>
 
 </html>
