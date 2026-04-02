@@ -1223,6 +1223,41 @@
                 margin: 0;
             }
         }
+
+        /* PREMIUM EDITORIAL DIVIDER */
+        .mag-divider-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 0;
+            background-color: #efedeb; /* Match page background */
+        }
+
+        .mag-divider {
+            width: 80%;
+            max-width: 1000px;
+            height: 1px;
+            background: linear-gradient(to right, 
+                transparent, 
+                rgba(166, 124, 124, 0.4) 15%, 
+                rgba(166, 124, 124, 0.4) 85%, 
+                transparent
+            );
+            position: relative;
+        }
+
+        .mag-divider::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(45deg);
+            width: 9px;
+            height: 9px;
+            background-color: #a67c7c;
+            box-shadow: 0 0 10px rgba(166, 124, 124, 0.2);
+        }
     </style>
 </head>
 
@@ -1255,6 +1290,10 @@
     <!-- Imágenes flotantes rodeando el texto -->
 
 
+
+    <div class="mag-divider-container" style="background-color: #fff;">
+        <div class="mag-divider"></div>
+    </div>
 
     <!-- MAGAZINE SPREAD SECTION (BIENVENIDOS) -->
     <section class="about-us-section">
@@ -1289,6 +1328,10 @@
         </div>
     </section>
 
+
+    <div class="mag-divider-container">
+        <div class="mag-divider"></div>
+    </div>
 
     <!-- HISTORY / SCRAPBOOK -->
 
@@ -1334,6 +1377,10 @@
     </section>
 
 
+    <div class="mag-divider-container">
+        <div class="mag-divider"></div>
+    </div>
+
     <!-- STICKY INTERACTIVE SECTION -->
     <section class="sticky-interactive-section" id="interactivo">
         <div class="sticky-text-wrapper">
@@ -1374,6 +1421,10 @@
         </div>
     </section>
 
+
+    <div class="mag-divider-container">
+        <div class="mag-divider"></div>
+    </div>
 
     <!-- NUESTRO STAFF (MOSAIC STYLE) -->
 

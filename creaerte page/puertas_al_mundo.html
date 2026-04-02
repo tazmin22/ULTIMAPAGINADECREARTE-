@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" style="scroll-snap-type: y mandatory; scroll-behavior: smooth;">
+<html lang="es">
 
 <head>
     <meta charset="utf-8" />
@@ -14,89 +14,37 @@
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.19.4/dist/js/uikit.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.19.4/dist/js/uikit-icons.min.js"></script>
 
-    <!-- Google Fonts (mismo set que quienes_somos) -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Caveat:wght@700&family=Inter:wght@300;400;600;800;900&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@300;400;600;800;900&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap"
         rel="stylesheet">
 
     <style>
-        /* ===== BASE ===== */
-        *,
-        *::before,
-        *::after {
-            box-sizing: border-box;
+        :root {
+            --accent-color: #e65c00;
+            --bg-color: #ffffff;
+            --text-color: #111;
         }
 
-        body {
-            background-color: #fff;
+        body,
+        html {
             margin: 0;
             padding: 0;
-            color: #111;
-            font-family: 'EB Garamond', serif;
-            overflow-x: hidden;
-            animation: fadeInPage 1.5s ease-out forwards;
-        }
-
-        @keyframes fadeInPage {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        a:hover {
-            color: #e65c00;
-            transition: color 0.3s ease;
-        }
-
-        /* ===== SCROLL SCRIBBLE (ELEMENTO EDITORIAL) ===== */
-        .scroll-scribble-container {
-            position: absolute;
-            /* Cambiado de fixed para evitar quedar oculto detrás del body background */
-            top: 0;
-            left: 0;
             width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-            /* Fondo < TRAZOS (1) < Contenido (10+) */
-            opacity: 0.3;
-            /* Leve ajuste de visibilidad */
-            overflow: hidden;
+            height: auto;
+            overflow-x: hidden;
+            background-color: #fff;
+            /* White background as requested */
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
         }
 
-
-        #scroll-path-1,
-        #scroll-path-2 {
-            fill: none;
-            stroke: #e65c00;
-            stroke-width: 30;
-            /* Más presencia */
-            stroke-linecap: round;
-            stroke-linejoin: round;
-        }
-
-        #scroll-path-2 {
-            stroke: #cccccc;
-            /* Gris claro en lugar de rosa por pedido */
-            stroke-width: 18;
-            opacity: 0.6;
-        }
-
+        /* ===== NAV ===== */
         .t-nav {
-            position: absolute;
+            position: fixed;
+            /* Stick to top */
             top: 0;
             left: 0;
             width: 100%;
@@ -105,590 +53,288 @@
             justify-content: center;
             align-items: center;
             padding: 25px 0;
-            background-color: transparent;
+            background: rgba(255, 255, 255, 0.9);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
         }
 
-        /* ===== LOGO INDEPENDIENTE ===== */
         .floating-logo {
             position: absolute;
-            top: 25px;
+            top: 20px;
             left: 5%;
-            z-index: 2100;
         }
 
         .floating-logo img {
-            height: 60px;
-            /* More compact for the sticky state */
+            height: 50px;
             width: auto;
-            filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.2));
-            transition: height 0.3s ease;
         }
 
-        .floating-logo:hover {
-            transform: scale(1.05);
-        }
-
-        /* NAV LINKS CENTRADOS Y NEGROS */
         .t-nav-links {
             display: flex;
             gap: 2.5rem;
-            position: relative;
-            z-index: 15;
-            /* Asegurar links sobre trazos */
         }
 
         .t-nav-links a {
-            font-family: 'Inter', sans-serif;
-            font-size: 0.72rem;
-            letter-spacing: 2.5px;
-            text-transform: uppercase;
-            color: #111;
-            /* Color oscuro para mayor contraste sobre blanco */
-        }
-
-        .t-nav-links a:hover {
-            color: #e65c00;
-        }
-
-        @media (max-width: 860px) {
-            .t-nav-links {
-                display: none;
-            }
-        }
-
-
-
-        /* ===== SCROLL SCATTER HERO (NUESTROS VIAJES) ===== */
-        .scroll-travel-wrapper {
-            position: relative;
-            width: 100%;
-            height: 500vh;
-            background-color: transparent;
-            /* Importante: sin fondo para ver trazos */
-            z-index: 5;
-        }
-
-        .travel-sticky-view {
-            position: sticky;
-            top: 0;
-            width: 100%;
-            height: 100vh;
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        /* Soporte para Scroll Snap */
-        section,
-        footer,
-        .scroll-travel-wrapper {
-            scroll-snap-align: start;
-        }
-
-        .snap-anchor {
-            position: absolute;
-            width: 1px;
-            height: 100vh;
-            pointer-events: none;
-            scroll-snap-align: start;
-        }
-
-        .travel-huge-title {
-            position: absolute;
-            font-family: 'Inter', sans-serif;
-            font-size: clamp(4rem, 12vw, 10rem);
-            font-weight: 900;
-            line-height: 0.9;
-            color: #111;
-            text-transform: uppercase;
-            text-align: center;
-            z-index: 20;
-            /* Sobre los scribbles */
-            margin: 0;
-            pointer-events: none;
-            will-change: transform, opacity, filter;
-        }
-
-        .travel-huge-title span {
-            display: block;
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
-            font-weight: 500;
-            color: #e65c00;
-            text-transform: none;
-            font-size: clamp(3rem, 9vw, 8rem);
-        }
-
-        .travel-cards-wrapper {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            z-index: 10;
-            pointer-events: none;
-        }
-
-        .t-card {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 25vw;
-            max-width: 320px;
-            min-width: 240px;
-            aspect-ratio: 3/4;
-            transform: translate(-50%, -50%);
-            /* Posición base centrada */
-            overflow: hidden;
-            will-change: transform, opacity;
-            opacity: 0;
-            pointer-events: auto;
-            z-index: 25;
-            /* Elevado sobre trazos */
-        }
-
-        .t-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.4s ease;
-        }
-
-        .t-card:hover img {
-            transform: scale(1.08);
-            /* Making it slightly more visible */
-        }
-
-        .travel-texts-wrapper {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            z-index: 15;
-            pointer-events: none;
-        }
-
-        .t-text {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 300px;
-            opacity: 0;
-            will-change: transform, opacity;
-            transform: translate(-50%, -50%);
-            z-index: 20;
-            /* Elevado sobre trazos */
-        }
-
-        .t-text h3 {
-            font-family: 'Inter', sans-serif;
-            font-weight: 900;
-            font-size: 1.8rem;
-            color: #e65c00;
-            margin: 0 0 10px 0;
-            text-transform: uppercase;
-        }
-
-        .t-text p {
-            font-family: 'EB Garamond', serif;
-            font-size: 1.1rem;
-            line-height: 1.4;
-            color: #444;
-            margin: 0;
-        }
-
-        /* En móvil cancelamos la animación y apilamos */
-        @media (max-width: 900px) {
-            .scroll-travel-wrapper {
-                height: auto;
-            }
-
-            .travel-sticky-view {
-                position: static;
-                height: auto;
-                flex-direction: column;
-                padding: 100px 5%;
-                overflow: visible;
-            }
-
-            .travel-huge-title {
-                position: static;
-                margin-bottom: 50px;
-            }
-
-            .travel-cards-wrapper,
-            .travel-texts-wrapper {
-                position: static;
-                display: flex;
-                flex-direction: column;
-                gap: 40px;
-                align-items: center;
-                margin-bottom: 40px;
-            }
-
-            .t-card,
-            .t-text {
-                position: static;
-                transform: none !important;
-                opacity: 1 !important;
-                width: 100%;
-                margin: 0;
-            }
-
-            .t-text {
-                text-align: center;
-            }
-        }
-
-        /* ===== SEPARADOR ===== */
-        .pm-divider {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 18px;
-            padding: 5px 6% 0;
-            margin-top: -10px;
-            position: relative;
-            z-index: 10;
-            /* Asegurar que ornamentos estén sobre trazos si se desea */
-        }
-
-        .pm-divider-line {
-            flex: 1;
-            height: 1px;
-            background: linear-gradient(to right, transparent, #6a1a1c55, transparent);
-            max-width: 350px;
-        }
-
-        .pm-divider-ornament {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.4rem;
-            color: #6a1a1c;
-            opacity: 0.6;
-        }
-
-        /* ===== SECCIÓN BASE (reutilizable) ===== */
-        .pm-section {
-            max-width: 1250px;
-            margin: 0 auto;
-            padding: 10px 5% 60px;
-            position: relative;
-            z-index: 10;
-            /* Contenido sobre trazos */
-        }
-
-
-        /* ===== ANIMACIÓN REVEAL (Alianzas y Festivales) ===== */
-        .pm-reveal {
-            opacity: 0;
-            transform: translateY(15px);
-            /* Desplazamiento más sutil */
-            transition: all 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
-            /* Más lento y elegante */
-            will-change: opacity, transform;
-        }
-
-        .pm-reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Encabezado de sección con estilo "Nuestra GENTE" */
-        .pm-sec-header {
-            margin-bottom: 50px;
-        }
-
-        .pm-sec-title {
-            margin: 0;
-            line-height: 0.9;
-            font-family: 'Inter', sans-serif;
-            font-size: 5rem;
-            font-weight: 900;
-            color: #e65c00;
-            text-transform: uppercase;
-            letter-spacing: -2px;
-        }
-
-        .pm-sec-title span {
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
-            font-size: 4.5rem;
-            color: #e65c00;
-            font-weight: 500;
-            text-transform: none;
-            letter-spacing: normal;
-        }
-
-        .pm-sec-desc {
-            font-family: 'EB Garamond', serif;
-            font-size: 1.2rem;
-            color: #444;
-            line-height: 1.6;
-            max-width: 620px;
-            margin-top: 22px;
-        }
-
-        /* ===== GRID DE TARJETAS ===== */
-        .pm-cards-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 3px;
-        }
-
-        .pm-card {
-            position: relative;
-            overflow: hidden;
-            cursor: default;
-            z-index: 10;
-            /* Tarjeta completa sobre trazos */
-        }
-
-        .pm-card img {
-            width: 100%;
-            height: 380px;
-            object-fit: cover;
-            display: block;
-            filter: grayscale(100%);
-            transition: filter 0.5s ease, transform 0.5s ease;
-        }
-
-        .pm-card:hover img {
-            filter: grayscale(0%);
-            transform: scale(1.03);
-        }
-
-        .pm-card-info {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 50px 20px 20px;
-            background: linear-gradient(to top, rgba(17, 17, 17, 0.92) 0%, transparent 100%);
-        }
-
-        .pm-card-tag {
-            font-family: 'Inter', sans-serif;
-            font-size: 0.65rem;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: #f2cb7b;
-            margin-bottom: 6px;
-        }
-
-        .pm-card-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.4rem;
-            font-style: italic;
-            color: #fff;
-            margin-bottom: 8px;
-        }
-
-        .pm-card-body {
-            font-family: 'EB Garamond', serif;
-            font-size: 1rem;
-            line-height: 1.4;
-            color: rgba(255, 255, 255, 0.75);
-            opacity: 0;
-            transform: translateY(8px);
-            transition: opacity 0.4s ease 0.05s, transform 0.4s ease 0.05s;
-        }
-
-        .pm-card:hover .pm-card-body {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* ===== BANNER OSCURO (estilo Nuestra Historia) ===== */
-        .pm-dark-banner {
-            position: relative;
-            width: 100%;
-            min-height: 420px;
-            background-attachment: fixed;
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            align-items: center;
-            padding: 80px 10%;
-            box-sizing: border-box;
-            color: #fff;
-            margin: 40px 0;
-        }
-
-        .pm-dark-banner::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.72);
-            z-index: 1;
-        }
-
-        .pm-dark-banner-inner {
-            position: relative;
-            z-index: 2;
-            display: flex;
-            width: 100%;
-            justify-content: space-between;
-            align-items: flex-start;
-            gap: 60px;
-        }
-
-        .pm-dark-banner-title {
-            flex: 0 0 35%;
-            margin: 0;
-            line-height: 0.9;
-            font-family: 'Inter', sans-serif;
-            font-size: 4.5rem;
-            font-weight: 900;
-            color: #f2cb7b;
-            text-transform: uppercase;
-            letter-spacing: -2px;
-        }
-
-        .pm-dark-banner-title span {
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
-            font-size: 4rem;
-            color: #f2cb7b;
-            font-weight: 500;
-            text-transform: none;
-            letter-spacing: normal;
-        }
-
-        .pm-dark-banner-text {
-            flex: 1;
-            font-family: 'EB Garamond', serif;
-            font-size: 1.25rem;
-            line-height: 1.6;
-            color: rgba(255, 255, 255, 0.85);
-        }
-
-        .pm-dark-banner-text p {
-            margin-bottom: 15px;
-        }
-
-        .pm-dark-banner-text p:last-child {
-            margin-bottom: 0;
-        }
-
-        /* ===== CITA CENTRAL ===== */
-        .pm-quote-section {
-            text-align: center;
-            padding: 80px 6%;
-            background-color: #faf7f2;
-            position: relative;
-        }
-
-        .pm-quote-section::before {
-            content: '"';
-            font-family: 'Playfair Display', serif;
-            font-size: 20rem;
-            color: rgba(106, 26, 28, 0.05);
-            position: absolute;
-            top: -60px;
-            left: 50%;
-            transform: translateX(-50%);
-            line-height: 1;
-            pointer-events: none;
-        }
-
-        .pm-quote {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(1.4rem, 2.5vw, 2rem);
-            font-style: italic;
-            color: #6a1a1c;
-            max-width: 750px;
-            margin: 0 auto 18px;
-            line-height: 1.5;
-            position: relative;
-        }
-
-        .pm-quote-author {
-            font-family: 'Inter', sans-serif;
-            font-size: 0.75rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: #888;
-        }
-
-        /* ===== LAYOUT DE FEATURE (imagen + texto) ===== */
-        .pm-feature {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            max-width: 1250px;
-            margin: 0 auto;
-            padding: 70px 5%;
-            align-items: center;
-        }
-
-        .pm-feature.reverse {
-            direction: rtl;
-        }
-
-        .pm-feature.reverse>* {
-            direction: ltr;
-        }
-
-        .pm-feature-img {
-            position: relative;
-        }
-
-        .pm-feature-img img {
-            width: 100%;
-            height: 500px;
-            object-fit: cover;
-            display: block;
-            box-shadow: 8px 8px 0 #ecd5b6;
-            position: relative;
-            z-index: 10;
-            /* Imagen siempre sobre trazos */
-        }
-
-        .pm-feature-img .pm-img-caption {
-            font-family: 'Inter', sans-serif;
-            font-size: 0.72rem;
-            color: #888;
-            margin-top: 10px;
-            text-align: right;
-        }
-
-        .pm-feature-text h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.8rem;
-            font-style: italic;
-            color: #6a1a1c;
-            margin: 0 0 20px;
-            line-height: 1.1;
-        }
-
-        .pm-feature-text p {
-            font-size: 1.15rem;
-            line-height: 1.7;
-            color: #333;
-            margin-bottom: 18px;
-            position: relative;
-            z-index: 10;
-        }
-
-        .pm-feature-label {
-            display: inline-block;
-            font-family: 'Inter', sans-serif;
             font-size: 0.7rem;
             letter-spacing: 3px;
             text-transform: uppercase;
-            color: #e65c00;
-            font-weight: 700;
-            margin-bottom: 16px;
+            color: #111;
+            /* Dark text for white background */
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .t-nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        /* ===== STRIP HERO ===== */
+        .strip-wrapper {
+            display: flex;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .strip {
+            position: relative;
+            flex: 1;
+            height: 100%;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+            border-right: 1px solid rgba(255, 255, 255, 0.05);
+            background-size: cover;
+            background-position: center;
+            filter: grayscale(100%);
+        }
+
+        /* Images from 'puertas' folder */
+        .strip:nth-child(1) {
+            background-image: url('puertas/img1.jpg');
+        }
+
+        .strip:nth-child(2) {
+            background-image: url('puertas/img2.jpg');
+        }
+
+        .strip:nth-child(3) {
+            background-image: url('puertas/img3.jpg');
+        }
+
+        .strip:nth-child(4) {
+            background-image: url('puertas/img4.jpg');
+        }
+
+        .strip:nth-child(5) {
+            background-image: url('puertas/img5.jpg');
+        }
+
+        .strip:last-child {
+            border-right: none;
+        }
+
+        .strip:hover {
+            flex: 4;
+            filter: grayscale(0%);
+        }
+
+        /* ===== EDITORIAL GRID SECTION ===== */
+        .editorial-section {
+            background-color: #fff;
+            /* White as requested */
+            padding: 100px 5%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .ed-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            max-width: 1400px;
+            width: 100%;
+        }
+
+        .ed-card {
+            background-color: #f7f7f7;
+            /* Very light gray */
+            aspect-ratio: 3 / 4;
+            position: relative;
+            overflow: hidden;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.5s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+            border: 1px solid #eee;
+        }
+
+        .ed-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Special Card Types */
+        .card-dark {
+            background-color: #111;
+            color: #fff;
+            border-color: #222;
+        }
+
+        .card-gold {
+            background-color: #bc8a2a;
+            border-color: #bc8a2a;
+            color: #fff;
+        }
+
+        .ed-title {
+            font-family: 'Playfair Display', serif;
+            font-weight: 900;
+            font-size: 2.2rem;
+            line-height: 1;
+            text-transform: uppercase;
+            margin: 0;
+            color: #111;
+        }
+
+        .card-dark .ed-title {
+            color: #fff;
+        }
+
+        .card-gold .ed-title {
+            color: #fff;
+        }
+
+        .ed-desc {
+            font-size: 0.8rem;
+            margin-top: 20px;
+            line-height: 1.6;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #666;
+        }
+
+        .card-dark .ed-desc {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .card-gold .ed-desc {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Arch Shape Mask */
+        .arch-mask {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            clip-path: ellipse(50% 70% at 50% 70%);
+            border-radius: 200px 200px 0 0;
+        }
+
+        /* Star Shape Mask */
+        .star-mask {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+        }
+
+        /* Card 1: Mysterious World */
+        .card-1 .ed-title {
+            font-size: 2.5rem;
+            margin-top: 40px;
+        }
+
+        .card-1 .barcode {
+            position: absolute;
+            bottom: 40px;
+            right: 40px;
+            width: 40px;
+            filter: contrast(0.5);
+        }
+
+        /* Card 2: Star Image */
+        .card-2 {
+            padding: 0;
+            border: none;
+        }
+
+        .card-2 img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            clip-path: polygon(50% 0%, 65% 35%, 100% 50%, 65% 65%, 50% 100%, 35% 65%, 0% 50%, 35% 35%);
+        }
+
+        /* Card 4: Gold Portrait */
+        .card-4 {
+            padding: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card-4 .portrait-wrapper {
+            background: #000;
+            width: 100%;
+            height: 100%;
+            border-radius: 150px 150px 0 0;
+            overflow: hidden;
+        }
+
+        .card-4 img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Card 5: Love to Create */
+        .card-5 {
+            padding: 0;
+        }
+
+        .card-5 img {
+            width: 100%;
+            height: 60%;
+            object-fit: cover;
+        }
+
+        .card-5 .content {
+            padding: 40px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        .card-5 .curve-overlay {
+            position: absolute;
+            top: 40%;
+            left: 0;
+            width: 100%;
+            height: 20%;
+            background: inherit;
+            border-radius: 100% 100% 0 0;
+        }
+
+        .barcode-strip {
+            height: 30px;
+            width: 100px;
+            background: repeating-linear-gradient(90deg, #111, #111 2px, transparent 2px, transparent 4px);
+            margin-top: 20px;
+            opacity: 0.3;
         }
 
         /* ===== FOOTER ===== */
         .mag-footer {
             padding: 80px 10%;
-            background: #f9f7f2;
+            background: #fff;
             text-align: center;
             border-top: 1px solid #eee;
-            scroll-snap-align: start;
-            position: relative;
-            z-index: 15;
-            /* Sello de pie sobre trazos */
         }
 
         .footer-logo {
@@ -707,516 +353,90 @@
             font-family: 'Inter', sans-serif;
             text-transform: uppercase;
             font-size: 0.75rem;
-            letter-spacing: 4px;
-            color: #777;
+            letter-spacing: 2px;
+            color: #666;
             transition: color 0.3s;
             text-decoration: none;
         }
 
         .footer-links a:hover {
-            color: #6a1a1c;
+            color: #bc8a2a;
         }
 
         .footer-bottom {
-            font-family: 'Inter', sans-serif;
-            font-size: 0.85rem;
-            letter-spacing: 1px;
+            font-size: 0.8rem;
             color: #999;
             border-top: 1px solid #eee;
             padding-top: 30px;
         }
 
-        /* ===== DECORATIVOS: ESTRELLAS Y FLORES ===== */
-        .deco {
-            position: absolute;
-            pointer-events: none;
-            z-index: 5;
-            user-select: none;
+        /* ===== MODAL STYLE ===== */
+        .uk-modal-dialog {
+            background: #f7f7f7;
+            border-radius: 0;
+            padding: 40px;
         }
 
-        /* Estrella de 5 puntas usando clip-path */
-        .deco-star {
-            background-color: #6a1a1c;
-            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-        }
-
-        .deco-star-sm {
-            width: 28px;
-            height: 28px;
-        }
-
-        .deco-star-md {
-            width: 44px;
-            height: 44px;
-        }
-
-        .deco-star-lg {
-            width: 62px;
-            height: 62px;
-        }
-
-        .deco-star-xl {
-            width: 80px;
-            height: 80px;
-        }
-
-        /* Flor SVG inline — roja oscura */
-        .deco-flower svg path {
-            fill: #6a1a1c;
-        }
-
-        /* Contenedor relativo para posicionar decos dentro de secciones */
-        .deco-wrap {
-            position: relative;
-        }
-
-        /* ===== VIAJES (TRAVEL MAGAZINE SPREAD) ===== */
-        .viajes-section {
-            background: #fff;
-            padding: 80px 0;
-            overflow: hidden;
-        }
-
-        .viajes-header {
-            text-align: center;
-            padding: 0 5% 60px;
-        }
-
-        .viajes-header .pm-sec-title {
-            font-size: 4.5rem;
-        }
-
-        .viajes-header .pm-sec-title span {
-            font-size: 4rem;
-        }
-
-        .viajes-header .pm-sec-desc {
-            margin: 20px auto 0;
-            text-align: center;
-        }
-
-        /* Una tarjeta de viaje estilo spread de revista */
-        .viaje-spread {
-            display: grid;
-            grid-template-columns: 1fr 1.6fr;
-            min-height: 520px;
-            border-top: 1px solid #eee;
-            position: relative;
-        }
-
-        .viaje-spread:last-of-type {
-            border-bottom: 1px solid #eee;
-        }
-
-        /* Alterna la dirección de cada spread con grid-column explícito */
-        .viaje-spread.flip {
-            grid-template-columns: 1.6fr 1fr;
-        }
-
-        /* En flip: fotos van a columna 1 (izquierda), texto a columna 2 (derecha) */
-        .viaje-spread.flip .viaje-photos {
-            grid-column: 1;
-            grid-row: 1;
-        }
-
-        .viaje-spread.flip .viaje-text {
-            grid-column: 2;
-            grid-row: 1;
-            border-left: 1px solid #eee;
-            border-right: none;
-        }
-
-        /* Columna de texto */
-        .viaje-text {
-            padding: 60px 50px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            border-left: 1px solid #eee;
-        }
-
-        .viaje-eyebrow {
-            font-family: 'Inter', sans-serif;
-            font-size: 0.65rem;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            color: #6a1a1c;
-            font-weight: 700;
-            margin-bottom: 14px;
-        }
-
-        .viaje-text h3 {
+        .uk-modal-title {
             font-family: 'Playfair Display', serif;
+            font-weight: 900;
+            text-transform: uppercase;
             font-size: 2.5rem;
-            font-style: italic;
             color: #111;
-            margin: 0 0 6px;
-            line-height: 1.1;
         }
 
-        .viaje-text .viaje-country {
-            font-family: 'Caveat', cursive;
-            font-size: 1.4rem;
-            color: #6a1a1c;
-            margin-bottom: 22px;
-        }
-
-        .viaje-text p {
-            font-family: 'EB Garamond', serif;
-            font-size: 1.1rem;
-            line-height: 1.7;
+        .modal-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            line-height: 1.8;
             color: #444;
-            margin-bottom: 15px;
+            margin: 20px 0;
         }
 
-        /* Columna de fotos — dos fotos superpuestas */
-        .viaje-photos {
-            position: relative;
-            overflow: hidden;
-            background: #f5f0eb;
-        }
-
-        .viaje-photo-main {
-            width: 65%;
-            height: 70%;
+        .modal-gallery img {
+            width: 100%;
+            aspect-ratio: 1;
             object-fit: cover;
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            display: block;
-            box-shadow: -6px -6px 0 #ecd5b6;
+            border: 1px solid #eee;
+            transition: transform 0.3s ease;
         }
 
-        .viaje-photo-secondary {
-            width: 48%;
-            height: 52%;
-            object-fit: cover;
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            display: block;
-            box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.15);
+        .modal-gallery img:hover {
+            transform: scale(1.02);
         }
 
-        /* Anotación manuscrita en la foto */
-        .viaje-annotation {
-            position: absolute;
-            font-family: 'Caveat', cursive;
-            font-size: 1.3rem;
-            color: #6a1a1c;
-            transform: rotate(-6deg);
-            z-index: 10;
-            pointer-events: none;
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .ed-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
-        /* ===== ANIMACION REVEAL VIAJES ===== */
-        .viaje-photos {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
+        @media (max-width: 768px) {
+            .strip-wrapper {
+                flex-direction: column;
+            }
 
-        .viaje-photos.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+            .strip {
+                border-right: none;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
 
-        .viaje-text {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.7s ease 0.15s, transform 0.7s ease 0.15s;
-        }
+            .strip:hover {
+                flex: 3;
+            }
 
-        .viaje-text.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        @media (max-width: 900px) {
-
-            .viaje-spread,
-            .viaje-spread.flip {
+            .ed-grid {
                 grid-template-columns: 1fr;
             }
 
-            .viaje-spread.flip .viaje-text {
-                order: 0;
-                border-right: none;
-                border-left: 1px solid #eee;
-            }
-
-            .viaje-photos {
-                min-height: 350px;
-            }
-
-            .viaje-text {
-                padding: 40px 25px;
-            }
-
-            .viaje-text h3 {
-                font-size: 2rem;
-            }
-        }
-
-        /* ===== RESPONSIVE ===== */
-        @media (max-width: 900px) {
-            .pm-hero-title {
-                font-size: 3.5rem;
-            }
-
-            .pm-hero-handwritten {
-                font-size: 1.5rem;
-                right: 4%;
-                top: 18%;
-            }
-
-            .pm-hero-intro {
+            .t-nav-links {
                 display: none;
             }
 
-            .pm-cards-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .pm-card img {
-                height: 260px;
-            }
-
-            .pm-card-body {
-                opacity: 1;
-                transform: none;
-            }
-
-            .pm-feature {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
-
-            .pm-feature.reverse {
-                direction: ltr;
-            }
-
-            .pm-feature-img img {
-                height: 300px;
-            }
-
-            .pm-dark-banner-inner {
+            .footer-links {
                 flex-direction: column;
-                gap: 25px;
-            }
-
-            .pm-dark-banner-title {
-                font-size: 3rem;
-                flex: none;
-            }
-
-            .mag-nav {
-                gap: 4rem;
-            }
-
-            .pm-sec-title {
-                font-size: 3rem;
-            }
-
-            .pm-sec-title span {
-                font-size: 2.8rem;
-            }
-        }
-
-        /* ===== IMAGENES FLOTANTES PARALLAX 3D ===== */
-
-        /* Base de todas las imágenes flotantes */
-        .fimg {
-            position: fixed;
-            pointer-events: none;
-            will-change: transform;
-            user-select: none;
-            border-radius: 4px;
-            /* Sombra para sensación de profundidad */
-            filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.25));
-            transition: transform 0.05s linear;
-        }
-
-        /* fondo1: “en primer plano” — encima de todo el contenido */
-        .fimg-1 {
-            width: clamp(100px, 12vw, 180px);
-            top: 18vh;
-            right: 3%;
-            z-index: 500;
-            /* Siempre encima */
-            /* POR ENCIMA de heroes, secciones, nav */
-            transform-origin: center center;
-        }
-
-        /* fondo2: “capa media” — entre elementos */
-        .fimg-2 {
-            width: clamp(80px, 10vw, 150px);
-            top: 55vh;
-            left: 2%;
-            z-index: 100;
-            /* Sobre la capa de trazos */
-            /* Encima de contenido base pero debajo de overlays */
-        }
-
-        /* fondo3: “fondo” — detrás del contenido de las secciones */
-        .fimg-3 {
-            width: clamp(90px, 11vw, 160px);
-            top: 82vh;
-            right: 6%;
-            z-index: 100;
-            /* Sobre la capa de trazos */
-            /* DETRÁS de las secciones con fondo */
-            opacity: 0.6;
-            filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.15)) blur(0.5px);
-        }
-
-        /* === NEW PREMIUM FOOTER === */
-        .crearte-footer {
-            background-color: #829068;
-            color: #111;
-            margin-top: 0;
-        }
-
-        .footer-wave-divider {
-            line-height: 0;
-        }
-
-        .footer-main {
-            padding: 20px 0 40px;
-            background-color: #829068;
-        }
-
-        .footer-column h5 {
-            font-family: 'Inter', sans-serif;
-            font-weight: 900;
-            text-transform: uppercase;
-            font-size: 0.8rem;
-            letter-spacing: 2px;
-            margin-bottom: 25px;
-            color: #111;
-        }
-
-        .footer-column ul {
-            padding: 0;
-            margin: 0;
-            list-style: none;
-        }
-
-        .footer-column ul li {
-            margin-bottom: 12px;
-        }
-
-        .footer-column ul li a {
-            color: #333;
-            font-size: 0.9rem;
-            transition: opacity 0.3s;
-        }
-
-        .footer-column ul li a:hover {
-            opacity: 0.6;
-        }
-
-        .footer-legal {
-            margin-top: 60px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(0, 0, 0, 0.1);
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        /* Hearts Animation */
-        .sacaraat-trigger {
-            position: relative;
-            cursor: pointer;
-            display: inline-block;
-            color: #111;
-            transition: transform 0.3s;
-        }
-
-        .sacaraat-trigger:hover {
-            transform: scale(1.1);
-        }
-
-        .heart-particle {
-            position: fixed;
-            pointer-events: none;
-            color: #ff4d4d;
-            font-size: 1.2rem;
-            animation: floatUp 1s ease-out forwards;
-            z-index: 9999;
-        }
-
-        @keyframes floatUp {
-            0% {
-                transform: translateY(0) scale(0) rotate(0deg);
-                opacity: 0;
-            }
-
-            20% {
-                opacity: 1;
-            }
-
-            100% {
-                transform: translateY(-60px) scale(1.8) rotate(20deg);
-                opacity: 0;
-            }
-        }
-
-        /* ESTILO PARA EL ENLACE QIELL */
-        .link-qiell {
-            color: inherit;
-            text-decoration: none;
-            font-weight: 700;
-            position: relative;
-            display: inline-block;
-            transition: all 0.3s ease;
-            padding: 0 5px;
-        }
-
-        .link-qiell:hover {
-            color: #6a1a1c;
-            text-shadow: 0 0 10px rgba(106, 26, 28, 0.2);
-        }
-
-        /* Estrellas decorativas */
-        .link-qiell::before,
-        .link-qiell::after {
-            content: '✦';
-            position: absolute;
-            font-size: 14px;
-            color: #6a1a1c;
-            opacity: 0;
-            pointer-events: none;
-            transition: all 0.3s ease;
-        }
-
-        .link-qiell:hover::before {
-            top: -12px;
-            left: -10px;
-            opacity: 1;
-            animation: star-sparkle 0.8s infinite alternate;
-        }
-
-        .link-qiell:hover::after {
-            bottom: -10px;
-            right: -10px;
-            opacity: 1;
-            animation: star-sparkle 1s infinite alternate-reverse;
-        }
-
-        @keyframes star-sparkle {
-            0% {
-                transform: scale(0.5) rotate(0deg);
-                text-shadow: 0 0 5px #6a1a1c;
-            }
-
-            100% {
-                transform: scale(1.6) rotate(180deg);
-                text-shadow: 0 0 15px #6a1a1c, 0 0 25px rgba(106, 26, 28, 0.4);
+                gap: 20px;
             }
         }
     </style>
@@ -1224,461 +444,524 @@
 
 <body>
 
-    <!-- SCRIBBLE SVG (Movido al inicio) -->
-    <div class="scroll-scribble-container">
-        <svg width="100%" height="100%" viewBox="0 0 1000 7500" preserveAspectRatio="none">
-            <path id="scroll-path-1"
-                d="M -50 0 Q 300 400 100 1000 T 400 2000 T 50 3000 T 450 4000 T 150 5000 T 600 6000 T -50 7200" />
-            <path id="scroll-path-2"
-                d="M 1050 50 Q 800 600 900 1200 T 700 2200 T 950 3200 T 600 4200 T 900 5200 T 400 6200 T 1050 7200" />
-        </svg>
+    <nav class="t-nav">
+        <a href="index.html" class="floating-logo">
+            <img src="./img/LOGO.png" alt="Cre Arte Logo">
+        </a>
+        <div class="t-nav-links">
+            <a href="index.html">Inicio</a>
+            <a href="quienes_somos.html">Quienes Somos</a>
+            <a href="talleres.html">Talleres</a>
+            <a href="obras.html">Obras</a>
+            <a href="galeria.html">Galería</a>
+            <a href="puertas_al_mundo.html">Puertas al Mundo</a>
+        </div>
+    </nav>
+
+    <div class="strip-wrapper">
+        <div class="strip"></div>
+        <div class="strip"></div>
+        <div class="strip"></div>
+        <div class="strip"></div>
+        <div class="strip"></div>
+    </div>
+
+    <!-- SECTION: FESTIVAL -->
+    <section class="editorial-section" uk-scrollspy="cls: uk-animation-fade; delay: 100">
+        <div class="festival-banner"
+            style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('img/artexigual1.jpg'); background-size: cover; background-position: center; min-height: 450px; display: flex; align-items: center; justify-content: center; position: relative; overflow: visible;">
+            <div class="content" style="padding: 100px 5%; text-align: center; position: relative;">
+                <div class="video-title-box" style="margin: 0;">
+                    <span style="font-size: 2.5rem; padding: 15px 45px; transform: rotate(-1.5deg);">FESTIVAL</span>
+                </div>
+                <p style="font-family: 'Inter', sans-serif; font-size: 1rem; letter-spacing: 5px; color: #fff; text-transform: uppercase; margin-top: 30px; opacity: 0.8; font-weight: 800;"> Encuentro Internacional de Arte e Inclusión </p>
+
+                <!-- Floating Card & Curly Arrow (Reveals on Hover) -->
+                <div class="festival-note" style="position: absolute; right: -80px; bottom: -80px; text-align: left; width: 450px; pointer-events: none; z-index: 50;">
+                    <svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" style="transform: rotate(160deg); margin-left: 200px; margin-bottom: -15px;">
+                        <path d="M20 20C40 10 60 40 50 60C45 75 30 65 35 50C40 35 60 45 70 70C75 85 78 88 80 90M80 90L72 85M80 90L85 82" stroke="#FF9D42" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <div style="background: #fdfdfd; padding: 40px; box-shadow: 0 30px 60px rgba(0,0,0,0.1); border: 1px solid #f0f0f0;">
+                        <p style="font-family: 'Inter', sans-serif; font-size: 0.95rem; color: #444; transform: none; margin: 0; line-height: 1.8; letter-spacing: 0.5px; font-weight: 500;">
+                            Cruzamos fronteras para compartir nuestra metodología, tender puentes culturales y enriquecer nuestra labor con experiencias alrededor del mundo. Una red global de creación inclusiva.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Google Fonts for handwriting -->
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap" rel="stylesheet">
+
+    <!-- SECTION: VIAJES -->
+    <section class="editorial-section" style="padding-top: 0;" uk-scrollspy="cls: uk-animation-fade; delay: 200">
+        <div class="ed-grid" style="grid-template-columns: 2fr 1fr; gap: 40px; padding: 0 5%;">
+            <div class="ed-card" style="background: #fff; padding: 80px; display: flex; flex-direction: column; justify-content: center; height: 600px; border: none; box-shadow: none;">
+                <div class="video-title-box" style="text-align: left; margin-bottom: 20px; margin-top: 0;">
+                    <span style="font-size: 3rem; padding: 15px 40px; transform: rotate(-1.5deg);">VIAJES</span>
+                </div>
+                <p style="color: #444; font-size: 0.95rem; margin-top: 30px; letter-spacing: 1px; line-height: 1.8; font-family: 'Inter', sans-serif;">
+                    Cruzamos fronteras para compartir nuestra metodología, tender puentes culturales y 
+                    enriquecer nuestra labor con experiencias alrededor del mundo. Una red global de creación inclusiva.
+                </p>
+                <div class="barcode-strip" style="width: 100%; height: 40px; margin-top: auto; opacity: 0.2; background: repeating-linear-gradient(90deg, #333, #333 2px, transparent 2px, transparent 4px);"></div>
+            </div>
+            <div class="ed-card scrapbook-gallery" style="padding: 0; background: transparent; height: 600px; position: relative; border: none; box-shadow: none;">
+                <img src="img/artexigual2.jpg" alt="Travel 1" style="position: absolute; top: 0; left: -100px; width: 100%; height: 380px; z-index: 10; object-fit: cover; box-shadow: 0 10px 40px rgba(0,0,0,0.2);">
+                <img src="img/artexigual3.jpg" alt="Travel 2" style="position: absolute; top: 220px; left: 40px; width: 110%; height: 340px; z-index: 20; object-fit: cover; box-shadow: 0 20px 60px rgba(0,0,0,0.25); transform: rotate(2deg);">
+                <img src="img/artexigual5.jpg" alt="Travel 3" style="position: absolute; bottom: -100px; right: -80px; width: 95%; height: 300px; z-index: 30; object-fit: cover; box-shadow: 0 30px 80px rgba(0,0,0,0.3); transform: rotate(-2deg);">
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW EDITORIAL SECTION -->
+    <section class="editorial-section">
+        <div class="ed-grid">
+            <!-- Card 1 -->
+            <div class="ed-card card-1" style="position: relative; z-index: 1000; overflow: visible;">
+                <div class="ed-title"></div>
+                <div class="ed-desc">Red Arte por Igual promueve la igualdad a través del arte, buscando visibilizar a
+                    las personas con discapacidad y generar un cambio social real</div>
+                <!-- Branding sticker (Fixed position counter-hover) -->
+                <img src="img/artexigual.png" class="stationary-sticker" alt="Sticker"
+                    style="position: absolute; bottom: -100px; right: -150px; width: 850px; z-index: 2000; opacity: 1; transform: rotate(4deg) scale(1.1); pointer-events: none; filter: drop-shadow(0 50px 100px rgba(0,0,0,0.4)); transition: transform 0.5s ease;">
+                <div class="barcode-strip" style="margin-top: auto; opacity: 0.1;"></div>
+            </div>
+
+            <style>
+                .card-1:hover .stationary-sticker {
+                    /* Counters the parent card's translateY(-10px) */
+                    transform: translateY(10px) rotate(4deg) scale(1.1) !important;
+                }
+            </style>
+
+            <!-- Card 2 + 3 UNIFICADAS (Span 2 columns, shorter, no text) -->
+            <div class="ed-card ed-unified" uk-scrollspy="cls: uk-animation-slide-bottom-small; delay: 200"
+                style="grid-column: span 2; aspect-ratio: 2 / 1; padding: 0;">
+                <img src="img/artexigual1.jpg" alt="Art" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+
+            <!-- Card 4 -->
+            <div class="ed-card card-4 card-gold" uk-scrollspy="cls: uk-animation-slide-bottom-small; delay: 400">
+                <div class="portrait-wrapper">
+                    <img src="img/artexigual4.jpg" alt="Portrait">
+                </div>
+            </div>
+
+            <!-- Card 5 (Mas ancha y larga: Spans 2 cols and 2 rows) -->
+            <div class="ed-card card-5" uk-scrollspy="cls: uk-animation-slide-bottom-small; delay: 500"
+                style="grid-column: span 2; grid-row: span 2; aspect-ratio: 1 / 1;">
+                <img src="img/artexigual7.jpg" alt="Create" style="height: 60%; width: 100%; object-fit: cover;">
+                <div class="curve-overlay"></div>
+                <div class="content" style="padding: 60px;">
+                    <div class="ed-title" style="font-size: 1.8rem;">Trabajamos en red con instituciones y artistas para
+                        fomentar la inclusión, el
+                        intercambio de saberes y el fortalecimiento cultural.</div>
+
+
+                </div>
+            </div>
+
+            <!-- Card 6 (Sage green, small text, original typography) -->
+            <div class="ed-card card-rumon" uk-scrollspy="cls: uk-animation-slide-bottom-small; delay: 600"
+                style="padding: 40px; background: #8a9477; display: flex; flex-direction: column; justify-content: center; border: none;">
+                <div
+                    style="text-align: center; margin-bottom: 20px; font-size: 0.75rem; letter-spacing: 3px; color: #fff; text-transform: uppercase; font-weight: 800;">
+                </div>
+                <div class="ed-title" style="font-size: 1.1rem; text-align: center; color: #fff;">
+                    Red Arte por Igual promueve la igualdad a través del arte, buscando visibilizar a las personas
+                    con discapacidad y generar un cambio social real.
+                </div>
+            </div>
+
+
+
+        </div>
+    </section>
+
+    <!-- EDITORIAL SEPARATOR -->
+    <div class="editorial-separator" uk-scrollspy="cls: uk-animation-slide-bottom-small; delay: 200">
+        <div class="line"></div>
+        <div class="sep-label">LAS NOCHES DE CRE ARTE</div>
+        <div class="line"></div>
     </div>
 
     <style>
-        @keyframes pulse {
+        .editorial-separator {
+            padding: 100px 10%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fff;
+            gap: 50px;
+        }
+
+        .editorial-separator .line {
+            flex: 1;
+            height: 1px;
+            background: #e0e0e0;
+        }
+
+        .editorial-separator .sep-label {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            letter-spacing: 0.4rem;
+            color: #333;
+            /* Darker for better visibility */
+            text-transform: uppercase;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+    </style>
+
+    <!-- BANNER SECTION: "EL TALLER" -->
+    <section class="banner-section" uk-scrollspy="cls: uk-animation-fade; delay: 300">
+        <div class="banner-content">
+        </div>
+    </section>
+
+    <!-- SECOND EDITORIAL SECTION -->
+    <section class="editorial-section" style="padding-top: 0;">
+        <div class="ed-grid">
+            <!-- Card A -->
+            <div class="ed-card card-dark" uk-scrollspy="cls: uk-animation-slide-bottom-small; delay: 100"
+                style="background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('img/bodegonimg.png'); background-size: cover; background-position: center;">
+                <div style="font-size: 0.7rem; letter-spacing: 2px; color: rgba(255,255,255,0.7);">NOCHES DE CRE ARTE
+                </div>
+                <div class="ed-title" style="font-size: 2.2rem; color: #fff; margin-top: 20px;">El bodegón </div>
+                <div class="ed-desc" style="color: rgba(255,255,255,0.9);">El evento "El Bodegón" propone compartir
+                    exquisitos platos elaborados por el equipo de cocina, integrado por profesores y alumnos de taller y
+                    además contar con la distinguida atención en el salón, de estudiantes que asisten diariamente a
+                    nuestro centro cultural y de esta forma, intentar fortalecer una red donde el arte y la cultura sean
+                    puntos de encuentro para construir una sociedad más abierta e inclusiva.</div>
+            </div>
+
+            <!-- Card B -->
+            <div class="ed-card" uk-scrollspy="cls: uk-animation-slide-bottom-small; delay: 200"
+                style="padding: 0; background: #fff;">
+                <img src="img/comida.jpg" alt="Art" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+
+            <!-- Card C (Ciclo puertas) -->
+            <div class="ed-card card-gold" uk-scrollspy="cls: uk-animation-slide-bottom-small; delay: 300"
+                style="background: url('img/cicloimg.png'); background-size: cover; background-position: center; border: none;">
+                <div class="ed-title"
+                    style="font-size: 3rem; line-height: 0.9; color: #fff; text-shadow: 0 4px 10px rgba(0,0,0,0.3);">
+                    <br> Ciclo puertas
+                </div>
+                <div class="barcode-strip"
+                    style="width: 100%; height: 40px; margin-top: auto; opacity: 0.8; background: repeating-linear-gradient(90deg, #fff, #fff 2px, transparent 2px, transparent 4px);">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        /* Banner Style */
+        .banner-section {
+            width: 100%;
+            height: 60vh;
+            background-image: linear-gradient(to right, rgba(0, 0, 0, 0.6), transparent), url('img/noche.png');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            padding: 0 10%;
+            margin-bottom: 80px;
+        }
+
+        .banner-content {
+            max-width: 600px;
+        }
+
+        .banner-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 5rem;
+            font-weight: 900;
+            color: #fff;
+            margin: 0;
+            letter-spacing: -2px;
+        }
+
+        .banner-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 15px 40px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .banner-btn:hover {
+            background: #fff;
+            color: #000;
+        }
+
+        @media (max-width: 768px) {
+            .banner-title {
+                font-size: 3rem;
+            }
+        }
+
+        /* Video Title Box */
+        .video-title-box {
+            text-align: center;
+            margin-top: 80px;
+            margin-bottom: -20px;
+            position: relative;
+            z-index: 100;
+        }
+
+        .video-title-box span {
+            display: inline-block;
+            background: #8a9477;
+            color: #fff;
+            padding: 20px 50px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 900;
+            text-transform: uppercase;
+            font-size: 2.2rem;
+            line-height: 1;
+            transform: rotate(-1.5deg);
+            box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.05);
+            /* Custom Animation */
+            opacity: 0;
+            animation: labelPop 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            animation-delay: 0.3s;
+        }
+
+        @keyframes labelPop {
             0% {
-                transform: scale(1);
-                opacity: 0.8;
+                transform: scale(0.5) rotate(10deg);
+                opacity: 0;
             }
 
-            50% {
-                transform: scale(1.05);
+            70% {
+                transform: scale(1.1) rotate(-3deg);
                 opacity: 1;
             }
 
             100% {
-                transform: scale(1);
-                opacity: 0.8;
+                transform: scale(1) rotate(-1.5deg);
+                opacity: 1;
             }
+        }
+
+        @media (max-width: 768px) {
+            .video-title-box span {
+                font-size: 1.4rem;
+                padding: 15px 30px;
+            }
+        }
+
+        /* Scrapbook Gallery Hover */
+        .scrapbook-gallery img {
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            cursor: pointer;
+        }
+
+        .scrapbook-gallery img:hover {
+            z-index: 100 !important;
+            transform: scale(1.08) rotate(0deg) !important;
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Festival Hover Note */
+        .festival-banner .festival-note {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .festival-banner:hover .festival-note {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 
+    <!-- VIDEO TITLE -->
+    <div class="video-title-box" uk-scrollspy="cls: uk-animation-fade; delay: 100">
+        <span>¿Qué es el bodegón?</span>
+    </div>
 
-    <!-- LOGO INDEPENDIENTE -->
-    <a href="./index.html" class="floating-logo" style="z-index: 2000;">
-        <img src="./img/LOGO.png" alt="Cre Arte Logo">
-    </a>
-
-    <!-- ── NAVEGACIÓN (Solo Links) ─────────────────────────── -->
-    <nav class="t-nav">
-        <div class="t-nav-links">
-            <a href="./index.html">Inicio</a>
-            <a href="./talleres.html">Talleres</a>
-            <a href="./quienes_somos.html">Quiénes Somos</a>
-            <a href="./puertas_al_mundo.html">Puertas al Mundo</a>
-            <a href="./galeria.html">Galería</a>
-            <a href="./obras.html">Obras</a>
-        </div>
-    </nav>
-
-    <!-- ANIMACIÓN SCATTER: NUESTROS VIAJES -->
-    <section class="scroll-travel-wrapper" id="scroll-travel-wrapper">
-        <!-- Puntos clave de Snap sincronizados 100vh -->
-        <div class="snap-anchor"
-            style="position: absolute; top: 0; height: 1px; width: 100%; scroll-snap-align: start;"></div>
-        <div class="snap-anchor"
-            style="position: absolute; top: 100vh; height: 1px; width: 100%; scroll-snap-align: start;"></div>
-        <div class="snap-anchor"
-            style="position: absolute; top: 200vh; height: 1px; width: 100%; scroll-snap-align: start;"></div>
-        <div class="snap-anchor"
-            style="position: absolute; top: 300vh; height: 1px; width: 100%; scroll-snap-align: start;"></div>
-        <div class="snap-anchor"
-            style="position: absolute; top: 400vh; height: 1px; width: 100%; scroll-snap-align: start;"></div>
-
-        <div class="travel-sticky-view">
-            <h1 class="travel-huge-title" id="travel-title">
-                <span>Nuestros</span>
-                Viajes
-            </h1>
-
-            <div class="travel-cards-wrapper">
-                <!-- Viaje 1 (Roma) -->
-                <div class="t-card tc-1a"><img src="./img/ROMA2.JPG" alt="Viaje 1a"></div>
-                <div class="t-card tc-1b"><img src="./img/ROMA1.JPG" alt="Viaje 1b"></div>
-
-                <!-- Viaje 2 (Latam) -->
-                <div class="t-card tc-2a"><img src="./img/EUROPA.JPG" alt="Viaje 2a"></div>
-                <div class="t-card tc-2b"><img src="./img/Fractales.jpg" alt="Viaje 2b"></div>
-
-                <!-- Viaje 3 (Patagonia) -->
-                <div class="t-card tc-3a"><img src="./img/JACOBACCI.JPG" alt="Viaje 3a"></div>
-                <div class="t-card tc-3b"><img src="./img/Peña.JPG" alt="Viaje 3b"></div>
-
-                <!-- Viaje 4 (Nuevos Rumbos) -->
-                <div class="t-card tc-4a"><img src="./img/Murga.jpg" alt="Viaje 4a"></div>
-                <div class="t-card tc-4b"><img src="./img/tiempo de amar.JPG" alt="Viaje 4b"></div>
-            </div>
-
-            <div class="travel-texts-wrapper">
-                <div class="t-text tt-1">
-                    <h3>Roma, Italia</h3>
-                    <p>Participación estelar en festivales europeos, rompiendo los esquemas del arte dogmático y
-                        conectando pasiones transoceánicas.</p>
+    <!-- VIDEO SECTION -->
+    <section class="video-section" uk-scrollspy="cls: uk-animation-fade; delay: 200" style="padding-top: 40px;">
+        <div class="video-container" uk-lightbox="video-autoplay: true">
+            <a href="img/bodegon.mp4" data-caption="El Bodegón - Las Noches de Cre Arte">
+                <div class="video-poster">
+                    <img src="img/ques.png" alt=" Video Thumbnail">
+                    <div class="play-icon-wrapper">
+                        <div class="play-icon">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8 5V19L19 12L8 5Z" fill="black" />
+                            </svg>
+                        </div>
+                    </div>
                 </div>
-                <div class="t-text tt-2">
-                    <h3>Latinoamérica</h3>
-                    <p>Nuestras giras por toda la región fomentan un encuentro humano donde las diferencias construyen y
-                        no dividen.</p>
-                </div>
-                <div class="t-text tt-3">
-                    <h3>Patagonia</h3>
-                    <p>Uniendo el sur del mundo a través de caravanas artísticas que empoderan realidades originarias.
-                    </p>
-                </div>
-                <div class="t-text tt-4">
-                    <h3>Nuevos Rumbos</h3>
-                    <p>Cre Arte se posiciona como estandarte de la inclusión, preparando permanentemente sus valijas
-                        hacia nuevos destinos artísticos.</p>
-                </div>
-            </div>
+            </a>
         </div>
     </section>
 
-    <!-- SEPARADOR -->
-    <div class="pm-divider">
-        <div class="pm-divider-line"></div>
-        <div class="pm-divider-ornament">✦</div>
-        <div class="pm-divider-line"></div>
-    </div>
+    <style>
+        .video-section {
+            padding: 80px 10% 120px;
+            background: #fff;
+        }
 
-    <!-- ===== ALIANZAS ===== -->
-    <section class="pm-section" id="alianzas" style="position: relative;">
-        <!-- Imagen decorativa del mapa en la esquina derecha -->
-        <img src="./img/1.png" alt="Mapa Mundial Vintage"
-            style="position: absolute; top: -40px; right: 2%; width: 600px; z-index: 2; transform: rotate(10deg); filter: drop-shadow(0 8px 24px rgba(0,0,0,0.2)); opacity: 0.9;">
+        .video-container {
+            position: relative;
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 50px 100px rgba(0, 0, 0, 0.12);
+        }
 
-        <div class="pm-sec-header pm-reveal">
-            <div class="pm-sec-title"><span>Nuestras</span><br>ALIANZAS</div>
-            <p class="pm-sec-desc">
-                Construimos vínculos duraderos con instituciones culturales, universidades y centros de arte de toda
-                América Latina y Europa. Cada alianza es un nuevo canal para intercambiar ideas, técnicas y visiones del
-                mundo.
-            </p>
-        </div>
+        .video-poster {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            cursor: pointer;
+            overflow: hidden;
+        }
 
-        <div class="pm-cards-grid">
-            <div class="pm-card pm-reveal" style="transition-delay: 0.1s;">
-                <img src="./img/crearte.jpg" alt="Alianza Cultural">
-                <div class="pm-card-info">
-                    <div class="pm-card-tag">Buenos Aires</div>
-                    <div class="pm-card-title">Centro Cultural Recoleta</div>
-                    <p class="pm-card-body">Programa conjunto de intercambio docente y co-producción de exhibiciones en
-                        Buenos Aires y Bariloche.</p>
-                </div>
-            </div>
-            <div class="pm-card pm-reveal" style="transition-delay: 0.2s;">
-                <img src="./img/Fractales.jpg" alt="Alianza Internacional">
-                <div class="pm-card-info">
-                    <div class="pm-card-tag">Europa</div>
-                    <div class="pm-card-title">Instituto Cervantes</div>
-                    <p class="pm-card-body">Colaboración para exhibir arte patagónico en España, vinculando la identidad
-                        local con el público internacional.</p>
-                </div>
-            </div>
-            <div class="pm-card pm-reveal" style="transition-delay: 0.3s;">
-                <img src="./img/cuadros.webp" alt="Alianza Regional">
-                <div class="pm-card-info">
-                    <div class="pm-card-tag">Región</div>
-                    <div class="pm-card-title">Red de Museos Patagónicos</div>
-                    <p class="pm-card-body">Integración en una red regional que permite itinerar obras por museos de
-                        toda la Patagonia argentina y chilena.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+        .video-poster img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 1.2s cubic-bezier(0.2, 1, 0.3, 1);
+        }
 
+        .video-poster:hover img {
+            transform: scale(1.08);
+        }
 
+        .play-icon-wrapper {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.1);
+            transition: background 0.3s ease;
+        }
 
-    <!-- SEPARADOR -->
-    <div class="pm-divider">
-        <div class="pm-divider-line"></div>
-        <div class="pm-divider-ornament">✦</div>
-        <div class="pm-divider-line"></div>
-    </div>
+        .video-poster:hover .play-icon-wrapper {
+            background: rgba(0, 0, 0, 0.3);
+        }
 
-    <!-- ===== FESTIVALES ===== -->
-    <section class="pm-section" id="festivales">
-        <div class="pm-sec-header pm-reveal">
-            <div class="pm-sec-title"><span>Nuestros</span><br>FESTIVAL</div>
-            <p class="pm-sec-desc">
-                El festival nace como un espacio para vivir el arte como herramienta de transformación, inclusión y
-                reconocimiento de las personas con discapacidad. Buscamos no solo acercar propuestas artísticas al
-                público, sino también fomentar la creatividad y la expresión.
+        .play-icon {
+            width: 90px;
+            height: 90px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
 
-                En ediciones como la de 2017, reunió a más de 100 artistas de todo el mundo, generando encuentros,
-                talleres y experiencias compartidas que fortalecieron una comunidad que perdura hasta hoy.
-            </p>
-        </div>
+        .video-poster:hover .play-icon {
+            transform: scale(1.15);
+            background: #fff;
+            border-color: #fff;
+        }
 
-        <div class="pm-cards-grid">
-            <div class="pm-card pm-reveal" style="transition-delay: 0.1s;">
-                <img src="./img/Murga.jpg" alt="Festival de Arte Urbano">
-                <div class="pm-card-info">
-                    <div class="pm-card-tag">Anual · Julio</div>
-                    <div class="pm-card-title">Festival de Arte Bariloche</div>
-                    <p class="pm-card-body">Una semana de intervenciones en espacios públicos, performances, murales
-                        colectivos y encuentros con artistas invitados.</p>
-                </div>
-            </div>
-            <div class="pm-card pm-reveal" style="transition-delay: 0.2s;">
-                <img src="./img/Peña.JPG" alt="Noche de Arte">
-                <div class="pm-card-info">
-                    <div class="pm-card-tag">Mensual</div>
-                    <div class="pm-card-title">Noches de Arte Cre Arte</div>
-                    <p class="pm-card-body">Veladas culturales mensuales donde alumnos, docentes e invitados presentan
-                        sus obras en un ambiente íntimo y vibrante.</p>
-                </div>
-            </div>
-            <div class="pm-card pm-reveal" style="transition-delay: 0.3s;">
-                <img src="./img/tiempo de amar.JPG" alt="Festival Internacional">
-                <div class="pm-card-info">
-                    <div class="pm-card-tag">Bienal · Noviembre</div>
-                    <div class="pm-card-title">Bienal Patagónica de Arte</div>
-                    <p class="pm-card-body">Un evento bienal que convoca artistas de Argentina, Chile, Uruguay y Brasil
-                        para un gran encuentro cultural en la Patagonia.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+        @media (max-width: 768px) {
+            .video-section {
+                padding: 40px 5%;
+            }
 
-    <!-- SEPARADOR -->
-    <div class="pm-divider">
-        <div class="pm-divider-line"></div>
-        <div class="pm-divider-ornament">✦</div>
-        <div class="pm-divider-line"></div>
-    </div>
-
-    <!-- El antiguo bloque de Viajes fue eliminado de aquí porque ya está animado arriba. -->
+            .play-icon {
+                width: 60px;
+                height: 60px;
+            }
+        }
+    </style>
 
     <!-- FOOTER -->
     <footer class="mag-footer">
         <img src="./img/LOGO.png" alt="Cre Arte" class="footer-logo">
         <div class="footer-links">
-            <a href="./index.html">Inicio</a>
-            <a href="./talleres.html">Talleres</a>
-            <a href="./quienes_somos.html">Quiénes Somos</a>
-            <a href="./puertas_al_mundo.html">Puertas al Mundo</a>
+            <a href="index.html">Inicio</a>
+            <a href="quienes_somos.html">Quienes Somos</a>
+            <a href="talleres.html">Talleres</a>
+            <a href="obras.html">Obras</a>
+            <a href="galeria.html">Galería</a>
+            <a href="puertas_al_mundo.html">Puertas al Mundo</a>
         </div>
         <div class="footer-bottom">
-            &copy; 2026 Cre Arte Bariloche. Todos los derechos reservados.<br>
-            Tienda Desarollada por <span class="link-qiell">Qiell</span>
+            &copy; 2026 Cre Arte Bariloche. Todos los derechos reservados.
         </div>
     </footer>
 
-    <script>
-        // ── REVEAL ALIANZAS Y FESTIVALES ──────────────────────────────────────────────
-        const revealTargets = document.querySelectorAll('.pm-reveal');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.15 });
-        revealTargets.forEach(el => observer.observe(el));
-
-        // ── PARALLAX 3D FLOTANTE ───────────────────────────────────────
-        // Cada imagen tiene una velocidad distinta que simula distancia al observador.
-        // fimg1 (primer plano)  → se mueve MÁS: sensación de objeto cercano
-        // fimg2 (capa media)    → velocidad intermedia
-        // fimg3 (fondo/atrás)   → se mueve MENOS: sensación de objeto lejano
-
-        const parallaxItems = [
-            { el: document.getElementById('fimg1'), speed: 0.28 },   // rápido = cerca
-            { el: document.getElementById('fimg2'), speed: 0.14 },   // medio
-            { el: document.getElementById('fimg3'), speed: 0.06 },   // lento = lejos
-        ];
-
-        // Leve rotación suave con el mouseove para reforzar el efecto 3D
-        let mx = 0, my = 0;
-        document.addEventListener('mousemove', e => {
-            mx = (e.clientX / window.innerWidth - 0.5) * 2;  // -1 a 1
-            my = (e.clientY / window.innerHeight - 0.5) * 2;
-        });
-
-        function animateParallax() {
-            const scrollY = window.scrollY;
-            parallaxItems.forEach(({ el, speed }, i) => {
-                if (!el) return;
-                // Desplazamiento vertical según scroll
-                const yShift = scrollY * speed;
-                // Leve tilt 3D por mouseove (más pronunciado en el primer plano)
-                const tiltX = my * (6 - i * 2);   // fimg1=6°, fimg2=4°, fimg3=2°
-                const tiltY = mx * (6 - i * 2);
-                const rotZ = mx * (2 - i * 0.5); // rotación sutil en Z
-                el.style.transform =
-                    `translateY(${-yShift}px) ` +
-                    `perspective(600px) ` +
-                    `rotateX(${tiltX}deg) rotateY(${tiltY}deg) rotateZ(${rotZ}deg)`;
-            });
-            requestAnimationFrame(animateParallax);
-        }
-
-        animateParallax();
-    </script>
-
-
-    <script>
-        const triggerSac = document.querySelector('.sacaraat-trigger');
-        if (triggerSac) {
-            triggerSac.addEventListener('mousemove', (e) => {
-                const heart = document.createElement('span');
-                heart.innerHTML = '❤';
-                heart.className = 'heart-particle';
-
-                const x = e.clientX - 10;
-                const y = e.clientY - 10;
-
-                heart.style.left = x + 'px';
-                heart.style.top = y + 'px';
-                heart.style.position = 'fixed';
-
-                const size = Math.random() * 0.8 + 0.5;
-                heart.style.setProperty('--scale', size); // Use CSS variable for scale
-
-                document.body.appendChild(heart);
-
-                setTimeout(() => heart.remove(), 1000);
-            });
-        }
-
-        // ============================================
-        // LÓGICA SCROLL ANIMATION (VIAJES SCATTER)
-        // ============================================
-        const travelWrapper = document.getElementById('scroll-travel-wrapper');
-        const travelTitle = document.getElementById('travel-title');
-        const tCards = document.querySelectorAll('.t-card');
-        const tTexts = document.querySelectorAll('.t-text');
-
-        window.addEventListener('scroll', () => {
-            if (!travelWrapper || window.innerWidth <= 900) return;
-
-            const rect = travelWrapper.getBoundingClientRect();
-            const totalScroll = rect.height - window.innerHeight;
-            // Progreso de 0 a 1 (sobre 400vh de scroll real)
-            let p = -rect.top / totalScroll;
-            p = Math.max(0, Math.min(1, p));
-
-            const vw = window.innerWidth;
-            const vh = window.innerHeight;
-
-            // Título
-            const titleFadeEnd = 0.15;
-            let titleOpacity = 1 - (p / titleFadeEnd);
-            let titleFilter = p > 0.05 ? `blur(${p * 40}px)` : 'blur(0px)';
-            if (travelTitle) {
-                travelTitle.style.transform = `translateY(${p * -300}px)`;
-                travelTitle.style.opacity = Math.max(0, titleOpacity);
-                travelTitle.style.filter = titleFilter;
-            }
-
-            // Definición de trayectorias MATEMÁTICAS
-            // Ajustamos las trayectorias para el nuevo rango de scroll (0 a 1 sobre 400vh)
-            // Trip centers: 0.25, 0.5, 0.75, 1.0 (o similar)
-            // Mantendremos la lógica de dist-al-centro pero adecuada al nuevo wrapper
-            const cardPaths = [
-                // Viaje 1 (Roma)
-                { layout: { dx: -vw * 0.22, dy: vh * 1.0 - (vh * 0.1) } }, { layout: { dx: -vw * 0.35, dy: vh * 1.0 + (vh * 0.1) } },
-                // Viaje 2 (Latam)
-                { layout: { dx: vw * 0.22, dy: vh * 2.0 - (vh * 0.1) } }, { layout: { dx: vw * 0.35, dy: vh * 2.0 + (vh * 0.1) } },
-                // Viaje 3 (Patagonia)
-                { layout: { dx: -vw * 0.22, dy: vh * 3.0 - (vh * 0.1) } }, { layout: { dx: -vw * 0.35, dy: vh * 3.0 + (vh * 0.1) } },
-                // Viaje 4 (Nuevos Rumbos)
-                { layout: { dx: vw * 0.22, dy: vh * 4.0 - (vh * 0.1) } }, { layout: { dx: vw * 0.35, dy: vh * 4.0 + (vh * 0.1) } }
-            ];
-
-            const maxVirtualScroll = vh * 4.0; // Cambiado de 5.0 a 4.0 para el nuevo height de 500vh
-            const globalScrollY = p * maxVirtualScroll;
-
-            // CAMBIO DINÁMICO DE FONDO AL BODY (Trazos quedan entre el fondo y la imagen)
-            const bgColors = [
-                '#ffffff', // Inicio / Roma
-                '#faf9f6', // Alabastro (Roma sutil)
-                '#f5f5f0', // Isabelline (Latam)
-                '#fdfcf0', // Cosmic Latte (Patagonia)
-                '#f4f7f6'  // Mint White (Nuevos Rumbos)
-            ];
-
-            // Calculamos qué color aplicar basado en el progreso p (0 a 1)
-            const colorIndex = Math.min(bgColors.length - 2, Math.floor(p / 0.2));
-            const nextColorIndex = colorIndex + 1;
-            const colorProgress = (p % 0.2) / 0.2;
-
-            // Función simple para interpolar colores hexadecimales (muy básica)
-            const interpolateColor = (c1, c2, f) => {
-                const r1 = parseInt(c1.substring(1, 3), 16);
-                const g1 = parseInt(c1.substring(3, 5), 16);
-                const b1 = parseInt(c1.substring(5, 7), 16);
-                const r2 = parseInt(c2.substring(1, 3), 16);
-                const g2 = parseInt(c2.substring(3, 5), 16);
-                const b2 = parseInt(c2.substring(5, 7), 16);
-                const r = Math.round(r1 + (r2 - r1) * f);
-                const g = Math.round(g1 + (g2 - g1) * f);
-                const b = Math.round(b1 + (b2 - b1) * f);
-                return `rgb(${r}, ${g}, ${b})`;
-            };
-
-            const currentBG = interpolateColor(bgColors[colorIndex], bgColors[nextColorIndex], colorProgress);
-            document.body.style.backgroundColor = currentBG;
-
-            tCards.forEach((card, i) => {
-                const conf = cardPaths[i];
-                const tripIndex = Math.floor(i / 2) + 1; // 1, 2, 3, 4
-                const text = tTexts[tripIndex - 1];
-
-                // El centro de cada viaje coincide con su Snap (25%, 50%, 75%, 100%) en el scroll de 400vh
-                const tripCenter = (tripIndex * 0.25); // 0.25, 0.5, 0.75, 1.0 (para el nuevo rango)
-
-                // Con el nuevo wrapper más corto, ajustamos la sensibilidad del foco
-                const distToCenter = Math.abs(p - tripCenter);
-                let rawFocus = 1 - (distToCenter / 0.15); // Un poco más de margen
-                let focusOpacity = Math.max(0, Math.min(1, rawFocus * 4.0));
-
-                // Animación pop: Termina completamente antes de llegar al centro (Snap)
-                const localP = Math.max(0, Math.min(1, (p - (tripCenter - 0.15)) / 0.1));
-
-                const cr = (i % 2 === 1 ? 8 : -8) * (1 - focusOpacity);
-                const cs = 0.9 + (0.1 * focusOpacity);
-
-                // Aplicamos transformación
-                card.style.opacity = focusOpacity;
-                card.style.transform = `translate(calc(-50% + ${conf.layout.dx}px), calc(-50% + ${conf.layout.dy - globalScrollY}px)) rotate(${cr}deg) scale(${cs})`;
-
-                if (text && i % 2 === 0) {
-                    const tx = (tripIndex - 1) % 2 === 0 ? (vw * 0.2) : (-vw * 0.2);
-                    const ty = (conf.layout.dy + vh * 0.1) - globalScrollY; // Centrado en el par
-                    text.style.opacity = focusOpacity;
-                    text.style.transform = `translate(calc(-50% + ${tx}px), calc(-50% + ${ty}px))`;
-                }
-            });
-        });
-
-        // Ejecutar una vez al inicio para que el título y estado inicial sean correctos
-        window.dispatchEvent(new Event('scroll'));
-    </script>
-
-    <script>
-
-        // Scribble Scroll Animation
-        const path1 = document.querySelector('#scroll-path-1');
-        const path2 = document.querySelector('#scroll-path-2');
-        const pathLength1 = path1.getTotalLength();
-        const pathLength2 = path2.getTotalLength();
-
-        path1.style.strokeDasharray = pathLength1 + ' ' + pathLength1;
-        path1.style.strokeDashoffset = pathLength1;
-        path2.style.strokeDasharray = pathLength2 + ' ' + pathLength2;
-        path2.style.strokeDashoffset = pathLength2;
-
-        window.addEventListener('scroll', () => {
-            const scrollPercentage = (document.documentElement.scrollTop + document.body.scrollTop) / (document.documentElement.scrollHeight - document.documentElement.clientHeight);
-
-            path1.style.strokeDashoffset = pathLength1 - (pathLength1 * scrollPercentage);
-            path2.style.strokeDashoffset = pathLength2 - (pathLength2 * scrollPercentage);
-        });
-    </script>
-
+    <!-- MODAL RED ARTE X IGUAL -->
+    <div id="modal-red-arte" uk-modal>
+        <div class="uk-modal-dialog uk-width-1-2@m uk-width-1-1">
+            <button class="uk-modal-close-default" type="button" uk-close></button>
+            <div class="uk-modal-header" style="background: transparent; border: none; padding: 0;">
+                <h2 class="uk-modal-title">Red Arte x Igual</h2>
+            </div>
+            <div class="uk-modal-body" style="padding: 0;">
+                <p class="modal-text">
+                    La Red Arte x Igual es un proyecto internacional que busca romper barreras a través de la expresión
+                    artística.
+                    Nacida de la colaboración entre Cre Arte y diversas instituciones alrededor del mundo, esta red
+                    promueve
+                    exposiciones itinerantes, festivales inclusivos y un diálogo constante sobre el arte como
+                    herramienta de
+                    transformación social y empoderamiento para personas con discapacidad.
+                </p>
+                <div class="uk-grid-small uk-child-width-1-3@s modal-gallery" uk-grid uk-lightbox>
+                    <div>
+                        <a href="img/artexigual.jpg" data-caption="Exposición Red Arte x Igual">
+                            <img src="img/artexigual.jpg" alt="">
+                        </a>
+                    </div>
+                    <div>
+                        <a href="img/artexigual2.jpg" data-caption="Talleres internacionales">
+                            <img src="img/artexigual2.jpg" alt="">
+                        </a>
+                    </div>
+                    <div>
+                        <a href="img/artexigual3.jpg" data-caption="Encuentros culturales">
+                            <img src="img/artexigual3.jpg" alt="">
+                        </a>
+                    </div>
+                    <div>
+                        <a href="img/artexigual4.jpg" data-caption="Arte sin fronteras">
+                            <img src="img/artexigual4.jpg" alt="">
+                        </a>
+                    </div>
+                    <div>
+                        <a href="img/artexigual5.jpg" data-caption="Impacto social">
+                            <img src="img/artexigual5.jpg" alt="">
+                        </a>
+                    </div>
+                    <div>
+                        <a href="img/artexigual6.jpg" data-caption="Comunidad Cre Arte">
+                            <img src="img/artexigual6.jpg" alt="">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="uk-modal-footer uk-text-right"
+                style="background: transparent; border: none; padding-top: 30px;">
+                <button class="uk-button uk-button-default uk-modal-close" type="button">Cerrar</button>
+            </div>
+        </div>
+    </div>
 
 </body>
 
