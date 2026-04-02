@@ -500,7 +500,7 @@
     .steps-section {
       padding: 0 0 120px;
       /* Reduced bottom padding */
-      margin-top: -100px !important;
+      margin-top: -120px !important;
       /* Reduced overlap to avoid text */
       position: relative;
       z-index: 20;
@@ -728,7 +728,7 @@
       font-size: clamp(2.5rem, 5vw, 4rem);
       line-height: 0.95;
       color: #6a1a1c;
-      margin-top: -220px;
+      margin-top: -450px;
       /* Pulls only the text further onto the image above */
       margin-bottom: 50px;
       text-transform: uppercase;
@@ -852,6 +852,43 @@
 
     .social-card:hover .social-card-arrow {
       opacity: 1;
+    }
+
+    /* Editorial Divider */
+    .editorial-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 40px 0 100px 0;
+      position: relative;
+      width: 100%;
+    }
+
+    .editorial-divider::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 15%;
+      right: 15%;
+      height: 1px;
+      background: #6a1a1c;
+      opacity: 0.15;
+    }
+
+    .divider-diamond {
+      width: 14px;
+      height: 14px;
+      background: #6a1a1c;
+      transform: rotate(45deg);
+      z-index: 1;
+      opacity: 0.5;
+    }
+
+    @media (max-width: 640px) {
+      .editorial-divider::before {
+        left: 5%;
+        right: 5%;
+      }
     }
 
     @media (max-width: 960px) {
@@ -1276,6 +1313,10 @@
     </div>
   </section>
 
+  <!-- Divider -->
+  <div class="editorial-divider" uk-scrollspy="cls: uk-animation-fade; delay: 300">
+    <div class="divider-diamond"></div>
+  </div>
 
   <!-- Dónde estamos SPLIT -->
   <section class="where-section" id="ubicacion">
