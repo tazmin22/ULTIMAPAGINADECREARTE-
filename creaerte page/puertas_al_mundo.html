@@ -30,17 +30,32 @@
             --text-color: #111;
         }
 
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box !important;
+        }
+
         body,
         html {
             margin: 0;
             padding: 0;
             width: 100%;
             height: auto;
-            overflow-x: hidden;
+            overflow-x: hidden !important;
             background-color: #fff;
-            /* White background as requested */
             font-family: 'Inter', sans-serif;
             scroll-behavior: smooth;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        a:visited {
+            color: inherit;
         }
 
         /* ===== NAV ===== */
@@ -151,10 +166,12 @@
         /* ===== EDITORIAL GRID SECTION ===== */
         .editorial-section {
             background-color: #fff;
-            /* White as requested */
             padding: 100px 5%;
             display: flex;
             justify-content: center;
+            width: 100%;
+            margin: 0 auto;
+            box-sizing: border-box;
         }
 
         .ed-grid {
@@ -420,6 +437,93 @@
             pointer-events: auto;
         }
 
+        .banner-section {
+            width: 100%;
+            margin-left: 0;
+            height: 100vh;
+            background-image: linear-gradient(to right, rgba(0, 0, 0, 0.6), transparent), url('img/noche.png');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            padding: 0 10%;
+            margin-top: 0;
+            margin-bottom: 80px;
+            position: relative;
+            z-index: 15;
+        }
+
+        .banner-content {
+            max-width: 800px;
+        }
+
+        .banner-title {
+            font-family: 'Inter', sans-serif;
+            font-size: clamp(3rem, 10vw, 7rem);
+            font-weight: 900;
+            color: #fff;
+            margin: 0;
+            line-height: 0.9;
+            letter-spacing: -4px;
+            text-transform: uppercase;
+        }
+
+        .banner-subtitle {
+            color: #fff;
+            font-size: 0.9rem;
+            margin-top: 25px;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            opacity: 0.8;
+            font-weight: 300;
+        }
+
+        .banner-btn {
+            display: inline-block;
+            margin-top: 45px;
+            padding: 18px 50px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .banner-btn:hover {
+            background: #fff;
+            color: #000;
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Twinkling Stars Animation */
+        @keyframes twinkle {
+
+            0%,
+            100% {
+                opacity: 0.1;
+                transform: scale(0.8);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.2);
+            }
+        }
+
+        .star {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            pointer-events: none;
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+            z-index: 1;
+        }
+
         /* Responsive */
         @media (max-width: 1024px) {
             .ed-grid {
@@ -428,30 +532,67 @@
         }
 
         @media (max-width: 768px) {
-            .strip-wrapper {
-                flex-direction: column;
-            }
-
-            .strip {
-                border-right: none;
-                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            }
-
-            .strip:hover {
-                flex: 3;
-            }
-
             .ed-grid {
                 grid-template-columns: 1fr;
             }
 
-            .t-nav-links {
-                display: none;
+            .banner-section {
+                padding: 100px 5% !important;
+                height: 100vh !important;
+                margin-top: 0 !important;
+                overflow: hidden !important;
+            }
+
+            .banner-title {
+                font-size: 4rem;
+            }
+
+            .ed-unified {
+                grid-column: span 1 !important;
+                aspect-ratio: 1 / 1 !important;
             }
 
             .footer-links {
                 flex-direction: column;
                 gap: 20px;
+            }
+
+            .festival-note {
+                position: static !important;
+                width: 100% !important;
+                margin: 40px 0 !important;
+            }
+
+            .festival-note svg {
+                display: none;
+            }
+
+            .sticker-container {
+                width: 90% !important;
+                margin: 50px auto !important;
+            }
+
+            .scrapbook-gallery {
+                height: auto !important;
+                display: flex !important;
+                flex-direction: column !important;
+                gap: 20px !important;
+                margin-top: 40px !important;
+            }
+
+            .scrapbook-gallery img {
+                position: static !important;
+                width: 100% !important;
+                height: 250px !important;
+                transform: none !important;
+                margin: 0 !important;
+                left: 0 !important;
+                right: 0 !important;
+            }
+
+            .editorial-separator {
+                padding: 60px 5% !important;
+                overflow: hidden !important;
             }
         }
     </style>
@@ -465,27 +606,103 @@
         </a>
         <div class="t-nav-links">
             <a href="index.html">Inicio</a>
-            <a href="quienes_somos.html">Quienes Somos</a>
             <a href="talleres.html">Talleres</a>
+            <a href="quienes_somos.html">Quiénes Somos</a>
             <a href="puertas_al_mundo.html">Puertas al Mundo</a>
+
         </div>
+        <button class="mobile-nav-toggle" aria-label="Abrir Menú">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
     </nav>
 
-    <div class="strip-wrapper" uk-scrollspy="cls: uk-animation-fade; target: .strip; delay: 100">
-        <div class="strip"></div>
-        <div class="strip"></div>
-        <div class="strip"></div>
-        <div class="strip"></div>
-        <div class="strip"></div>
+    <div class="mobile-menu">
+        <ul class="mobile-menu-links">
+            <li><a href="./index.html">Inicio</a></li>
+            <li><a href="./talleres.html">Talleres</a></li>
+            <li><a href="./quienes_somos.html">Quiénes Somos</a></li>
+            <li><a href="./puertas_al_mundo.html">Puertas al Mundo</a></li>
+            <li><a href="./galeria.html">Galería</a></li>
+            <li><a href="./obras.html">Obras</a></li>
+        </ul>
     </div>
+
+    <!-- HERO: EL TALLER -->
+    <section class="banner-section" uk-scrollspy="cls: uk-animation-fade; delay: 300">
+        <!-- Twinkling Stars Density Pack (Top Half Only) -->
+        <div class="star" style="top: 5%; left: 5%; width: 2px; height: 2px; animation: twinkle 3s infinite 0.1s;">
+        </div>
+        <div class="star" style="top: 10%; left: 15%; width: 1px; height: 1px; animation: twinkle 4s infinite 1.2s;">
+        </div>
+        <div class="star" style="top: 15%; left: 25%; width: 3px; height: 3px; animation: twinkle 5s infinite 2.3s;">
+        </div>
+        <div class="star" style="top: 20%; left: 35%; width: 2px; height: 2px; animation: twinkle 3.5s infinite 0.4s;">
+        </div>
+        <div class="star" style="top: 25%; left: 45%; width: 1px; height: 1px; animation: twinkle 4.5s infinite 1.5s;">
+        </div>
+        <div class="star" style="top: 30%; left: 55%; width: 3px; height: 3px; animation: twinkle 6s infinite 2.6s;">
+        </div>
+        <div class="star" style="top: 35%; left: 65%; width: 2px; height: 2px; animation: twinkle 3.2s infinite 0.7s;">
+        </div>
+        <div class="star" style="top: 40%; left: 75%; width: 1px; height: 1px; animation: twinkle 4.2s infinite 1.8s;">
+        </div>
+        <div class="star" style="top: 12%; left: 8%; width: 2px; height: 2px; animation: twinkle 4.1s infinite 0.5s;">
+        </div>
+        <div class="star" style="top: 28%; left: 12%; width: 1px; height: 1px; animation: twinkle 3.3s infinite 1.6s;">
+        </div>
+        <div class="star"
+            style="top: 42%; left: 18%; width: 2.5px; height: 2.5px; animation: twinkle 5.1s infinite 2.7s;"></div>
+        <div class="star"
+            style="top: 7%; left: 92%; width: 2.5px; height: 2.5px; animation: twinkle 3.9s infinite 0.3s;"></div>
+        <div class="star"
+            style="top: 23%; left: 88%; width: 1.5px; height: 1.5px; animation: twinkle 4.4s infinite 1.4s;"></div>
+        <div class="star" style="top: 37%; left: 82%; width: 3px; height: 3px; animation: twinkle 5.8s infinite 2.5s;">
+        </div>
+        <div class="star" style="top: 43%; left: 78%; width: 1px; height: 1px; animation: twinkle 3.1s infinite 0.6s;">
+        </div>
+        <div class="star" style="top: 18%; left: 52%; width: 2px; height: 2px; animation: twinkle 3.7s infinite 0.9s;">
+        </div>
+        <div class="star" style="top: 44%; left: 48%; width: 1px; height: 1px; animation: twinkle 4.8s infinite 1.1s;">
+        </div>
+        <div class="star" style="top: 41%; left: 56%; width: 3px; height: 3px; animation: twinkle 5.4s infinite 2.2s;">
+        </div>
+        <div class="star" style="top: 8%; left: 45%; width: 3px; height: 3px; animation: twinkle 4s infinite 1.2s;">
+        </div>
+        <div class="star"
+            style="top: 22%; left: 30%; width: 1.5px; height: 1.5px; animation: twinkle 3.5s infinite 0.8s;"></div>
+        <div class="star" style="top: 14%; left: 80%; width: 3px; height: 3px; animation: twinkle 5.5s infinite 1.1s;">
+        </div>
+        <div class="star" style="top: 6%; left: 40%; width: 2px; height: 2px; animation: twinkle 4.7s infinite 0.6s;">
+        </div>
+        <div class="star" style="top: 10%; left: 95%; width: 2px; height: 2px; animation: twinkle 5s infinite 0.4s;">
+        </div>
+        <div class="star" style="top: 3%; left: 25%; width: 2px; height: 2px; animation: twinkle 4s infinite 0.7s;">
+        </div>
+        <div class="star"
+            style="top: 7%; left: 60%; width: 1.5px; height: 1.5px; animation: twinkle 5.2s infinite 1.4s;"></div>
+        <div class="star" style="top: 4%; left: 12%; width: 2px; height: 2px; animation: twinkle 4.8s infinite 0.3s;">
+        </div>
+        <div class="star" style="top: 11%; left: 62%; width: 2px; height: 2px; animation: twinkle 3.1s infinite 0.6s;">
+        </div>
+        <div class="star" style="top: 16%; left: 92%; width: 2px; height: 2px; animation: twinkle 4.3s infinite 1.2s;">
+        </div>
+        <div class="star" style="top: 6%; left: 78%; width: 2px; height: 2px; animation: twinkle 4.6s infinite 1.7s;">
+        </div>
+        <div class="star" style="top: 9%; left: 33%; width: 2px; height: 2px; animation: twinkle 4.5s infinite 1.1s;">
+        </div>
+
+
+    </section>
 
 
 
     <!-- SECTION: FESTIVAL -->
     <section class="editorial-section" uk-scrollspy="cls: uk-animation-fade; delay: 100"
-        style="padding: 0; overflow: visible; margin-bottom: 180px; margin-top: 100px;">
+        style="padding: 0; overflow: hidden; margin-bottom: 180px; margin-top: 100px; width: 100%;">
         <div class="festival-banner"
-            style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('img/artexigual1.jpg'); background-size: cover; background-position: center; min-height: 550px; display: flex; align-items: center; justify-content: center; position: relative; overflow: visible; width: 100vw; margin-left: calc(-50vw + 50%);">
+            style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('img/artexigual1.jpg'); background-size: cover; background-position: center; min-height: 550px; display: flex; align-items: center; justify-content: center; position: relative; width: 100%;">
             <div class="content"
                 style="padding: 100px 5%; text-align: center; position: relative; width: 100%; max-width: 1200px;">
                 <div class="video-title-box" style="margin: 0;">
@@ -522,36 +739,163 @@
     <!-- Google Fonts for handwriting -->
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap" rel="stylesheet">
 
-    <!-- SECTION: VIAJES -->
-    <section class="editorial-section" style="padding-top: 0; overflow: visible !important;"
-        uk-scrollspy="cls: uk-animation-fade; delay: 200">
-        <div class="ed-grid"
-            style="grid-template-columns: 2fr 1fr; gap: 40px; padding: 0 5%; overflow: visible !important;">
-            <div class="ed-card"
-                style="background: #fff; padding: 80px; display: flex; flex-direction: column; justify-content: center; height: 600px; border: none; box-shadow: none;">
-                <div class="video-title-box" style="text-align: left; margin-bottom: 20px; margin-top: 0;">
-                    <span
-                        style="font-size: 3rem; padding: 15px 40px; transform: rotate(-1.5deg); box-shadow: 10px 10px 0 rgba(255, 157, 66, 0.2); font-weight: 900;">VIAJES</span>
-                </div>
-                <p
-                    style="color: #444; font-size: 0.95rem; margin-top: 30px; letter-spacing: 1px; line-height: 1.8; font-family: 'Inter', sans-serif; font-weight: 300;">
+    <!-- SECTION: VIAJES (Modern Clean Layout) -->
+    <section class="viajes-clean-section" uk-scrollspy="cls: uk-animation-fade; delay: 200">
+        <div class="viajes-container">
+            <div class="viajes-text">
+                <h2 class="viajes-h2">Viajes</h2>
+                <p class="viajes-p">
                     Cruzamos fronteras para compartir nuestra metodología, tender puentes culturales y
                     enriquecer nuestra labor con experiencias alrededor del mundo. Una red global de creación inclusiva.
                 </p>
+                <p class="viajes-p">
+                    Cada viaje es una oportunidad para aprender, enseñar y demostrar que el arte es un lenguaje
+                    universal que no conoce barreras ni límites geográficos.
+                </p>
+                <a href="galeria.html" class="viajes-link">
+                    <span class="viajes-arrow"></span>
+                    <span class="viajes-link-text">VER GALERÍA</span>
+                </a>
             </div>
-            <div class="ed-card scrapbook-gallery"
-                style="padding: 0; background: transparent; height: 600px; position: relative; border: none; box-shadow: none; overflow: visible !important;">
-                <img src="img/ROMA1.JPG" alt="Travel 1"
-                    style="position: absolute; top: 0; left: -100px; width: 100%; height: 380px; z-index: 10; object-fit: cover; box-shadow: 0 10px 40px rgba(0,0,0,0.2);">
-                <img src="img/ROMA2.JPG" alt="Travel 2"
-                    style="position: absolute; top: 220px; left: 40px; width: 110%; height: 340px; z-index: 20; object-fit: cover; box-shadow: 0 20px 60px rgba(0,0,0,0.25); transform: rotate(2deg);">
-                <img src="img/JACOBACCI.JPG" alt="Travel 3"
-                    style="position: absolute; bottom: -180px; right: -150px; width: 95%; height: 300px; z-index: 30; object-fit: cover; box-shadow: 0 30px 80px rgba(0,0,0,0.3); transform: rotate(-2deg);">
-
-
+            <div class="viajes-media">
+                <img src="img/ROMA1.JPG" alt="Viajes" class="viajes-img"
+                    style="border-radius: 4px; box-shadow: 0 30px 60px rgba(0,0,0,0.1);">
             </div>
         </div>
     </section>
+
+    <style>
+        .viajes-clean-section {
+            padding: 120px 10%;
+            background: #fff;
+        }
+
+        .viajes-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .viajes-h2 {
+            font-family: 'Inter', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: #000;
+            margin-bottom: 40px;
+            letter-spacing: -1px;
+        }
+
+        .viajes-p {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #666;
+            margin-bottom: 30px;
+            font-weight: 400;
+        }
+
+        .viajes-link {
+            display: inline-flex;
+            align-items: center;
+            text-decoration: none;
+            color: #000;
+            font-weight: 800;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            margin-top: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .viajes-link:hover {
+            transform: translateX(10px);
+        }
+
+        .viajes-arrow {
+            width: 50px;
+            height: 1px;
+            background: #000;
+            position: relative;
+            margin-right: 15px;
+        }
+
+        .viajes-arrow::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: -4px;
+            width: 8px;
+            height: 8px;
+            border-right: 1px solid #000;
+            border-top: 1px solid #000;
+            transform: rotate(45deg);
+        }
+
+        .viajes-media {
+            position: relative;
+        }
+
+        .viajes-video-wrapper {
+            position: relative;
+            overflow: hidden;
+            border-radius: 4px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
+        }
+
+        .viajes-img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.8s ease;
+        }
+
+        .viajes-video-wrapper:hover .viajes-img {
+            transform: scale(1.05);
+        }
+
+        .viajes-play-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.1);
+            transition: background 0.3s ease;
+        }
+
+        .viajes-video-wrapper:hover .viajes-play-overlay {
+            background: rgba(0, 0, 0, 0.25);
+        }
+
+        .viajes-play-btn {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 3px solid #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+        }
+
+        .viajes-video-wrapper:hover .viajes-play-btn {
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 992px) {
+            .viajes-container {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+
+            .viajes-h2 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
 
     <!-- BRANDING BRIDGE: ARTEXIGUAL -->
     <div class="sticker-container" uk-scrollspy="cls: uk-animation-slide-bottom-medium; delay: 300"
@@ -560,10 +904,65 @@
             style="width: 100%; opacity: 1; transform: rotate(-2deg) scale(0.9); filter: drop-shadow(0 40px 80px rgba(0,0,0,0.3)); transition: transform 0.5s ease;">
     </div>
 
+    <!-- NARRATIVE SECTION (Expanding the message) -->
+    <section class="narrative-section" uk-scrollspy="cls: uk-animation-fade; delay: 300">
+        <div class="narrative-content">
+            <h3 class="narrative-h3">Red Arte x Igual</h3>
+            <p class="narrative-p">
+                Trabajamos en red con instituciones y artistas internacionales para fomentar la inclusión, el
+                intercambio de saberes y el fortalecimiento cultural. Creemos en un arte sin fronteras que empodera.
+            </p>
+            <p class="narrative-p">
+                Red Arte por Igual promueve la igualdad a través de la expresión, buscando visibilizar a las personas
+                con discapacidad y generar un cambio social real en cada comunidad que visitamos.
+            </p>
+        </div>
+    </section>
+
+    <style>
+        .narrative-section {
+            padding: 100px 10%;
+            background: #fff;
+            text-align: left;
+        }
+
+        .narrative-content {
+            max-width: 800px;
+        }
+
+        .narrative-h3 {
+            font-family: 'Inter', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #000;
+            margin-bottom: 30px;
+            letter-spacing: -0.5px;
+        }
+
+        .narrative-p {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #444;
+            margin-bottom: 25px;
+            font-weight: 400;
+        }
+
+        @media (max-width: 768px) {
+            .narrative-section {
+                padding: 60px 5%;
+            }
+
+            .narrative-h3 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+
     <!-- NEW EDITORIAL SECTION -->
-    <section class="editorial-section">
+    <section class="editorial-section" style="padding-top: 0;">
         <div class="ed-grid">
-            <!-- Card 2 + 3 UNIFICADAS (Span 2 columns, shorter, no text) -->
+            <!-- Card 2 + 3 UNIFICADAS -->
             <div class="ed-card ed-unified" uk-scrollspy="cls: uk-animation-slide-bottom-small; delay: 200"
                 style="grid-column: span 2; aspect-ratio: 2 / 1; padding: 0;">
                 <img src="img/artexigual1.jpg" alt="Art" style="width: 100%; height: 100%; object-fit: cover;">
@@ -576,259 +975,133 @@
                 </div>
             </div>
 
-            <!-- Card 5 (Mas ancha y larga: Spans 2 cols and 2 rows) -->
-            <div class="ed-card card-5" uk-scrollspy="cls: uk-animation-slide-bottom-small; delay: 500"
-                style="grid-column: span 2; grid-row: span 2; aspect-ratio: 1 / 1;">
-                <img src="img/artexigual7.jpg" alt="Create" style="height: 60%; width: 100%; object-fit: cover;">
-                <div class="curve-overlay"></div>
-                <div class="content" style="padding: 60px;">
-                    <div class="ed-title" style="font-size: 1.8rem;">Trabajamos en red con instituciones y artistas para
-                        fomentar la inclusión, el
-                        intercambio de saberes y el fortalecimiento cultural.</div>
 
+    </section>
 
-                </div>
+    <!-- HORIZONTAL GALLERY (4 Columns) -->
+    <section class="horizontal-gallery-section" uk-scrollspy="cls: uk-animation-fade; delay: 300">
+        <div class="h-gallery-container">
+            <div class="h-gallery-item">
+                <img src="img/artexigual2.jpg" alt="Gallery 1">
             </div>
-
-            <!-- Card 6 (Sage green, small text, original typography) -->
-            <div class="ed-card card-rumon" uk-scrollspy="cls: uk-animation-slide-bottom-small; delay: 600"
-                style="padding: 40px; background: #8a9477; display: flex; flex-direction: column; justify-content: center; border: none;">
-                <div
-                    style="text-align: center; margin-bottom: 20px; font-size: 0.75rem; letter-spacing: 3px; color: #fff; text-transform: uppercase; font-weight: 800;">
-                </div>
-                <div class="ed-title" style="font-size: 1.1rem; text-align: center; color: #fff;">
-                    Red Arte por Igual promueve la igualdad a través del arte, buscando visibilizar a las personas
-                    con discapacidad y generar un cambio social real.
-                </div>
+            <div class="h-gallery-item">
+                <img src="img/artexigual3.jpg" alt="Gallery 2">
             </div>
-
-
-
+            <div class="h-gallery-item">
+                <img src="img/artexigual5.jpg" alt="Gallery 3">
+            </div>
+            <div class="h-gallery-item">
+                <img src="img/artexigual6.jpg" alt="Gallery 4">
+            </div>
         </div>
     </section>
 
-    <!-- EDITORIAL SEPARATOR -->
-    <div class="editorial-separator" uk-scrollspy="cls: uk-animation-slide-bottom-small; delay: 200"
-        style="padding: 100px 10%; background: #fff; text-align: center; justify-content: center; display: flex;">
-        <div class="video-title-box" style="margin: 0;" uk-scrollspy="cls: uk-animation-scale-up; delay: 300">
-            <span
-                style="font-size: 3rem; padding: 20px 60px; font-weight: 900; box-shadow: 12px 12px 0 rgba(255, 157, 66, 0.2);">LAS
-                NOCHES DE CRE ARTE</span>
-        </div>
-    </div>
-
     <style>
-        .editorial-separator {
-            padding: 100px 10%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .horizontal-gallery-section {
+            padding: 0 5% 100px 5%;
             background: #fff;
-            gap: 50px;
         }
 
-        .editorial-separator .line {
-            flex: 1;
-            height: 1px;
-            background: #e0e0e0;
+        .h-gallery-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
         }
 
-        .editorial-separator .sep-label {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            letter-spacing: 0.4rem;
-            color: #333;
-            /* Darker for better visibility */
-            text-transform: uppercase;
-            font-weight: 700;
-            white-space: nowrap;
+        .h-gallery-item {
+            aspect-ratio: 4 / 3;
+            overflow: hidden;
+            border-radius: 4px;
+        }
+
+        .h-gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .h-gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            .h-gallery-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
     </style>
 
-    <!-- BANNER SECTION: "EL TALLER" -->
-    <section class="banner-section" uk-scrollspy="cls: uk-animation-fade; delay: 300">
-        <!-- Twinkling Stars -->
-        <div class="star" style="top: 15%; left: 15%; width: 2px; height: 2px; animation: twinkle 3s infinite 0.5s;">
-        </div>
-        <div class="star" style="top: 8%; left: 45%; width: 3px; height: 3px; animation: twinkle 4s infinite 1.2s;">
-        </div>
-        <div class="star" style="top: 12%; left: 75%; width: 2px; height: 2px; animation: twinkle 5s infinite 2.5s;">
-        </div>
-        <div class="star"
-            style="top: 22%; left: 30%; width: 1.5px; height: 1.5px; animation: twinkle 3.5s infinite 0.8s;"></div>
-        <div class="star"
-            style="top: 18%; left: 85%; width: 2.5px; height: 2.5px; animation: twinkle 4.5s infinite 1.5s;"></div>
-        <div class="star" style="top: 5%; left: 10%; width: 2px; height: 2px; animation: twinkle 6s infinite 3s;"></div>
-        <div class="star" style="top: 20%; left: 55%; width: 2px; height: 2px; animation: twinkle 4.2s infinite 0.2s;">
-        </div>
-        <div class="star"
-            style="top: 23%; left: 50%; width: 1.5px; height: 1.5px; animation: twinkle 3.8s infinite 2s;"></div>
-        <div class="star" style="top: 14%; left: 80%; width: 3px; height: 3px; animation: twinkle 5.5s infinite 1.1s;">
-        </div>
-        <div class="star" style="top: 6%; left: 40%; width: 2px; height: 2px; animation: twinkle 4.7s infinite 0.6s;">
-        </div>
-        <div class="star"
-            style="top: 12%; left: 25%; width: 1.5px; height: 1.5px; animation: twinkle 3.2s infinite 1.8s;"></div>
-        <div class="star" style="top: 10%; left: 95%; width: 2px; height: 2px; animation: twinkle 5s infinite 0.4s;">
-        </div>
-        <div class="star"
-            style="top: 12%; left: 65%; width: 2.5px; height: 2.5px; animation: twinkle 4.1s infinite 2.2s;"></div>
-        <div class="star" style="top: 13%; left: 20%; width: 2px; height: 2px; animation: twinkle 3.6s infinite 0.9s;">
-        </div>
-        <div class="star" style="top: 21%; left: 70%; width: 2px; height: 2px; animation: twinkle 4.9s infinite 1.3s;">
-        </div>
 
-        <!-- Additional Stars -->
-        <div class="star" style="top: 3%; left: 25%; width: 2px; height: 2px; animation: twinkle 4s infinite 0.7s;">
-        </div>
-        <div class="star"
-            style="top: 7%; left: 60%; width: 1.5px; height: 1.5px; animation: twinkle 5.2s infinite 1.4s;"></div>
-        <div class="star"
-            style="top: 19%; left: 35%; width: 2.5px; height: 2.5px; animation: twinkle 3.7s infinite 2.1s;"></div>
-        <div class="star" style="top: 4%; left: 12%; width: 2px; height: 2px; animation: twinkle 4.8s infinite 0.3s;">
-        </div>
-        <div class="star"
-            style="top: 4%; left: 88%; width: 1.5px; height: 1.5px; animation: twinkle 5.5s infinite 1.9s;"></div>
-        <div class="star" style="top: 11%; left: 62%; width: 2px; height: 2px; animation: twinkle 3.1s infinite 0.6s;">
-        </div>
-        <div class="star" style="top: 16%; left: 92%; width: 2px; height: 2px; animation: twinkle 4.3s infinite 1.2s;">
-        </div>
-        <div class="star"
-            style="top: 11%; left: 5%; width: 2.5px; height: 2.5px; animation: twinkle 5.8s infinite 2.4s;"></div>
-        <div class="star"
-            style="top: 14%; left: 42%; width: 1.5px; height: 1.5px; animation: twinkle 3.4s infinite 0.9s;"></div>
-        <div class="star" style="top: 6%; left: 78%; width: 2px; height: 2px; animation: twinkle 4.6s infinite 1.7s;">
-        </div>
-        <div class="star" style="top: 21%; left: 18%; width: 3px; height: 3px; animation: twinkle 5.1s infinite 0.5s;">
-        </div>
-        <div class="star"
-            style="top: 5%; left: 54%; width: 1.5px; height: 1.5px; animation: twinkle 3.9s infinite 2.2s;"></div>
-        <div class="star" style="top: 9%; left: 33%; width: 2px; height: 2px; animation: twinkle 4.5s infinite 1.1s;">
-        </div>
-        <div class="star"
-            style="top: 13%; left: 82%; width: 2.5px; height: 2.5px; animation: twinkle 5.3s infinite 0.8s;"></div>
-        <div class="star" style="top: 13%; left: 48%; width: 2px; height: 2px; animation: twinkle 4.2s infinite 1.5s;">
-        </div>
 
-        <div class="banner-content">
-        </div>
-    </section>
 
-    <!-- SECOND EDITORIAL SECTION -->
-    <section class="editorial-section"
-        style="padding-top: 0; margin-top: -180px; position: relative; z-index: 20; background-color: transparent;">
-        <div class="ed-grid">
-            <!-- Card A (El bodegón) -->
-            <div class="ed-card hover-text-card" uk-scrollspy="cls: uk-animation-slide-bottom-small; delay: 100"
-                style="background: url('img/fondotexto.png'); background-size: cover; background-position: center; margin-right: -30px; z-index: 10;">
-                <div class="card-content-reveal">
-                    <div style="font-size: 0.7rem; letter-spacing: 2px; color: rgba(255,255,255,0.8);">NOCHES DE CRE
-                        ARTE
-                    </div>
-                    <div class="ed-title" style="font-size: 1.8rem; margin-top: 20px;">El bodegón </div>
-                    <div class="ed-desc">El evento "El Bodegón" propone compartir
-                        exquisitos platos elaborados por el equipo de cocina, integrado por profesores y alumnos de
-                        taller y
-                        además contar con la distinguida atención en el salón, de estudiantes que asisten diariamente a
-                        nuestro centro cultural.</div>
+
+    <!-- SECTION: NOCHES DE CRE ARTE (Focus on Ciclo Puertas) -->
+    <section class="noches-clean-section" uk-scrollspy="cls: uk-animation-fade; delay: 200">
+        <div class="noches-container">
+            <div class="noches-media">
+                <div class="viajes-video-wrapper">
+                    <img src="img/cicloimg.png" alt="Ciclo Puertas" class="viajes-img">
+                    <!-- Better image for artistic encounters -->
                 </div>
             </div>
-
-            <!-- Card B -->
-            <div class="ed-card" uk-scrollspy="cls: uk-animation-slide-bottom-small; delay: 200"
-                style="padding: 0; background: #fff; height: 120%; margin-top: -100px; box-shadow: 0 40px 100px rgba(0,0,0,0.15);">
-                <img src="img/comida.jpg" alt="Art" style="width: 100%; height: 100%; object-fit: cover;">
-            </div>
-
-            <!-- Card C (Ciclo puertas) -->
-            <div class="ed-card hover-text-card" uk-scrollspy="cls: uk-animation-slide-bottom-small; delay: 300"
-                style="background: url('img/cicloimg.png'); background-size: cover; background-position: center; border: none;">
-                <div class="card-content-reveal">
-                    <div class="ed-title" style="font-size: 3rem; line-height: 0.9;">
-                        Ciclo puertas
-                    </div>
-                    <div class="ed-desc">Encuentros artísticos que abren nuevas perspectivas y conectan nuestra
-                        comunidad con el mundo.</div>
-                </div>
+            <div class="noches-text">
+                <h2 class="viajes-h2" style="font-size: 2.8rem; margin-bottom: 10px;">Las Noches de Cre Arte</h2>
+                <h3 class="narrative-h3" style="color: #6a2a8c; font-size: 1.5rem; margin-bottom: 30px;">Ciclo Puertas
+                </h3>
+                <p class="viajes-p">
+                    Encuentros artísticos que abren nuevas perspectivas y conectan nuestra comunidad con el mundo a
+                    través de la música, el teatro y la expresión inclusiva.
+                </p>
+                <p class="viajes-p">
+                    Un espacio de intercambio cultural donde artistas locales e internacionales comparten su talento,
+                    enriqueciendo nuestra labor y fortaleciendo los lazos comunitarios.
+                </p>
+                <a href="galeria.html" class="viajes-link">
+                    <span class="viajes-arrow"></span>
+                    <span class="viajes-link-text">VER GALERÍA</span>
+                </a>
             </div>
         </div>
     </section>
 
     <style>
-        /* Banner Style */
-        .banner-section {
-            width: 100vw;
-            margin-left: calc(-50vw + 50%);
-            height: 85vh;
-            background-image: linear-gradient(to right, rgba(0, 0, 0, 0.6), transparent), url('img/noche.png');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            align-items: center;
-            padding: 0 10%;
-            margin-top: -140px;
-            margin-bottom: 80px;
-            position: relative;
-            z-index: 15;
-        }
-
-        .banner-content {
-            max-width: 600px;
-        }
-
-        .banner-title {
-            font-family: 'Inter', sans-serif;
-            font-size: 5rem;
-            font-weight: 900;
-            color: #fff;
-            margin: 0;
-            letter-spacing: -2px;
-        }
-
-        .banner-btn {
-            display: inline-block;
-            margin-top: 30px;
-            padding: 15px 40px;
-            background: rgba(255, 255, 255, 0.1);
-            color: #fff;
-            text-decoration: none;
-            text-transform: uppercase;
-            font-size: 0.7rem;
-            letter-spacing: 3px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-        }
-
-        .banner-btn:hover {
+        .noches-clean-section {
+            padding: 120px 10%;
             background: #fff;
-            color: #000;
         }
 
-        /* Twinkling Stars Animation */
-        @keyframes twinkle {
+        .noches-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
 
-            0%,
-            100% {
-                opacity: 0.1;
-                transform: scale(0.8);
+        .noches-text {
+            padding-left: 20px;
+        }
+
+        @media (max-width: 992px) {
+            .noches-container {
+                grid-template-columns: 1fr;
+                gap: 50px;
             }
 
-            50% {
-                opacity: 1;
-                transform: scale(1.2);
+            .noches-media {
+                order: 2;
+            }
+
+            .noches-text {
+                order: 1;
+                padding-left: 0;
             }
         }
+    </style>
 
-        .star {
-            position: absolute;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 50%;
-            pointer-events: none;
-            box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
-            z-index: 1;
-        }
-
+    <style>
         @media (max-width: 768px) {
             .banner-title {
                 font-size: 3rem;
@@ -913,6 +1186,32 @@
     </style>
 
 
+
+    <!-- SECTION: EL BODEGÓN (Modern Clean Layout - Image Right) -->
+    <section class="viajes-clean-section" style="padding-top: 0;" uk-scrollspy="cls: uk-animation-fade; delay: 200">
+        <div class="viajes-container">
+            <div class="viajes-text">
+                <h2 class="viajes-h2">El Bodegón</h2>
+                <p class="viajes-p">
+                    El proyecto "El Bodegón" propone compartir exquisitos platos elaborados por el equipo de cocina,
+                    integrado por profesores y alumnos de taller.
+                </p>
+                <p class="viajes-p">
+                    Contamos con la distinguida atención en el salón de nuestros estudiantes, transformando cada cena en
+                    una experiencia de aprendizaje laboral y encuentro social único en la región.
+                </p>
+                <a href="galeria.html" class="viajes-link">
+                    <span class="viajes-arrow"></span>
+                    <span class="viajes-link-text">VER GALERÍA</span>
+                </a>
+            </div>
+            <div class="viajes-media">
+                <div class="viajes-video-wrapper">
+                    <img src="img/comida.jpg" alt="Bodegón" class="viajes-img">
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- VIDEO SECTION -->
     <section class="video-section" uk-scrollspy="cls: uk-animation-fade; delay: 200" style="padding-top: 40px;">
@@ -1108,16 +1407,8 @@
 
         if (footerDonation) footerObserver.observe(footerDonation);
 
-        // Navbar Scroll Handler
-        window.addEventListener('scroll', () => {
-            const nav = document.querySelector('.t-nav');
-            if (window.scrollY > 50) {
-                nav.classList.add('scrolled');
-            } else {
-                nav.classList.remove('scrolled');
-            }
-        });
     </script>
+    <script src="script.js"></script>
 </body>
 
 </html>

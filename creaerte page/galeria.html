@@ -9,6 +9,11 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;700;900&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap"
         rel="stylesheet">
+    <!-- UIkit -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.19.4/dist/css/uikit.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.19.4/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.19.4/dist/js/uikit-icons.min.js"></script>
+
     <!-- Lenis Smooth Scroll -->
     <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
     <link rel="stylesheet" href="responsive.css">
@@ -41,16 +46,36 @@
             }
         }
 
-        /* ===== NAVIGATION ===== */
+        /* ===== NAV (Unified with Puertas al Mundo) ===== */
         .t-nav {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
-            padding: 35px 0;
-            z-index: 1000;
+            z-index: 9999;
             display: flex;
             justify-content: center;
+            align-items: center;
+            padding: 45px 0;
+            background: transparent;
+            border-bottom: none;
+            backdrop-filter: none;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .floating-logo {
+            position: absolute;
+            top: 30px;
+            left: 5%;
+            z-index: 2100;
+            transition: all 0.4s ease;
+        }
+
+        .floating-logo img {
+            height: 110px;
+            width: auto;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.2));
         }
 
         .t-nav-links {
@@ -60,70 +85,43 @@
 
         .t-nav-links a {
             font-family: 'Inter', sans-serif;
-            text-transform: uppercase;
-            font-size: 0.75rem;
-            font-weight: 400;
+            font-size: 0.72rem;
             letter-spacing: 4px;
+            text-transform: uppercase;
             color: #fff;
-            /* Inicialmente blanco para la portada */
-            transition: all 0.4s ease;
             text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            opacity: 0.9;
         }
-
 
         .t-nav-links a:hover {
-            color: var(--orange);
+            opacity: 1;
+            color: var(--orange) !important;
         }
 
-        /* ===== FLOATING LOGO ===== */
-        .floating-logo {
-            position: fixed;
-            top: 25px;
-            left: 40px;
-            z-index: 2000;
-        }
-
-        .floating-logo img {
-            height: 100px; /* Tamaño grande fijo */
-            transition: transform 0.3s ease;
-        }
-
-        .floating-logo:hover img {
-            transform: scale(1.05);
-        }
-
-        /* ===== GALLERY HERO (PORTADA) ===== */
-        .gallery-hero {
-            position: relative;
+        /* ===== STRIP HERO (From Puertas al Mundo) ===== */
+        .strip-wrapper {
+            display: flex;
             width: 100%;
-            height: 80vh;
-            /* Portada de gran impacto */
+            height: 100vh;
             overflow: hidden;
-            background: #eee;
-            margin-bottom: 80px;
+            background: #000;
+            position: relative;
         }
 
-        .gallery-hero img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: brightness(0.85);
-            /* Mejorar legibilidad de texto */
-        }
-
-        .gallery-hero-content {
+        .strip-overlay-content {
             position: absolute;
             bottom: 10%;
-            /* Más abajo */
             left: 8%;
-            z-index: 10;
+            z-index: 50;
+            pointer-events: none;
         }
 
         .gallery-title-block {
             display: inline-block;
             background: var(--wine);
             padding: 12px 35px;
-            /* Más chico */
             color: #fff;
             transform: rotate(-1.5deg);
             box-shadow: 6px 6px 25px rgba(0, 0, 0, 0.15);
@@ -134,7 +132,6 @@
             font-family: 'Inter', sans-serif;
             font-weight: 900;
             font-size: clamp(2rem, 5vw, 3.8rem);
-            /* Más chico */
             text-transform: uppercase;
             margin: 0;
             line-height: 1;
@@ -143,10 +140,8 @@
 
         .gallery-title-block.accent {
             transform: rotate(2deg) translateY(-8px) translateX(30px);
-            /* Menos desfase */
             background: var(--wine);
             padding: 8px 30px;
-            /* Más chico */
         }
 
         .gallery-title-block.accent h3 {
@@ -154,21 +149,41 @@
             font-style: italic;
             font-weight: 400;
             font-size: clamp(2rem, 5vw, 3.8rem);
-            /* Más chico */
             margin: 0;
             line-height: 1;
             text-transform: none;
         }
 
-        .gallery-hero-desc {
-            font-family: 'Inter', sans-serif;
-            max-width: 400px;
-            color: #fff;
-            margin-top: 40px;
-            margin-left: 50px;
-            font-size: 0.9rem;
-            line-height: 1.6;
-            opacity: 0.9;
+        .strip {
+            position: relative;
+            flex: 1;
+            height: 100%;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+            border-right: 1px solid rgba(255, 255, 255, 0.05);
+            background-size: cover;
+            background-position: center;
+            filter: grayscale(100%);
+        }
+
+        /* Images for the gallery */
+        .strip:nth-child(1) { background-image: url('img/galeria_portada.JPG'); }
+        .strip:nth-child(2) { background-image: url('img/artexigual2.jpg'); }
+        .strip:nth-child(3) { background-image: url('img/Murga.jpg'); }
+        .strip:nth-child(4) { background-image: url('img/EUROPA.JPG'); }
+        .strip:nth-child(5) { background-image: url('img/TRABAJANDO.JPG'); }
+
+        .strip:last-child { border-right: none; }
+        .strip:hover {
+            flex: 4;
+            filter: grayscale(0%);
+        }
+
+        @media (max-width: 768px) {
+            .strip-wrapper { flex-direction: column; }
+            .strip { border-right: none; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+            .strip:hover { flex: 3; }
         }
 
         /* ===== GALLERY SECTION GRID ===== */
@@ -232,24 +247,44 @@
 
 <body>
 
-    <a href="./index.html" class="floating-logo">
-        <img src="./img/LOGO.png" alt="Cre Arte Logo">
-    </a>
-
     <nav class="t-nav">
+        <a href="index.html" class="floating-logo">
+            <img src="./img/LOGO.png" alt="Cre Arte Logo">
+        </a>
         <div class="t-nav-links">
-
-            <a href="./talleres.html">Talleres</a>
-            <a href="./quienes_somos.html">Quiénes Somos</a>
-            <a href="./puertas_al_mundo.html">Puertas al Mundo</a>
-            <a href="./galeria.html">Galería</a>
-            <a href="./obras.html">Obras</a>
+            <a href="index.html">Inicio</a>
+            <a href="talleres.html">Talleres</a>
+            <a href="quienes_somos.html">Quiénes Somos</a>
+            <a href="puertas_al_mundo.html">Puertas al Mundo</a>
+            <a href="galeria.html">Galería</a>
+            <a href="obras.html">Obras</a>
         </div>
+        <button class="mobile-nav-toggle" aria-label="Abrir Menú">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
     </nav>
 
-    <section class="gallery-hero">
-        <img src="./img/galeria_portada.JPG" alt="Galería Portada">
-        <div class="gallery-hero-content">
+    <div class="mobile-menu">
+        <ul class="mobile-menu-links">
+            <li><a href="./index.html">Inicio</a></li>
+            <li><a href="./talleres.html">Talleres</a></li>
+            <li><a href="./quienes_somos.html">Quiénes Somos</a></li>
+            <li><a href="./puertas_al_mundo.html">Puertas al Mundo</a></li>
+            <li><a href="./galeria.html">Galería</a></li>
+            <li><a href="./obras.html">Obras</a></li>
+        </ul>
+    </div>
+
+    <div class="strip-wrapper" uk-scrollspy="cls: uk-animation-fade; target: .strip; delay: 100">
+        <div class="strip"></div>
+        <div class="strip"></div>
+        <div class="strip"></div>
+        <div class="strip"></div>
+        <div class="strip"></div>
+
+        <div class="strip-overlay-content">
             <div class="gallery-title-block">
                 <h2>Nuestros</h2>
             </div>
@@ -257,12 +292,12 @@
             <div class="gallery-title-block accent">
                 <h3>Recuerdos</h3>
             </div>
-            <div class="gallery-hero-desc">
+            <div class="gallery-hero-desc" style="font-family: 'Inter', sans-serif; max-width: 400px; color: #fff; margin-top: 40px; margin-left: 50px; font-size: 0.9rem; line-height: 1.6; opacity: 0.9;">
                 Un recorrido visual por nuestra historia, capturando la esencia
                 de cada encuentro, taller y viaje compartido.
             </div>
         </div>
-    </section>
+    </div>
 
     <main class="gallery-container">
         <div class="gallery-grid">
@@ -337,6 +372,7 @@
 
         if (footerDonation) footerObserver.observe(footerDonation);
     </script>
+    <script src="script.js"></script>
 </body>
 
 </html>

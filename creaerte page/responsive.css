@@ -109,7 +109,7 @@
 
 /* --- Global Media Queries --- */
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   * {
     box-sizing: border-box !important;
   }
@@ -128,13 +128,21 @@
     display: none !important;
   }
   
-  .mobile-nav-toggle {
-    display: flex;
-  }
-
   .t-nav {
     padding: 20px 5% !important;
+    display: flex !important;
     justify-content: space-between !important;
+    align-items: center !important;
+    width: 100% !important;
+    left: 0 !important;
+    box-sizing: border-box !important;
+  }
+  
+  .mobile-nav-toggle {
+    display: flex !important;
+    margin-left: auto !important; /* Pushes to the right even if alone */
+    position: relative;
+    z-index: 3500;
   }
   
   .top-logo img, .t-nav-logo img, .floating-logo img {
@@ -205,10 +213,39 @@
 /* Layout adjustments for absolute positioned elements and fixed widths */
 @media (max-width: 768px) {
   /* Common for Quienes Somos / Puertas */
-  .about-spread, .where-split, .steps-grid, .workshop-split {
+  .about-spread, .where-split, .steps-grid, .workshop-split, .ed-grid {
     display: flex !important;
     flex-direction: column !important;
     gap: 30px !important;
+    height: auto !important; /* Reset fixed heights */
+  }
+
+  .ed-card {
+    height: auto !important;
+    padding: 40px 5% !important; /* Standardize padding on mobile */
+  }
+
+  .scrapbook-gallery {
+    height: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 20px !important;
+    padding: 0 !important;
+    overflow: visible !important;
+  }
+
+  .scrapbook-gallery img {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    transform: none !important;
+    width: 100% !important;
+    height: auto !important;
+    margin-bottom: 20px !important;
+    aspect-ratio: 4/3 !important;
+    order: 1 !important;
   }
   
   /* Reset fixed widths to flexible percentages globally */
@@ -255,6 +292,41 @@
     flex-direction: column;
     gap: 30px;
     width: 100% !important;
+  }
+
+  .sticker-container {
+    width: 45% !important; /* Smaller size as requested */
+    margin: 80px auto -60px auto !important; /* Lower position, negative margin to float over the next section */
+    position: relative !important;
+    z-index: 50 !important; /* Ensure it stays on top of the image below */
+  }
+
+  .stationary-sticker {
+    transform: none !important;
+    width: 100% !important;
+  }
+
+  .festival-note {
+    position: relative !important;
+    right: auto !important;
+    bottom: auto !important;
+    width: 100% !important;
+    margin-top: 30px !important;
+    pointer-events: auto !important;
+  }
+  
+  .festival-banner {
+    width: 100% !important;
+    margin-left: 0 !important;
+    min-height: auto !important;
+    padding: 60px 0 !important;
+  }
+
+  /* Reset spacing between sections */
+  .editorial-section, section[style*="margin-bottom"] {
+    margin-top: 20px !important;
+    margin-bottom: 20px !important;
+    padding: 40px 5% !important;
   }
   
   .t-card {
