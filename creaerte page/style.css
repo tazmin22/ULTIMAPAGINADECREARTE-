@@ -176,8 +176,8 @@ nav {
   .tile--tall { grid-row: span 2; }
   .tile--big  { grid-column: span 2; grid-row: span 2; }
 
-  /* Responsivo */
-  @media (max-width: 1200px) { .mosaic { grid-template-columns: repeat(4, 1fr); } }
-  @media (max-width: 992px)  { .mosaic { grid-template-columns: repeat(3, 1fr); --row-h: 220px; } }
-  @media (max-width: 700px)  { .mosaic { grid-template-columns: repeat(2, 1fr); --row-h: 200px; } }
-  @media (max-width: 480px)  { .mosaic { grid-template-columns: 1fr; --row-h: 220px; } }
+  /* Responsivo - Breakpoints Limpios */
+  @media (max-width: 1024px) { .mosaic { grid-template-columns: repeat(4, 1fr); } }
+  @media (max-width: 768px)  { .mosaic { grid-template-columns: repeat(3, 1fr); --row-h: 220px; } }
+  @media (max-width: 480px)  { .mosaic { grid-template-columns: repeat(2, 1fr); --row-h: 200px; } }
+  @media (max-width: 320px)  { .mosaic { grid-template-columns: 1fr; --row-h: 220px; } }

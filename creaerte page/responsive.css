@@ -3,6 +3,8 @@
   This file handles responsiveness across all pages to maintain a premium editorial feel.
 */
 
+
+
 :root {
   --mobile-nav-bg: #f9f7f2;
   --accent-color: #6a1a1c;
@@ -107,7 +109,21 @@
 
 /* --- Global Media Queries --- */
 
-@media (max-width: 960px) {
+@media (max-width: 768px) {
+  * {
+    box-sizing: border-box !important;
+  }
+
+  html, body {
+    max-width: 100vw;
+    overflow-x: hidden !important;
+  }
+
+  img, video {
+    max-width: 100% !important;
+    height: auto;
+  }
+
   .t-nav-links {
     display: none !important;
   }
@@ -127,7 +143,7 @@
 
   /* Padding adjustments */
   section {
-    padding: 60px 5% !important;
+    padding: 60px 4% !important;
   }
 
   /* Fluid headings */
@@ -140,7 +156,7 @@
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   h1, .uk-heading-medium {
     font-size: 2.5rem !important;
   }
@@ -157,7 +173,7 @@
 }
 
 /* Index Specific Fixes */
-@media (max-width: 960px) {
+@media (max-width: 768px) {
   .cta-hero .uk-grid-large {
     flex-direction: column;
     text-align: center;
@@ -166,17 +182,41 @@
   .cta-hero .uk-width-auto {
     margin-top: 20px;
   }
+
+  .social-headline {
+    margin-top: 0 !important;
+    margin-bottom: 20px !important;
+  }
+
+  .social-section {
+    padding: 60px 0 40px 0 !important; /* Adjust padding nicely */
+  }
+
+  section.steps-section {
+    margin-top: 120px !important; /* Increased for better separation */
+    padding-top: 50px !important; /* Extra inner gap */
+  }
+
+  .step-card {
+    margin-top: 0 !important; /* Reset staggered offsets from desktop */
+  }
 }
 
-/* Layout adjustments for absolute positioned elements */
-@media (max-width: 1100px) {
+/* Layout adjustments for absolute positioned elements and fixed widths */
+@media (max-width: 768px) {
   /* Common for Quienes Somos / Puertas */
-  .about-spread {
-    grid-template-columns: 1fr !important;
-    gap: 20px !important;
+  .about-spread, .where-split, .steps-grid, .workshop-split {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 30px !important;
   }
   
-  .spread-photo, .scattered-photo, .mag-scatter-img {
+  /* Reset fixed widths to flexible percentages globally */
+  div[style*="width:"] {
+    max-width: 100% !important;
+  }
+  
+  .spread-photo, .scattered-photo, .mag-scatter-img, [class^="scrap-"], [class^="sp-"], [class^="ms-"], [class^="photo-"] {
     position: relative !important;
     top: auto !important;
     left: auto !important;
@@ -184,28 +224,29 @@
     bottom: auto !important;
     transform: none !important;
     width: 100% !important;
+    max-width: 100% !important;
     height: auto !important;
     margin-bottom: 30px !important;
-    aspect-ratio: 4/3 !important;
+    aspect-ratio: auto !important;
+    /* Img on top */
+    order: 1 !important; 
   }
   
-  .about-spread-title, .about-spread-text, .about-spread-body {
-    grid-column: 1 !important;
+  .about-spread-title, .about-spread-text, .about-spread-body, .scrap-text-box, .where-text-details {
+    width: 100% !important;
     max-width: 100% !important;
     text-align: center !important;
     margin-left: 0 !important;
     margin-right: 0 !important;
+    order: 2 !important; /* Text below image */
   }
   
   .staff-mosaic {
-    grid-template-columns: repeat(2, 1fr) !important;
+    grid-template-columns: repeat(2, 1fr) !important; /* Switch to 2 cols in mobile instead of 1 */
   }
   
   .mosaic-text-box {
-    grid-column: span 2 !important;
-    grid-row: span 1 !important;
-    aspect-ratio: auto !important;
-    padding: 60px 20px !important;
+    display: none !important; /* Hide the text box on mobile as per user request */
   }
   
   .scrapbook-container {
@@ -213,27 +254,56 @@
     display: flex;
     flex-direction: column;
     gap: 30px;
+    width: 100% !important;
   }
   
-  .scrap-piece {
-    position: relative !important;
-    top: auto !important;
-    left: auto !important;
-    right: auto !important;
-    bottom: auto !important;
+  .t-card {
+     display: flex !important;
+     flex-direction: column !important;
+  }
+  .t-card-text {
+     order: 2 !important; /* text below image */
+     padding: 40px 5% !important;
+  }
+  .t-card-img {
+     order: 1 !important; /* image on top */
+  }
+
+  /* Specific fix for Where/Map Section on mobile */
+  .where-headline {
     transform: none !important;
+    margin-top: 0 !important;
+    margin-bottom: 15px !important;
+    text-align: center !important;
+  }
+
+  .where-highlight {
+    margin-bottom: 5px !important;
+  }
+
+  .where-text-details {
+    margin-bottom: 25px !important;
+    order: 2 !important;
+  }
+
+  .where-map-container {
+    order: 3 !important;
+    z-index: 10 !important;
     width: 100% !important;
-    height: auto !important;
-    aspect-ratio: 4/3 !important;
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 480px) {
   .staff-mosaic {
-    grid-template-columns: 1fr !important;
+    grid-template-columns: repeat(2, 1fr) !important;
   }
-  
-  .mosaic-text-box {
-    grid-column: span 1 !important;
+}
+
+@media (max-width: 320px) {
+  .t-card-title {
+    font-size: 1.8rem !important;
+  }
+  h1, .uk-heading-medium {
+    font-size: 2rem !important;
   }
 }
