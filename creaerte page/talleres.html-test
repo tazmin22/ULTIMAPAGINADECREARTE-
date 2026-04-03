@@ -1585,7 +1585,7 @@
     </section>
 
     <!-- ── LISTADO COMPLETO DE TALLERES (MOSAICO COLORIDO) ────────── -->
-    <section class="workshop-mosaic-section" id="mosaic-list" style="margin-top: 50px; margin-bottom: 200px;">
+    <section class="workshop-mosaic-section" id="mosaic-list" style="margin-top: 50px;">
         <div class="workshop-mosaic-grid">
             <!-- Row 1 -->
             <div class="mosaic-tile bg-sage fixed-photo">
@@ -2010,22 +2010,12 @@
             </div>
             <span>Doná y apoyá nuestra labor</span>
         </div>
+        <img src="./img/LOGO.png" alt="Cre Arte" class="footer-logo">
         <div class="footer-links">
             <a href="./index.html">Inicio</a>
             <a href="./talleres.html">Talleres</a>
             <a href="./quienes_somos.html">Quiénes Somos</a>
             <a href="./puertas_al_mundo.html">Puertas al Mundo</a>
-        </div>
-        <div class="footer-social">
-            <a href="https://www.instagram.com/creartebrc/" target="_blank" aria-label="Instagram">
-                <span uk-icon="icon: instagram; ratio: 1.2"></span>
-            </a>
-            <a href="https://www.facebook.com/creartebrc" target="_blank" aria-label="Facebook">
-                <span uk-icon="icon: facebook; ratio: 1.2"></span>
-            </a>
-            <a href="https://www.youtube.com/@cre-arte1309" target="_blank" aria-label="YouTube">
-                <span uk-icon="icon: youtube; ratio: 1.2"></span>
-            </a>
         </div>
         <div class="footer-bottom">
             &copy; 2026 Cre Arte Bariloche. Todos los derechos reservados.<br>
