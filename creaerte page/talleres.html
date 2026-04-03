@@ -82,7 +82,8 @@
             width: 100%;
             z-index: 5000;
             display: flex;
-            justify-content: center; /* Centered links */
+            justify-content: center;
+            /* Centered links */
             align-items: center;
             padding: 25px 5%;
             background: rgba(255, 255, 255, 0.95);
@@ -239,6 +240,8 @@
         .custom-video-thumb {
             display: block;
             position: relative;
+            z-index: 2;
+            /* Clearly above the background stickers */
             cursor: pointer;
             transition: all 0.5s ease;
             overflow: hidden;
@@ -377,6 +380,64 @@
 
         .viajes-link:hover .viajes-link-text {
             color: var(--wine);
+        }
+
+        /* ── VIDEO STICKERS (DECORATIVE GIFS) ── */
+        .video-sticker-wrapper {
+            position: relative;
+            grid-area: 1 / 1;
+            /* For stacking stickers if needed */
+        }
+
+        .video-sticker {
+            position: absolute;
+            width: 140px;
+            height: 140px;
+            z-index: 1;
+            /* Above bg, below video */
+            pointer-events: none;
+            filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.05));
+            overflow: hidden;
+            border: none;
+        }
+
+        .video-sticker img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* Full opacity for constant visibility */
+        }
+
+        .vs-tl {
+            width: 200px;
+            /* Specific larger size for this corner */
+            height: 200px;
+            top: -90px;
+            left: -80px;
+            transform: rotate(-15deg);
+        }
+
+        .vs-br {
+            bottom: -60px;
+            right: -60px;
+            transform: rotate(12deg);
+        }
+
+        @media (max-width: 992px) {
+            .video-sticker {
+                width: 100px;
+                height: 100px;
+            }
+
+            .vs-tl {
+                top: -30px;
+                left: -20px;
+            }
+
+            .vs-br {
+                bottom: -30px;
+                right: -20px;
+            }
         }
 
         @media (max-width: 992px) {
@@ -1480,7 +1541,16 @@
     <!-- ── NUEVA SECCIÓN DE VIDEO EDITORIAL ── -->
     <section class="t-video-section" uk-scrollspy="cls: uk-animation-fade; delay: 200">
         <div class="t-video-container">
-            <div class="t-video-media" uk-scrollspy="cls: uk-animation-slide-left-medium; delay: 300">
+            <div class="t-video-media" style="position: relative; overflow: visible;"
+                uk-scrollspy="cls: uk-animation-slide-left-medium; delay: 300">
+                <!-- Stickers -->
+                <div class="video-sticker vs-tl">
+                    <img src="./img/gifvideo.gif" alt="Acción 1">
+                </div>
+                <div class="video-sticker vs-br">
+                    <img src="./img/gifvideo2.gif" alt="Acción 2">
+                </div>
+
                 <a href="https://www.youtube.com/watch?v=9vYb4koLDKk&list=RD9vYb4koLDKk&start_radio=1" target="_blank"
                     class="custom-video-thumb">
                     <img src="./img/video_portada.png" alt="Talleres Video" class="video-poster">
