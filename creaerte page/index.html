@@ -298,6 +298,25 @@
       color: #111;
     }
 
+    @keyframes bounce {
+
+      0%,
+      20%,
+      50%,
+      80%,
+      100% {
+        transform: translateY(0);
+      }
+
+      40% {
+        transform: translateY(-15px);
+      }
+
+      60% {
+        transform: translateY(-7px);
+      }
+    }
+
     /* Botones compactos en mosaico combinado */
     .tile .uk-button.uk-button-small {
       border-radius: 999px;
@@ -611,7 +630,8 @@
       right: 0;
       z-index: 100;
       display: flex;
-      justify-content: center; /* Centered links */
+      justify-content: center;
+      /* Centered links */
       align-items: center;
       padding: 28px 6%;
     }
@@ -620,7 +640,8 @@
       position: absolute;
       left: 6%;
       display: block;
-      margin-top: 40px; /* Lowered as requested */
+      margin-top: 40px;
+      /* Lowered as requested */
       transition: all 0.4s ease;
     }
 
@@ -1163,7 +1184,7 @@
 
       <!-- HISTORIA + INVESTIGACIÓN con color en hover (igual que tenías) -->
       <div class="uk-width-2-3@l uk-width-1-1@m">
-        <a href="404.html" class="uk-inline-clip uk-transition-toggle uk-display-block">
+        <a href="./obras.html" class="uk-inline-clip uk-transition-toggle uk-display-block">
           <div class="uk-cover-container tile colorize" style="background:#1b263b;
                       --hover-color:#000000;
                       --hover-opacity:.55;
@@ -1182,7 +1203,7 @@
 
       <!-- INTERNACIONALES -->
       <div id="internacionales">
-        <a href="404.html" class="uk-inline-clip uk-transition-toggle uk-display-block">
+        <a href="./galeria.html" class="uk-inline-clip uk-transition-toggle uk-display-block">
           <div class="uk-cover-container tile hover-reveal" style="background:#0f2940;">
             <img src="./talleres/talleres26.JPG" alt="Internacionales" uk-cover>
             <canvas width="800" height="560"></canvas>
@@ -1202,13 +1223,13 @@
   <!-- CTA -->
   <section class="uk-section cta-hero uk-light" uk-scrollspy="cls: uk-animation-slide-bottom-medium; delay: 200">
     <div class="uk-container">
-      <div class="uk-grid-large uk-flex-middle" uk-grid>
-        <div class="uk-width-expand">
+      <div class="uk-grid-large uk-flex-middle uk-flex-center uk-text-center" uk-grid>
+        <div class="uk-width-2-3@m uk-width-1-1">
           <h2 class="uk-margin-remove">¡Conocé más sobre nuestra escuela!</h2>
           <p class="uk-text-lead uk-margin-small">Programas, cultura, deportes y más.</p>
-        </div>
-        <div class="uk-width-auto">
-          <a class="uk-button uk-button-default uk-button-large" href="404.html">Ver más</a>
+          <div class="uk-margin-medium-top">
+            <span uk-icon="icon: chevron-down; ratio: 2.5" style="color: #fff; animation: bounce 2s infinite;"></span>
+          </div>
         </div>
       </div>
     </div>

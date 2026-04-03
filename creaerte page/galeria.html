@@ -26,13 +26,22 @@
             --text: #111;
         }
 
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box !important;
+        }
+
+        html,
         body {
-            background-color: var(--paper);
             margin: 0;
             padding: 0;
+            width: 100%;
+            max-width: 100vw;
+            overflow-x: hidden !important;
+            background-color: var(--paper);
             color: var(--text);
             font-family: 'EB+Garamond', serif;
-            overflow-x: hidden;
             animation: fadeInPage 1.2s ease-out;
         }
 
@@ -164,26 +173,50 @@
             border-right: 1px solid rgba(255, 255, 255, 0.05);
             background-size: cover;
             background-position: center;
-            filter: grayscale(100%);
         }
 
         /* Images for the gallery */
-        .strip:nth-child(1) { background-image: url('img/galeria_portada.JPG'); }
-        .strip:nth-child(2) { background-image: url('img/artexigual2.jpg'); }
-        .strip:nth-child(3) { background-image: url('img/Murga.jpg'); }
-        .strip:nth-child(4) { background-image: url('img/EUROPA.JPG'); }
-        .strip:nth-child(5) { background-image: url('img/TRABAJANDO.JPG'); }
+        .strip:nth-child(1) {
+            background-image: url('img/footerfoter.jpg');
+        }
 
-        .strip:last-child { border-right: none; }
+        .strip:nth-child(2) {
+            background-image: url('img/Acrilico.JPG');
+        }
+
+        .strip:nth-child(3) {
+            background-image: url('img/bodegonimg.png');
+        }
+
+        .strip:nth-child(4) {
+            background-image: url('img/cicloimg.png');
+        }
+
+        .strip:nth-child(5) {
+            background-image: url('img/Antonio\ Mora.\ Mujer\ con\ sombrero.\ 0\,89\ x\ 0\,70.\ Oleo-\ 2006.jpg');
+        }
+
+        .strip:last-child {
+            border-right: none;
+        }
+
         .strip:hover {
             flex: 4;
-            filter: grayscale(0%);
         }
 
         @media (max-width: 768px) {
-            .strip-wrapper { flex-direction: column; }
-            .strip { border-right: none; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
-            .strip:hover { flex: 3; }
+            .strip-wrapper {
+                flex-direction: column;
+            }
+
+            .strip {
+                border-right: none;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .strip:hover {
+                flex: 3;
+            }
         }
 
         /* ===== GALLERY SECTION GRID ===== */
@@ -239,9 +272,19 @@
             letter-spacing: 2px;
             color: #aaa;
             opacity: 0.5;
+            z-index: 1;
+            position: absolute;
         }
 
-
+        .gallery-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.6s ease;
+            z-index: 2;
+            position: relative;
+        }
     </style>
 </head>
 
@@ -256,8 +299,7 @@
             <a href="talleres.html">Talleres</a>
             <a href="quienes_somos.html">Quiénes Somos</a>
             <a href="puertas_al_mundo.html">Puertas al Mundo</a>
-            <a href="galeria.html">Galería</a>
-            <a href="obras.html">Obras</a>
+
         </div>
         <button class="mobile-nav-toggle" aria-label="Abrir Menú">
             <span></span>
@@ -284,40 +326,75 @@
         <div class="strip"></div>
         <div class="strip"></div>
 
-        <div class="strip-overlay-content">
-            <div class="gallery-title-block">
-                <h2>Nuestros</h2>
-            </div>
-            <br>
-            <div class="gallery-title-block accent">
-                <h3>Recuerdos</h3>
-            </div>
-            <div class="gallery-hero-desc" style="font-family: 'Inter', sans-serif; max-width: 400px; color: #fff; margin-top: 40px; margin-left: 50px; font-size: 0.9rem; line-height: 1.6; opacity: 0.9;">
-                Un recorrido visual por nuestra historia, capturando la esencia
-                de cada encuentro, taller y viaje compartido.
-            </div>
-        </div>
     </div>
 
-    <main class="gallery-container">
-        <div class="gallery-grid">
+    <main class="gallery-container" style="margin-top: 150px;">
+        <div class="gallery-grid" uk-lightbox="animation: slide">
             <!-- BLOQUE 1 -->
-            <div class="gallery-item"></div>
-            <div class="gallery-item"></div>
-            <div class="gallery-item"></div>
-            <div class="gallery-item"></div>
+            <div class="gallery-item" uk-scrollspy="cls: uk-animation-scale-up; delay: 100">
+                <a href="puertas/img1.jpg" data-caption="Momento Cre Arte 1">
+                    <img src="puertas/img1.jpg" alt="Gallery Image" class="gallery-img">
+                </a>
+            </div>
+            <div class="gallery-item" uk-scrollspy="cls: uk-animation-scale-up; delay: 200">
+                <a href="puertas/img2.jpg" data-caption="Momento Cre Arte 2">
+                    <img src="puertas/img2.jpg" alt="Gallery Image" class="gallery-img">
+                </a>
+            </div>
+            <div class="gallery-item" uk-scrollspy="cls: uk-animation-scale-up; delay: 300">
+                <a href="puertas/img3.jpg" data-caption="Momento Cre Arte 3">
+                    <img src="puertas/img3.jpg" alt="Gallery Image" class="gallery-img">
+                </a>
+            </div>
+            <div class="gallery-item" uk-scrollspy="cls: uk-animation-scale-up; delay: 400">
+                <a href="puertas/img4.jpg" data-caption="Momento Cre Arte 4">
+                    <img src="puertas/img4.jpg" alt="Gallery Image" class="gallery-img">
+                </a>
+            </div>
 
             <!-- BLOQUE 2 -->
-            <div class="gallery-item"></div>
-            <div class="gallery-item"></div>
-            <div class="gallery-item"></div>
-            <div class="gallery-item"></div>
+            <div class="gallery-item" uk-scrollspy="cls: uk-animation-scale-up; delay: 100">
+                <a href="puertas/img5.jpg" data-caption="Momento Cre Arte 5">
+                    <img src="puertas/img5.jpg" alt="Gallery Image" class="gallery-img">
+                </a>
+            </div>
+            <div class="gallery-item" uk-scrollspy="cls: uk-animation-scale-up; delay: 200">
+                <a href="puertas/img1.jpg" data-caption="Momento Cre Arte 6">
+                    <img src="puertas/img1.jpg" alt="Gallery Image" class="gallery-img">
+                </a>
+            </div>
+            <div class="gallery-item" uk-scrollspy="cls: uk-animation-scale-up; delay: 300">
+                <a href="puertas/img2.jpg" data-caption="Momento Cre Arte 7">
+                    <img src="puertas/img2.jpg" alt="Gallery Image" class="gallery-img">
+                </a>
+            </div>
+            <div class="gallery-item" uk-scrollspy="cls: uk-animation-scale-up; delay: 400">
+                <a href="puertas/img3.jpg" data-caption="Momento Cre Arte 8">
+                    <img src="puertas/img3.jpg" alt="Gallery Image" class="gallery-img">
+                </a>
+            </div>
 
             <!-- BLOQUE 3 -->
-            <div class="gallery-item"></div>
-            <div class="gallery-item"></div>
-            <div class="gallery-item"></div>
-            <div class="gallery-item"></div>
+            <div class="gallery-item" uk-scrollspy="cls: uk-animation-scale-up; delay: 100">
+                <a href="puertas/img4.jpg" data-caption="Momento Cre Arte 9">
+                    <img src="puertas/img4.jpg" alt="Gallery Image" class="gallery-img">
+                </a>
+            </div>
+            <div class="gallery-item" uk-scrollspy="cls: uk-animation-scale-up; delay: 200">
+                <a href="puertas/img5.jpg" data-caption="Momento Cre Arte 10">
+                    <img src="puertas/img5.jpg" alt="Gallery Image" class="gallery-img">
+                </a>
+            </div>
+            <div class="gallery-item" uk-scrollspy="cls: uk-animation-scale-up; delay: 300">
+                <a href="puertas/img1.jpg" data-caption="Momento Cre Arte 11">
+                    <img src="puertas/img1.jpg" alt="Gallery Image" class="gallery-img">
+                </a>
+            </div>
+            <div class="gallery-item" uk-scrollspy="cls: uk-animation-scale-up; delay: 400">
+                <a href="puertas/img2.jpg" data-caption="Momento Cre Arte 12">
+                    <img src="puertas/img2.jpg" alt="Gallery Image" class="gallery-img">
+                </a>
+            </div>
         </div>
     </main>
 
@@ -332,16 +409,26 @@
             </div>
             <span>Doná y apoyá nuestra labor</span>
         </div>
-        <img src="./img/LOGO.png" alt="Cre Arte" class="footer-logo">
         <div class="footer-links">
             <a href="./index.html">Inicio</a>
             <a href="./talleres.html">Talleres</a>
             <a href="./quienes_somos.html">Quiénes Somos</a>
             <a href="./puertas_al_mundo.html">Puertas al Mundo</a>
         </div>
+        <div class="footer-social">
+            <a href="https://www.instagram.com/creartebrc/" target="_blank" aria-label="Instagram">
+                <span uk-icon="icon: instagram; ratio: 1.2"></span>
+            </a>
+            <a href="https://www.facebook.com/creartebrc" target="_blank" aria-label="Facebook">
+                <span uk-icon="icon: facebook; ratio: 1.2"></span>
+            </a>
+            <a href="https://www.youtube.com/@cre-arte1309" target="_blank" aria-label="YouTube">
+                <span uk-icon="icon: youtube; ratio: 1.2"></span>
+            </a>
+        </div>
         <div class="footer-bottom">
             &copy; 2026 Cre Arte Bariloche. Todos los derechos reservados.<br>
-            Tienda Desarrolada por <span class="link-qiell">Qiell</span>
+            Pagina desarollada por Qiell
         </div>
     </footer>
 
