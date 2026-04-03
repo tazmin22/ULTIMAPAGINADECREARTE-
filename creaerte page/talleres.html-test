@@ -796,6 +796,13 @@
             z-index: 2;
         }
 
+        @media (min-width: 1200px) {
+            .workshop-mosaic-grid {
+                grid-template-columns: repeat(6, 1fr);
+                grid-auto-rows: calc(100vw / 6);
+            }
+        }
+
         .mosaic-tile {
             position: relative;
             overflow: hidden;
@@ -804,52 +811,18 @@
             justify-content: center;
             padding: 1.8rem;
             cursor: default;
-            /* INITIAL STATE FOR STAGGERED REVEAL */
+            /* INITIAL STATE FOR FAST REVEAL */
             opacity: 0;
             transform: translateY(30px);
-            transition: opacity 0.8s cubic-bezier(0.19, 1, 0.22, 1),
-                transform 1.2s cubic-bezier(0.19, 1, 0.22, 1),
-                background-color 0.4s ease;
+            will-change: opacity, transform;
+            transition: opacity 0.45s cubic-bezier(0.19, 1, 0.22, 1),
+                transform 0.45s cubic-bezier(0.19, 1, 0.22, 1),
+                background-color 0.25s ease;
         }
 
         .mosaic-tile.visible {
             opacity: 1 !important;
             transform: translateY(0) !important;
-        }
-
-        .mosaic-tile img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: 1;
-            transition: opacity 0.7s cubic-bezier(0.19, 1, 0.22, 1),
-                filter 0.7s cubic-bezier(0.19, 1, 0.22, 1),
-                transform 1.5s ease;
-        }
-
-        /* Type 1: Hover Reveal */
-        .mosaic-tile.hover-reveal img {
-            opacity: 0;
-            transform: scale(1.1);
-        }
-
-        .mosaic-tile.hover-reveal:hover img {
-            opacity: 0.75;
-            /* Vivid Color */
-            transform: scale(1);
-        }
-
-        /* Type 2: Fixed Photo (COLOR) */
-        .mosaic-tile.fixed-photo img {
-            opacity: 0.65;
-            /* Color intensity visible but text safe */
-        }
-
-        .mosaic-tile.fixed-photo:hover img {
-            opacity: 0.85;
         }
 
         /* Legacy mappings to prevent breaks */
@@ -869,59 +842,64 @@
             text-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
 
-        .mosaic-tile.color-shift {
-            transition: background-color 0.4s ease, transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
-        }
-
-        .mosaic-tile.color-shift.bg-earth:hover {
+        .mosaic-tile.bg-earth:hover {
             background-color: #6a1a1c;
         }
 
         /* Earth to Wine */
-        .mosaic-tile.color-shift.bg-wine:hover {
+        .mosaic-tile.bg-wine:hover {
             background-color: #0c263d;
         }
 
         /* Wine to Night */
-        .mosaic-tile.color-shift.bg-sage:hover {
+        .mosaic-tile.bg-sage:hover {
             background-color: #ad915a;
         }
 
         /* Sage to Earth */
-        .mosaic-tile.color-shift.bg-moss:hover {
+        .mosaic-tile.bg-moss:hover {
             background-color: #f8bc5c;
         }
 
         /* Moss to Mustard */
-        .mosaic-tile.color-shift.bg-deep-blue:hover {
+        .mosaic-tile.bg-deep-blue:hover {
             background-color: #536647;
         }
 
         /* Blue to Moss */
-        .mosaic-tile.color-shift.bg-forest:hover {
+        .mosaic-tile.bg-forest:hover {
             background-color: #8c6046;
         }
 
         /* Forest to Clay */
-        .mosaic-tile.color-shift.bg-mustard:hover {
+        .mosaic-tile.bg-mustard:hover {
             background-color: #a65d50;
         }
 
         /* Mustard to Terracotta */
-        .mosaic-tile.color-shift.bg-clay:hover {
+        .mosaic-tile.bg-clay:hover {
             background-color: #2d3e31;
         }
 
         /* Clay to Forest */
 
-        .mosaic-tile.color-shift:hover h3 {
+        .mosaic-tile:hover h3 {
             transform: scale(1.05);
             /* Slight pop */
             transition: transform 0.4s ease;
         }
 
-        .mosaic-tile.color-shift:hover {
+        .mosaic-tile:hover {
             transform: translateZ(5px);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .mosaic-tile {
+                opacity: 1 !important;
+                transform: none !important;
+                transition: background-color 0.25s ease;
+                will-change: auto;
+            }
         }
 
         .tile-content {
@@ -1585,31 +1563,28 @@
     </section>
 
     <!-- ── LISTADO COMPLETO DE TALLERES (MOSAICO COLORIDO) ────────── -->
-    <section class="workshop-mosaic-section" id="mosaic-list" style="margin-top: 50px;">
+    <section class="workshop-mosaic-section" id="mosaic-list" style="margin-top: 50px; margin-bottom: 200px;">
         <div class="workshop-mosaic-grid">
             <!-- Row 1 -->
-            <div class="mosaic-tile bg-sage fixed-photo">
-                <img src="./talleres/talleres26.webp" alt="Participante">
+            <div class="mosaic-tile bg-sage">
                 <div class="tile-content">
 
                     <h3>Juego Creativo</h3>
                 </div>
             </div>
-            <div class="mosaic-tile bg-mustard fixed-photo">
-                <img src="./img/gif2.webp" alt="Taller">
+            <div class="mosaic-tile bg-mustard">
                 <div class="tile-content">
 
                     <h3>Xilografía</h3>
                 </div>
             </div>
-            <div class="mosaic-tile bg-earth color-shift">
+            <div class="mosaic-tile bg-earth">
                 <div class="tile-content">
 
                     <h3>Literario</h3>
                 </div>
             </div>
-            <div class="mosaic-tile bg-night fixed-photo">
-                <img src="./talleres/talleres25.webp" alt="Costura">
+            <div class="mosaic-tile bg-night">
                 <div class="tile-content">
 
                     <h3>Costura</h3>
@@ -1617,27 +1592,25 @@
             </div>
 
             <!-- Row 2 -->
-            <div class="mosaic-tile bg-wine color-shift">
+            <div class="mosaic-tile bg-wine">
                 <div class="tile-content">
 
                     <h3>Taller de la voz</h3>
                 </div>
             </div>
-            <div class="mosaic-tile bg-moss fixed-photo">
-                <img src="./talleres/talleres32.webp" alt="Plástica">
+            <div class="mosaic-tile bg-moss">
                 <div class="tile-content">
 
                     <h3>Plástica</h3>
                 </div>
             </div>
-            <div class="mosaic-tile bg-terracotta fixed-photo">
-                <img src="./talleres/talleres36.webp" alt="Cerámica">
+            <div class="mosaic-tile bg-terracotta">
                 <div class="tile-content">
 
                     <h3>Cerámica</h3>
                 </div>
             </div>
-            <div class="mosaic-tile bg-deep-blue color-shift">
+            <div class="mosaic-tile bg-deep-blue">
                 <div class="tile-content">
 
                     <h3>Música</h3>
@@ -1645,28 +1618,25 @@
             </div>
 
             <!-- Row 3 -->
-            <div class="mosaic-tile bg-forest fixed-photo">
-                <img src="./talleres/talleres37.webp" alt="Utilería">
+            <div class="mosaic-tile bg-forest">
                 <div class="tile-content">
 
                     <h3>Utilería</h3>
                 </div>
             </div>
-            <div class="mosaic-tile bg-clay fixed-photo">
-                <img src="./img/danzagif.webp" alt="Baile">
+            <div class="mosaic-tile bg-clay">
                 <div class="tile-content">
 
                     <h3>Baile</h3>
                 </div>
             </div>
-            <div class="mosaic-tile bg-sage color-shift">
+            <div class="mosaic-tile bg-sage">
                 <div class="tile-content">
 
                     <h3>Juego deportivo</h3>
                 </div>
             </div>
-            <div class="mosaic-tile bg-mustard fixed-photo">
-                <img src="./talleres/talleres14.webp" alt=" Computación">
+            <div class="mosaic-tile bg-mustard">
                 <div class="tile-content">
 
                     <h3>Computación</h3>
@@ -1674,27 +1644,25 @@
             </div>
 
             <!-- Row 4 -->
-            <div class="mosaic-tile bg-earth color-shift">
+            <div class="mosaic-tile bg-earth">
                 <div class="tile-content">
 
                     <h3>Música</h3>
                 </div>
             </div>
-            <div class="mosaic-tile bg-night fixed-photo">
-                <img src="./talleres/talleres17.webp" alt="Jardinería">
+            <div class="mosaic-tile bg-night">
                 <div class="tile-content">
 
                     <h3>Jardinería</h3>
                 </div>
             </div>
-            <div class="mosaic-tile bg-wine color-shift">
+            <div class="mosaic-tile bg-wine">
                 <div class="tile-content">
 
                     <h3>Yoga</h3>
                 </div>
             </div>
-            <div class="mosaic-tile bg-moss color-shift fixed-photo">
-                <img src="./img/gif5.webp" alt="Danza">
+            <div class="mosaic-tile bg-moss">
                 <div class="tile-content">
 
                     <h3>Danza</h3>
@@ -1702,15 +1670,13 @@
             </div>
 
             <!-- Row 5 -->
-            <div class="mosaic-tile bg-terracotta fixed-photo">
-                <img src="./talleres/talleres5.webp" alt="Danza Alas">
+            <div class="mosaic-tile bg-terracotta">
                 <div class="tile-content">
 
                     <h3>Danza Alas</h3>
                 </div>
             </div>
-            <div class="mosaic-tile bg-deep-blue fixed-photo">
-                <img src="./img/2022 Murga del Tomate (3).JPG" alt="Murga">
+            <div class="mosaic-tile bg-deep-blue">
                 <div class="tile-content">
 
                     <h3>Murga</h3>
@@ -1722,8 +1688,7 @@
                     <h3>Batik</h3>
                 </div>
             </div>
-            <div class="mosaic-tile bg-clay fixed-photo">
-                <img src="./talleres/cine.webp" alt="Mantenimiento">
+            <div class="mosaic-tile bg-clay">
                 <div class="tile-content">
 
                     <h3>Mantenimiento</h3>
@@ -1731,28 +1696,25 @@
             </div>
 
             <!-- Row 6 -->
-            <div class="mosaic-tile bg-sage color-shift">
+            <div class="mosaic-tile bg-sage">
                 <div class="tile-content">
 
                     <h3>Vestuario</h3>
                 </div>
             </div>
-            <div class="mosaic-tile bg-mustard fixed-photo">
-                <img src="./talleres/talleres16.webp" alt="Entrenamiento">
+            <div class="mosaic-tile bg-mustard">
                 <div class="tile-content">
 
                     <h3>Entrenamiento</h3>
                 </div>
             </div>
-            <div class="mosaic-tile bg-earth fixed-photo">
-                <img src="./talleres/telar.webp" alt="Telar">
+            <div class="mosaic-tile bg-earth">
                 <div class="tile-content">
 
                     <h3>Telar</h3>
                 </div>
             </div>
-            <div class="mosaic-tile bg-night color-shift fixed-photo">
-                <img src="./img/gif2.webp" alt="Teatro">
+            <div class="mosaic-tile bg-night">
                 <div class="tile-content">
 
                     <h3>Teatro</h3>
@@ -1760,8 +1722,7 @@
             </div>
 
             <!-- Row 7 -->
-            <div class="mosaic-tile bg-wine fixed-photo">
-                <img src="./talleres/talleres33.webp" alt="Radio">
+            <div class="mosaic-tile bg-wine">
                 <div class="tile-content">
 
                     <h3>Radio</h3>
@@ -1773,7 +1734,7 @@
                     <h3>Experiencias gráficas</h3>
                 </div>
             </div>
-            <div class="mosaic-tile bg-terracotta color-shift">
+            <div class="mosaic-tile bg-terracotta">
                 <div class="tile-content">
 
                     <h3>Prácticas ludomotrices</h3>
@@ -1793,15 +1754,13 @@
                     <h3>Batik/grabado</h3>
                 </div>
             </div>
-            <div class="mosaic-tile bg-clay fixed-photo">
-                <img src="./img/gif3.webp" alt="Joyería">
+            <div class="mosaic-tile bg-clay">
                 <div class="tile-content">
 
                     <h3>Joyería</h3>
                 </div>
             </div>
-            <div class="mosaic-tile bg-sage fixed-photo">
-                <img src="./talleres/Entrenamiento.webp" alt="Conciencia">
+            <div class="mosaic-tile bg-sage">
                 <div class="tile-content">
 
                     <h3>Conciencia corporal</h3>
@@ -1815,15 +1774,13 @@
             </div>
 
             <!-- Row 9 -->
-            <div class="mosaic-tile bg-earth fixed-photo">
-                <img src="./talleres/talleres9.webp" alt="Reflexión">
+            <div class="mosaic-tile bg-earth">
                 <div class="tile-content">
 
                     <h3>Reflexión</h3>
                 </div>
             </div>
-            <div class="mosaic-tile bg-night fixed-photo">
-                <img src="./talleres/talleres41.webp" alt="Masculinidades">
+            <div class="mosaic-tile bg-night">
                 <div class="tile-content">
 
                     <h3>Masculinidades</h3>
@@ -1835,8 +1792,7 @@
                     <h3>Bordado</h3>
                 </div>
             </div>
-            <div class="mosaic-tile bg-moss fixed-photo">
-                <img src="./talleres/talleres2.webp" alt="Guitarra">
+            <div class="mosaic-tile bg-moss">
                 <div class="tile-content">
 
                     <h3>Guitarra/cuerdas</h3>
@@ -1850,8 +1806,7 @@
                     <h3>Fotografía</h3>
                 </div>
             </div>
-            <div class="mosaic-tile bg-deep-blue fixed-photo">
-                <img src="./talleres/lucestalleres.webp" alt="Diseño Luz">
+            <div class="mosaic-tile bg-deep-blue">
                 <div class="tile-content">
 
                     <h3>Diseño con luz</h3>
@@ -1871,14 +1826,13 @@
             </div>
 
             <!-- Row 11 -->
-            <div class="mosaic-tile bg-sage color-shift">
+            <div class="mosaic-tile bg-sage">
                 <div class="tile-content">
 
                     <h3>Ensamble musical</h3>
                 </div>
             </div>
-            <div class="mosaic-tile bg-mustard fixed-photo">
-                <img src="./talleres/talleres21.webp" alt="Fénix">
+            <div class="mosaic-tile bg-mustard">
                 <div class="tile-content">
 
                     <h3>Fénix (Juegos)</h3>
@@ -1890,8 +1844,7 @@
                     <h3>Percusión Watawo</h3>
                 </div>
             </div>
-            <div class="mosaic-tile bg-night fixed-photo">
-                <img src="./talleres/talleres22.webp" alt="Cocina">
+            <div class="mosaic-tile bg-night">
                 <div class="tile-content">
 
                     <h3>Cocina</h3>
@@ -1905,14 +1858,13 @@
                     <h3>Tienda de arte</h3>
                 </div>
             </div>
-            <div class="mosaic-tile bg-moss fixed-photo">
-                <img src="./talleres/talleres3.webp" alt="Cine">
+            <div class="mosaic-tile bg-moss">
                 <div class="tile-content">
 
                     <h3>Cine</h3>
                 </div>
             </div>
-            <div class="mosaic-tile bg-terracotta color-shift">
+            <div class="mosaic-tile bg-terracotta">
                 <div class="tile-content">
 
                     <h3>Hidroponia</h3>
@@ -1926,15 +1878,13 @@
             </div>
 
             <!-- Row 13 -->
-            <div class="mosaic-tile bg-forest fixed-photo">
-                <img src="./talleres/talleres39.webp" alt="Gestión">
+            <div class="mosaic-tile bg-forest">
                 <div class="tile-content">
 
                     <h3>Gestión artística</h3>
                 </div>
             </div>
-            <div class="mosaic-tile bg-clay fixed-photo">
-                <img src="./talleres/talleres38.webp" alt="Ciudadanía">
+            <div class="mosaic-tile bg-clay">
                 <div class="tile-content">
 
                     <h3>Ciudadanía</h3>
@@ -1946,8 +1896,7 @@
                     <h3>Fusion textil</h3>
                 </div>
             </div>
-            <div class="mosaic-tile bg-mustard fixed-photo">
-                <img src="./img/gif2.webp" alt="Collage">
+            <div class="mosaic-tile bg-mustard">
                 <div class="tile-content">
 
                     <h3>Collage</h3>
@@ -1955,15 +1904,13 @@
             </div>
 
             <!-- Row 14 -->
-            <div class="mosaic-tile bg-earth fixed-photo">
-                <img src="./img/gif4.webp" alt=" Títeres">
+            <div class="mosaic-tile bg-earth">
                 <div class="tile-content">
 
                     <h3>Títeres</h3>
                 </div>
             </div>
-            <div class="mosaic-tile bg-night fixed-photo">
-                <img src="./talleres/talleres24.webp" alt="Cestería">
+            <div class="mosaic-tile bg-night">
                 <div class="tile-content">
 
                     <h3>Cestería</h3>
@@ -1981,6 +1928,14 @@
                     <h3>Mural</h3>
                 </div>
             </div>
+            <div class="mosaic-tile bg-moss">
+            </div>
+            <div class="mosaic-tile bg-moss">
+            </div>
+            <div class="mosaic-tile bg-moss">
+            </div>
+            <div class="mosaic-tile bg-moss">
+            </div>
         </div>
     </section>
     </section>
@@ -1988,13 +1943,15 @@
 
 
     <script>
-        // STAGGERED ENTRANCE 
+        // Fast entrance for the mosaic
         document.addEventListener('DOMContentLoaded', () => {
             const tiles = document.querySelectorAll('.mosaic-tile');
-            tiles.forEach((tile, index) => {
-                setTimeout(() => {
-                    tile.classList.add('visible');
-                }, index * 30); // Refined speed for 56 items
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    tiles.forEach((tile) => {
+                        tile.classList.add('visible');
+                    });
+                });
             });
         });
     </script>
@@ -2004,18 +1961,34 @@
         <div class="footer-donation fade-in-up">
             <div class="qr-interactive-container">
                 <img src="./img/manos_donar.webp" alt="Manos donar" class="qr-hands-reveal">
-                <div class="qr-base">
-                    <img src="./img/qr_solo.png" alt="Donar a Cre Arte">
+                <div class="qr-base" uk-lightbox>
+                    <a href="./img/qr_solo.png" data-caption="Donar a Cre Arte (Alias: cre.arte.bariloche)">
+                        <img src="./img/qr_solo.png" alt="Donar a Cre Arte">
+                    </a>
                 </div>
             </div>
             <span>Doná y apoyá nuestra labor</span>
         </div>
-        <img src="./img/LOGO.png" alt="Cre Arte" class="footer-logo">
-        <div class="footer-links">
+        <div class="footer-links" style="margin-bottom: 12px;">
             <a href="./index.html">Inicio</a>
             <a href="./talleres.html">Talleres</a>
             <a href="./quienes_somos.html">Quiénes Somos</a>
             <a href="./puertas_al_mundo.html">Puertas al Mundo</a>
+        </div>
+        <div class="footer-links" style="margin-bottom: 30px;">
+            <a href="./galeria.html">Galería</a>
+            <a href="./obras.html">Obras</a>
+        </div>
+        <div class="footer-social">
+            <a href="https://www.instagram.com/creartebrc/" target="_blank" aria-label="Instagram">
+                <span uk-icon="icon: instagram; ratio: 1.2"></span>
+            </a>
+            <a href="https://www.facebook.com/creartebrc" target="_blank" aria-label="Facebook">
+                <span uk-icon="icon: facebook; ratio: 1.2"></span>
+            </a>
+            <a href="https://www.youtube.com/@cre-arte1309" target="_blank" aria-label="YouTube">
+                <span uk-icon="icon: youtube; ratio: 1.2"></span>
+            </a>
         </div>
         <div class="footer-bottom">
             &copy; 2026 Cre Arte Bariloche. Todos los derechos reservados.<br>

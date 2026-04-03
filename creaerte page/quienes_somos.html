@@ -1488,52 +1488,6 @@
         }
         requestAnimationFrame(raf);
 
-        // --- SISTEMA DE SNAPPING SUAVE ---
-        const snappingSections = document.querySelectorAll('header, section, footer');
-        let isSnapping = false;
-
-        lenis.on('scroll', () => {
-            if (isSnapping) return;
-
-            // Detectar cuando el scroll se detiene para hacer el snap
-            clearTimeout(window.snapTimeout);
-            window.snapTimeout = setTimeout(() => {
-                snapToSection();
-            }, 500); // Esperar a que el usuario deje de scrollear
-        });
-
-        function snapToSection() {
-            if (isSnapping) return;
-
-            let closest = null;
-            let minDistance = Infinity;
-            const scrollPos = window.scrollY;
-
-            snappingSections.forEach(section => {
-                const distance = Math.abs(section.offsetTop - scrollPos);
-                if (distance < minDistance) {
-                    minDistance = distance;
-                    closest = section;
-                }
-            });
-
-            if (closest && minDistance > 50 && minDistance < 500) {
-                isSnapping = true;
-                lenis.scrollTo(closest, {
-                    duration: 1,
-                    onComplete: () => { isSnapping = false; }
-                });
-            }
-        }
-
-        // Auto-scroll inicial
-        setTimeout(() => {
-            const firstSection = document.querySelector('.about-us-section');
-            if (firstSection && window.scrollY < 100) {
-                lenis.scrollTo(firstSection, { duration: 1.5 });
-            }
-        }, 3000);
-
 
 
         // --- STICKY INTERACTIVE SECTION LOGIC ---
