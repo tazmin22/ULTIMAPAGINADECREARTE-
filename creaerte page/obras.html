@@ -101,137 +101,117 @@
             /* Aumentado para coherencia */
         }
 
-        /* ===== OBRAS BENTO GRID ===== */
+        /* ===== OBRAS GALLERY ===== */
         .obras-container {
-            max-width: 1200px;
+            max-width: 1500px;
             margin: 0 auto;
             padding: 160px 20px 100px;
         }
 
+        .obras-header {
+            margin-bottom: 30px;
+            padding: 0 6px;
+        }
+
+        .obras-kicker {
+            margin: 0 0 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: rgba(17, 17, 17, 0.55);
+        }
+
+        .obras-title {
+            margin: 0;
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.8rem, 6vw, 5.2rem);
+            line-height: 0.95;
+            letter-spacing: -0.03em;
+        }
+
+        .obras-subtitle {
+            margin: 14px 0 0;
+            max-width: 720px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.98rem;
+            line-height: 1.7;
+            color: rgba(17, 17, 17, 0.72);
+        }
+
+        .obras-count {
+            margin: 10px 0 0;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.82rem;
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            color: rgba(17, 17, 17, 0.55);
+        }
+
         .obras-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            grid-auto-rows: 200px;
-            gap: 15px;
+            column-count: 4;
+            column-gap: 16px;
         }
 
         .obra-item {
-            background: #eee;
-            position: relative;
+            break-inside: avoid;
+            margin: 0 0 16px;
+            border-radius: 18px;
             overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: transform 0.4s ease;
+            background: rgba(255, 255, 255, 0.72);
+            box-shadow: 0 14px 34px rgba(0, 0, 0, 0.08);
+            transition: transform 0.35s ease, box-shadow 0.35s ease;
         }
 
         .obra-item:hover {
-            transform: scale(1.02);
-            z-index: 10;
-        }
-
-        /* TEXT TILES (Como "FEB", "JAN" en la captura) */
-        .obra-text-tile {
-            font-family: 'Inter', sans-serif;
-            font-weight: 900;
-            font-size: 2.5rem;
-            text-transform: uppercase;
-            color: #111;
-            transition: all 0.4s ease;
-        }
-
-        /* COLOR TILES (Colores Tierra) */
-        .obra-text-tile {
-            transition: all 0.4s ease;
-        }
-
-        .tile-1 {
-            background: #bc6c25 !important;
-        }
-
-        /* Terracota */
-        .tile-2 {
-            background: #dda15e !important;
-        }
-
-        /* Ocre */
-        .tile-3 {
-            background: #606c38 !important;
-        }
-
-        /* Verde musgo */
-        .tile-4 {
-            background: #283618 !important;
-        }
-
-        /* Bosque profundo / Tierra */
-        .tile-5 {
-            background: #fefae0 !important;
-        }
-
-        /* Beige arena */
-        .tile-6 {
-            background: #ccd5ae !important;
-        }
-
-        /* Verde seco suave */
-
-        /* VARIACIONES DE TAMAÑO (Estilo Bento de la captura) */
-        .w-2 {
-            grid-column: span 2;
-        }
-
-        .h-2 {
-            grid-row: span 2;
-        }
-
-        /* Ajustes específicos para recrear el layout de la captura */
-        .pos-1 {
-            grid-column: 2;
-            grid-row: 1;
-        }
-
-        /* FEB position offset */
-        .pos-top-tall {
-            grid-column: 3;
-            grid-row: 1 / span 2;
-        }
-
-        /* La foto central alta */
-        .pos-small-top {
-            grid-column: 4;
-            grid-row: 1;
-        }
-
-        .pos-small-mid {
-            grid-column: 4;
-            grid-row: 2;
-        }
-
-        .obra-item::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.05));
-            z-index: 5;
-            pointer-events: none;
-            /* Crucial for clicks to reach the link */
+            transform: translateY(-2px);
+            box-shadow: 0 18px 44px rgba(0, 0, 0, 0.12);
         }
 
         .obra-item a {
             display: block;
-            width: 100%;
-            height: 100%;
-            z-index: 10;
-            position: relative;
         }
 
         .obra-img {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
+            height: auto;
             display: block;
-            transition: transform 0.6s ease;
+            transition: transform 0.45s ease;
+        }
+
+        .obra-item:hover .obra-img {
+            transform: scale(1.015);
+        }
+
+        @media (max-width: 1200px) {
+            .obras-grid {
+                column-count: 3;
+            }
+        }
+
+        @media (max-width: 860px) {
+            .obras-grid {
+                column-count: 2;
+            }
+
+            .obras-container {
+                padding-top: 140px;
+            }
+        }
+
+        @media (max-width: 560px) {
+            .obras-grid {
+                column-count: 1;
+            }
+
+            .obras-container {
+                padding-left: 14px;
+                padding-right: 14px;
+            }
+
+            .floating-logo img {
+                height: 78px;
+            }
         }
     </style>
 </head>
@@ -269,236 +249,21 @@
     </div>
 
     <main class="obras-container">
-        <div class="obras-grid" uk-lightbox="animation: slide">
-            <!-- Fila 1 -->
-            <div class="obra-item obra-text-tile pos-1 tile-1" uk-scrollspy="cls: uk-animation-fade; delay: 100"></div>
-            <div class="obra-item pos-top-tall h-2" uk-scrollspy="cls: uk-animation-scale-up; delay: 200">
-                <a href="puertas/img1.jpg" data-caption="Obra Cre Arte 1">
-                    <img src="puertas/img1.jpg" alt="Obra" class="obra-img">
-                </a>
-            </div>
-            <div class="obra-item pos-small-top" uk-scrollspy="cls: uk-animation-scale-up; delay: 300">
-                <a href="puertas/img2.jpg" data-caption="Obra Cre Arte 2">
-                    <img src="puertas/img2.jpg" alt="Obra" class="obra-img">
-                </a>
-            </div>
-
-            <!-- Fila 2 -->
-            <div class="obra-item" uk-scrollspy="cls: uk-animation-scale-up; delay: 100">
-                <a href="puertas/img3.jpg" data-caption="Obra Cre Arte 3">
-                    <img src="puertas/img3.jpg" alt="Obra" class="obra-img">
-                </a>
-            </div>
-            <div class="obra-item" uk-scrollspy="cls: uk-animation-scale-up; delay: 200">
-                <a href="puertas/img4.jpg" data-caption="Obra Cre Arte 4">
-                    <img src="puertas/img4.jpg" alt="Obra" class="obra-img">
-                </a>
-            </div>
-            <div class="obra-item pos-small-mid" uk-scrollspy="cls: uk-animation-scale-up; delay: 300">
-                <a href="puertas/img5.jpg" data-caption="Obra Cre Arte 5">
-                    <img src="puertas/img5.jpg" alt="Obra" class="obra-img">
-                </a>
-            </div>
-
-            <!-- Fila 3 -->
-            <div class="obra-item" uk-scrollspy="cls: uk-animation-scale-up; delay: 100">
-                <a href="puertas/img1.jpg" data-caption="Obra Cre Arte 6">
-                    <img src="puertas/img1.jpg" alt="Obra" class="obra-img">
-                </a>
-            </div>
-            <div class="obra-item obra-text-tile tile-2" uk-scrollspy="cls: uk-animation-fade; delay: 200"></div>
-            <div class="obra-item w-2" uk-scrollspy="cls: uk-animation-scale-up; delay: 300">
-                <a href="puertas/img2.jpg" data-caption="Obra Cre Arte 7">
-                    <img src="puertas/img2.jpg" alt="Obra" class="obra-img">
-                </a>
-            </div>
-
-            <!-- Fila 4 -->
-            <div class="obra-item h-2" uk-scrollspy="cls: uk-animation-scale-up; delay: 100">
-                <a href="puertas/img3.jpg" data-caption="Obra Cre Arte 8">
-                    <img src="puertas/img3.jpg" alt="Obra" class="obra-img">
-                </a>
-            </div>
-            <div class="obra-item w-2" uk-scrollspy="cls: uk-animation-scale-up; delay: 200">
-                <a href="puertas/img4.jpg" data-caption="Obra Cre Arte 9">
-                    <img src="puertas/img4.jpg" alt="Obra" class="obra-img">
-                </a>
-            </div>
-            <div class="obra-item" uk-scrollspy="cls: uk-animation-scale-up; delay: 300">
-                <a href="puertas/img5.jpg" data-caption="Obra Cre Arte 10">
-                    <img src="puertas/img5.jpg" alt="Obra" class="obra-img">
-                </a>
-            </div>
-            <div class="obra-item" uk-scrollspy="cls: uk-animation-scale-up; delay: 400">
-                <a href="puertas/img1.jpg" data-caption="Obra Cre Arte 11">
-                    <img src="puertas/img1.jpg" alt="Obra" class="obra-img">
-                </a>
-            </div>
-            <!-- Fila 5 (Extension) -->
-            <div class="obra-item obra-text-tile tile-3" uk-scrollspy="cls: uk-animation-fade; delay: 100"></div>
-            <div class="obra-item w-2" uk-scrollspy="cls: uk-animation-scale-up; delay: 200">
-                <a href="puertas/img1.jpg" data-caption="Obra Cre Arte 12">
-                    <img src="puertas/img1.jpg" alt="Obra" class="obra-img">
-                </a>
-            </div>
-            <div class="obra-item h-2" uk-scrollspy="cls: uk-animation-scale-up; delay: 300">
-                <a href="puertas/img2.jpg" data-caption="Obra Cre Arte 13">
-                    <img src="puertas/img2.jpg" alt="Obra" class="obra-img">
-                </a>
-            </div>
-
-            <!-- Fila 6 -->
-            <div class="obra-item" uk-scrollspy="cls: uk-animation-scale-up; delay: 100">
-                <a href="puertas/img3.jpg" data-caption="Obra Cre Arte 14">
-                    <img src="puertas/img3.jpg" alt="Obra" class="obra-img">
-                </a>
-            </div>
-            <div class="obra-item h-2" uk-scrollspy="cls: uk-animation-scale-up; delay: 200">
-                <a href="puertas/img4.jpg" data-caption="Obra Cre Arte 15">
-                    <img src="puertas/img4.jpg" alt="Obra" class="obra-img">
-                </a>
-            </div>
-            <div class="obra-item" uk-scrollspy="cls: uk-animation-scale-up; delay: 300">
-                <a href="puertas/img5.jpg" data-caption="Obra Cre Arte 16">
-                    <img src="puertas/img5.jpg" alt="Obra" class="obra-img">
-                </a>
-            </div>
-
-            <!-- Fila 7 -->
-            <div class="obra-item w-2" uk-scrollspy="cls: uk-animation-scale-up; delay: 400">
-                <a href="puertas/img1.jpg" data-caption="Obra Cre Arte 17">
-                    <img src="puertas/img1.jpg" alt="Obra" class="obra-img">
-                </a>
-            </div>
-            <div class="obra-item obra-text-tile tile-4" uk-scrollspy="cls: uk-animation-fade; delay: 100"></div>
-
-            <!-- Fila 8 -->
-            <div class="obra-item h-2" uk-scrollspy="cls: uk-animation-scale-up; delay: 100">
-                <a href="puertas/img2.jpg" data-caption="Obra Cre Arte 18">
-                    <img src="puertas/img2.jpg" alt="Obra" class="obra-img">
-                </a>
-            </div>
-            <div class="obra-item" uk-scrollspy="cls: uk-animation-scale-up; delay: 200">
-                <a href="puertas/img3.jpg" data-caption="Obra Cre Arte 19">
-                    <img src="puertas/img3.jpg" alt="Obra" class="obra-img">
-                </a>
-            </div>
-            <div class="obra-item w-2" uk-scrollspy="cls: uk-animation-scale-up; delay: 300">
-                <a href="puertas/img4.jpg" data-caption="Obra Cre Arte 20">
-                    <img src="puertas/img4.jpg" alt="Obra" class="obra-img">
-                </a>
-            </div>
-            <div class="obra-item" uk-scrollspy="cls: uk-animation-scale-up; delay: 400">
-                <a href="puertas/img5.jpg" data-caption="Obra Cre Arte 21">
-                    <img src="puertas/img5.jpg" alt="Obra" class="obra-img">
-                </a>
-            </div>
-
-            <!-- Fila 9 -->
-            <div class="obra-item obra-text-tile tile-5" uk-scrollspy="cls: uk-animation-fade; delay: 100"></div>
-            <div class="obra-item h-2" uk-scrollspy="cls: uk-animation-scale-up; delay: 200">
-                <a href="puertas/img1.jpg" data-caption="Obra Cre Arte 22">
-                    <img src="puertas/img1.jpg" alt="Obra" class="obra-img">
-                </a>
-            </div>
-            <div class="obra-item" uk-scrollspy="cls: uk-animation-scale-up; delay: 300">
-                <a href="puertas/img2.jpg" data-caption="Obra Cre Arte 23">
-                    <img src="puertas/img2.jpg" alt="Obra" class="obra-img">
-                </a>
-            </div>
-            <div class="obra-item" uk-scrollspy="cls: uk-animation-scale-up; delay: 400">
-                <a href="puertas/img3.jpg" data-caption="Obra Cre Arte 24">
-                    <img src="puertas/img3.jpg" alt="Obra" class="obra-img">
-                </a>
-            </div>
-
-            <!-- Fila 10 -->
-            <div class="obra-item w-3" style="grid-column: span 3"
-                uk-scrollspy="cls: uk-animation-scale-up; delay: 100">
-                <a href="puertas/img4.jpg" data-caption="Obra Cre Arte 25">
-                    <img src="puertas/img4.jpg" alt="Obra" class="obra-img">
-                </a>
-            </div>
-            <div class="obra-item obra-text-tile tile-6" uk-scrollspy="cls: uk-animation-fade; delay: 200"></div>
-
-            <!-- Fila 11 -->
-            <div class="obra-item h-2" uk-scrollspy="cls: uk-animation-scale-up; delay: 100">
-                <a href="puertas/img5.jpg" data-caption="Obra Cre Arte 26">
-                    <img src="puertas/img5.jpg" alt="Obra" class="obra-img">
-                </a>
-            </div>
-            <div class="obra-item" uk-scrollspy="cls: uk-animation-scale-up; delay: 200">
-                <a href="puertas/img1.jpg" data-caption="Obra Cre Arte 27">
-                    <img src="puertas/img1.jpg" alt="Obra" class="obra-img">
-                </a>
-            </div>
-            <div class="obra-item w-2 h-2" style="grid-column: span 2; grid-row: span 2;"
-                uk-scrollspy="cls: uk-animation-scale-up; delay: 300">
-                <a href="puertas/img2.jpg" data-caption="Obra Cre Arte 28">
-                    <img src="puertas/img2.jpg" alt="Obra" class="obra-img">
-                </a>
-            </div>
-            <div class="obra-item" uk-scrollspy="cls: uk-animation-scale-up; delay: 400">
-                <a href="puertas/img3.jpg" data-caption="Obra Cre Arte 29">
-                    <img src="puertas/img3.jpg" alt="Obra" class="obra-img">
-                </a>
-            </div>
-            <div class="obra-item" uk-scrollspy="cls: uk-animation-scale-up; delay: 500">
-                <a href="puertas/img4.jpg" data-caption="Obra Cre Arte 30">
-                    <img src="puertas/img4.jpg" alt="Obra" class="obra-img">
-                </a>
-            </div>
-            <!-- Fila 12 (Extension Tierra) -->
-            <div class="obra-item obra-text-tile tile-1" uk-scrollspy="cls: uk-animation-fade; delay: 100"></div>
-            <div class="obra-item" uk-scrollspy="cls: uk-animation-scale-up; delay: 200">
-                <a href="puertas/img5.jpg" data-caption="Obra Cre Arte 31">
-                    <img src="puertas/img5.jpg" alt="Obra" class="obra-img">
-                </a>
-            </div>
-            <div class="obra-item w-2" uk-scrollspy="cls: uk-animation-scale-up; delay: 300">
-                <a href="puertas/img1.jpg" data-caption="Obra Cre Arte 32">
-                    <img src="puertas/img1.jpg" alt="Obra" class="obra-img">
-                </a>
-            </div>
-
-            <!-- Fila 13 -->
-            <div class="obra-item h-2" uk-scrollspy="cls: uk-animation-scale-up; delay: 100">
-                <a href="puertas/img2.jpg" data-caption="Obra Cre Arte 33">
-                    <img src="puertas/img2.jpg" alt="Obra" class="obra-img">
-                </a>
-            </div>
-            <div class="obra-item obra-text-tile tile-2" uk-scrollspy="cls: uk-animation-fade; delay: 200"></div>
-            <div class="obra-item" uk-scrollspy="cls: uk-animation-scale-up; delay: 300">
-                <a href="puertas/img3.jpg" data-caption="Obra Cre Arte 34">
-                    <img src="puertas/img3.jpg" alt="Obra" class="obra-img">
-                </a>
-            </div>
-            <div class="obra-item" uk-scrollspy="cls: uk-animation-scale-up; delay: 400">
-                <a href="puertas/img4.jpg" data-caption="Obra Cre Arte 35">
-                    <img src="puertas/img4.jpg" alt="Obra" class="obra-img">
-                </a>
-            </div>
-
-            <!-- Fila 14 -->
-            <div class="obra-item w-2" uk-scrollspy="cls: uk-animation-scale-up; delay: 100">
-                <a href="puertas/img5.jpg" data-caption="Obra Cre Arte 36">
-                    <img src="puertas/img5.jpg" alt="Obra" class="obra-img">
-                </a>
-            </div>
-            <div class="obra-item obra-text-tile tile-3" uk-scrollspy="cls: uk-animation-fade; delay: 200"></div>
-            <div class="obra-item" uk-scrollspy="cls: uk-animation-scale-up; delay: 300">
-                <a href="puertas/img1.jpg" data-caption="Obra Cre Arte 37">
-                    <img src="puertas/img1.jpg" alt="Obra" class="obra-img">
-                </a>
-            </div>
-        </div>
+        <header class="obras-header">
+            <p class="obras-kicker">Archivo completo</p>
+            <h1 class="obras-title">Obras</h1>
+            <p class="obras-subtitle">Todas las imágenes alojadas en la carpeta <code>obras</code>, mostradas en una
+                galería liviana con carga diferida.</p>
+            <p class="obras-count" id="obras-count"></p>
+        </header>
+        <div class="obras-grid" id="obras-grid" uk-lightbox="animation: slide"></div>
     </main>
 
     <!-- FOOTER -->
     <footer class="mag-footer">
         <div class="footer-donation fade-in-up">
             <div class="qr-interactive-container">
-                <img src="img/manos_donar.png" alt="Manos donar" class="qr-hands-reveal">
+                <img src="img/manos_donar.webp" alt="Manos donar" class="qr-hands-reveal">
                 <div class="qr-base" uk-lightbox>
                     <a href="img/qr_solo.png" data-caption="Donar a Cre Arte (Alias: cre.arte.bariloche)">
                         <img src="img/qr_solo.png" alt="Donar a Cre Arte">
@@ -534,10 +299,49 @@
         </div>
     </footer>
 
+    <script src="./obras-list.js"></script>
     <script>
         const lenis = new Lenis({ duration: 1.5, smoothWheel: true });
         function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
         requestAnimationFrame(raf);
+
+        const obraFiles = Array.isArray(window.OBRAS_FILES) ? window.OBRAS_FILES : [];
+        const obrasGrid = document.getElementById('obras-grid');
+        const obrasCount = document.getElementById('obras-count');
+        const stripExtension = (name) => name.replace(/\.[^.]+$/, '');
+
+        if (obrasCount) {
+            obrasCount.textContent = `${obraFiles.length} imágenes`;
+        }
+
+        if (obrasGrid) {
+            const fragment = document.createDocumentFragment();
+
+            obraFiles.forEach((file) => {
+                const item = document.createElement('div');
+                item.className = 'obra-item';
+
+                const link = document.createElement('a');
+                const imagePath = encodeURI(`./obras/${file}`);
+                const caption = stripExtension(file);
+
+                link.href = imagePath;
+                link.setAttribute('data-caption', caption);
+
+                const image = document.createElement('img');
+                image.className = 'obra-img';
+                image.src = imagePath;
+                image.alt = caption;
+                image.loading = 'lazy';
+                image.decoding = 'async';
+
+                link.appendChild(image);
+                item.appendChild(link);
+                fragment.appendChild(item);
+            });
+
+            obrasGrid.appendChild(fragment);
+        }
 
         // Animation for Footer Donation
         const footerDonation = document.querySelector('.footer-donation');

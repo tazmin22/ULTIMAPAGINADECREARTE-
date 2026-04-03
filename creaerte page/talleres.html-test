@@ -1545,15 +1545,15 @@
                 uk-scrollspy="cls: uk-animation-slide-left-medium; delay: 300">
                 <!-- Stickers -->
                 <div class="video-sticker vs-tl">
-                    <img src="./img/gifvideo.gif" alt="Acción 1">
+                    <img src="./img/gifvideo.webp" alt="Acción 1">
                 </div>
                 <div class="video-sticker vs-br">
-                    <img src="./img/gifvideo2.gif" alt="Acción 2">
+                    <img src="./img/gifvideo2.webp" alt="Acción 2">
                 </div>
 
                 <a href="https://www.youtube.com/watch?v=9vYb4koLDKk&list=RD9vYb4koLDKk&start_radio=1" target="_blank"
                     class="custom-video-thumb">
-                    <img src="./img/video_portada.png" alt="Talleres Video" class="video-poster">
+                    <img src="./img/video_portada.webp" alt="Talleres Video" class="video-poster">
                     <div class="video-play-btn">
                         <svg viewBox="0 0 24 24">
                             <path d="M8 5v14l11-7z" fill="white" />
@@ -1589,14 +1589,14 @@
         <div class="workshop-mosaic-grid">
             <!-- Row 1 -->
             <div class="mosaic-tile bg-sage fixed-photo">
-                <img src="./talleres/talleres26.JPG" alt="Participante">
+                <img src="./talleres/talleres26.webp" alt="Participante">
                 <div class="tile-content">
 
                     <h3>Juego Creativo</h3>
                 </div>
             </div>
             <div class="mosaic-tile bg-mustard fixed-photo">
-                <img src="./img/gif2.gif" alt="Taller">
+                <img src="./img/gif2.webp" alt="Taller">
                 <div class="tile-content">
 
                     <h3>Xilografía</h3>
@@ -1609,7 +1609,7 @@
                 </div>
             </div>
             <div class="mosaic-tile bg-night fixed-photo">
-                <img src="./talleres/talleres25.JPG" alt="Costura">
+                <img src="./talleres/talleres25.webp" alt="Costura">
                 <div class="tile-content">
 
                     <h3>Costura</h3>
@@ -1624,14 +1624,14 @@
                 </div>
             </div>
             <div class="mosaic-tile bg-moss fixed-photo">
-                <img src="./talleres/talleres32.JPG" alt="Plástica">
+                <img src="./talleres/talleres32.webp" alt="Plástica">
                 <div class="tile-content">
 
                     <h3>Plástica</h3>
                 </div>
             </div>
             <div class="mosaic-tile bg-terracotta fixed-photo">
-                <img src="./talleres/talleres36.JPG" alt="Cerámica">
+                <img src="./talleres/talleres36.webp" alt="Cerámica">
                 <div class="tile-content">
 
                     <h3>Cerámica</h3>
@@ -1646,14 +1646,14 @@
 
             <!-- Row 3 -->
             <div class="mosaic-tile bg-forest fixed-photo">
-                <img src="./talleres/talleres37.JPG" alt="Utilería">
+                <img src="./talleres/talleres37.webp" alt="Utilería">
                 <div class="tile-content">
 
                     <h3>Utilería</h3>
                 </div>
             </div>
             <div class="mosaic-tile bg-clay fixed-photo">
-                <img src="./img/danzagif.gif" alt="Baile">
+                <img src="./img/danzagif.webp" alt="Baile">
                 <div class="tile-content">
 
                     <h3>Baile</h3>
@@ -1666,7 +1666,7 @@
                 </div>
             </div>
             <div class="mosaic-tile bg-mustard fixed-photo">
-                <img src="./talleres/talleres14.JPG" alt=" Computación">
+                <img src="./talleres/talleres14.webp" alt=" Computación">
                 <div class="tile-content">
 
                     <h3>Computación</h3>
@@ -1681,7 +1681,7 @@
                 </div>
             </div>
             <div class="mosaic-tile bg-night fixed-photo">
-                <img src="./talleres/talleres17.JPG" alt="Jardinería">
+                <img src="./talleres/talleres17.webp" alt="Jardinería">
                 <div class="tile-content">
 
                     <h3>Jardinería</h3>
@@ -1694,7 +1694,7 @@
                 </div>
             </div>
             <div class="mosaic-tile bg-moss color-shift fixed-photo">
-                <img src="./img/gif5.jpg" alt="Danza">
+                <img src="./img/gif5.webp" alt="Danza">
                 <div class="tile-content">
 
                     <h3>Danza</h3>
@@ -1703,7 +1703,7 @@
 
             <!-- Row 5 -->
             <div class="mosaic-tile bg-terracotta fixed-photo">
-                <img src="./talleres/talleres5.JPG" alt="Danza Alas">
+                <img src="./talleres/talleres5.webp" alt="Danza Alas">
                 <div class="tile-content">
 
                     <h3>Danza Alas</h3>
@@ -1723,7 +1723,7 @@
                 </div>
             </div>
             <div class="mosaic-tile bg-clay fixed-photo">
-                <img src="./talleres/cine.JPG" alt="Mantenimiento">
+                <img src="./talleres/cine.webp" alt="Mantenimiento">
                 <div class="tile-content">
 
                     <h3>Mantenimiento</h3>
@@ -1738,21 +1738,21 @@
                 </div>
             </div>
             <div class="mosaic-tile bg-mustard fixed-photo">
-                <img src="./talleres/talleres16.JPG" alt="Entrenamiento">
+                <img src="./talleres/talleres16.webp" alt="Entrenamiento">
                 <div class="tile-content">
 
                     <h3>Entrenamiento</h3>
                 </div>
             </div>
             <div class="mosaic-tile bg-earth fixed-photo">
-                <img src="./talleres/telar.JPG" alt="Telar">
+                <img src="./talleres/telar.webp" alt="Telar">
                 <div class="tile-content">
 
                     <h3>Telar</h3>
                 </div>
             </div>
             <div class="mosaic-tile bg-night color-shift fixed-photo">
-                <img src="./img/gif2.gif" alt="Teatro">
+                <img src="./img/gif2.webp" alt="Teatro">
                 <div class="tile-content">
 
                     <h3>Teatro</h3>
@@ -1761,7 +1761,7 @@
 
             <!-- Row 7 -->
             <div class="mosaic-tile bg-wine fixed-photo">
-                <img src="./talleres/talleres33.JPG" alt="Radio">
+                <img src="./talleres/talleres33.webp" alt="Radio">
                 <div class="tile-content">
 
                     <h3>Radio</h3>
@@ -1794,14 +1794,14 @@
                 </div>
             </div>
             <div class="mosaic-tile bg-clay fixed-photo">
-                <img src="./img/gif3.gif" alt="Joyería">
+                <img src="./img/gif3.webp" alt="Joyería">
                 <div class="tile-content">
 
                     <h3>Joyería</h3>
                 </div>
             </div>
             <div class="mosaic-tile bg-sage fixed-photo">
-                <img src="./talleres/Entrenamiento.JPG" alt="Conciencia">
+                <img src="./talleres/Entrenamiento.webp" alt="Conciencia">
                 <div class="tile-content">
 
                     <h3>Conciencia corporal</h3>
@@ -1816,14 +1816,14 @@
 
             <!-- Row 9 -->
             <div class="mosaic-tile bg-earth fixed-photo">
-                <img src="./talleres/talleres9.JPG" alt="Reflexión">
+                <img src="./talleres/talleres9.webp" alt="Reflexión">
                 <div class="tile-content">
 
                     <h3>Reflexión</h3>
                 </div>
             </div>
             <div class="mosaic-tile bg-night fixed-photo">
-                <img src="./talleres/talleres41.JPG" alt="Masculinidades">
+                <img src="./talleres/talleres41.webp" alt="Masculinidades">
                 <div class="tile-content">
 
                     <h3>Masculinidades</h3>
@@ -1836,7 +1836,7 @@
                 </div>
             </div>
             <div class="mosaic-tile bg-moss fixed-photo">
-                <img src="./talleres/talleres2.JPG" alt="Guitarra">
+                <img src="./talleres/talleres2.webp" alt="Guitarra">
                 <div class="tile-content">
 
                     <h3>Guitarra/cuerdas</h3>
@@ -1851,7 +1851,7 @@
                 </div>
             </div>
             <div class="mosaic-tile bg-deep-blue fixed-photo">
-                <img src="./talleres/lucestalleres.JPG" alt="Diseño Luz">
+                <img src="./talleres/lucestalleres.webp" alt="Diseño Luz">
                 <div class="tile-content">
 
                     <h3>Diseño con luz</h3>
@@ -1878,7 +1878,7 @@
                 </div>
             </div>
             <div class="mosaic-tile bg-mustard fixed-photo">
-                <img src="./talleres/talleres21.jpg" alt="Fénix">
+                <img src="./talleres/talleres21.webp" alt="Fénix">
                 <div class="tile-content">
 
                     <h3>Fénix (Juegos)</h3>
@@ -1891,7 +1891,7 @@
                 </div>
             </div>
             <div class="mosaic-tile bg-night fixed-photo">
-                <img src="./talleres/talleres22.jpg" alt="Cocina">
+                <img src="./talleres/talleres22.webp" alt="Cocina">
                 <div class="tile-content">
 
                     <h3>Cocina</h3>
@@ -1906,7 +1906,7 @@
                 </div>
             </div>
             <div class="mosaic-tile bg-moss fixed-photo">
-                <img src="./talleres/talleres3.JPG" alt="Cine">
+                <img src="./talleres/talleres3.webp" alt="Cine">
                 <div class="tile-content">
 
                     <h3>Cine</h3>
@@ -1927,14 +1927,14 @@
 
             <!-- Row 13 -->
             <div class="mosaic-tile bg-forest fixed-photo">
-                <img src="./talleres/talleres39.JPG" alt="Gestión">
+                <img src="./talleres/talleres39.webp" alt="Gestión">
                 <div class="tile-content">
 
                     <h3>Gestión artística</h3>
                 </div>
             </div>
             <div class="mosaic-tile bg-clay fixed-photo">
-                <img src="./talleres/talleres38.JPG" alt="Ciudadanía">
+                <img src="./talleres/talleres38.webp" alt="Ciudadanía">
                 <div class="tile-content">
 
                     <h3>Ciudadanía</h3>
@@ -1947,7 +1947,7 @@
                 </div>
             </div>
             <div class="mosaic-tile bg-mustard fixed-photo">
-                <img src="./img/gif2.gif" alt="Collage">
+                <img src="./img/gif2.webp" alt="Collage">
                 <div class="tile-content">
 
                     <h3>Collage</h3>
@@ -1956,14 +1956,14 @@
 
             <!-- Row 14 -->
             <div class="mosaic-tile bg-earth fixed-photo">
-                <img src="./img/gif4.gif" alt=" Títeres">
+                <img src="./img/gif4.webp" alt=" Títeres">
                 <div class="tile-content">
 
                     <h3>Títeres</h3>
                 </div>
             </div>
             <div class="mosaic-tile bg-night fixed-photo">
-                <img src="./talleres/talleres24.JPG" alt="Cestería">
+                <img src="./talleres/talleres24.webp" alt="Cestería">
                 <div class="tile-content">
 
                     <h3>Cestería</h3>
@@ -2003,7 +2003,7 @@
     <footer class="mag-footer">
         <div class="footer-donation fade-in-up">
             <div class="qr-interactive-container">
-                <img src="./img/manos_donar.png" alt="Manos donar" class="qr-hands-reveal">
+                <img src="./img/manos_donar.webp" alt="Manos donar" class="qr-hands-reveal">
                 <div class="qr-base">
                     <img src="./img/qr_solo.png" alt="Donar a Cre Arte">
                 </div>

@@ -1,7 +1,7 @@
 /* ===== SHARED FOOTER STYLES ===== */
 .mag-footer {
     padding: 50px 10%;
-    background-image: linear-gradient(rgba(249, 247, 242, 0.4), rgba(249, 247, 242, 0.4)), url('./img/footerfoter.jpg');
+    background-image: linear-gradient(rgba(249, 247, 242, 0.4), rgba(249, 247, 242, 0.4)), url('./img/footerfoter.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
