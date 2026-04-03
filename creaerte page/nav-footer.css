@@ -83,19 +83,19 @@
 
 .qr-interactive-container {
     position: relative;
-    width: 160px;
-    height: 160px;
-    margin-bottom: 15px;
+    width: 220px;
+    height: 220px;
+    margin-bottom: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .qr-base {
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
     background: #fff;
-    padding: 10px;
+    padding: 12px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
     border-radius: 10px;
     z-index: 2;
@@ -112,7 +112,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 210px;
+    width: 280px;
     height: auto;
     transform: translate(-50%, -40%) scale(0.8);
     opacity: 0;

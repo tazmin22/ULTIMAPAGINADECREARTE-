@@ -18,7 +18,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Caveat:wght@600;700&family=Inter:wght@300;400;600;700;900&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Caveat:wght@600;700&family=Inter:wght@300;400;600;700;900&family=Kaushan+Script&display=swap"
         rel="stylesheet">
 
     <!-- Lenis Smooth Scroll -->
@@ -43,7 +43,7 @@
 
 
         body {
-            background-color: #fff;
+            background-color: #fbf9f4;
             margin: 0;
             padding: 0;
             color: #111;
@@ -177,13 +177,15 @@
 
         .hero-splash-title h1 span {
             display: block;
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
+            font-family: 'Kaushan Script', cursive;
+            font-style: normal;
             font-weight: 400;
             text-transform: none;
-            font-size: clamp(2rem, 6vw, 5rem);
+            font-size: clamp(2.5rem, 8vw, 6rem);
             letter-spacing: normal;
-            margin-bottom: -10px;
+            margin-bottom: -15px;
+            color: #ffffff;
+            transform: rotate(-3deg);
         }
 
 
@@ -201,7 +203,7 @@
         /* ===== MAGAZINE SPREAD SECTION (BIENVENIDOS) ===== */
 
         .about-us-section {
-            background-color: #fff;
+            background-color: #fbf9f4;
             position: relative;
             z-index: 50;
             margin: 0;
@@ -240,16 +242,17 @@
         }
 
         .about-spread-title span {
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
+            font-family: 'Kaushan Script', cursive;
+            font-style: normal;
             font-size: clamp(3rem, 7vw, 5.5rem);
             color: #e65c00;
-            font-weight: 500;
+            font-weight: 400;
             text-transform: none;
             letter-spacing: normal;
             display: block;
             position: relative;
             z-index: 15;
+            transform: rotate(-3deg);
         }
 
         /* Bloques de texto editorial */
@@ -424,7 +427,7 @@
 
         /* ===== STAFF SECTION (MOSAIC STYLE) ===== */
         .staff-mosaic-section {
-            background-color: #fff;
+            background-color: #fbf9f4;
             /* Color hueso de fondo */
             padding: 100px 5%;
             display: flex;
@@ -440,7 +443,7 @@
             grid-template-columns: repeat(4, 1fr);
             width: 100%;
             max-width: 1100px;
-            background-color: #fff;
+            background-color: #fbf9f4;
             box-shadow: 0 15px 45px rgba(0, 0, 0, 0.1);
             /* Efecto libro/póster */
         }
@@ -535,7 +538,7 @@
         .mosaic-text-box {
             grid-column: span 2;
             grid-row: span 2;
-            background-color: #eceae8;
+            background-color: #fbf9f4;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -567,7 +570,7 @@
         }
 
         .mosaic-subtitle {
-            color: #9b281f;
+            color: #333;
             /* Burgundy color from staff mosaic */
             font-family: 'Inter', sans-serif;
             font-size: 0.7rem;
@@ -602,7 +605,7 @@
 
         /* ===== HISTORY (SCRAPBOOK) SECTION ===== */
         .history-section {
-            background-color: #fff;
+            background-color: #fbf9f4;
             /* Color más oscuro y cálido para contraste */
             min-height: 100vh;
             /* Altura suficiente para el collage */
@@ -626,7 +629,7 @@
 
         .scrap-piece {
             position: absolute;
-            transition: transform 0.4s ease;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
             /* Sombra para dar relieve 3D */
             z-index: 20;
@@ -1116,7 +1119,7 @@
             justify-content: center;
             align-items: center;
             padding: 40px 0;
-            background-color: #fff;
+            background-color: #fbf9f4;
             /* Match page background */
         }
 
@@ -1392,7 +1395,7 @@
 
     <!-- CLOSURE BANNER -->
 
-    <section class="closure-banner fade-in-up" style="background-color: #fff; height: 30vh;">
+    <section class="closure-banner fade-in-up" style="background-color: #fbf9f4; height: 30vh;">
         <div class="closure-overlay visible" style="color: #6a1a1c;">
             <p>Donde el arte nos une</p>
         </div>
