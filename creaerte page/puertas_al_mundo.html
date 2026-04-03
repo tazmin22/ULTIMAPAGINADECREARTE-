@@ -1343,32 +1343,32 @@
                 <div class="uk-grid-small uk-child-width-1-3@s modal-gallery" uk-grid uk-lightbox>
                     <div>
                         <a href="img/artexigual.webp" data-caption="Exposición Red Arte x Igual">
-                            <img src="img/artexigual.webp" alt="">
+                            <img src="img/artexigual.webp" alt="" loading="lazy" decoding="async" fetchpriority="low">
                         </a>
                     </div>
                     <div>
                         <a href="img/artexigual2.webp" data-caption="Talleres internacionales">
-                            <img src="img/artexigual2.webp" alt="">
+                            <img src="img/artexigual2.webp" alt="" loading="lazy" decoding="async" fetchpriority="low">
                         </a>
                     </div>
                     <div>
                         <a href="img/artexigual3.webp" data-caption="Encuentros culturales">
-                            <img src="img/artexigual3.webp" alt="">
+                            <img src="img/artexigual3.webp" alt="" loading="lazy" decoding="async" fetchpriority="low">
                         </a>
                     </div>
                     <div>
                         <a href="img/artexigual4.webp" data-caption="Arte sin fronteras">
-                            <img src="img/artexigual4.webp" alt="">
+                            <img src="img/artexigual4.webp" alt="" loading="lazy" decoding="async" fetchpriority="low">
                         </a>
                     </div>
                     <div>
                         <a href="img/artexigual5.webp" data-caption="Impacto social">
-                            <img src="img/artexigual5.webp" alt="">
+                            <img src="img/artexigual5.webp" alt="" loading="lazy" decoding="async" fetchpriority="low">
                         </a>
                     </div>
                     <div>
                         <a href="img/artexigual6.webp" data-caption="Comunidad Cre Arte">
-                            <img src="img/artexigual6.webp" alt="">
+                            <img src="img/artexigual6.webp" alt="" loading="lazy" decoding="async" fetchpriority="low">
                         </a>
                     </div>
                 </div>
@@ -1385,17 +1385,48 @@
         const canvas = document.getElementById('stars-canvas');
         const ctx = canvas.getContext('2d');
         let stars = [];
-        const starCount = 65;
+        let starSettings = null;
+
+        function getStarSettings() {
+            if (window.matchMedia('(max-width: 768px)').matches) {
+                return {
+                    count: 24,
+                    topBand: 0.16,
+                    sizeMin: 0.35,
+                    sizeMax: 1.05,
+                    glow: 3
+                };
+            }
+
+            if (window.matchMedia('(max-width: 1024px)').matches) {
+                return {
+                    count: 42,
+                    topBand: 0.2,
+                    sizeMin: 0.45,
+                    sizeMax: 1.25,
+                    glow: 4
+                };
+            }
+
+            return {
+                count: 65,
+                topBand: 0.22,
+                sizeMin: 0.5,
+                sizeMax: 1.5,
+                glow: 5
+            };
+        }
 
         function initStars() {
+            starSettings = getStarSettings();
             canvas.width = canvas.parentElement.clientWidth;
             canvas.height = canvas.parentElement.clientHeight;
             stars = [];
-            for (let i = 0; i < starCount; i++) {
+            for (let i = 0; i < starSettings.count; i++) {
                 stars.push({
                     x: Math.random() * canvas.width,
-                    y: Math.random() * (canvas.height * 0.22), // Top 22% only
-                    size: Math.random() * 1.5 + 0.5,
+                    y: Math.random() * (canvas.height * starSettings.topBand), // Upper band only
+                    size: Math.random() * (starSettings.sizeMax - starSettings.sizeMin) + starSettings.sizeMin,
                     opacity: Math.random(),
                     maxOpacity: 0.3 + Math.random() * 0.7, // Random individual brightness
                     speed: 0.002 + Math.random() * 0.012, // More varied speeds
@@ -1419,7 +1450,7 @@
                 ctx.beginPath();
                 ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
                 ctx.fillStyle = `rgba(255, 255, 255, ${s.opacity})`;
-                ctx.shadowBlur = 5 * s.opacity;
+                ctx.shadowBlur = (starSettings?.glow ?? 5) * s.opacity;
                 ctx.shadowColor = 'white';
                 ctx.fill();
             });

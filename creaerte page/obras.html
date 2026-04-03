@@ -103,7 +103,7 @@
 
         /* ===== OBRAS GALLERY ===== */
         .obras-container {
-            max-width: 1500px;
+            max-width: 1280px;
             margin: 0 auto;
             padding: 160px 20px 100px;
         }
@@ -149,14 +149,16 @@
         }
 
         .obras-grid {
-            column-count: 4;
-            column-gap: 16px;
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            grid-auto-rows: 190px;
+            gap: 15px;
+            grid-auto-flow: dense;
         }
 
         .obra-item {
-            break-inside: avoid;
-            margin: 0 0 16px;
-            border-radius: 18px;
+            position: relative;
+            border-radius: 0;
             overflow: hidden;
             background: rgba(255, 255, 255, 0.72);
             box-shadow: 0 14px 34px rgba(0, 0, 0, 0.08);
@@ -170,38 +172,68 @@
 
         .obra-item a {
             display: block;
+            width: 100%;
+            height: 100%;
+            position: relative;
+            z-index: 2;
         }
 
         .obra-img {
             width: 100%;
-            height: auto;
+            height: 100%;
+            object-fit: cover;
             display: block;
             transition: transform 0.45s ease;
         }
 
         .obra-item:hover .obra-img {
-            transform: scale(1.015);
+            transform: scale(1.03);
+        }
+
+        .w-2 {
+            grid-column: span 2;
+        }
+
+        .h-2 {
+            grid-row: span 2;
+        }
+
+        .obra-item::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.05));
+            z-index: 1;
+            pointer-events: none;
         }
 
         @media (max-width: 1200px) {
             .obras-grid {
-                column-count: 3;
+                grid-template-columns: repeat(3, minmax(0, 1fr));
             }
         }
 
         @media (max-width: 860px) {
             .obras-grid {
-                column-count: 2;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                grid-auto-rows: 220px;
             }
 
             .obras-container {
                 padding-top: 140px;
             }
+
+            .w-2,
+            .h-2 {
+                grid-column: span 1;
+                grid-row: span 1;
+            }
         }
 
         @media (max-width: 560px) {
             .obras-grid {
-                column-count: 1;
+                grid-template-columns: 1fr;
+                grid-auto-rows: 260px;
             }
 
             .obras-container {
@@ -211,6 +243,12 @@
 
             .floating-logo img {
                 height: 78px;
+            }
+
+            .w-2,
+            .h-2 {
+                grid-column: span 1;
+                grid-row: span 1;
             }
         }
     </style>
@@ -250,10 +288,10 @@
 
     <main class="obras-container">
         <header class="obras-header">
-            <p class="obras-kicker">Archivo completo</p>
+            <p class="obras-kicker">Archivo artístico</p>
             <h1 class="obras-title">Obras</h1>
-            <p class="obras-subtitle">Todas las imágenes alojadas en la carpeta <code>obras</code>, mostradas en una
-                galería liviana con carga diferida.</p>
+            <p class="obras-subtitle">Una selección de obras y registros visuales vinculados a Cre Arte Bariloche,
+                reunidos en una galería simple para recorrer la producción artística del espacio.</p>
             <p class="obras-count" id="obras-count"></p>
         </header>
         <div class="obras-grid" id="obras-grid" uk-lightbox="animation: slide"></div>
@@ -311,15 +349,32 @@
         const stripExtension = (name) => name.replace(/\.[^.]+$/, '');
 
         if (obrasCount) {
-            obrasCount.textContent = `${obraFiles.length} imágenes`;
+            obrasCount.textContent = `${obraFiles.length} obras`;
         }
 
         if (obrasGrid) {
             const fragment = document.createDocumentFragment();
+            const sizePattern = [
+                ['w-2', 'h-2'],
+                ['h-2'],
+                ['w-2'],
+                [],
+                [],
+                ['h-2'],
+                ['w-2'],
+                [],
+                ['h-2'],
+                ['w-2', 'h-2'],
+                [],
+                [],
+            ];
 
-            obraFiles.forEach((file) => {
+            obraFiles.forEach((file, index) => {
                 const item = document.createElement('div');
                 item.className = 'obra-item';
+                sizePattern[index % sizePattern.length].forEach((className) => {
+                    item.classList.add(className);
+                });
 
                 const link = document.createElement('a');
                 const imagePath = encodeURI(`./obras/${file}`);

@@ -1,13 +1,22 @@
 // Animación al cargar
 window.addEventListener("load", () => {
-  document.querySelector(".animate-title").style.opacity = "1";
-  document.querySelector(".animate-title").style.transform = "translateY(0)";
+  const title = document.querySelector(".animate-title");
+  if (title) {
+    title.style.opacity = "1";
+    title.style.transform = "translateY(0)";
+  }
 
-  document.querySelector(".animate-subtitle").style.opacity = "1";
-  document.querySelector(".animate-subtitle").style.transform = "translateY(0)";
+  const subtitle = document.querySelector(".animate-subtitle");
+  if (subtitle) {
+    subtitle.style.opacity = "1";
+    subtitle.style.transform = "translateY(0)";
+  }
 
-  document.querySelector(".animate-btn").style.opacity = "1";
-  document.querySelector(".animate-btn").style.transform = "translateY(0)";
+  const button = document.querySelector(".animate-btn");
+  if (button) {
+    button.style.opacity = "1";
+    button.style.transform = "translateY(0)";
+  }
 });
 
 // Animación al hacer scroll (para las cards)
