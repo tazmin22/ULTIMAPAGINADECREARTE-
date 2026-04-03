@@ -259,6 +259,10 @@
             transition: transform 0.45s ease;
         }
 
+        .uk-lightbox-caption {
+            display: none !important;
+        }
+
         .gallery-item:hover .gallery-img {
             transform: scale(1.015);
         }
@@ -356,7 +360,7 @@
             <div class="qr-interactive-container">
                 <img src="./img/manos_donar.webp" alt="Manos donar" class="qr-hands-reveal">
                 <div class="qr-base" uk-lightbox>
-                    <a href="./img/qr_solo.png" data-caption="Donar a Cre Arte (Alias: cre.arte.bariloche)">
+                    <a href="./img/qr_solo.png">
                         <img src="./img/qr_solo.png" alt="Donar a Cre Arte">
                     </a>
                 </div>
@@ -413,7 +417,6 @@
                 const caption = stripExtension(file);
 
                 link.href = imagePath;
-                link.setAttribute('data-caption', caption);
 
                 const image = document.createElement('img');
                 image.className = 'gallery-img';

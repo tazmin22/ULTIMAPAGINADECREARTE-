@@ -58,6 +58,49 @@
       background: linear-gradient(180deg, rgba(0, 0, 0, .45) 0%, rgba(0, 0, 0, .55) 40%, rgba(0, 0, 0, .75) 100%);
     }
 
+    .hero-static {
+      position: relative;
+      background: #000;
+    }
+
+    .hero-video {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+      background: #000;
+      max-width: none !important;
+      max-height: none !important;
+      transform: translateZ(0);
+      will-change: transform;
+    }
+
+    .hero-copy {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 2;
+      width: min(92vw, 900px);
+      padding: 0 1rem;
+      pointer-events: none;
+    }
+
+    @media (max-width: 640px) {
+      .hero-copy .uk-heading-medium {
+        font-size: clamp(2.2rem, 12vw, 3.2rem) !important;
+      }
+
+      .hero-copy .uk-text-lead {
+        font-size: 0.68rem !important;
+        letter-spacing: 3px !important;
+      }
+    }
+
     .no-margin {
       margin: 0 !important;
       padding: 0 !important;
@@ -1101,16 +1144,15 @@
   <section class="uk-section uk-section-remove-padding uk-position-relative uk-overflow-hidden hero-static"
     style="height: 100vh; min-height: 600px;" uk-scrollspy="cls: uk-animation-fade; delay: 300">
 
-    <!-- Video Background -->
-    <video autoplay muted loop playsinline poster="./img/JACOBACCI.webp" class="hero-video"
-      style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+    <video autoplay muted loop playsinline preload="auto" poster="./img/video_portada.webp" class="hero-video"
+      aria-hidden="true" disablepictureinpicture controlslist="nodownload noplaybackrate noremoteplayback">
       <source src="./img/video.mp4" type="video/mp4">
     </video>
 
     <!-- Overlay remains for readability -->
     <div class="uk-position-cover hero-overlay" style="z-index: 1;"></div>
 
-    <div class="uk-position-center uk-text-center uk-light" style="z-index: 2;">
+    <div class="hero-copy uk-text-center uk-light">
       <div class="uk-container">
         <h1 class="uk-heading-medium uk-text-bold uk-margin-small">
           CRE-<span class="text-accent">arte</span>
@@ -1124,14 +1166,15 @@
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const heroVideo = document.querySelector('.hero-video');
+      if (!heroVideo) return;
 
-      // Parallax effect on scroll
-      window.addEventListener('scroll', () => {
-        let scrollPos = window.pageYOffset;
-        if (heroVideo) {
-          heroVideo.style.transform = `translateY(${scrollPos * 0.3}px)`;
-        }
-      });
+      const updateHeroOffset = () => {
+        const scrollPos = window.pageYOffset || 0;
+        heroVideo.style.transform = `translate3d(0, ${scrollPos * 0.3}px, 0)`;
+      };
+
+      window.addEventListener('scroll', updateHeroOffset, { passive: true });
+      updateHeroOffset();
     });
   </script>
 
