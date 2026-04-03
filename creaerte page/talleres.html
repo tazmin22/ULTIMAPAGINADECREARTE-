@@ -80,95 +80,98 @@
             top: 0;
             left: 0;
             width: 100%;
-            z-index: 2000;
+            z-index: 5000;
             display: flex;
-            justify-content: center;
+            justify-content: center; /* Centered links */
             align-items: center;
-            padding: 35px 5% 25px;
-            background: transparent;
+            padding: 25px 5%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #eee;
             transition: all 0.4s ease;
         }
 
-
-        /* ===== LOGO INDEPENDIENTE ===== */
         .top-logo {
-            margin-right: auto;
-            transition: transform 0.3s ease;
+            position: absolute;
+            left: 5%;
             display: block;
+            transition: transform 0.3s ease;
         }
 
         .top-logo img {
-            height: 120px;
+            height: 70px;
             width: auto;
-            filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.2));
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-        }
-
-        .top-logo:hover img {
-            transform: scale(1.05);
+            transition: all 0.4s ease;
         }
 
         .t-nav-links {
-            flex: 1;
             display: flex;
-            justify-content: center;
-            gap: 4.5rem;
-            margin-right: 70px;
+            gap: 4rem;
         }
 
         .t-nav-links a {
             font-family: 'Inter', sans-serif;
             font-size: 0.72rem;
-            letter-spacing: 4px;
+            letter-spacing: 3px;
             text-transform: uppercase;
-            color: #fff;
-            /* Blanco inicial */
-            opacity: 0.9;
-            transition: all 0.4s ease;
+            color: #111;
+            /* Dark text for visibility */
+            opacity: 0.8;
+            transition: all 0.3s ease;
             text-decoration: none;
+            font-weight: 500;
         }
-
-
-
 
         .t-nav-links a:hover {
             opacity: 1;
-            color: var(--orange);
+            color: var(--wine);
         }
 
         /* ── TALLERES HERO (PORTADA) ── */
         .t-hero {
             position: relative;
             width: 100%;
-            height: 100vh;
-            /* FULL COVER */
-            overflow: hidden;
-            background: #222;
-            margin-bottom: 120px;
+            height: auto;
+            background: #000;
+            margin-bottom: 60px;
+            display: grid;
+            grid-template-columns: 1fr;
+            align-items: end;
         }
 
         .t-hero img {
+            grid-area: 1 / 1;
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .t-hero-overlay {
+            grid-area: 1 / 1;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, transparent 60%);
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            filter: brightness(0.85);
+            z-index: 5;
         }
 
         .t-hero-content {
-            position: absolute;
-            bottom: 10%;
-            left: 8%;
+            grid-area: 1 / 1;
             z-index: 10;
+            padding: 5% 8%;
+            pointer-events: none;
+            /* Let clicks pass to the image if needed */
+        }
+
+        .t-hero-content>* {
+            pointer-events: auto;
+            /* Re-enable for text and buttons */
         }
 
         .t-title-block {
             display: inline-block;
-            background: var(--wine);
-            padding: 12px 35px;
             color: #fff;
-            transform: rotate(-1.5deg);
-            box-shadow: 6px 6px 25px rgba(0, 0, 0, 0.2);
-            margin-bottom: 5px;
+            margin-bottom: 0px;
+            text-shadow: 2px 2px 15px rgba(0, 0, 0, 0.8);
         }
 
         .t-title-block h2 {
@@ -184,9 +187,7 @@
         }
 
         .t-title-block.accent {
-            transform: rotate(2deg) translateY(-8px) translateX(30px);
-            background: var(--wine);
-            padding: 8px 30px;
+            margin-top: 5px;
         }
 
         .t-title-block.accent h3 {
@@ -210,6 +211,192 @@
             font-size: 0.95rem;
             line-height: 1.6;
             opacity: 0.9;
+        }
+
+        /* ── VIDEO SECTION (NEW EDITORIAL) ── */
+        .t-video-section {
+            padding: 80px 10%;
+            background: #fff;
+            margin-top: 100px;
+        }
+
+        .t-video-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .t-video-media {
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .custom-video-thumb {
+            display: block;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.5s ease;
+            overflow: hidden;
+        }
+
+        .custom-video-thumb::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.2);
+            transition: all 0.4s ease;
+        }
+
+        .custom-video-thumb:hover::after {
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .custom-video-thumb:hover .video-poster {
+            transform: scale(1.05);
+        }
+
+        .video-poster {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 1.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .video-play-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+            color: #fff;
+            background: transparent;
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            border: 5px solid #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.4);
+            transition: all 0.4s ease;
+        }
+
+        .video-play-btn svg {
+            margin-left: 6px;
+            width: 40px;
+            height: 40px;
+            fill: #fff;
+        }
+
+        .custom-video-thumb:hover .video-play-btn {
+            transform: translate(-50%, -50%) scale(1.1);
+            background: transparent;
+            box-shadow: 0 0 60px rgba(0, 0, 0, 0.6);
+        }
+
+        .t-video-text {
+            padding-left: 20px;
+        }
+
+        .t-video-text h2 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 900;
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+
+        .t-video-text h3 {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--wine);
+            margin-bottom: 30px;
+        }
+
+        .t-video-text p {
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 40px;
+        }
+
+        /* ── LINKS EDITORIALES ── */
+        .viajes-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 25px;
+            text-decoration: none !important;
+            margin-top: 20px;
+            color: #111;
+            transition: all 0.3s ease;
+        }
+
+        .viajes-arrow {
+            width: 80px;
+            height: 1px;
+            background: #111;
+            position: relative;
+            transition: width 0.3s ease;
+        }
+
+        .viajes-arrow::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: -4px;
+            width: 8px;
+            height: 8px;
+            border-top: 1.5px solid #111;
+            border-right: 1.5px solid #111;
+            transform: rotate(45deg);
+        }
+
+        .viajes-link-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            letter-spacing: 3px;
+            font-weight: 800;
+            color: #111;
+            text-transform: uppercase;
+        }
+
+        .viajes-link:hover .viajes-arrow {
+            width: 110px;
+        }
+
+        .viajes-link:hover .viajes-link-text {
+            color: var(--wine);
+        }
+
+        @media (max-width: 992px) {
+            .t-video-container {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+
+            .t-video-text {
+                padding-left: 0;
+            }
+
+            .t-video-section {
+                padding: 60px 6%;
+            }
+
+            .video-play-btn {
+                width: 70px;
+                height: 70px;
+            }
         }
 
         /* ── MAG TALLERES SCATTERED IMAGES (OPCIONAL/RESTANTE) ── */
@@ -765,34 +952,6 @@
             background-color: #536647;
         }
 
-        .swoosh-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 20;
-            mix-blend-mode: multiply;
-            /* For the transparent feel */
-            opacity: 0.7;
-        }
-
-        .swoosh-path {
-            fill: none;
-            stroke: #2e3192;
-            stroke-width: 40;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-            stroke-dasharray: 5000;
-            stroke-dashoffset: 5000;
-            transition: stroke-dashoffset 3s ease-out;
-        }
-
-        .workshop-mosaic-section.visible .swoosh-path {
-            stroke-dashoffset: 0;
-        }
-
         @media (max-width: 900px) {
             .workshop-mosaic-grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -1296,8 +1455,7 @@
             <a href="./talleres.html">Talleres</a>
             <a href="./quienes_somos.html">Quiénes Somos</a>
             <a href="./puertas_al_mundo.html">Puertas al Mundo</a>
-            <a href="./galeria.html">Galería</a>
-            <a href="./obras.html">Obras</a>
+
         </div>
         <button class="mobile-nav-toggle" aria-label="Abrir Menú">
             <span></span>
@@ -1319,58 +1477,48 @@
 
 
 
-    <!-- Portada Hero -->
-    <section class="t-hero">
-        <img src="./img/bannertaller.jpg" alt="Talleres Portada">
-        <div class="t-hero-content">
-            <style>
-                @media (max-width: 960px) {
-                    .t-hero {
-                        height: 60vh !important;
-                    }
-
-                    .t-hero-content {
-                        left: 5% !important;
-                        bottom: 10% !important;
-                    }
-
-                    .t-title-block h2,
-                    .t-title-block.accent h3 {
-                        font-size: 2rem !important;
-                    }
-
-                    .t-hero-desc {
-                        margin-left: 0 !important;
-                        font-size: 0.85rem !important;
-                    }
-
-                    .workshop-scatter-container {
-                        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)) !important;
-                        gap: 20px !important;
-                    }
-                }
-            </style>
-            <div class="t-title-block">
-                <h2>Conocé nuestros</h2>
+    <!-- ── NUEVA SECCIÓN DE VIDEO EDITORIAL ── -->
+    <section class="t-video-section" uk-scrollspy="cls: uk-animation-fade; delay: 200">
+        <div class="t-video-container">
+            <div class="t-video-media" uk-scrollspy="cls: uk-animation-slide-left-medium; delay: 300">
+                <a href="https://www.youtube.com/watch?v=9vYb4koLDKk&list=RD9vYb4koLDKk&start_radio=1" target="_blank"
+                    class="custom-video-thumb">
+                    <img src="./img/video_portada.png" alt="Talleres Video" class="video-poster">
+                    <div class="video-play-btn">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M8 5v14l11-7z" fill="white" />
+                        </svg>
+                    </div>
+                </a>
             </div>
-            <br>
-            <div class="t-title-block accent">
-                <h3>Talleres</h3>
+            <div class="t-video-text" uk-scrollspy="cls: uk-animation-slide-right-medium; delay: 400">
+                <h2>NUESTROS TALLERES</h2>
+                <h3>Tenemos mas de 50 talleres artístico-culturales</h3>
+                <p>
+                    Desarrollamos
+                    propuestas pedagógicas holísticas de apropiación de las herramientas simbólicas
+                    de la cultura para educar ciudadanos que logren un proyecto de vida autónomo y
+                    autodeterminado. Nos enfocamos en generar oportunidades de desarrollo de la
+                    autoestima, educar para el empoderamiento de derechos y formar artistas con el
+                    objetivo de desentrañar y reconstruir una estética política del colectivo. Educamos
+                    desde la formación artística como potenciador de la comunicación y como
+                    transformador de las realidades de opresión de un mundo normalizado.
+                    Visibilizamos a las personas con diversidad funcional como actores y autores
+                    políticos, promoviendo revertir la exclusión social histórica del colectivo.
+                </p>
+                <a href="galeria.html" class="viajes-link">
+                    <span class="viajes-arrow"></span>
+                    <span class="viajes-link-text">VER GALERÍA</span>
+                </a>
             </div>
-            <p class="t-hero-desc">
-                Ofrecemos más de 50 talleres artístico-culturales que promueven la autonomía, la autoestima y el
-                desarrollo personal a través del arte. Buscamos visibilizar a las personas con discapacidad como
-                protagonistas activos y fomentar su inclusión social.
-            </p>
         </div>
     </section>
 
-    <!-- ── LISTADO COMPLETO DE TALLERES (GRILLA) ────────── -->
     <!-- ── LISTADO COMPLETO DE TALLERES (MOSAICO COLORIDO) ────────── -->
-    <section class="workshop-mosaic-section" id="mosaic-list">
+    <section class="workshop-mosaic-section" id="mosaic-list" style="margin-top: 50px;">
         <div class="workshop-mosaic-grid">
             <!-- Row 1 -->
-            <div class="mosaic-tile bg-sage hover-reveal">
+            <div class="mosaic-tile bg-sage fixed-photo">
                 <img src="./talleres/talleres26.JPG" alt="Participante">
                 <div class="tile-content">
                     <p>01</p>
@@ -1378,7 +1526,7 @@
                 </div>
             </div>
             <div class="mosaic-tile bg-mustard fixed-photo">
-                <img src="./talleres/talleres13.JPG" alt="Taller">
+                <img src="./img/gif2.gif" alt="Taller">
                 <div class="tile-content">
                     <p>02</p>
                     <h3>Xilografía</h3>
@@ -1390,12 +1538,7 @@
                     <h3>Literario</h3>
                 </div>
             </div>
-            <div class="mosaic-tile bg-night hover-reveal">
-                <svg class="tile-scribble" viewBox="0 0 100 100"
-                    style="position: absolute; width: 140px; top: 10%; right: -5%; z-index: 25; pointer-events: none; opacity: 0.8;">
-                    <path d="M 10 50 Q 30 10 50 50 T 90 50" fill="none" stroke="#f8bc5c" stroke-width="12"
-                        stroke-linecap="round" />
-                </svg>
+            <div class="mosaic-tile bg-night fixed-photo">
                 <img src="./talleres/talleres25.JPG" alt="Costura">
                 <div class="tile-content">
                     <p>04</p>
@@ -1417,7 +1560,7 @@
                     <h3>Plástica</h3>
                 </div>
             </div>
-            <div class="mosaic-tile bg-terracotta hover-reveal">
+            <div class="mosaic-tile bg-terracotta fixed-photo">
                 <img src="./talleres/talleres36.JPG" alt="Cerámica">
                 <div class="tile-content">
                     <p>07</p>
@@ -1432,7 +1575,7 @@
             </div>
 
             <!-- Row 3 -->
-            <div class="mosaic-tile bg-forest hover-reveal">
+            <div class="mosaic-tile bg-forest fixed-photo">
                 <img src="./talleres/talleres37.JPG" alt="Utilería">
                 <div class="tile-content">
                     <p>09</p>
@@ -1440,12 +1583,7 @@
                 </div>
             </div>
             <div class="mosaic-tile bg-clay fixed-photo">
-                <svg class="tile-scribble" viewBox="0 0 100 100"
-                    style="position: absolute; width: 100px; bottom: 5%; left: 10%; z-index: 25; pointer-events: none; transform: rotate(-15deg); opacity: 0.8;">
-                    <path d="M 10 30 Q 50 90 90 30" fill="none" stroke="#fff" stroke-width="10"
-                        stroke-linecap="round" />
-                </svg>
-                <img src="./talleres/talleres15.JPG" alt="Baile">
+                <img src="./img/danzagif.gif" alt="Baile">
                 <div class="tile-content">
                     <p>10</p>
                     <h3>Baile</h3>
@@ -1457,8 +1595,8 @@
                     <h3>Juego deportivo</h3>
                 </div>
             </div>
-            <div class="mosaic-tile bg-mustard hover-reveal">
-                <img src="./talleres/talleres14.JPG" alt="Computación">
+            <div class="mosaic-tile bg-mustard fixed-photo">
+                <img src="./talleres/talleres14.JPG" alt=" Computación">
                 <div class="tile-content">
                     <p>12</p>
                     <h3>Computación</h3>
@@ -1479,14 +1617,14 @@
                     <h3>Jardinería</h3>
                 </div>
             </div>
-            <div class="mosaic-tile bg-wine hover-reveal">
-                <img src="./img/t_musician.png" alt="Yoga">
+            <div class="mosaic-tile bg-wine color-shift">
                 <div class="tile-content">
                     <p>15</p>
                     <h3>Yoga</h3>
                 </div>
             </div>
-            <div class="mosaic-tile bg-moss color-shift">
+            <div class="mosaic-tile bg-moss color-shift fixed-photo">
+                <img src="./img/gif5.jpg" alt="Danza">
                 <div class="tile-content">
                     <p>16</p>
                     <h3>Danza</h3>
@@ -1494,20 +1632,15 @@
             </div>
 
             <!-- Row 5 -->
-            <div class="mosaic-tile bg-terracotta hover-reveal">
-                <img src="./talleres/danza.JPG" alt="Danza Alas">
+            <div class="mosaic-tile bg-terracotta fixed-photo">
+                <img src="./talleres/talleres5.JPG" alt="Danza Alas">
                 <div class="tile-content">
                     <p>17</p>
                     <h3>Danza Alas</h3>
                 </div>
             </div>
             <div class="mosaic-tile bg-deep-blue fixed-photo">
-                <svg class="tile-scribble" viewBox="0 0 100 100"
-                    style="position: absolute; width: 120px; top: -10%; left: -10%; z-index: 25; pointer-events: none; opacity: 0.8;">
-                    <path d="M 20 80 C 40 10 60 90 80 20" fill="none" stroke="#ff5c8a" stroke-width="12"
-                        stroke-linecap="round" />
-                </svg>
-                <img src="./talleres/talleres23.jpg" alt="Murga">
+                <img src="./img/2022 Murga del Tomate (3).JPG" alt="Murga">
                 <div class="tile-content">
                     <p>18</p>
                     <h3>Murga</h3>
@@ -1519,7 +1652,7 @@
                     <h3>Batik</h3>
                 </div>
             </div>
-            <div class="mosaic-tile bg-clay hover-reveal">
+            <div class="mosaic-tile bg-clay fixed-photo">
                 <img src="./talleres/cine.JPG" alt="Mantenimiento">
                 <div class="tile-content">
                     <p>20</p>
@@ -1541,14 +1674,15 @@
                     <h3>Entrenamiento</h3>
                 </div>
             </div>
-            <div class="mosaic-tile bg-earth hover-reveal">
+            <div class="mosaic-tile bg-earth fixed-photo">
                 <img src="./talleres/telar.JPG" alt="Telar">
                 <div class="tile-content">
                     <p>23</p>
                     <h3>Telar</h3>
                 </div>
             </div>
-            <div class="mosaic-tile bg-night color-shift">
+            <div class="mosaic-tile bg-night color-shift fixed-photo">
+                <img src="./img/gif2.gif" alt="Teatro">
                 <div class="tile-content">
                     <p>24</p>
                     <h3>Teatro</h3>
@@ -1556,8 +1690,8 @@
             </div>
 
             <!-- Row 7 -->
-            <div class="mosaic-tile bg-wine hover-reveal">
-                <img src="./talleres/talleres31.JPG" alt="Radio">
+            <div class="mosaic-tile bg-wine fixed-photo">
+                <img src="./talleres/talleres33.JPG" alt="Radio">
                 <div class="tile-content">
                     <p>25</p>
                     <h3>Radio</h3>
@@ -1589,18 +1723,14 @@
                     <h3>Batik/grabado</h3>
                 </div>
             </div>
-            <div class="mosaic-tile bg-clay">
-                <svg class="tile-scribble" viewBox="0 0 100 100"
-                    style="position: absolute; width: 120px; bottom: 0; left: 0; z-index: 25; pointer-events: none; opacity: 0.6;">
-                    <circle cx="50" cy="50" r="40" fill="none" stroke="#f1c40f" stroke-width="8"
-                        stroke-dasharray="10,5" />
-                </svg>
+            <div class="mosaic-tile bg-clay fixed-photo">
+                <img src="./img/gif3.gif" alt="Joyería">
                 <div class="tile-content">
                     <p>30</p>
                     <h3>Joyería</h3>
                 </div>
             </div>
-            <div class="mosaic-tile bg-sage hover-reveal">
+            <div class="mosaic-tile bg-sage fixed-photo">
                 <img src="./talleres/Entrenamiento.JPG" alt="Conciencia">
                 <div class="tile-content">
                     <p>31</p>
@@ -1615,7 +1745,7 @@
             </div>
 
             <!-- Row 9 -->
-            <div class="mosaic-tile bg-earth hover-reveal">
+            <div class="mosaic-tile bg-earth fixed-photo">
                 <img src="./talleres/talleres9.JPG" alt="Reflexión">
                 <div class="tile-content">
                     <p>33</p>
@@ -1635,8 +1765,8 @@
                     <h3>Bordado</h3>
                 </div>
             </div>
-            <div class="mosaic-tile bg-moss hover-reveal">
-                <img src="./img/t_portrait_1.png" alt="Guitarra">
+            <div class="mosaic-tile bg-moss fixed-photo">
+                <img src="./talleres/talleres2.JPG" alt="Guitarra">
                 <div class="tile-content">
                     <p>36</p>
                     <h3>Guitarra/cuerdas</h3>
@@ -1658,11 +1788,6 @@
                 </div>
             </div>
             <div class="mosaic-tile bg-forest">
-                <svg class="tile-scribble" viewBox="0 0 100 100"
-                    style="position: absolute; width: 130px; top: 0; right: 0; z-index: 25; pointer-events: none; opacity: 0.8;">
-                    <path d="M 10 10 C 50 10 50 90 90 90" fill="none" stroke="#fff" stroke-width="8"
-                        stroke-linecap="round" />
-                </svg>
                 <div class="tile-content">
                     <p>39</p>
                     <h3>Bordado Foto</h3>
@@ -1676,8 +1801,7 @@
             </div>
 
             <!-- Row 11 -->
-            <div class="mosaic-tile bg-sage hover-reveal">
-                <img src="./img/t_illust_1.png" alt="Ensamble">
+            <div class="mosaic-tile bg-sage color-shift">
                 <div class="tile-content">
                     <p>41</p>
                     <h3>Ensamble musical</h3>
@@ -1696,8 +1820,8 @@
                     <h3>Percusión Watawo</h3>
                 </div>
             </div>
-            <div class="mosaic-tile bg-night hover-reveal">
-                <img src="./talleres/talleres22.JPG" alt="Cocina">
+            <div class="mosaic-tile bg-night fixed-photo">
+                <img src="./talleres/talleres22.jpg" alt="Cocina">
                 <div class="tile-content">
                     <p>44</p>
                     <h3>Cocina</h3>
@@ -1711,19 +1835,14 @@
                     <h3>Tienda de arte</h3>
                 </div>
             </div>
-            <div class="mosaic-tile bg-moss">
-                <svg class="tile-scribble" viewBox="0 0 100 100"
-                    style="position: absolute; width: 80px; top: 10%; right: 10%; z-index: 25; pointer-events: none; opacity: 0.9;">
-                    <path d="M 20 20 L 80 80 M 80 20 L 20 80" fill="none" stroke="#ff5c8a" stroke-width="12"
-                        stroke-linecap="round" />
-                </svg>
+            <div class="mosaic-tile bg-moss fixed-photo">
+                <img src="./talleres/talleres3.JPG" alt="Cine">
                 <div class="tile-content">
                     <p>46</p>
                     <h3>Cine</h3>
                 </div>
             </div>
-            <div class="mosaic-tile bg-terracotta hover-reveal">
-                <img src="./img/t_portrait_2.png" alt="Hidroponia">
+            <div class="mosaic-tile bg-terracotta color-shift">
                 <div class="tile-content">
                     <p>47</p>
                     <h3>Hidroponia</h3>
@@ -1737,7 +1856,7 @@
             </div>
 
             <!-- Row 13 -->
-            <div class="mosaic-tile bg-forest hover-reveal">
+            <div class="mosaic-tile bg-forest fixed-photo">
                 <img src="./talleres/talleres39.JPG" alt="Gestión">
                 <div class="tile-content">
                     <p>49</p>
@@ -1757,8 +1876,8 @@
                     <h3>Fusion textil</h3>
                 </div>
             </div>
-            <div class="mosaic-tile bg-mustard hover-reveal">
-                <img src="./talleres/talleres42.JPG" alt="Collage">
+            <div class="mosaic-tile bg-mustard fixed-photo">
+                <img src="./img/gif2.gif" alt="Collage">
                 <div class="tile-content">
                     <p>52</p>
                     <h3>Collage</h3>
@@ -1766,7 +1885,8 @@
             </div>
 
             <!-- Row 14 -->
-            <div class="mosaic-tile bg-earth">
+            <div class="mosaic-tile bg-earth fixed-photo">
+                <img src="./img/gif4.gif" alt=" Títeres">
                 <div class="tile-content">
                     <p>53</p>
                     <h3>Títeres</h3>
@@ -1780,11 +1900,6 @@
                 </div>
             </div>
             <div class="mosaic-tile bg-wine">
-                <svg class="tile-scribble" viewBox="0 0 100 100"
-                    style="position: absolute; width: 140px; top: 0; left: 0; z-index: 25; pointer-events: none; opacity: 0.7;">
-                    <path d="M 10 10 C 90 10 10 90 90 90" fill="none" stroke="#fff" stroke-width="10"
-                        stroke-linecap="round" />
-                </svg>
                 <div class="tile-content">
                     <p>55</p>
                     <h3>Experiencias gráficas</h3>
