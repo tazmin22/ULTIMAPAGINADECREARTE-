@@ -36,6 +36,7 @@
       margin: 0;
       padding: 0;
       color: #0a0a0a;
+      background-color: #fbf9f4; /* Creamy beige from inspiration image */
     }
 
     .text-accent {
@@ -325,7 +326,7 @@
 
     /* ===== SECCIÓN MAPA MODERNA ===== */
     .map-section {
-      background: linear-gradient(180deg, #fff 0%, #f8f8f8 100%);
+      background: #fbf9f4;
       padding: 5rem 0;
       color: #0a0a0a;
     }
@@ -363,7 +364,7 @@
 
     /* === NEW SPLIT DÓNDE ESTAMOS === */
     .where-section {
-      background: #fdfdfc;
+      background: #fbf9f4;
       padding: 0;
       overflow: hidden;
       margin: 40px 0 150px 0 !important;
@@ -381,7 +382,7 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      background-color: #fdfdfc;
+      background-color: #fbf9f4;
     }
 
     .where-headline {
@@ -734,7 +735,7 @@
 
     /* === SOCIAL SECTION === */
     .social-section {
-      background: #f4efe6;
+      background: #fbf9f4;
       padding: 120px 0;
       overflow: visible;
       position: relative;
@@ -1373,7 +1374,7 @@
           <img src="./img/manoabajo.png" class="pointing-hand-map" alt="">
           <div class="where-small-map-wrap">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3004.811797828!2d-71.306!3d-41.134!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x961a7b1520012bfd%3A0x334aa1031853ba53!2sGdor.%20Le%C3%B3n%20Quaglia%20540%2C%20R8400%20San%20Carlos%20de%20Bariloche%2C%20R%C3%ADo%20Negro!5e0!3m2!1ses!2sar!4v1711410000000"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3004.8327854652253!2d-71.3106366!3d-41.1335919!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x961a7b7389345719%3A0xe5362142750e39a3!2sQuaglia%20540%2C%20R8400%20San%20Carlos%20de%20Bariloche%2C%20R%C3%ADo%20Negro!5e0!3m2!1ses!2sar!4v1711462000000"
               width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
             </iframe>
           </div>
@@ -1391,17 +1392,21 @@
     <div class="footer-donation fade-in-up">
       <div class="qr-interactive-container">
         <img src="./img/manos_donar.png" alt="Manos donar" class="qr-hands-reveal">
-        <div class="qr-base">
-          <img src="./img/qr_solo.png" alt="Donar a Cre Arte">
+        <div class="qr-base" uk-lightbox>
+          <a href="./img/qr_solo.png" data-caption="Donar a Cre Arte (Alias: cre.arte.bariloche)">
+            <img src="./img/qr_solo.png" alt="Donar a Cre Arte">
+          </a>
         </div>
       </div>
       <span>Doná y apoyá nuestra labor</span>
     </div>
-    <div class="footer-links">
+    <div class="footer-links" style="margin-bottom: 12px;">
       <a href="./index.html">Inicio</a>
       <a href="./talleres.html">Talleres</a>
       <a href="./quienes_somos.html">Quiénes Somos</a>
       <a href="./puertas_al_mundo.html">Puertas al Mundo</a>
+    </div>
+    <div class="footer-links" style="margin-bottom: 30px;">
       <a href="./galeria.html">Galería</a>
       <a href="./obras.html">Obras</a>
     </div>

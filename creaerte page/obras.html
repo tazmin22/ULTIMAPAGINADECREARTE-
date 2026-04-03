@@ -17,7 +17,7 @@
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.19.4/dist/js/uikit-icons.min.js"></script>
 
     <!-- Lenis Smooth Scroll -->
-    <script src="https://cdn.gh.studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
     <link rel="stylesheet" href="responsive.css">
     <link rel="stylesheet" href="nav-footer.css">
     <style>
@@ -498,18 +498,22 @@
     <footer class="mag-footer">
         <div class="footer-donation fade-in-up">
             <div class="qr-interactive-container">
-                <img src="./img/manos_donar.png" alt="Manos donar" class="qr-hands-reveal">
-                <div class="qr-base">
-                    <img src="./img/qr_solo.png" alt="Donar a Cre Arte">
+                <img src="img/manos_donar.png" alt="Manos donar" class="qr-hands-reveal">
+                <div class="qr-base" uk-lightbox>
+                    <a href="img/qr_solo.png" data-caption="Donar a Cre Arte (Alias: cre.arte.bariloche)">
+                        <img src="img/qr_solo.png" alt="Donar a Cre Arte">
+                    </a>
                 </div>
             </div>
             <span>Doná y apoyá nuestra labor</span>
         </div>
-        <div class="footer-links">
+        <div class="footer-links" style="margin-bottom: 12px;">
             <a href="./index.html">Inicio</a>
             <a href="./talleres.html">Talleres</a>
             <a href="./quienes_somos.html">Quiénes Somos</a>
             <a href="./puertas_al_mundo.html">Puertas al Mundo</a>
+        </div>
+        <div class="footer-links" style="margin-bottom: 30px;">
             <a href="./galeria.html">Galería</a>
             <a href="./obras.html">Obras</a>
         </div>

@@ -328,6 +328,20 @@
         <div class="strip"></div>
         <div class="strip"></div>
 
+        <div class="strip-overlay-content"
+            style="position: absolute; top: 50%; left: 50px; transform: translateY(-50%); z-index: 100; pointer-events: none;">
+            <div class="gallery-title-block"
+                style="background: rgba(255, 255, 255, 0.95); padding: 10px 40px; transform: rotate(-2deg); margin-left: 0; display: inline-block;">
+                <h2
+                    style="color: #111; margin: 0; font-family: 'Playfair Display', serif; font-weight: 700; letter-spacing: 2px;">
+                    Galeria</h2>
+            </div>
+            <br>
+            <div class="gallery-title-block accent"
+                style="display: inline-block; margin-top: 10px; margin-left: 20px; box-shadow: 10px 10px 30px rgba(0,0,0,0.2);">
+
+            </div>
+        </div>
     </div>
 
     <main class="gallery-container" style="margin-top: 150px;">
@@ -405,17 +419,21 @@
         <div class="footer-donation fade-in-up">
             <div class="qr-interactive-container">
                 <img src="./img/manos_donar.png" alt="Manos donar" class="qr-hands-reveal">
-                <div class="qr-base">
-                    <img src="./img/qr_solo.png" alt="Donar a Cre Arte">
+                <div class="qr-base" uk-lightbox>
+                    <a href="./img/qr_solo.png" data-caption="Donar a Cre Arte (Alias: cre.arte.bariloche)">
+                        <img src="./img/qr_solo.png" alt="Donar a Cre Arte">
+                    </a>
                 </div>
             </div>
             <span>Doná y apoyá nuestra labor</span>
         </div>
-        <div class="footer-links">
+        <div class="footer-links" style="margin-bottom: 12px;">
             <a href="./index.html">Inicio</a>
             <a href="./talleres.html">Talleres</a>
             <a href="./quienes_somos.html">Quiénes Somos</a>
             <a href="./puertas_al_mundo.html">Puertas al Mundo</a>
+        </div>
+        <div class="footer-links" style="margin-bottom: 30px;">
             <a href="./galeria.html">Galería</a>
             <a href="./obras.html">Obras</a>
         </div>
