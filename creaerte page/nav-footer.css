@@ -55,6 +55,33 @@
     transform: translateY(-5px);
 }
 
+.footer-social .footer-social-icon {
+    color: #111;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.2rem;
+    height: 1.2rem;
+    font-size: 1.2rem;
+    line-height: 1;
+    transition: all 0.3s ease;
+}
+
+.footer-social .footer-social-icon svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.footer-social .footer-social-icon.spotify-icon {
+    color: #111;
+}
+
+.footer-social .footer-social-icon:hover {
+    color: #6a1a1c;
+    transform: translateY(-5px);
+}
+
 .footer-bottom {
     font-size: 0.85rem;
     font-weight: 500;
@@ -63,6 +90,50 @@
     padding-top: 30px;
     font-family: 'Inter', sans-serif;
     letter-spacing: 1px;
+}
+
+/* Logo hover animation across the site */
+nav .t-nav-logo img,
+nav .top-logo img,
+nav .floating-logo img {
+    transform-origin: center center;
+    will-change: transform, filter;
+}
+
+nav .t-nav-logo:hover img,
+nav .top-logo:hover img,
+nav .floating-logo:hover img {
+    animation: logoHoverPop 0.55s ease-in-out;
+    transform: scale(1.08) rotate(-2deg);
+    filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.16));
+}
+
+@keyframes logoHoverPop {
+    0% {
+        transform: scale(1) rotate(0deg);
+    }
+
+    45% {
+        transform: scale(1.1) rotate(-3deg);
+    }
+
+    70% {
+        transform: scale(1.06) rotate(1deg);
+    }
+
+    100% {
+        transform: scale(1.08) rotate(-2deg);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    nav .t-nav-logo:hover img,
+    nav .top-logo:hover img,
+    nav .floating-logo:hover img {
+        animation: none;
+        transform: scale(1.04);
+        filter: none;
+    }
 }
 
 /* Donation QR Styles */
@@ -190,7 +261,4 @@
         opacity: 0;
     }
 }
-
-
-
 

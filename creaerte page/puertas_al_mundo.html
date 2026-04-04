@@ -525,6 +525,17 @@
             z-index: 1;
         }
 
+        #stars-canvas {
+            opacity: 0.98;
+            filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.18));
+        }
+
+        @media (min-width: 1025px) {
+            #stars-canvas {
+                filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.24));
+            }
+        }
+
         /* Responsive */
         @media (max-width: 1024px) {
             .ed-grid {
@@ -610,7 +621,6 @@
             <img src="./img/LOGO.png" alt="Cre Arte Logo">
         </a>
         <div class="t-nav-links">
-            <a href="index.html">Inicio</a>
             <a href="talleres.html">Talleres</a>
             <a href="quienes_somos.html">Quiénes Somos</a>
             <a href="puertas_al_mundo.html">Puertas al Mundo</a>
@@ -625,7 +635,6 @@
 
     <div class="mobile-menu">
         <ul class="mobile-menu-links">
-            <li><a href="./index.html">Inicio</a></li>
             <li><a href="./talleres.html">Talleres</a></li>
             <li><a href="./quienes_somos.html">Quiénes Somos</a></li>
             <li><a href="./puertas_al_mundo.html">Puertas al Mundo</a></li>
@@ -1315,6 +1324,17 @@
             <a href="https://www.facebook.com/creartebrc" target="_blank" aria-label="Facebook">
                 <span uk-icon="icon: facebook; ratio: 1.2"></span>
             </a>
+            <a class="footer-social-icon spotify-icon" href="https://open.spotify.com/show/0GyrmphdSMMSeWOZtYImGz" target="_blank" rel="noopener noreferrer" aria-label="Spotify">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8" />
+                    <path d="M7 10.2c3.2-1 6.5-.9 10 .4" stroke="currentColor" stroke-width="1.5"
+                        stroke-linecap="round" />
+                    <path d="M7.9 13.2c2.6-.8 5.2-.7 8 .2" stroke="currentColor" stroke-width="1.35"
+                        stroke-linecap="round" />
+                    <path d="M8.9 15.7c1.9-.4 3.8-.3 5.5.2" stroke="currentColor" stroke-width="1.25"
+                        stroke-linecap="round" />
+                </svg>
+            </a>
             <a href="https://www.youtube.com/@cre-arte1309" target="_blank" aria-label="YouTube">
                 <span uk-icon="icon: youtube; ratio: 1.2"></span>
             </a>
@@ -1402,20 +1422,20 @@
 
             if (window.matchMedia('(max-width: 1024px)').matches) {
                 return {
-                    count: 42,
-                    topBand: 0.2,
-                    sizeMin: 0.45,
-                    sizeMax: 1.25,
-                    glow: 4
+                    count: 48,
+                    topBand: 0.24,
+                    sizeMin: 0.5,
+                    sizeMax: 1.4,
+                    glow: 5
                 };
             }
 
             return {
-                count: 65,
-                topBand: 0.22,
-                sizeMin: 0.5,
-                sizeMax: 1.5,
-                glow: 5
+                count: 92,
+                topBand: 0.28,
+                sizeMin: 0.7,
+                sizeMax: 2.1,
+                glow: 8
             };
         }
 
@@ -1429,8 +1449,8 @@
                     x: Math.random() * canvas.width,
                     y: Math.random() * (canvas.height * starSettings.topBand), // Upper band only
                     size: Math.random() * (starSettings.sizeMax - starSettings.sizeMin) + starSettings.sizeMin,
-                    opacity: Math.random(),
-                    maxOpacity: 0.3 + Math.random() * 0.7, // Random individual brightness
+                    opacity: 0.15 + Math.random() * 0.5,
+                    maxOpacity: 0.55 + Math.random() * 0.45, // Random individual brightness
                     speed: 0.002 + Math.random() * 0.012, // More varied speeds
                     increasing: Math.random() > 0.5
                 });
@@ -1452,7 +1472,7 @@
                 ctx.beginPath();
                 ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
                 ctx.fillStyle = `rgba(255, 255, 255, ${s.opacity})`;
-                ctx.shadowBlur = (starSettings?.glow ?? 5) * s.opacity;
+                ctx.shadowBlur = (starSettings?.glow ?? 5) * (0.8 + s.opacity);
                 ctx.shadowColor = 'white';
                 ctx.fill();
             });
