@@ -798,8 +798,8 @@
 
         @media (min-width: 1200px) {
             .workshop-mosaic-grid {
-                grid-template-columns: repeat(6, 1fr);
-                grid-auto-rows: calc(100vw / 6);
+                grid-template-columns: repeat(4, 1fr);
+                grid-auto-rows: 25vw;
             }
         }
 
@@ -809,7 +809,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 1.8rem;
+            padding: 1.3rem;
             cursor: default;
             /* INITIAL STATE FOR FAST REVEAL */
             opacity: 0;
@@ -829,7 +829,7 @@
         .mosaic-tile h3 {
             font-family: 'Inter', sans-serif;
             font-weight: 900;
-            font-size: clamp(0.9rem, 2vw, 2.2rem);
+            font-size: clamp(0.75rem, 1.4vw, 1.7rem);
             /* REFINED SIZE */
             color: #fff;
             text-transform: uppercase;
@@ -912,11 +912,11 @@
 
         .mosaic-tile p {
             font-family: 'Inter', sans-serif;
-            font-size: 0.6rem;
+            font-size: 0.5rem;
             font-weight: 700;
             color: #fff;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 1.5px;
             margin-bottom: 10px;
         }
 
@@ -1927,14 +1927,6 @@
 
                     <h3>Mural</h3>
                 </div>
-            </div>
-            <div class="mosaic-tile bg-moss">
-            </div>
-            <div class="mosaic-tile bg-moss">
-            </div>
-            <div class="mosaic-tile bg-moss">
-            </div>
-            <div class="mosaic-tile bg-moss">
             </div>
         </div>
     </section>
