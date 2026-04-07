@@ -20,6 +20,11 @@
     <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
     <link rel="stylesheet" href="responsive.css">
     <link rel="stylesheet" href="nav-footer.css">
+    <link rel="preload" as="image" href="./img/galeria-hero/strip-1.webp">
+    <link rel="preload" as="image" href="./img/galeria-hero/strip-2.webp">
+    <link rel="preload" as="image" href="./img/galeria-hero/strip-3.webp">
+    <link rel="preload" as="image" href="./img/galeria-hero/strip-4.webp">
+    <link rel="preload" as="image" href="./img/galeria-hero/strip-5.webp">
     <style>
         :root {
             --paper: #fbf9f4;
@@ -179,23 +184,23 @@
 
         /* Images for the gallery */
         .strip:nth-child(1) {
-            background-image: url('./img/footerfoter.webp');
+            background-image: url('./img/galeria-hero/strip-1.webp');
         }
 
         .strip:nth-child(2) {
-            background-image: url('./img/Acrilico.webp');
+            background-image: url('./img/galeria-hero/strip-2.webp');
         }
 
         .strip:nth-child(3) {
-            background-image: url('./img/bodegonimg.webp');
+            background-image: url('./img/galeria-hero/strip-3.webp');
         }
 
         .strip:nth-child(4) {
-            background-image: url('./img/cicloimg.webp');
+            background-image: url('./img/galeria-hero/strip-4.webp');
         }
 
         .strip:nth-child(5) {
-            background-image: url('./img/Antonio Mora. Mujer con sombrero. 0,89 x 0,70. Oleo- 2006.jpg');
+            background-image: url('./img/galeria-hero/strip-5.webp');
         }
 
         .strip:last-child {
@@ -241,9 +246,17 @@
             overflow: hidden;
             background: rgba(255, 255, 255, 0.72);
             box-shadow: 0 14px 34px rgba(0, 0, 0, 0.08);
-            transition: transform 0.35s ease, box-shadow 0.35s ease;
+            opacity: 0;
+            transform: translateY(18px) scale(0.985);
+            transition: opacity 0.55s ease, transform 0.55s ease, box-shadow 0.35s ease;
             content-visibility: auto;
             contain-intrinsic-size: 280px 360px;
+            will-change: opacity, transform;
+        }
+
+        .gallery-item.is-visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
         }
 
         .gallery-item:hover {
@@ -260,11 +273,6 @@
             height: auto;
             display: block;
             transition: transform 0.45s ease;
-            opacity: 0;
-        }
-
-        .gallery-item.is-loaded .gallery-img {
-            opacity: 1;
         }
 
         .uk-lightbox-caption {
@@ -302,9 +310,12 @@
             }
         }
 
-        .gallery-sentinel {
-            width: 100%;
-            height: 1px;
+        @media (prefers-reduced-motion: reduce) {
+            .gallery-item {
+                opacity: 1;
+                transform: none;
+                transition: box-shadow 0.35s ease;
+            }
         }
     </style>
 </head>
@@ -429,13 +440,6 @@
             .trim();
 
         if (galleryGrid) {
-            const gallerySentinel = document.createElement('div');
-            gallerySentinel.className = 'gallery-sentinel';
-            galleryGrid.after(gallerySentinel);
-
-            const batchSize = window.matchMedia('(max-width: 768px)').matches ? 6 : 10;
-            let renderedCount = 0;
-
             const buildItem = (file) => {
                 const meta = galleryAssets[file] || {};
                 const imagePath = encodeURI(`./talleres/${file}`);
@@ -455,56 +459,56 @@
                 image.src = thumbPath;
                 image.alt = caption;
                 image.decoding = 'async';
-                image.loading = renderedCount < batchSize ? 'eager' : 'lazy';
-                image.fetchPriority = renderedCount < batchSize ? 'high' : 'low';
+                image.loading = 'lazy';
                 if (meta.width && meta.height) {
                     image.width = meta.width;
                     image.height = meta.height;
                 }
-
-                image.addEventListener('load', () => {
-                    item.classList.add('is-loaded');
-                });
-                image.addEventListener('error', () => {
-                    item.classList.add('is-loaded');
-                });
 
                 link.appendChild(image);
                 item.appendChild(link);
                 return item;
             };
 
-            const appendNextBatch = () => {
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            const batchSize = window.matchMedia('(max-width: 768px)').matches ? 4 : 6;
+            const batchPause = prefersReducedMotion ? 0 : 48;
+            let renderedCount = 0;
+
+            const appendBatch = () => {
                 if (renderedCount >= galleryFiles.length) {
                     return;
                 }
 
                 const fragment = document.createDocumentFragment();
+                const itemsToReveal = [];
                 const nextLimit = Math.min(renderedCount + batchSize, galleryFiles.length);
+                const batchOffset = renderedCount;
 
                 while (renderedCount < nextLimit) {
-                    fragment.appendChild(buildItem(galleryFiles[renderedCount]));
+                    const item = buildItem(galleryFiles[renderedCount]);
+                    item.style.transitionDelay = `${(renderedCount - batchOffset) * 45}ms`;
+                    fragment.appendChild(item);
+                    itemsToReveal.push(item);
                     renderedCount += 1;
                 }
 
                 galleryGrid.appendChild(fragment);
 
+                requestAnimationFrame(() => {
+                    itemsToReveal.forEach((item) => item.classList.add('is-visible'));
+                });
+
                 if (window.UIkit && typeof window.UIkit.update === 'function') {
                     window.UIkit.update(galleryGrid);
                 }
+
+                if (renderedCount < galleryFiles.length) {
+                    window.setTimeout(appendBatch, batchPause);
+                }
             };
 
-            const batchObserver = new IntersectionObserver((entries) => {
-                if (entries.some(entry => entry.isIntersecting)) {
-                    appendNextBatch();
-                    if (renderedCount >= galleryFiles.length) {
-                        batchObserver.disconnect();
-                    }
-                }
-            }, { rootMargin: '900px 0px' });
-
-            batchObserver.observe(gallerySentinel);
-            appendNextBatch();
+            appendBatch();
         }
     </script>
     <script>

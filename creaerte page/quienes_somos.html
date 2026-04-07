@@ -470,7 +470,7 @@
         }
 
         .color-olive {
-            background-color: #8c9071;
+            background-color: #879d5a;
         }
 
         .color-burgundy {
@@ -743,6 +743,18 @@
         .fade-in-up.visible {
             opacity: 1;
             transform: translateY(0);
+        }
+
+        .section-reveal {
+            opacity: 0;
+            transform: translateY(56px) scale(0.985);
+            transition: opacity 0.9s cubic-bezier(0.165, 0.84, 0.44, 1), transform 0.9s cubic-bezier(0.165, 0.84, 0.44, 1);
+            will-change: opacity, transform;
+        }
+
+        .section-reveal.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
         }
 
         .fade-in-right {
@@ -1125,6 +1137,53 @@
             background-color: #a67c7c;
             box-shadow: 0 0 10px rgba(166, 124, 124, 0.2);
         }
+
+        /* Footer: unificar color con el resto del sitio */
+        .mag-footer .footer-links a,
+        .mag-footer .footer-links a:visited,
+        .mag-footer .footer-social a,
+        .mag-footer .footer-social a:visited,
+        .mag-footer .footer-social .footer-social-icon,
+        .mag-footer .footer-social .footer-social-icon:visited,
+        .mag-footer .footer-social .footer-social-icon svg,
+        .mag-footer .footer-bottom {
+            color: #111 !important;
+        }
+
+        .mag-footer .footer-links a:hover,
+        .mag-footer .footer-social a:hover,
+        .mag-footer .footer-social .footer-social-icon:hover {
+            color: #6a1a1c !important;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            body,
+            .hero-splash img,
+            .section-reveal,
+            .fade-in-up,
+            .fade-in-right,
+            .fade-in-place,
+            .zoom-pop,
+            .spread-photo,
+            .scrap-piece,
+            .mosaic-box,
+            .sticky-scene img,
+            .sticky-item,
+            .closure-banner img {
+                animation: none !important;
+                transition: none !important;
+            }
+
+            .section-reveal,
+            .fade-in-up,
+            .fade-in-right,
+            .fade-in-place,
+            .zoom-pop,
+            .sticky-scene img {
+                opacity: 1 !important;
+                transform: none !important;
+            }
+        }
     </style>
 </head>
 
@@ -1177,7 +1236,7 @@
 
 
     <!-- MAGAZINE SPREAD SECTION (BIENVENIDOS) -->
-    <section class="about-us-section">
+    <section class="about-us-section section-reveal">
         <div class="about-spread">
             <!-- Fotos superpuestas (Editorial Style) -->
             <div class="spread-photo sp-1 visible"><img src="./img/EUROPA.webp" alt="F1"></div>
@@ -1214,7 +1273,7 @@
 
     <!-- HISTORY / SCRAPBOOK -->
 
-    <section class="history-section" id="historia">
+    <section class="history-section section-reveal" id="historia">
         <div class="scrapbook-container">
             <!-- Imagen izquierda (Agua/Campamento) -->
             <div class="scrap-piece scrap-1 fade-in-up stagger-1">
@@ -1250,7 +1309,7 @@
 
 
     <!-- STICKY INTERACTIVE SECTION -->
-    <section class="sticky-interactive-section" id="interactivo">
+    <section class="sticky-interactive-section section-reveal" id="interactivo">
         <div class="sticky-text-wrapper">
             <div class="sticky-item active" data-index="0">
                 <p>A lo largo de los años, Cre-Arte fue consolidando una propuesta educativa única. En 2020, logró un
@@ -1294,7 +1353,7 @@
 
     <!-- NUESTRO STAFF (MOSAIC STYLE) -->
 
-    <section class="staff-mosaic-section" id="staff">
+    <section class="staff-mosaic-section section-reveal" id="staff">
         <div class="staff-mosaic">
             <!-- Fila 1 -->
             <div class="mosaic-box color-orange fade-in-place stagger-1"></div>
@@ -1363,7 +1422,7 @@
 
     <!-- CLOSURE BANNER -->
 
-    <section class="closure-banner fade-in-up" style="background-color: #fbf9f4; height: 30vh;">
+    <section class="closure-banner section-reveal" style="background-color: #fbf9f4; height: 30vh;">
         <div class="closure-overlay visible" style="color: #6a1a1c;">
             <p>Donde el arte nos une</p>
         </div>
@@ -1451,7 +1510,7 @@
         }, animateOptions);
 
         // Observar todos los elementos con animaciones estándar
-        document.querySelectorAll('.fade-in-up, .fade-in-right, .fade-in-place, .zoom-pop, .underline-reveal').forEach((el) => {
+        document.querySelectorAll('.section-reveal, .fade-in-up, .fade-in-right, .fade-in-place, .zoom-pop, .underline-reveal').forEach((el) => {
             animateObserver.observe(el);
         });
 
