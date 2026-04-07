@@ -109,6 +109,10 @@
 
 /* --- Global Media Queries --- */
 
+.scrap-postal {
+  display: none !important;
+}
+
 @media (max-width: 1024px) {
   * {
     box-sizing: border-box !important;

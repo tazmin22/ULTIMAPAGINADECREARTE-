@@ -732,27 +732,6 @@
             padding-top: 20px;
         }
 
-        /* Postal pequeña inferior (Firma/Fecha) */
-        .scrap-postal {
-            bottom: 5%;
-            right: 15%;
-            width: 320px;
-            height: 160px;
-            background-color: #e6dfd6;
-            /* Color papel viejo (carta) */
-            z-index: 30;
-            transform: rotate(4deg);
-            padding: 30px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
-            color: #444;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-
         /* ===== SCROLL ANIMATIONS ===== */
         .fade-in-up {
             opacity: 0;
@@ -1264,15 +1243,6 @@
                 </div>
             </div>
 
-            <!-- Postal pequeña inferior (Firma/Fecha) -->
-            <div class="scrap-piece scrap-postal fade-in-right stagger-6">
-                <div style="width: 100%;">
-                    "Transformando realidades<br>con arte y pasión..." <br><br>
-                    <span
-                        style="font-size: 0.9rem; float: right; font-family: 'Inter', sans-serif; letter-spacing: 2px; color: #777;">BARILOCHE,
-                        R.N.</span>
-                </div>
-            </div>
         </div>
     </section>
 
@@ -1456,6 +1426,9 @@
 
 
         // Lógica de Mouse Parallax removida por petición del usuario
+
+        // Elimina cualquier postal residual si el navegador conserva una versión vieja del HTML.
+        document.querySelectorAll('.scrap-postal').forEach((el) => el.remove());
 
         // ============================================
         // INTERSECTION OBSERVER (Animaciones on Scroll)

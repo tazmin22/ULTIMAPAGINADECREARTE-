@@ -234,6 +234,7 @@
         }
 
         .gallery-item {
+            position: relative;
             break-inside: avoid;
             margin: 0 0 16px;
             border-radius: 18px;
@@ -241,6 +242,8 @@
             background: rgba(255, 255, 255, 0.72);
             box-shadow: 0 14px 34px rgba(0, 0, 0, 0.08);
             transition: transform 0.35s ease, box-shadow 0.35s ease;
+            content-visibility: auto;
+            contain-intrinsic-size: 280px 360px;
         }
 
         .gallery-item:hover {
@@ -257,6 +260,11 @@
             height: auto;
             display: block;
             transition: transform 0.45s ease;
+            opacity: 0;
+        }
+
+        .gallery-item.is-loaded .gallery-img {
+            opacity: 1;
         }
 
         .uk-lightbox-caption {
@@ -292,6 +300,11 @@
                 padding-left: 14px;
                 padding-right: 14px;
             }
+        }
+
+        .gallery-sentinel {
+            width: 100%;
+            height: 1px;
         }
     </style>
 </head>
@@ -404,42 +417,94 @@
     </footer>
 
     <script src="./galeria-list.js"></script>
+    <script src="./galeria-assets.js"></script>
     <script>
         const galleryFiles = Array.isArray(window.GALERIA_FILES) ? window.GALERIA_FILES : [];
+        const galleryAssets = window.GALERIA_ASSETS || {};
         const galleryGrid = document.getElementById('gallery-grid');
         const stripExtension = (name) => name
-            .replace(/\.webp$/i, '')
-            .replace(/\.(jpg|jpeg|png)$/i, '')
+            .replace(/\.(webp|jpg|jpeg|png)$/ig, '')
             .replace(/[_-]+/g, ' ')
             .replace(/\s+/g, ' ')
             .trim();
 
         if (galleryGrid) {
-            const fragment = document.createDocumentFragment();
+            const gallerySentinel = document.createElement('div');
+            gallerySentinel.className = 'gallery-sentinel';
+            galleryGrid.after(gallerySentinel);
 
-            galleryFiles.forEach((file) => {
-                const item = document.createElement('div');
+            const batchSize = window.matchMedia('(max-width: 768px)').matches ? 6 : 10;
+            let renderedCount = 0;
+
+            const buildItem = (file) => {
+                const meta = galleryAssets[file] || {};
+                const imagePath = encodeURI(`./talleres/${file}`);
+                const thumbPath = encodeURI(meta.thumb || imagePath);
+                const caption = stripExtension(file);
+
+                const item = document.createElement('article');
                 item.className = 'gallery-item';
 
                 const link = document.createElement('a');
-                const imagePath = encodeURI(`./talleres/${file}`);
-                const caption = stripExtension(file);
-
                 link.href = imagePath;
+                link.setAttribute('aria-label', caption);
+                link.setAttribute('data-caption', caption);
 
                 const image = document.createElement('img');
                 image.className = 'gallery-img';
-                image.src = imagePath;
+                image.src = thumbPath;
                 image.alt = caption;
-                image.loading = 'lazy';
                 image.decoding = 'async';
+                image.loading = renderedCount < batchSize ? 'eager' : 'lazy';
+                image.fetchPriority = renderedCount < batchSize ? 'high' : 'low';
+                if (meta.width && meta.height) {
+                    image.width = meta.width;
+                    image.height = meta.height;
+                }
+
+                image.addEventListener('load', () => {
+                    item.classList.add('is-loaded');
+                });
+                image.addEventListener('error', () => {
+                    item.classList.add('is-loaded');
+                });
 
                 link.appendChild(image);
                 item.appendChild(link);
-                fragment.appendChild(item);
-            });
+                return item;
+            };
 
-            galleryGrid.appendChild(fragment);
+            const appendNextBatch = () => {
+                if (renderedCount >= galleryFiles.length) {
+                    return;
+                }
+
+                const fragment = document.createDocumentFragment();
+                const nextLimit = Math.min(renderedCount + batchSize, galleryFiles.length);
+
+                while (renderedCount < nextLimit) {
+                    fragment.appendChild(buildItem(galleryFiles[renderedCount]));
+                    renderedCount += 1;
+                }
+
+                galleryGrid.appendChild(fragment);
+
+                if (window.UIkit && typeof window.UIkit.update === 'function') {
+                    window.UIkit.update(galleryGrid);
+                }
+            };
+
+            const batchObserver = new IntersectionObserver((entries) => {
+                if (entries.some(entry => entry.isIntersecting)) {
+                    appendNextBatch();
+                    if (renderedCount >= galleryFiles.length) {
+                        batchObserver.disconnect();
+                    }
+                }
+            }, { rootMargin: '900px 0px' });
+
+            batchObserver.observe(gallerySentinel);
+            appendNextBatch();
         }
     </script>
     <script>
