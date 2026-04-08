@@ -74,6 +74,41 @@
             transition: color .3s ease;
         }
 
+        /* Skip navigation link */
+        .skip-link {
+            position: absolute;
+            top: -100%;
+            left: 0;
+            background: #000;
+            color: #fff;
+            padding: 12px 24px;
+            z-index: 99999;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-bottom-right-radius: 4px;
+            transition: top 0.2s ease;
+        }
+
+        .skip-link:focus {
+            top: 0;
+            outline: 3px solid #e65c00;
+            outline-offset: 2px;
+        }
+
+        /* Visible focus styles for keyboard navigation */
+        a:focus-visible,
+        button:focus-visible,
+        [tabindex]:focus-visible {
+            outline: 3px solid #e65c00;
+            outline-offset: 3px;
+            border-radius: 2px;
+        }
+
+        main:focus {
+            outline: none;
+        }
+
         /* ── NAV ─────────────────────────────────────────────────────── */
         .t-nav {
             position: absolute;
@@ -330,7 +365,7 @@
             font-family: 'Inter', sans-serif;
             font-size: 1rem;
             line-height: 1.8;
-            color: #555;
+            color: #444;
             margin-bottom: 40px;
         }
 
@@ -552,7 +587,7 @@
             font-family: 'EB Garamond', serif;
             font-size: 1.1rem;
             line-height: 1.6;
-            color: #444;
+            color: #333;
             text-align: left;
             font-style: italic;
         }
@@ -622,7 +657,7 @@
             font-size: 0.65rem;
             letter-spacing: 4px;
             text-transform: uppercase;
-            color: #888;
+            color: #555;
             font-weight: 600;
             margin-bottom: 10px;
         }
@@ -660,7 +695,7 @@
         .t-card-desc {
             font-size: 1.15rem;
             line-height: 1.7;
-            color: #444;
+            color: #333;
             margin-bottom: 30px;
         }
 
@@ -1041,7 +1076,7 @@
         .t-intro-body {
             font-size: 1.15rem;
             line-height: 1.75;
-            color: #4a3c2a;
+            color: #333;
             max-width: 420px;
             margin-bottom: 32px;
         }
@@ -1351,7 +1386,7 @@
         .t-bio-body {
             font-size: 1.1rem;
             line-height: 1.75;
-            color: #4a3c2a;
+            color: #333;
             margin-bottom: 30px;
         }
 
@@ -1409,7 +1444,7 @@
             font-size: 0.7rem;
             letter-spacing: 3px;
             text-transform: uppercase;
-            color: #888;
+            color: #555;
         }
 
         /* ── FOOTER ─────────────────────────────────────────────────── */
@@ -1484,61 +1519,65 @@
 </head>
 
 <body>
+    <a href="#contenido-principal" class="skip-link">Saltar al contenido principal</a>
     <!-- ── NAV ─────────────────────────────────────────────────────── -->
-    <nav class="t-nav" id="mainNav">
-        <a href="./index.html" class="top-logo">
-            <img src="./img/LOGO.png" alt="Cre Arte">
+    <nav class="t-nav" id="mainNav" aria-label="Navegación principal">
+        <a href="./index.html" class="top-logo" aria-label="Ir al inicio de Cre Arte">
+            <img src="./img/LOGO.png" alt="Logo de Cre Arte">
         </a>
-        <div class="t-nav-links">
-            <a href="./talleres.html">Talleres</a>
-            <a href="./quienes_somos.html">Quiénes Somos</a>
-            <a href="./puertas_al_mundo.html">Puertas al Mundo</a>
+        <div class="t-nav-links" role="menubar">
+            <a href="./talleres.html" role="menuitem" aria-current="page">Talleres</a>
+            <a href="./quienes_somos.html" role="menuitem">Quiénes Somos</a>
+            <a href="./puertas_al_mundo.html" role="menuitem">Puertas al Mundo</a>
 
         </div>
-        <button class="mobile-nav-toggle" aria-label="Abrir Menú">
+        <button class="mobile-nav-toggle" aria-label="Abrir Menú" aria-expanded="false" aria-controls="mobile-menu">
             <span></span>
             <span></span>
             <span></span>
         </button>
     </nav>
 
-    <div class="mobile-menu">
-        <ul class="mobile-menu-links">
-            <li><a href="./talleres.html">Talleres</a></li>
-            <li><a href="./quienes_somos.html">Quiénes Somos</a></li>
-            <li><a href="./puertas_al_mundo.html">Puertas al Mundo</a></li>
-            <li><a href="./galeria.html">Galería</a></li>
-            <li><a href="./obras.html">Obras</a></li>
+    <div class="mobile-menu" id="mobile-menu" aria-label="Menú móvil">
+        <ul class="mobile-menu-links" role="menu">
+            <li role="none"><a href="./talleres.html" role="menuitem" aria-current="page">Talleres</a></li>
+            <li role="none"><a href="./quienes_somos.html" role="menuitem">Quiénes Somos</a></li>
+            <li role="none"><a href="./puertas_al_mundo.html" role="menuitem">Puertas al Mundo</a></li>
+            <li role="none"><a href="./galeria.html" role="menuitem">Galería</a></li>
+            <li role="none"><a href="./obras.html" role="menuitem">Obras</a></li>
         </ul>
     </div>
 
 
 
+    <main id="contenido-principal" tabindex="-1">
     <!-- ── NUEVA SECCIÓN DE VIDEO EDITORIAL ── -->
-    <section class="t-video-section" uk-scrollspy="cls: uk-animation-fade; delay: 200">
+    <section class="t-video-section" uk-scrollspy="cls: uk-animation-fade; delay: 200" aria-labelledby="titulo-video">
         <div class="t-video-container">
             <div class="t-video-media" style="position: relative; overflow: visible;"
                 uk-scrollspy="cls: uk-animation-slide-left-medium; delay: 300">
                 <!-- Stickers -->
-                <div class="video-sticker vs-tl">
-                    <img src="./img/gifvideo.webp" alt="Acción 1">
+                <div class="video-sticker vs-tl" aria-hidden="true">
+                    <img src="./img/gifvideo.webp" alt="" role="presentation">
                 </div>
-                <div class="video-sticker vs-br">
-                    <img src="./img/gifvideo2.webp" alt="Acción 2">
+                <div class="video-sticker vs-br" aria-hidden="true">
+                    <img src="./img/gifvideo2.webp" alt="" role="presentation">
                 </div>
 
                 <a href="https://www.youtube.com/watch?v=9vYb4koLDKk&list=RD9vYb4koLDKk&start_radio=1" target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Ver video de los talleres en YouTube (se abre en nueva pestaña)"
                     class="custom-video-thumb">
-                    <img src="./img/video_portada.webp" alt="Talleres Video" class="video-poster">
+                    <img src="./img/video_portada.webp" alt="Imagen de portada del video sobre los talleres de Cre Arte" class="video-poster">
                     <div class="video-play-btn">
-                        <svg viewBox="0 0 24 24">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
                             <path d="M8 5v14l11-7z" fill="white" />
                         </svg>
                     </div>
                 </a>
             </div>
             <div class="t-video-text" uk-scrollspy="cls: uk-animation-slide-right-medium; delay: 400">
-                <h2>NUESTROS TALLERES</h2>
+                <h2 id="titulo-video">NUESTROS TALLERES</h2>
                 <h3>Tenemos mas de 50 talleres artístico-culturales</h3>
                 <p>
                     Desarrollamos
@@ -1553,7 +1592,7 @@
                     políticos, promoviendo revertir la exclusión social histórica del colectivo.
                 </p>
                 <a href="galeria.html" class="viajes-link">
-                    <span class="viajes-arrow"></span>
+                    <span class="viajes-arrow" aria-hidden="true"></span>
                     <span class="viajes-link-text">VER GALERÍA</span>
                 </a>
             </div>
@@ -1561,7 +1600,7 @@
     </section>
 
     <!-- ── LISTADO COMPLETO DE TALLERES (MOSAICO COLORIDO) ────────── -->
-    <section class="workshop-mosaic-section" id="mosaic-list" style="margin-top: 50px; margin-bottom: 200px;">
+    <section class="workshop-mosaic-section" id="mosaic-list" style="margin-top: 50px; margin-bottom: 200px;" aria-label="Listado completo de talleres">
         <div class="workshop-mosaic-grid">
             <!-- Row 1 -->
             <div class="mosaic-tile bg-sage">
@@ -1928,7 +1967,6 @@
             </div>
         </div>
     </section>
-    </section>
 
 
 
@@ -1945,38 +1983,39 @@
             });
         });
     </script>
+    </main>
 
     <!-- FOOTER -->
-    <footer class="mag-footer">
+    <footer class="mag-footer" role="contentinfo">
         <div class="footer-donation fade-in-up">
             <div class="qr-interactive-container">
-                <img src="./img/manos_donar.webp" alt="Manos donar" class="qr-hands-reveal">
+                <img src="./img/manos_donar.webp" alt="" role="presentation" class="qr-hands-reveal">
                 <div class="qr-base" uk-lightbox>
                     <a href="./img/qr_solo.png" data-caption="Donar a Cre Arte (Alias: cre.arte.bariloche)">
-                        <img src="./img/qr_solo.png" alt="Donar a Cre Arte">
+                        <img src="./img/qr_solo.png" alt="Código QR para donar a Cre Arte (Alias: cre.arte.bariloche)">
                     </a>
                 </div>
             </div>
             <span>Doná y apoyá nuestra labor</span>
         </div>
-        <div class="footer-links" style="margin-bottom: 12px;">
+        <div class="footer-links" style="margin-bottom: 12px;" role="navigation" aria-label="Enlaces del sitio">
             <a href="./index.html">Inicio</a>
             <a href="./talleres.html">Talleres</a>
             <a href="./quienes_somos.html">Quiénes Somos</a>
             <a href="./puertas_al_mundo.html">Puertas al Mundo</a>
         </div>
-        <div class="footer-links" style="margin-bottom: 30px;">
+        <div class="footer-links" style="margin-bottom: 30px;" role="navigation" aria-label="Más enlaces">
             <a href="./galeria.html">Galería</a>
             <a href="./obras.html">Obras</a>
         </div>
-        <div class="footer-social">
-            <a href="https://www.instagram.com/creartebrc/" target="_blank" aria-label="Instagram">
+        <div class="footer-social" aria-label="Redes sociales de Cre Arte">
+            <a href="https://www.instagram.com/creartebrc/" target="_blank" rel="noopener noreferrer" aria-label="Instagram (se abre en nueva pestaña)">
                 <span uk-icon="icon: instagram; ratio: 1.2"></span>
             </a>
-            <a href="https://www.facebook.com/creartebrc" target="_blank" aria-label="Facebook">
+            <a href="https://www.facebook.com/creartebrc" target="_blank" rel="noopener noreferrer" aria-label="Facebook (se abre en nueva pestaña)">
                 <span uk-icon="icon: facebook; ratio: 1.2"></span>
             </a>
-            <a class="footer-social-icon spotify-icon" href="https://open.spotify.com/show/0GyrmphdSMMSeWOZtYImGz" target="_blank" rel="noopener noreferrer" aria-label="Spotify">
+            <a class="footer-social-icon spotify-icon" href="https://open.spotify.com/show/0GyrmphdSMMSeWOZtYImGz" target="_blank" rel="noopener noreferrer" aria-label="Spotify (se abre en nueva pestaña)">
                 <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
                     <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8" />
                     <path d="M7 10.2c3.2-1 6.5-.9 10 .4" stroke="currentColor" stroke-width="1.5"
@@ -1987,7 +2026,7 @@
                         stroke-linecap="round" />
                 </svg>
             </a>
-            <a href="https://www.youtube.com/@cre-arte1309" target="_blank" aria-label="YouTube">
+            <a href="https://www.youtube.com/@cre-arte1309" target="_blank" rel="noopener noreferrer" aria-label="YouTube (se abre en nueva pestaña)">
                 <span uk-icon="icon: youtube; ratio: 1.2"></span>
             </a>
         </div>

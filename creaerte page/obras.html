@@ -89,6 +89,41 @@
             color: var(--orange);
         }
 
+        /* Skip navigation link */
+        .skip-link {
+            position: absolute;
+            top: -100%;
+            left: 0;
+            background: #000;
+            color: #fff;
+            padding: 12px 24px;
+            z-index: 99999;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-bottom-right-radius: 4px;
+            transition: top 0.2s ease;
+        }
+
+        .skip-link:focus {
+            top: 0;
+            outline: 3px solid #e65c00;
+            outline-offset: 2px;
+        }
+
+        /* Visible focus styles for keyboard navigation */
+        a:focus-visible,
+        button:focus-visible,
+        [tabindex]:focus-visible {
+            outline: 3px solid #e65c00;
+            outline-offset: 3px;
+            border-radius: 2px;
+        }
+
+        main:focus {
+            outline: none;
+        }
+
         .floating-logo {
             position: absolute;
             top: 25px;
@@ -136,7 +171,7 @@
             font-family: 'Inter', sans-serif;
             font-size: 0.98rem;
             line-height: 1.7;
-            color: rgba(17, 17, 17, 0.72);
+            color: #333;
         }
 
         .obras-count {
@@ -255,76 +290,79 @@
 </head>
 
 <body>
+    <a href="#contenido-principal" class="skip-link">Saltar al contenido principal</a>
 
-    <a href="./index.html" class="floating-logo">
-        <img src="./img/LOGO.png" alt="Cre Arte Logo">
+    <a href="./index.html" class="floating-logo" aria-label="Ir al inicio de Cre Arte">
+        <img src="./img/LOGO.png" alt="Logo de Cre Arte">
     </a>
 
-    <nav class="t-nav">
-        <div class="t-nav-links">
-            <a href="./talleres.html">Talleres</a>
-            <a href="./quienes_somos.html">Quiénes Somos</a>
-            <a href="./puertas_al_mundo.html">Puertas al Mundo</a>
+    <nav class="t-nav" aria-label="Navegación principal">
+        <div class="t-nav-links" role="menubar">
+            <a href="./talleres.html" role="menuitem">Talleres</a>
+            <a href="./quienes_somos.html" role="menuitem">Quiénes Somos</a>
+            <a href="./puertas_al_mundo.html" role="menuitem">Puertas al Mundo</a>
 
         </div>
-        <button class="mobile-nav-toggle" aria-label="Abrir Menú">
+        <button class="mobile-nav-toggle" aria-label="Abrir Menú" aria-expanded="false" aria-controls="mobile-menu">
             <span></span>
             <span></span>
             <span></span>
         </button>
     </nav>
 
-    <div class="mobile-menu">
-        <ul class="mobile-menu-links">
-            <li><a href="./talleres.html">Talleres</a></li>
-            <li><a href="./quienes_somos.html">Quiénes Somos</a></li>
-            <li><a href="./puertas_al_mundo.html">Puertas al Mundo</a></li>
-            <li><a href="./galeria.html">Galería</a></li>
-            <li><a href="./obras.html">Obras</a></li>
+    <div class="mobile-menu" id="mobile-menu" aria-label="Menú móvil">
+        <ul class="mobile-menu-links" role="menu">
+            <li role="none"><a href="./talleres.html" role="menuitem">Talleres</a></li>
+            <li role="none"><a href="./quienes_somos.html" role="menuitem">Quiénes Somos</a></li>
+            <li role="none"><a href="./puertas_al_mundo.html" role="menuitem">Puertas al Mundo</a></li>
+            <li role="none"><a href="./galeria.html" role="menuitem">Galería</a></li>
+            <li role="none"><a href="./obras.html" role="menuitem" aria-current="page">Obras</a></li>
         </ul>
     </div>
 
-    <main class="obras-container">
+    <main id="contenido-principal" tabindex="-1" class="obras-container" aria-labelledby="obras-title">
         <header class="obras-header">
             <p class="obras-kicker">Archivo artístico</p>
-            <h1 class="obras-title">Obras</h1>
+            <h1 class="obras-title" id="obras-title">Obras</h1>
             <p class="obras-subtitle">Una selección de nuestras obras.</p>
             <p class="obras-count" id="obras-count"></p>
         </header>
-        <div class="obras-grid" id="obras-grid" uk-lightbox="animation: slide"></div>
+        <section aria-labelledby="obras-title">
+            <div class="obras-grid" id="obras-grid" uk-lightbox="animation: slide"></div>
+        </section>
     </main>
 
     <!-- FOOTER -->
-    <footer class="mag-footer">
-        <div class="footer-donation fade-in-up">
+    <footer class="mag-footer" role="contentinfo">
+        <div class="footer-donation fade-in-up" aria-label="Donaciones">
             <div class="qr-interactive-container">
-                <img src="img/manos_donar.webp" alt="Manos donar" class="qr-hands-reveal">
+                <img src="img/manos_donar.webp" alt="" role="presentation" class="qr-hands-reveal">
                 <div class="qr-base" uk-lightbox>
                     <a href="img/qr_solo.png" data-caption="Donar a Cre Arte (Alias: cre.arte.bariloche)">
-                        <img src="img/qr_solo.png" alt="Donar a Cre Arte">
+                        <img src="img/qr_solo.png" alt="Código QR para donar a Cre Arte, alias: cre.arte.bariloche">
                     </a>
                 </div>
             </div>
             <span>Doná y apoyá nuestra labor</span>
         </div>
-        <div class="footer-links" style="margin-bottom: 12px;">
+        <div class="footer-links" style="margin-bottom: 12px;" role="navigation" aria-label="Enlaces del sitio">
             <a href="./index.html">Inicio</a>
             <a href="./talleres.html">Talleres</a>
             <a href="./quienes_somos.html">Quiénes Somos</a>
             <a href="./puertas_al_mundo.html">Puertas al Mundo</a>
         </div>
-        <div class="footer-links" style="margin-bottom: 30px;">
+        <div class="footer-links" style="margin-bottom: 30px;" role="navigation" aria-label="Más páginas">
             <a href="./galeria.html">Galería</a>
-            <a href="./obras.html">Obras</a>
+            <a href="./obras.html" aria-current="page">Obras</a>
         </div>
-        <div class="footer-social">
-            <a href="https://www.instagram.com/creartebrc/" target="_blank" aria-label="Instagram">
-                <span uk-icon="icon: instagram; ratio: 1.2"></span>
+        <div class="footer-social" aria-label="Redes sociales de Cre Arte">
+            <a href="https://www.instagram.com/creartebrc/" target="_blank" rel="noopener noreferrer" aria-label="Instagram (se abre en nueva pestaña)">
+                <span uk-icon="icon: instagram; ratio: 1.2" aria-hidden="true"></span>
             </a>
-            <a href="https://www.facebook.com/creartebrc" target="_blank" aria-label="Facebook">
-                <span uk-icon="icon: facebook; ratio: 1.2"></span>
+            <a href="https://www.facebook.com/creartebrc" target="_blank" rel="noopener noreferrer" aria-label="Facebook (se abre en nueva pestaña)">
+                <span uk-icon="icon: facebook; ratio: 1.2" aria-hidden="true"></span>
             </a>
-            <a class="footer-social-icon spotify-icon" href="https://open.spotify.com/show/0GyrmphdSMMSeWOZtYImGz" target="_blank" rel="noopener noreferrer" aria-label="Spotify">
+            <a class="footer-social-icon spotify-icon" href="https://open.spotify.com/show/0GyrmphdSMMSeWOZtYImGz" target="_blank" rel="noopener noreferrer" aria-label="Spotify (se abre en nueva pestaña)">
                 <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
                     <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8" />
                     <path d="M7 10.2c3.2-1 6.5-.9 10 .4" stroke="currentColor" stroke-width="1.5"
@@ -335,13 +373,13 @@
                         stroke-linecap="round" />
                 </svg>
             </a>
-            <a href="https://www.youtube.com/@cre-arte1309" target="_blank" aria-label="YouTube">
-                <span uk-icon="icon: youtube; ratio: 1.2"></span>
+            <a href="https://www.youtube.com/@cre-arte1309" target="_blank" rel="noopener noreferrer" aria-label="YouTube (se abre en nueva pestaña)">
+                <span uk-icon="icon: youtube; ratio: 1.2" aria-hidden="true"></span>
             </a>
         </div>
         <div class="footer-bottom">
             &copy; 2026 Cre Arte Bariloche. Todos los derechos reservados.<br>
-            Pagina desarollada por Qiell
+            Página desarrollada por Qiell
         </div>
     </footer>
 
@@ -394,7 +432,7 @@
                 const image = document.createElement('img');
                 image.className = 'obra-img';
                 image.src = imagePath;
-                image.alt = caption;
+                image.alt = 'Obra artística: ' + caption;
                 image.loading = 'lazy';
                 image.decoding = 'async';
 

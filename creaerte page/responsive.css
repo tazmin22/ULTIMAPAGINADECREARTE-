@@ -1,4 +1,4 @@
-/* 
+/*
   CRE ARTE - Global Responsive Design System
   This file handles responsiveness across all pages to maintain a premium editorial feel.
 */
@@ -9,6 +9,40 @@
   --mobile-nav-bg: #f9f7f2;
   --accent-color: #6a1a1c;
   --transition-speed: 0.4s;
+}
+
+/* --- Global Accessibility Styles --- */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 0;
+  background: #000;
+  color: #fff;
+  padding: 12px 24px;
+  z-index: 99999;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom-right-radius: 4px;
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+  top: 0;
+  outline: 3px solid var(--accent-color);
+  outline-offset: 2px;
+}
+
+a:focus-visible,
+button:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid var(--accent-color);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+main:focus {
+  outline: none;
 }
 
 /* --- Mobile Navigation --- */
