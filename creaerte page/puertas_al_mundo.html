@@ -602,13 +602,13 @@
         }
 
         #stars-canvas {
-            opacity: 0.98;
-            filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.18));
+            opacity: 1;
+            filter: drop-shadow(0 0 14px rgba(255, 255, 255, 0.32)) brightness(1.08) contrast(1.06);
         }
 
         @media (min-width: 1025px) {
             #stars-canvas {
-                filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.24));
+                filter: drop-shadow(0 0 18px rgba(255, 255, 255, 0.36)) brightness(1.1) contrast(1.08);
             }
         }
 
@@ -1521,7 +1521,7 @@
 
         function initStars() {
             const isMobile = window.matchMedia('(max-width: 768px)').matches;
-            const count = isMobile ? 58 : 138;
+            const count = isMobile ? 78 : 196;
             canvas.width = canvas.parentElement.clientWidth;
             canvas.height = canvas.parentElement.clientHeight;
             stars = [];
@@ -1537,23 +1537,23 @@
                             ? (0.42 + Math.random() * 0.28)
                             : (0.14 + Math.random() * 0.28),
                     opacity: bright
-                        ? (0.45 + Math.random() * 0.35)
+                        ? (0.72 + Math.random() * 0.12)
                         : medium
-                            ? (0.3 + Math.random() * 0.35)
-                            : (0.2 + Math.random() * 0.4),
+                            ? (0.52 + Math.random() * 0.14)
+                            : (0.36 + Math.random() * 0.18),
                     maxOpacity: bright
-                        ? (0.88 + Math.random() * 0.12)
+                        ? (0.96 + Math.random() * 0.03)
                         : medium
-                            ? (0.62 + Math.random() * 0.22)
-                            : (0.3 + Math.random() * 0.45),
+                            ? (0.82 + Math.random() * 0.1)
+                            : (0.58 + Math.random() * 0.16),
                     speed: bright
-                        ? (0.0012 + Math.random() * 0.003)
+                        ? (0.0005 + Math.random() * 0.0012)
                         : medium
-                            ? (0.001 + Math.random() * 0.004)
-                            : (0.001 + Math.random() * 0.006),
+                            ? (0.0004 + Math.random() * 0.0012)
+                            : (0.0004 + Math.random() * 0.0014),
                     increasing: Math.random() > 0.5,
                     warm: bright ? Math.random() < 0.45 : Math.random() < 0.3,
-                    glowFactor: bright ? 1.7 : medium ? 1.15 : 0.85
+                    glowFactor: bright ? 2.2 : medium ? 1.4 : 1
                 });
             }
         }
@@ -1581,11 +1581,11 @@
 
                 // Glow for all stars
                 if (s.r > 0.55) {
-                    const glowR = s.r > 1.1 ? s.r * 2.8 : s.r * 1.5;
+                    const glowR = s.r > 1.1 ? s.r * 3.2 : s.r * 1.8;
                     ctx.beginPath();
                     ctx.arc(s.x, s.y, glowR, 0, Math.PI * 2);
                     const grd = ctx.createRadialGradient(s.x, s.y, s.r * 0.3, s.x, s.y, glowR);
-                    const glowAlpha = alpha * (s.r > 1.1 ? 0.16 : 0.045) * (s.glowFactor || 1);
+                    const glowAlpha = alpha * (s.r > 1.1 ? 0.24 : 0.07) * (s.glowFactor || 1);
                     grd.addColorStop(0, s.warm ? `rgba(255,240,210,${glowAlpha})` : `rgba(255,255,255,${glowAlpha})`);
                     grd.addColorStop(0.4, s.warm ? `rgba(255,240,210,${glowAlpha * 0.4})` : `rgba(255,255,255,${glowAlpha * 0.4})`);
                     grd.addColorStop(1, 'rgba(255,255,255,0)');
