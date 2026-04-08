@@ -247,12 +247,26 @@
         }
 
         .catalogo-link strong {
+            position: relative;
             display: inline-block;
             font-family: 'Inter', sans-serif;
             font-size: 0.9rem;
             text-transform: uppercase;
             letter-spacing: 0.12em;
             color: inherit;
+        }
+
+        .catalogo-link strong::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: -0.18em;
+            height: 1px;
+            background: currentColor;
+            transform: scaleX(0);
+            transform-origin: left center;
+            transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
         }
 
         .catalogo-link span {
@@ -272,6 +286,11 @@
         .catalogo-link:hover strong,
         .catalogo-link:focus-visible strong {
             letter-spacing: 0.16em;
+        }
+
+        .catalogo-link:hover strong::after,
+        .catalogo-link:focus-visible strong::after {
+            transform: scaleX(1);
         }
 
         @media (max-width: 900px) {
@@ -441,19 +460,16 @@
                 <a class="catalogo-link" href="./PDF/Catalogo%20Batik%20-%20Crearte.pdf" target="_blank" rel="noopener noreferrer">
                     <span>
                         <strong>Batik</strong>
-                        Abrir PDF
                     </span>
                 </a>
                 <a class="catalogo-link" href="./PDF/Obras%20Grabado.pdf" target="_blank" rel="noopener noreferrer">
                     <span>
                         <strong>Grabado</strong>
-                        Abrir PDF
                     </span>
                 </a>
                 <a class="catalogo-link" href="./PDF/Catalogo%20Pintura-%20Cre-Arte%202025.pdf" target="_blank" rel="noopener noreferrer">
                     <span>
-                        <strong>Pintura 2025</strong>
-                        Abrir PDF
+                        <strong>Pintura</strong>
                     </span>
                 </a>
             </div>
