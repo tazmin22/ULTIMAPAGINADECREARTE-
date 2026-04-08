@@ -1536,12 +1536,12 @@
                     y: Math.random() * canvas.height * 0.26,
                     tier,
                     r: strong
-                        ? (1.05 + Math.random() * 0.9)
+                        ? (0.42 + Math.random() * 0.28)
                         : bright
-                            ? (0.95 + Math.random() * 0.72)
+                            ? (0.28 + Math.random() * 0.22)
                             : medium
-                                ? (0.42 + Math.random() * 0.28)
-                                : (0.14 + Math.random() * 0.26),
+                                ? (0.10 + Math.random() * 0.12)
+                                : (0.03 + Math.random() * 0.06),
                     opacity: strong
                         ? (0.78 + Math.random() * 0.14)
                         : bright
@@ -1565,7 +1565,7 @@
                                 : (0.00045 + Math.random() * 0.001),
                     increasing: Math.random() > 0.5,
                     warm: strong ? Math.random() < 0.55 : bright ? Math.random() < 0.45 : Math.random() < 0.3,
-                    glowFactor: strong ? 3.8 : bright ? 3 : medium ? 1.8 : 1.1,
+                    glowFactor: strong ? 1.4 : bright ? 1.1 : medium ? 0.75 : 0.5,
                     pulsePhase: Math.random() * Math.PI * 2,
                     pulseSpeed: strong
                         ? (0.04 + Math.random() * 0.03)
@@ -1610,16 +1610,16 @@
                 ctx.fill();
 
                 // Glow for all stars
-                if (s.r > 0.45) {
+                if (s.r > 0.16) {
                     const glowR = s.tier === 'strong'
-                        ? s.r * 4.4
+                        ? s.r * 2.2
                         : s.r > 1.1
-                            ? s.r * 3.8
-                            : s.r * 2.4;
+                            ? s.r * 2.3
+                            : s.r * 1.35;
                     ctx.beginPath();
                     ctx.arc(s.x, s.y, glowR, 0, Math.PI * 2);
                     const grd = ctx.createRadialGradient(s.x, s.y, s.r * 0.3, s.x, s.y, glowR);
-                    const glowAlpha = alpha * (s.tier === 'strong' ? 0.4 : s.r > 1.1 ? 0.33 : 0.11) * (s.glowFactor || 1);
+                    const glowAlpha = alpha * (s.tier === 'strong' ? 0.14 : s.r > 1.1 ? 0.12 : 0.045) * (s.glowFactor || 1);
                     grd.addColorStop(0, s.warm ? `rgba(255,240,210,${glowAlpha})` : `rgba(255,255,255,${glowAlpha})`);
                     grd.addColorStop(0.4, s.warm ? `rgba(255,240,210,${glowAlpha * 0.4})` : `rgba(255,255,255,${glowAlpha * 0.4})`);
                     grd.addColorStop(1, 'rgba(255,255,255,0)');
