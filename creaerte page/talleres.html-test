@@ -1960,8 +1960,8 @@
             <div class="qr-interactive-container">
                 <img src="./img/manos_donar.webp" alt="Manos donar" class="qr-hands-reveal">
                 <div class="qr-base" uk-lightbox>
-                    <a href="./img/qr_solo.png" data-caption="Donar a Cre Arte (Alias: cre.arte.bariloche)">
-                        <img src="./img/qr_solo.png" alt="Donar a Cre Arte">
+                    <a href="./img/mercadopago_qr.png" data-caption="Alias: crearte.bariloche">
+                        <img src="./img/mercadopago_qr.png" alt="Código QR de Mercado Pago. Alias: crearte.bariloche">
                     </a>
                 </div>
             </div>

@@ -183,6 +183,109 @@
             color: rgba(17, 17, 17, 0.55);
         }
 
+        .catalogos-section {
+            margin-top: 48px;
+            padding: 30px 0 0;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .catalogos-kicker {
+            margin: 0 0 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: rgba(17, 17, 17, 0.55);
+        }
+
+        .catalogos-title {
+            margin: 0 0 12px;
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 3vw, 2.6rem);
+            line-height: 1;
+        }
+
+        .catalogos-copy {
+            margin: 0 0 24px;
+            max-width: 760px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: #333;
+        }
+
+        .catalogos-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px 22px;
+        }
+
+        .catalogo-link {
+            --catalogo-base: #4f726d;
+            --catalogo-hover: #6e8f89;
+            display: block;
+            padding: 0;
+            border: 0;
+            background: transparent;
+            color: var(--catalogo-base);
+            text-decoration: none !important;
+            text-align: left;
+            transform: translateY(0);
+            transform-origin: center;
+            transition: transform 0.38s cubic-bezier(0.22, 1, 0.36, 1), color 0.38s ease, filter 0.38s ease;
+            box-shadow: none;
+            will-change: transform;
+        }
+
+        .catalogo-link:visited,
+        .catalogo-link:hover,
+        .catalogo-link:focus-visible {
+            text-decoration: none !important;
+            transform: translateY(-4px);
+            color: var(--catalogo-hover);
+            filter: saturate(1.04);
+        }
+
+        .catalogo-link strong {
+            display: inline-block;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: inherit;
+        }
+
+        .catalogo-link span {
+            display: block;
+            margin-top: 6px;
+            font-family: 'EB Garamond', serif;
+            font-size: 1.05rem;
+            line-height: 1.35;
+            color: inherit;
+        }
+
+        .catalogo-link:hover span,
+        .catalogo-link:focus-visible span {
+            letter-spacing: 0.01em;
+        }
+
+        .catalogo-link:hover strong,
+        .catalogo-link:focus-visible strong {
+            letter-spacing: 0.16em;
+        }
+
+        @media (max-width: 900px) {
+            .catalogos-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 620px) {
+            .catalogos-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
         .obras-grid {
             display: grid;
             grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -330,6 +433,31 @@
         <section aria-labelledby="obras-title">
             <div class="obras-grid" id="obras-grid" uk-lightbox="animation: slide"></div>
         </section>
+        <section class="catalogos-section" aria-labelledby="catalogos-title">
+            <p class="catalogos-kicker">Catálogos</p>
+            <h2 class="catalogos-title" id="catalogos-title">Ver catálogos completos</h2>
+            <p class="catalogos-copy">Abrí cada PDF para recorrer las series de Cre Arte con más detalle.</p>
+            <div class="catalogos-grid">
+                <a class="catalogo-link" href="./PDF/Catalogo%20Batik%20-%20Crearte.pdf" target="_blank" rel="noopener noreferrer">
+                    <span>
+                        <strong>Batik</strong>
+                        Abrir PDF
+                    </span>
+                </a>
+                <a class="catalogo-link" href="./PDF/Obras%20Grabado.pdf" target="_blank" rel="noopener noreferrer">
+                    <span>
+                        <strong>Grabado</strong>
+                        Abrir PDF
+                    </span>
+                </a>
+                <a class="catalogo-link" href="./PDF/Catalogo%20Pintura-%20Cre-Arte%202025.pdf" target="_blank" rel="noopener noreferrer">
+                    <span>
+                        <strong>Pintura 2025</strong>
+                        Abrir PDF
+                    </span>
+                </a>
+            </div>
+        </section>
     </main>
 
     <!-- FOOTER -->
@@ -338,8 +466,8 @@
             <div class="qr-interactive-container">
                 <img src="img/manos_donar.webp" alt="" role="presentation" class="qr-hands-reveal">
                 <div class="qr-base" uk-lightbox>
-                    <a href="img/qr_solo.png" data-caption="Donar a Cre Arte (Alias: cre.arte.bariloche)">
-                        <img src="img/qr_solo.png" alt="Código QR para donar a Cre Arte, alias: cre.arte.bariloche">
+                    <a href="img/mercadopago_qr.png" data-caption="Alias: crearte.bariloche">
+                        <img src="img/mercadopago_qr.png" alt="Código QR de Mercado Pago. Alias: crearte.bariloche">
                     </a>
                 </div>
             </div>
@@ -393,6 +521,10 @@
         const obrasGrid = document.getElementById('obras-grid');
         const obrasCount = document.getElementById('obras-count');
         const stripExtension = (name) => name.replace(/\.[^.]+$/, '');
+        const hasMeaningfulCaption = (name) => {
+            const baseName = stripExtension(name).trim();
+            return !/^(img\d+|dsc[_-]?\d+)$/i.test(baseName);
+        };
 
         if (obrasCount) {
             obrasCount.textContent = `${obraFiles.length} obras`;
@@ -424,15 +556,17 @@
 
                 const link = document.createElement('a');
                 const imagePath = encodeURI(`./obras/${file}`);
-                const caption = stripExtension(file);
+                const caption = hasMeaningfulCaption(file) ? stripExtension(file).trim() : '';
 
                 link.href = imagePath;
-                link.setAttribute('data-caption', caption);
+                if (caption) {
+                    link.setAttribute('data-caption', caption);
+                }
 
                 const image = document.createElement('img');
                 image.className = 'obra-img';
                 image.src = imagePath;
-                image.alt = 'Obra artística: ' + caption;
+                image.alt = caption ? 'Obra artística: ' + caption : 'Obra artística';
                 image.loading = 'lazy';
                 image.decoding = 'async';
 
