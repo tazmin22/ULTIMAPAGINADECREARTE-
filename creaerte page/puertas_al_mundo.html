@@ -1526,34 +1526,61 @@
             canvas.height = canvas.parentElement.clientHeight;
             stars = [];
             for (let i = 0; i < count; i++) {
-                const bright = Math.random() < 0.12;
-                const medium = !bright && Math.random() < 0.22;
+                const roll = Math.random();
+                const strong = roll < 0.08;
+                const bright = !strong && roll < 0.22;
+                const medium = !strong && !bright && roll < 0.56;
+                const tier = strong ? 'strong' : bright ? 'bright' : medium ? 'medium' : 'faint';
                 stars.push({
                     x: Math.random() * canvas.width,
                     y: Math.random() * canvas.height * 0.26,
-                    r: bright
-                        ? (0.95 + Math.random() * 0.75)
-                        : medium
-                            ? (0.42 + Math.random() * 0.28)
-                            : (0.14 + Math.random() * 0.28),
-                    opacity: bright
-                        ? (0.72 + Math.random() * 0.12)
-                        : medium
-                            ? (0.52 + Math.random() * 0.14)
-                            : (0.36 + Math.random() * 0.18),
-                    maxOpacity: bright
-                        ? (0.96 + Math.random() * 0.03)
-                        : medium
-                            ? (0.82 + Math.random() * 0.1)
-                            : (0.58 + Math.random() * 0.16),
-                    speed: bright
-                        ? (0.0005 + Math.random() * 0.0012)
-                        : medium
-                            ? (0.0004 + Math.random() * 0.0012)
-                            : (0.0004 + Math.random() * 0.0014),
+                    tier,
+                    r: strong
+                        ? (1.05 + Math.random() * 0.9)
+                        : bright
+                            ? (0.95 + Math.random() * 0.72)
+                            : medium
+                                ? (0.42 + Math.random() * 0.28)
+                                : (0.14 + Math.random() * 0.26),
+                    opacity: strong
+                        ? (0.78 + Math.random() * 0.14)
+                        : bright
+                            ? (0.56 + Math.random() * 0.18)
+                            : medium
+                                ? (0.32 + Math.random() * 0.16)
+                                : (0.12 + Math.random() * 0.12),
+                    maxOpacity: strong
+                        ? (1 + Math.random() * 0.01)
+                        : bright
+                            ? (0.96 + Math.random() * 0.04)
+                            : medium
+                                ? (0.82 + Math.random() * 0.08)
+                                : (0.46 + Math.random() * 0.16),
+                    speed: strong
+                        ? (0.0016 + Math.random() * 0.0025)
+                        : bright
+                            ? (0.001 + Math.random() * 0.002)
+                            : medium
+                                ? (0.0007 + Math.random() * 0.0015)
+                                : (0.00045 + Math.random() * 0.001),
                     increasing: Math.random() > 0.5,
-                    warm: bright ? Math.random() < 0.45 : Math.random() < 0.3,
-                    glowFactor: bright ? 2.2 : medium ? 1.4 : 1
+                    warm: strong ? Math.random() < 0.55 : bright ? Math.random() < 0.45 : Math.random() < 0.3,
+                    glowFactor: strong ? 3.8 : bright ? 3 : medium ? 1.8 : 1.1,
+                    pulsePhase: Math.random() * Math.PI * 2,
+                    pulseSpeed: strong
+                        ? (0.04 + Math.random() * 0.03)
+                        : bright
+                            ? (0.025 + Math.random() * 0.02)
+                            : medium
+                                ? (0.012 + Math.random() * 0.012)
+                                : (0.006 + Math.random() * 0.008),
+                    pulseAmp: strong
+                        ? (0.16 + Math.random() * 0.14)
+                        : bright
+                            ? (0.08 + Math.random() * 0.1)
+                            : medium
+                                ? (0.03 + Math.random() * 0.05)
+                                : (0.01 + Math.random() * 0.02)
                 });
             }
         }
@@ -1561,6 +1588,8 @@
         function drawStars() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             for (const s of stars) {
+                s.pulsePhase += s.pulseSpeed;
+
                 if (s.increasing) {
                     s.opacity += s.speed;
                     if (s.opacity >= s.maxOpacity) s.increasing = false;
@@ -1569,7 +1598,8 @@
                     if (s.opacity <= 0.08) s.increasing = true;
                 }
 
-                const alpha = Math.min(1, s.opacity);
+                const pulse = (Math.sin(s.pulsePhase) + 1) * 0.5;
+                const alpha = Math.min(1, s.opacity + (s.pulseAmp * pulse));
                 const color = s.warm
                     ? `rgba(255, 240, 210, ${alpha})`
                     : `rgba(255, 255, 255, ${alpha})`;
@@ -1580,12 +1610,16 @@
                 ctx.fill();
 
                 // Glow for all stars
-                if (s.r > 0.55) {
-                    const glowR = s.r > 1.1 ? s.r * 3.2 : s.r * 1.8;
+                if (s.r > 0.45) {
+                    const glowR = s.tier === 'strong'
+                        ? s.r * 4.4
+                        : s.r > 1.1
+                            ? s.r * 3.8
+                            : s.r * 2.4;
                     ctx.beginPath();
                     ctx.arc(s.x, s.y, glowR, 0, Math.PI * 2);
                     const grd = ctx.createRadialGradient(s.x, s.y, s.r * 0.3, s.x, s.y, glowR);
-                    const glowAlpha = alpha * (s.r > 1.1 ? 0.24 : 0.07) * (s.glowFactor || 1);
+                    const glowAlpha = alpha * (s.tier === 'strong' ? 0.4 : s.r > 1.1 ? 0.33 : 0.11) * (s.glowFactor || 1);
                     grd.addColorStop(0, s.warm ? `rgba(255,240,210,${glowAlpha})` : `rgba(255,255,255,${glowAlpha})`);
                     grd.addColorStop(0.4, s.warm ? `rgba(255,240,210,${glowAlpha * 0.4})` : `rgba(255,255,255,${glowAlpha * 0.4})`);
                     grd.addColorStop(1, 'rgba(255,255,255,0)');
