@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  document.body.appendChild(toggle);
+  (document.documentElement || document.body).appendChild(toggle);
   window.addEventListener('scroll', updateToggle, { passive: true });
   window.addEventListener('resize', updateToggle);
   updateToggle();
