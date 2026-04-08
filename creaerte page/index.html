@@ -572,7 +572,7 @@
       background: #fbf9f4;
       overflow: visible;
       padding: 5%;
-      min-height: 620px;
+      min-height: 700px;
       isolation: isolate;
     }
 
@@ -596,11 +596,30 @@
       filter: drop-shadow(0 12px 18px rgba(0, 0, 0, 0.14));
     }
 
+    .where-bottom-gif {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      width: min(150px, 26vw);
+      aspect-ratio: 1 / 1;
+      z-index: 1;
+      pointer-events: none;
+      transform: translate(34%, -14%);
+    }
+
+    .where-bottom-gif img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 12px 18px rgba(0, 0, 0, 0.12));
+    }
+
     .where-image-frame {
       position: relative;
       width: min(100%, 760px);
-      height: min(520px, 72vw);
-      min-height: 520px;
+      height: min(620px, 80vw);
+      min-height: 620px;
       margin: 0 auto;
       background: url('./talleres/talleres10.webp') center/cover;
       z-index: 3;
@@ -623,7 +642,7 @@
       }
 
       .where-image-col {
-        min-height: 420px;
+        min-height: 500px;
         order: -1;
         padding: 14px;
       }
@@ -633,10 +652,15 @@
         transform: translate(-22%, 48%);
       }
 
+      .where-bottom-gif {
+        width: min(110px, 28vw);
+        transform: translate(26%, -12%);
+      }
+
       .where-image-frame {
         width: min(100%, 680px);
-        height: min(380px, 68vw);
-        min-height: 320px;
+        height: min(460px, 76vw);
+        min-height: 380px;
       }
 
       .where-content-col {
@@ -1570,6 +1594,9 @@
       <!-- Image Column -->
       <div class="where-image-col" uk-scrollspy="cls: uk-animation-fade; delay: 200" role="img" aria-label="Imagen decorativa del edificio de Cre Arte">
         <div class="where-corner-gif" aria-hidden="true">
+          <img src="./img/gifvideo.gif" alt="" role="presentation">
+        </div>
+        <div class="where-bottom-gif" aria-hidden="true">
           <img src="./img/gifvideo.gif" alt="" role="presentation">
         </div>
         <div class="where-image-frame" aria-hidden="true"></div>
