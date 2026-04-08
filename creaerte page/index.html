@@ -433,9 +433,10 @@
       font-weight: 900;
       font-size: clamp(2.5rem, 5vw, 3.8rem);
       line-height: 0.95;
+      letter-spacing: -0.03em;
       color: #fff;
       margin-bottom: 40px;
-      text-transform: uppercase;
+      text-transform: none;
       transform: rotate(-1.5deg);
     }
 
@@ -444,16 +445,17 @@
       /* Wine / Bordo */
       color: #fff;
       display: inline-block;
-      padding: 10px 20px;
+      padding: 8px 18px;
       margin-bottom: 8px;
-      box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.05);
+      box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.04);
     }
 
     .where-headline span.accent {
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-      font-weight: 400;
+      font-family: inherit;
+      font-style: normal;
+      font-weight: inherit;
       text-transform: none;
+      letter-spacing: inherit;
       color: #fff;
       display: inline-block;
     }
@@ -462,6 +464,7 @@
       position: relative;
       display: inline-block;
       cursor: pointer;
+      text-transform: none;
     }
 
     /* Hand pointing to Map */
@@ -603,22 +606,19 @@
       aspect-ratio: 3/4;
       overflow: hidden;
       margin-bottom: 25px;
-      filter: grayscale(1);
-      transition: filter 0.28s ease;
-    }
-
-    .step-card:hover .step-image-wrap {
-      filter: grayscale(0);
     }
 
     .step-image-wrap img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.4s ease;
+      filter: saturate(0.45) contrast(1.02) brightness(0.98);
+      transition: transform 0.4s ease, filter 0.35s ease;
     }
 
-    .step-card:hover .step-image-wrap img {
+    .step-card:hover .step-image-wrap img,
+    .step-card:focus-within .step-image-wrap img {
+      filter: saturate(1) contrast(1) brightness(1);
       transform: scale(1.05);
     }
 
@@ -787,13 +787,14 @@
     .social-headline {
       font-family: 'Inter', sans-serif;
       font-weight: 900;
-      font-size: clamp(2.5rem, 5vw, 4rem);
-      line-height: 0.95;
-      color: #6a1a1c;
+      font-size: clamp(1.9rem, 4vw, 3.2rem);
+      line-height: 0.94;
+      letter-spacing: -0.03em;
+      color: #fff;
       margin-top: -450px;
       /* Pulls only the text further onto the image above */
       margin-bottom: 50px;
-      text-transform: uppercase;
+      text-transform: none;
       animation: floatHeadline 3.2s ease-in-out infinite;
       transform-origin: center;
       position: relative;
@@ -814,12 +815,25 @@
 
     .social-highlight {
       background: #829068;
-      /* Changed to Sage from Pink */
       color: #fff;
       display: inline-block;
       padding: 8px 15px;
       margin-bottom: 5px;
       box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.05);
+    }
+
+    .social-highlight--top {
+      font-family: 'Inter', sans-serif;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+    }
+
+    .social-highlight--bottom {
+      font-family: 'Inter', sans-serif;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      font-style: normal;
+      text-transform: none;
     }
 
     .social-text {
@@ -957,6 +971,7 @@
       .social-headline {
         transform: none;
         text-align: center;
+        font-size: clamp(1.45rem, 7vw, 2.3rem);
       }
 
       .social-text {
@@ -1325,11 +1340,11 @@
         <!-- Text Column -->
         <div class="uk-width-2-5@m uk-width-1-1">
           <h2 id="social-heading" class="social-headline">
-            <span class="social-highlight">las historias</span> <br>
-            <span class="social-highlight">nos unen.</span>
+            <span class="social-highlight social-highlight--top">Sumate a un mundo</span> <br>
+            <span class="social-highlight social-highlight--bottom">más inclusivo</span>
           </h2>
           <p class="social-text">
-            Seguinos en nuestras plataformas sociales y sumate a la conversación artística de Bariloche.
+            Seguinos en nuestras plataformas sociales y sé parte de la conversación artística de Bariloche.
           </p>
         </div>
 
@@ -1431,7 +1446,7 @@
       <div class="where-content-col" uk-scrollspy="cls: uk-animation-slide-left-small; delay: 100">
         <h2 id="where-heading" class="where-headline">
           <span class="where-highlight">
-            <span class="hand-pointer-trigger">
+          <span class="hand-pointer-trigger">
               Encontranos
               <img src="./img/manoabajo.webp" class="pointing-hand-map" alt="" role="presentation" style="display:none;">
               <!-- Hidden from here, moved to map wrapper -->
