@@ -66,3 +66,47 @@ window.addEventListener('scroll', () => {
     nav.classList.remove('scrolled');
   }
 });
+
+// Global subtle page jump control: one arrow that switches between top and bottom.
+document.addEventListener('DOMContentLoaded', () => {
+  if (document.querySelector('.page-scroll-toggle')) return;
+
+  const arrowSvg = `
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+      <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+    </svg>
+  `;
+
+  const toggle = document.createElement('button');
+  toggle.type = 'button';
+  toggle.className = 'page-scroll-toggle';
+  toggle.setAttribute('aria-label', 'Ir al final');
+  toggle.innerHTML = `<span class="page-scroll-toggle-icon">${arrowSvg}</span>`;
+
+  const updateToggle = () => {
+    const doc = document.documentElement;
+    const maxScroll = Math.max(doc.scrollHeight - window.innerHeight, 0);
+
+    const scrollY = window.pageYOffset || doc.scrollTop || 0;
+    const goUp = scrollY > maxScroll * 0.55;
+    toggle.classList.toggle('is-up', goUp);
+    toggle.setAttribute('aria-label', goUp ? 'Volver al inicio' : 'Ir al final');
+    toggle.title = goUp ? 'Volver al inicio' : 'Ir al final';
+  };
+
+  toggle.addEventListener('click', () => {
+    const doc = document.documentElement;
+    const maxScroll = Math.max(doc.scrollHeight - window.innerHeight, 0);
+    const goUp = toggle.classList.contains('is-up');
+
+    window.scrollTo({
+      top: goUp ? 0 : maxScroll,
+      behavior: 'smooth'
+    });
+  });
+
+  document.body.appendChild(toggle);
+  window.addEventListener('scroll', updateToggle, { passive: true });
+  window.addEventListener('resize', updateToggle);
+  updateToggle();
+});
