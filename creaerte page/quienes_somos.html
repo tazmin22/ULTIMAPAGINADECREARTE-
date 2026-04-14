@@ -1023,6 +1023,78 @@
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 900px) {
+            /* Hero splash */
+            .hero-splash {
+                height: 60vh !important;
+                min-height: 350px;
+            }
+
+            .hero-splash-title h1 {
+                font-size: clamp(2rem, 10vw, 4rem);
+            }
+
+            .hero-splash-title h1 span {
+                font-size: clamp(1.8rem, 8vw, 3.5rem);
+                margin-bottom: -8px;
+            }
+
+            .hero-splash-title p {
+                font-size: clamp(1rem, 3vw, 1.5rem);
+            }
+
+            .floating-logo img {
+                height: 70px !important;
+            }
+
+            /* Magazine spread */
+            .about-us-section {
+                padding: 60px 5%;
+                min-height: auto;
+            }
+
+            .about-spread {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
+
+            .spread-photo {
+                position: relative !important;
+                top: auto !important;
+                left: auto !important;
+                right: auto !important;
+                bottom: auto !important;
+                width: 100% !important;
+                max-width: 350px;
+                height: auto !important;
+                aspect-ratio: 3 / 4;
+                transform: none !important;
+                margin: 0 auto;
+            }
+
+            .about-spread-title,
+            .about-spread-text,
+            .about-spread-body {
+                grid-column: 1 / -1;
+                text-align: center;
+                max-width: 100%;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .about-spread-title {
+                font-size: clamp(2.5rem, 8vw, 4rem);
+            }
+
+            .about-spread-title span {
+                font-size: clamp(2rem, 7vw, 3.5rem);
+            }
+
+            .spread-side-text {
+                display: none;
+            }
+
             .mag-hero-title {
                 font-size: 4.5rem;
             }

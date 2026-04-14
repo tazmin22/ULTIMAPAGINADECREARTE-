@@ -625,14 +625,33 @@
             }
 
             .banner-section {
-                padding: 100px 5% !important;
-                height: 100vh !important;
+                padding: 120px 6% !important;
+                height: 70vh !important;
+                min-height: 400px !important;
                 margin-top: 0 !important;
                 overflow: hidden !important;
+                background-position: center 30% !important;
+            }
+
+            .banner-content {
+                max-width: 100% !important;
+                position: absolute !important;
+                top: 50% !important;
+                left: 50% !important;
+                transform: translate(-50%, -50%) !important;
+                width: 90% !important;
+                text-align: center !important;
             }
 
             .banner-title {
-                font-size: 4rem;
+                font-size: clamp(2rem, 8vw, 4rem) !important;
+                letter-spacing: -1px !important;
+            }
+
+            .banner-subtitle {
+                font-size: 0.7rem !important;
+                letter-spacing: 3px !important;
+                margin-top: 15px !important;
             }
 
             .ed-unified {
