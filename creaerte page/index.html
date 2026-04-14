@@ -1078,20 +1078,6 @@
       }
     }
 
-    @media (max-width: 960px) {
-      .social-headline {
-        transform: none;
-        text-align: center;
-        font-size: clamp(1.45rem, 7vw, 2.3rem);
-      }
-
-      .social-text {
-        text-align: center;
-        margin: 0 auto 40px;
-        margin-top: 6px;
-      }
-    }
-
     /* === NEW PREMIUM FOOTER === */
     .crearte-footer {
       background-color: #829068;
@@ -1214,24 +1200,6 @@
       /* Constant rotation, no anim */
     }
 
-    @media (max-width: 960px) {
-      .social-decor-img {
-        display: none;
-      }
-    }
-
-    @media (max-width: 960px) {
-      .social-headline {
-        transform: none;
-        text-align: center;
-      }
-
-      .social-text {
-        text-align: center;
-        margin: 0 auto 40px;
-      }
-    }
-
     /* Skip navigation link */
     .skip-link {
       position: absolute;
@@ -1265,6 +1233,265 @@
 
     main:focus {
       outline: none;
+    }
+
+    /* ===== COMPREHENSIVE MOBILE RESPONSIVE ===== */
+    @media (max-width: 960px) {
+      /* Hero */
+      .hero-static {
+        min-height: auto !important;
+        height: 70vh !important;
+      }
+
+      .hero-copy {
+        width: 90vw;
+      }
+
+      .hero-title-image img {
+        width: min(65vw, 280px);
+      }
+
+      .hero-subtitle-navbar {
+        font-size: 0.65rem !important;
+        letter-spacing: 3px !important;
+        margin-top: -2rem !important;
+      }
+
+      /* CTA Hero */
+      .cta-hero {
+        min-height: 280px !important;
+        padding: 60px 5% !important;
+      }
+
+      .cta-hero h2 {
+        font-size: 1.6rem !important;
+      }
+
+      .cta-hero .uk-text-lead {
+        font-size: 1rem !important;
+      }
+
+      /* Social Section */
+      .social-section {
+        padding: 60px 5% !important;
+      }
+
+      .social-headline {
+        margin-top: 0 !important;
+        text-align: center;
+        font-size: clamp(1.6rem, 7vw, 2.5rem) !important;
+        animation: none !important;
+        transform: none !important;
+      }
+
+      .social-text {
+        text-align: center;
+        margin: 0 auto 30px !important;
+        max-width: 100%;
+        font-size: 1rem;
+      }
+
+      .social-decor-img {
+        display: none;
+      }
+
+      .social-card {
+        padding: 25px;
+      }
+
+      .social-card-inner h4 {
+        font-size: 1.1rem;
+      }
+
+      .social-card-inner p {
+        font-size: 0.85rem;
+      }
+
+      .social-card-hand {
+        display: none;
+      }
+
+      /* Steps Section */
+      .steps-section {
+        margin-top: 0 !important;
+        padding: 40px 5% !important;
+      }
+
+      .steps-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+      }
+
+      .step-card:nth-child(n) {
+        margin-top: 0 !important;
+      }
+
+      .step-card:nth-child(even) {
+        margin-top: 30px;
+      }
+
+      .step-content h3 {
+        font-size: 1.2rem;
+      }
+
+      .step-content p {
+        font-size: 0.8rem;
+      }
+
+      /* Where Section */
+      .where-section {
+        margin: 20px 0 60px 0 !important;
+      }
+
+      .where-split {
+        grid-template-columns: 1fr !important;
+      }
+
+      .where-image-col {
+        min-height: auto !important;
+        order: -1;
+        padding: 20px !important;
+      }
+
+      .where-image-frame {
+        width: 100% !important;
+        height: auto !important;
+        min-height: 0 !important;
+        aspect-ratio: 4 / 3;
+      }
+
+      .where-content-col {
+        padding: 40px 5% !important;
+      }
+
+      .where-headline {
+        font-size: clamp(1.8rem, 6vw, 2.8rem) !important;
+        margin-bottom: 20px !important;
+        transform: none !important;
+        text-align: center;
+      }
+
+      .where-highlight {
+        padding: 6px 14px !important;
+      }
+
+      .where-text-details {
+        text-align: center;
+        max-width: 100% !important;
+      }
+
+      .where-text-details p {
+        font-size: 0.95rem;
+      }
+
+      .where-meta {
+        font-size: 0.75rem;
+      }
+
+      .where-small-map-wrap {
+        height: 180px;
+      }
+
+      .where-corner-gif,
+      .where-bottom-gif {
+        display: none;
+      }
+
+      /* Pointing hand hidden on mobile */
+      .pointing-hand-map {
+        display: none !important;
+      }
+
+      /* Mosaic */
+      .uk-child-width-1-2\@m .uk-width-2-3\@l {
+        width: 100% !important;
+      }
+
+      /* Footer */
+      .footer-legal {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      /* Hero */
+      .hero-static {
+        height: 60vh !important;
+      }
+
+      .hero-title-image img {
+        width: min(70vw, 240px);
+      }
+
+      /* Mosaic - single column */
+      .uk-child-width-1-2\@m > div {
+        width: 100% !important;
+      }
+
+      .tile .uk-cover-container canvas {
+        height: 280px !important;
+      }
+
+      /* Steps - single column */
+      .steps-grid {
+        grid-template-columns: 1fr !important;
+        gap: 25px;
+      }
+
+      .step-card:nth-child(n) {
+        margin-top: 0 !important;
+      }
+
+      /* Social cards stack */
+      .social-section .uk-grid-medium > div {
+        width: 100% !important;
+      }
+
+      /* Where image */
+      .where-image-col {
+        min-height: auto !important;
+      }
+
+      .where-image-frame {
+        height: auto !important;
+        min-height: 0 !important;
+        aspect-ratio: 4 / 3;
+      }
+
+      /* Editorial divider */
+      .editorial-divider {
+        margin: 0 0 60px 0 !important;
+      }
+
+      .editorial-divider::before {
+        left: 5% !important;
+        right: 5% !important;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-static {
+        height: 55vh !important;
+      }
+
+      .cta-hero h2 {
+        font-size: 1.3rem !important;
+      }
+
+      .cta-hero .uk-text-lead {
+        font-size: 0.9rem !important;
+      }
+
+      .social-highlight {
+        padding: 6px 12px !important;
+        font-size: 0.9em;
+      }
+
+      .where-highlight {
+        padding: 5px 10px !important;
+      }
     }
   </style>
 </head>
