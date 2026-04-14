@@ -148,7 +148,7 @@
         .hero-splash {
             width: 100%;
             height: 100vh;
-            background: #111;
+            background: #000;
             position: relative;
             overflow: hidden;
             display: flex;
@@ -164,6 +164,7 @@
             object-fit: cover;
             opacity: 0.55;
             filter: grayscale(10%) contrast(1.1) brightness(0.85);
+            background: #000;
         }
 
         .hero-splash-title {
@@ -1497,7 +1498,21 @@
     </footer>
 
     <script>
-        // Lógica de Mouse Parallax removida por petición del usuario
+        // Evitar flash gris antes de que el video cargue
+        const heroVideo = document.querySelector('.hero-splash video');
+        const heroSplash = document.querySelector('.hero-splash');
+        if (heroVideo && heroSplash) {
+            heroSplash.style.opacity = '0';
+            heroSplash.style.transition = 'opacity 0.4s ease';
+            heroVideo.addEventListener('canplay', function onCanPlay() {
+                heroSplash.style.opacity = '1';
+                heroVideo.removeEventListener('canplay', onCanPlay);
+            });
+            // Fallback: si el video tarda demasiado, mostrar igual
+            setTimeout(function () {
+                heroSplash.style.opacity = '1';
+            }, 2000);
+        }
 
 
         // Lógica de Mouse Parallax removida por petición del usuario
