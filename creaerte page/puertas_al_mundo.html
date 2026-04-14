@@ -633,6 +633,11 @@
                 background-position: center 30% !important;
             }
 
+            #stars-canvas {
+                opacity: 0.4 !important;
+                filter: none !important;
+            }
+
             .banner-content {
                 max-width: 100% !important;
                 position: absolute !important;
@@ -734,694 +739,749 @@
         <ul class="mobile-menu-links" role="menu">
             <li role="none"><a href="./talleres.html" role="menuitem">Talleres</a></li>
             <li role="none"><a href="./quienes_somos.html" role="menuitem">Quiénes Somos</a></li>
-            <li role="none"><a href="./puertas_al_mundo.html" role="menuitem" aria-current="page">Puertas al Mundo</a></li>
+            <li role="none"><a href="./puertas_al_mundo.html" role="menuitem" aria-current="page">Puertas al Mundo</a>
+            </li>
             <li role="none"><a href="./galeria.html" role="menuitem">Galería</a></li>
             <li role="none"><a href="./obras.html" role="menuitem">Obras</a></li>
         </ul>
     </div>
 
     <main id="contenido-principal" tabindex="-1">
-    <!-- HERO: PUERTAS AL MUNDO -->
-    <section class="banner-section" aria-labelledby="hero-title" uk-scrollspy="cls: uk-animation-fade; delay: 300">
-        <!-- Performance Optimized Canvas Sky -->
-        <canvas id="stars-canvas" aria-hidden="true"
-            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1;">
-            Cielo nocturno decorativo con estrellas
-        </canvas>
+        <!-- HERO: PUERTAS AL MUNDO -->
+        <section class="banner-section" aria-labelledby="hero-title" uk-scrollspy="cls: uk-animation-fade; delay: 300">
+            <!-- Performance Optimized Canvas Sky -->
+            <canvas id="stars-canvas" aria-hidden="true"
+                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1;">
+                Cielo nocturno decorativo con estrellas
+            </canvas>
 
 
-        <div class="banner-content"
-            style="position: absolute; top: 70%; left: 50%; transform: translate(-50%, -50%); text-align: center; z-index: 10; width: 100%;">
-            <h1 id="hero-title" class="banner-brush-title"
-                style="font-family: 'Kaushan Script', cursive; font-size: clamp(2rem, 7vw, 6.2rem); color: #ffffff; transform: rotate(-3deg); text-shadow: 0 10px 40px rgba(0,0,0,0.4); margin: 0; line-height: 1;">
-                Puertas al Mundo
-            </h1>
-            <p class="banner-subtitle"
-                style="color: #fff; font-size: 0.8rem; margin-top: 20px; letter-spacing: 4px; text-transform: uppercase; font-weight: 300;">
-                Encuentros de Arte e Inclusión
-            </p>
-        </div>
-    </section>
-
-
-
-    <!-- SECTION: FESTIVAL (Modern Clean Layout) -->
-    <section class="viajes-clean-section" aria-labelledby="festival-title" uk-scrollspy="cls: uk-animation-fade; delay: 200" style="margin-top: 100px;">
-        <div class="viajes-container">
-            <div class="viajes-text">
-                <h2 id="festival-title" class="viajes-h2">Nuestro Festival</h2>
-                <p class="viajes-p">
-                    Hacemos el festival porque creemos que es la posibilidad de ver el arte como
-                    modificador de vida, como herramienta transformadora, como reconocimiento y
-                    valoración de la persona con discapacidad.
-                    Queremos a través del mismo, acercarle al público la posibilidad no solo de ver un
-                    espectáculo teatral o un producto artístico sino, también, de sumar herramientas a
-                    la creatividad colectiva y personal.
-                    Se ha vuelto un deber para Cre-Arte, como promotores de formación artística,
-                    crear espacios donde la persona con discapacidad pueda explorar sus
-                    posibilidades de expresión.
+            <div class="banner-content"
+                style="position: absolute; top: 70%; left: 50%; transform: translate(-50%, -50%); text-align: center; z-index: 10; width: 100%;">
+                <h1 id="hero-title" class="banner-brush-title"
+                    style="font-family: 'Kaushan Script', cursive; font-size: clamp(2rem, 7vw, 6.2rem); color: #ffffff; transform: rotate(-3deg); text-shadow: 0 10px 40px rgba(0,0,0,0.4); margin: 0; line-height: 1;">
+                    Puertas al Mundo
+                </h1>
+                <p class="banner-subtitle"
+                    style="color: #fff; font-size: 0.8rem; margin-top: 20px; letter-spacing: 4px; text-transform: uppercase; font-weight: 300;">
+                    Encuentros de Arte e Inclusión
                 </p>
-                <p class="viajes-p">
-                    En la edición realizada en el año 2017, logramos congregar más de 100 artistas
-                    que convivieron durante 10 días, donde además de los encuentros artísticos, se
-                    lograron encuentros sinérgicos entre artistas con discapacidad de diversas partes
-                    del mundo, donde compartían el desmontaje de las obras que realizaban,
-                    se realizaban talleres artísticos, se compartían los momentos de comedor y
-                    excursiones a diversos circuitos turísticos locales, lográndose una mancomunidad
-                    que hasta el día de hoy persiste.
-                </p>
-                <a href="galeria.html" class="viajes-link" aria-label="Ver galería de imágenes del festival">
-                    <span class="viajes-arrow" aria-hidden="true"></span>
-                    <span class="viajes-link-text">VER GALERÍA</span>
-                </a>
             </div>
-            <div class="viajes-media">
-                <img src="img/artexigual7.webp" alt="Artistas participantes en un encuentro del festival internacional de Cre Arte" class="viajes-img"
-                    style="border-radius: 4px; box-shadow: 0 30px 60px rgba(0,0,0,0.1);">
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- SECTION: VIAJES (Banner Style) -->
-    <section class="editorial-section" aria-labelledby="viajes-title" uk-scrollspy="cls: uk-animation-fade; delay: 100"
-        style="padding: 0; overflow: hidden; margin-bottom: 180px; width: 100%;">
-        <div class="festival-banner" role="img" aria-label="Paisaje de viaje internacional del programa Puertas al Mundo"
-            style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('img/JACOBACCI.webp'); background-size: cover; background-position: center; min-height: 550px; display: flex; align-items: center; justify-content: center; position: relative; width: 100%;">
-            <div class="content"
-                style="padding: 100px 5%; text-align: center; position: relative; width: 100%; max-width: 1200px;">
-                <div class="video-title-box" style="margin: 0;">
-                    <h2 id="viajes-title"
-                        style="font-size: 2.5rem; padding: 15px 45px; transform: rotate(-1.5deg); font-weight: 900; box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.1); margin: 0; background: #f9bd61; color: #fff; display: inline-block; text-transform: uppercase;">VIAJES</h2>
+
+
+        <!-- SECTION: FESTIVAL (Modern Clean Layout) -->
+        <section class="viajes-clean-section" aria-labelledby="festival-title"
+            uk-scrollspy="cls: uk-animation-fade; delay: 200" style="margin-top: 100px;">
+            <div class="viajes-container">
+                <div class="viajes-text">
+                    <h2 id="festival-title" class="viajes-h2">Nuestro Festival</h2>
+                    <p class="viajes-p">
+                        Hacemos el festival porque creemos que es la posibilidad de ver el arte como
+                        modificador de vida, como herramienta transformadora, como reconocimiento y
+                        valoración de la persona con discapacidad.
+                        Queremos a través del mismo, acercarle al público la posibilidad no solo de ver un
+                        espectáculo teatral o un producto artístico sino, también, de sumar herramientas a
+                        la creatividad colectiva y personal.
+                        Se ha vuelto un deber para Cre-Arte, como promotores de formación artística,
+                        crear espacios donde la persona con discapacidad pueda explorar sus
+                        posibilidades de expresión.
+                    </p>
+                    <p class="viajes-p">
+                        En la edición realizada en el año 2017, logramos congregar más de 100 artistas
+                        que convivieron durante 10 días, donde además de los encuentros artísticos, se
+                        lograron encuentros sinérgicos entre artistas con discapacidad de diversas partes
+                        del mundo, donde compartían el desmontaje de las obras que realizaban,
+                        se realizaban talleres artísticos, se compartían los momentos de comedor y
+                        excursiones a diversos circuitos turísticos locales, lográndose una mancomunidad
+                        que hasta el día de hoy persiste.
+                    </p>
+                    <a href="galeria.html" class="viajes-link" aria-label="Ver galería de imágenes del festival">
+                        <span class="viajes-arrow" aria-hidden="true"></span>
+                        <span class="viajes-link-text">VER GALERÍA</span>
+                    </a>
                 </div>
-                <p
-                    style="font-family: 'Inter', sans-serif; font-size: 0.75rem; letter-spacing: 5px; color: #fff; text-transform: uppercase; margin-top: 30px; opacity: 0.8; font-weight: 300;">
-                    Encuentros de Arte e Inclusión </p>
+                <div class="viajes-media">
+                    <img src="img/artexigual7.webp"
+                        alt="Artistas participantes en un encuentro del festival internacional de Cre Arte"
+                        class="viajes-img" style="border-radius: 4px; box-shadow: 0 30px 60px rgba(0,0,0,0.1);">
+                </div>
+            </div>
+        </section>
 
-                <!-- Floating Card & Curly Arrow (Reveals on Hover) -->
-                <div class="festival-note"
-                    style="position: absolute; right: -80px; bottom: -80px; text-align: left; width: 450px; pointer-events: none; z-index: 50;">
-                    <svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"
-                        aria-hidden="true" style="transform: rotate(160deg); margin-left: 200px; margin-bottom: -15px;">
-                        <path
-                            d="M20 20C40 10 60 40 50 60C45 75 30 65 35 50C40 35 60 45 70 70C75 85 78 88 80 90M80 90L72 85M80 90L85 82"
-                            stroke="#FF9D42" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
-                    <div
-                        style="background: #fdfdfd; padding: 40px; box-shadow: 0 30px 60px rgba(0,0,0,0.1); border: 1px solid #f0f0f0;">
-                        <p
-                            style="font-family: 'Inter', sans-serif; font-size: 0.95rem; color: #444; transform: none; margin: 0; line-height: 1.8; letter-spacing: 0.5px; font-weight: 500;">
-                            Cruzamos fronteras para compartir nuestra metodología, tender puentes culturales y
-                            enriquecer nuestra labor con experiencias alrededor del mundo. Una red global de creación
-                            inclusiva.
-                        </p>
+        <!-- SECTION: VIAJES (Banner Style) -->
+        <section class="editorial-section" aria-labelledby="viajes-title"
+            uk-scrollspy="cls: uk-animation-fade; delay: 100"
+            style="padding: 0; overflow: hidden; margin-bottom: 60px; width: 100%;">
+            <div class="festival-banner" role="img"
+                aria-label="Paisaje de viaje internacional del programa Puertas al Mundo"
+                style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('img/JACOBACCI.webp'); background-size: cover; background-position: center; min-height: 550px; display: flex; align-items: center; justify-content: center; position: relative; width: 100%;">
+                <div class="content"
+                    style="padding: 100px 5%; text-align: center; position: relative; width: 100%; max-width: 1200px;">
+                    <div class="video-title-box" style="margin: 0;">
+                        <h2 id="viajes-title"
+                            style="font-size: 2.5rem; padding: 15px 45px; transform: rotate(-1.5deg); font-weight: 900; box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.1); margin: 0; background: #f9bd61; color: #fff; display: inline-block; text-transform: uppercase;">
+                            VIAJES</h2>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
+                    <p
+                        style="font-family: 'Inter', sans-serif; font-size: 0.75rem; letter-spacing: 5px; color: #fff; text-transform: uppercase; margin-top: 30px; opacity: 0.8; font-weight: 300;">
+                        Encuentros de Arte e Inclusión </p>
 
-    <style>
-        .viajes-clean-section {
-            padding: 120px 10%;
-            background: #f3efe7;
-        }
-
-        .viajes-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .viajes-h2 {
-            font-family: 'Inter', sans-serif;
-            font-size: clamp(3rem, 8vw, 4.5rem);
-            font-weight: 900;
-            color: #000;
-            margin-bottom: 30px;
-            letter-spacing: -2px;
-            line-height: 1;
-            text-transform: uppercase;
-        }
-
-        .viajes-p {
-            font-family: 'Inter', sans-serif;
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: #444;
-            margin-bottom: 30px;
-            font-weight: 400;
-        }
-
-        .viajes-link {
-            display: inline-flex;
-            align-items: center;
-            text-decoration: none;
-            color: #000;
-            font-weight: 800;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-            margin-top: 20px;
-            transition: transform 0.3s ease;
-        }
-
-        .viajes-link:hover {
-            transform: translateX(10px);
-        }
-
-        .viajes-arrow {
-            width: 50px;
-            height: 1px;
-            background: #000;
-            position: relative;
-            margin-right: 15px;
-        }
-
-        .viajes-arrow::after {
-            content: '';
-            position: absolute;
-            right: 0;
-            top: -4px;
-            width: 8px;
-            height: 8px;
-            border-right: 1px solid #000;
-            border-top: 1px solid #000;
-            transform: rotate(45deg);
-        }
-
-        .viajes-media {
-            position: relative;
-        }
-
-        .viajes-video-wrapper {
-            position: relative;
-            overflow: hidden;
-            border-radius: 4px;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
-        }
-
-        .viajes-img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 0.8s ease;
-        }
-
-        .viajes-video-wrapper:hover .viajes-img {
-            transform: scale(1.05);
-        }
-
-        .viajes-play-overlay {
-            position: absolute;
-            inset: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(0, 0, 0, 0.1);
-            transition: background 0.3s ease;
-        }
-
-        .viajes-video-wrapper:hover .viajes-play-overlay {
-            background: rgba(0, 0, 0, 0.25);
-        }
-
-        .viajes-play-btn {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            border: 3px solid #fff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: transform 0.3s ease;
-        }
-
-        .viajes-video-wrapper:hover .viajes-play-btn {
-            transform: scale(1.1);
-        }
-
-        @media (max-width: 992px) {
-            .viajes-container {
-                grid-template-columns: 1fr;
-                gap: 50px;
-            }
-
-            .viajes-h2 {
-                font-size: 2.5rem;
-            }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            body,
-            .banner-content,
-            .banner-brush-title,
-            .banner-subtitle {
-                animation: none !important;
-                opacity: 1 !important;
-                transform: none !important;
-            }
-        }
-    </style>
-
-
-    <!-- NARRATIVE SECTION (Expanding the message) -->
-    <section class="narrative-section" aria-labelledby="red-arte-title">
-        <div class="narrative-content">
-            <h3 id="red-arte-title" class="narrative-h3" uk-scrollspy="cls: uk-animation-slide-left-medium; delay: 100">Red Arte x Igual
-            </h3>
-            <p class="narrative-p" uk-scrollspy="cls: uk-animation-fade; delay: 300">
-                En Red Arte por Igual, trabajamos el concepto de igualdad desde la necesidad de
-                visibilidad urgente. Estamos impulsados por el deseo de que el arte, como
-                herramienta transformadora, se convierta en una prioridad dentro de los
-                paradigmas sociales. No solo para mejorar la calidad de vida de las personas con
-                discapacidad, sino para el enriquecimiento de una cultura que está obligada a
-                tomar la palabra democráticamente y avanzar.
-                El desconocimiento, la discriminación y la falta de accesibilidad son algunos de los
-                causantes de la invisibilidad instalada. Creemos firmemente que, a través de una
-                red cultural internacional, podemos impulsar un cambio real, generando lazos con
-                instituciones y particulares que compartan el mismo anhelo de construir un mundo
-                un poco más justo.
-            </p>
-            <p class="narrative-p" uk-scrollspy="cls: uk-animation-fade; delay: 500">
-                Confiamos en las diferentes miradas para enriquecer este espacio, que estará
-                basado en un recorrido ideológico que abrace el arte en todas sus expresiones y
-                áreas explorativas: desde su nacimiento creativo hasta su reconocimiento público.
-                Por ello, nuestras dos grandes aristas de trabajo serán: la potenciación de la
-                obra artística pública, social y cultural, por un lado; y el fortalecimiento de las
-                organizaciones involucradas y el intercambio de saberes, por el otro.
-                Con más de 30 años de trayectoria, en Cre-Arte hemos establecido lazos y
-                relaciones con instituciones y particulares a través de encuentros, talleres y
-                festivales que nos han demostrado la riqueza implícita de compartir experiencias y
-                desafíos diarios. Hoy, damos el paso para formalizar y expandir este movimiento.
-            </p>
-        </div>
-    </section>
-
-    <style>
-        .narrative-section {
-            padding: 100px 10%;
-            background: #f3efe7;
-            text-align: left;
-        }
-
-        .narrative-content {
-            max-width: 800px;
-        }
-
-        .narrative-h3 {
-            font-family: 'Inter', sans-serif;
-            font-size: 2rem;
-            font-weight: 700;
-            color: #333;
-            margin-bottom: 25px;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-        }
-
-        .narrative-p {
-            font-family: 'Inter', sans-serif;
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: #333;
-            margin-bottom: 25px;
-            font-weight: 400;
-        }
-
-        @media (max-width: 768px) {
-            .narrative-section {
-                padding: 60px 5%;
-            }
-
-            .narrative-h3 {
-                font-size: 1.8rem;
-            }
-        }
-    </style>
-
-    <!-- NEW EDITORIAL SECTION -->
-    <section class="editorial-section" aria-label="Galería editorial de Red Arte por Igual" style="padding-top: 0;">
-        <div class="ed-grid">
-            <!-- Card 2 + 3 UNIFICADAS -->
-            <div class="ed-card ed-unified" uk-scrollspy="cls: uk-animation-slide-left-small; delay: 200"
-                style="grid-column: span 2; aspect-ratio: 2 / 1; padding: 0;">
-                <img src="img/artexigual1.webp" alt="Encuentro de artistas internacionales en el festival Red Arte por Igual" style="width: 100%; height: 100%; object-fit: cover;">
-            </div>
-
-            <!-- Card 4 -->
-            <div class="ed-card card-4 card-gold" uk-scrollspy="cls: uk-animation-slide-right-small; delay: 400">
-                <div class="portrait-wrapper">
-                    <img src="img/artexigual4.webp" alt="Retrato de un artista participante del programa Red Arte por Igual">
-                </div>
-            </div>
-
-
-    </section>
-
-    <!-- HORIZONTAL GALLERY (4 Columns) -->
-    <section class="horizontal-gallery-section" aria-label="Galería de imágenes de encuentros artísticos" uk-scrollspy="cls: uk-animation-fade; delay: 300">
-        <div class="h-gallery-container" role="group" aria-label="Galería de fotos de actividades artísticas inclusivas">
-            <div class="h-gallery-item">
-                <img src="img/artexigual2.webp" alt="Taller artístico internacional con participantes del festival">
-            </div>
-            <div class="h-gallery-item">
-                <img src="img/artexigual3.webp" alt="Encuentro cultural entre artistas de diferentes países">
-            </div>
-            <div class="h-gallery-item">
-                <img src="img/artexigual5.webp" alt="Actividad de expresión artística en el festival inclusivo">
-            </div>
-            <div class="h-gallery-item">
-                <img src="img/artexigual6.webp" alt="Comunidad de artistas de Cre Arte compartiendo experiencias">
-            </div>
-        </div>
-    </section>
-
-    <style>
-        .horizontal-gallery-section {
-            padding: 0 5% 100px 5%;
-            background: #f3efe7;
-        }
-
-        .h-gallery-container {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 15px;
-        }
-
-        .h-gallery-item {
-            aspect-ratio: 4 / 3;
-            overflow: hidden;
-            border-radius: 4px;
-        }
-
-        .h-gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s ease;
-        }
-
-        .h-gallery-item:hover img {
-            transform: scale(1.05);
-        }
-
-        @media (max-width: 768px) {
-            .h-gallery-container {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-    </style>
-
-    <!-- SECTION: NOCHES DE CRE ARTE (Focus on Ciclo Puertas) -->
-    <section class="noches-clean-section" aria-labelledby="noches-title" uk-scrollspy="cls: uk-animation-fade; delay: 200">
-        <div class="noches-container">
-            <div class="noches-media" uk-scrollspy="cls: uk-animation-slide-left-medium; delay: 300">
-                <div class="viajes-video-wrapper">
-                    <img src="img/cicloimg.webp" alt="Artistas presentando su obra en el Ciclo Puertas de Las Noches de Cre Arte" class="viajes-img">
-                </div>
-            </div>
-            <div class="noches-text" uk-scrollspy="cls: uk-animation-slide-right-medium; delay: 400">
-                <h2 id="noches-title" class="viajes-h2" style="font-size: clamp(2rem, 5vw, 2.8rem); margin-bottom: 15px;">Las Noches de
-                    Cre Arte</h2>
-                <h3 class="narrative-h3"
-                    style="color: #6a2a8c; font-size: 1.2rem; margin-bottom: 35px; letter-spacing: 6px;">Ciclo Puertas
-                </h3>
-                <p class="viajes-p">
-                    El ciclo Puertas tiene como objetivo generar un lugar de encuentro e intercambio entre los artistas
-                    de la ciudad e invitar a la comunidad a conocer el trabajo que se realiza en el centro cultural y
-                    educativo Cre-arte.
-                </p>
-                <a href="galeria.html" class="viajes-link" aria-label="Ver galería del Ciclo Puertas">
-                    <span class="viajes-arrow" aria-hidden="true"></span>
-                    <span class="viajes-link-text">VER GALERÍA</span>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <style>
-        .noches-clean-section {
-            padding: 120px 10%;
-            background: #f3efe7;
-        }
-
-        .noches-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .noches-text {
-            padding-left: 20px;
-        }
-
-        @media (max-width: 992px) {
-            .noches-container {
-                grid-template-columns: 1fr;
-                gap: 50px;
-            }
-
-            .noches-media {
-                order: 2;
-            }
-
-            .noches-text {
-                order: 1;
-                padding-left: 0;
-            }
-        }
-    </style>
-
-    <style>
-        @media (max-width: 768px) {
-            .banner-title {
-                font-size: 3rem;
-            }
-        }
-
-        /* Video Title Box */
-        .video-title-box {
-            text-align: center;
-            margin-top: 80px;
-            margin-bottom: -20px;
-            position: relative;
-            z-index: 100;
-        }
-
-        .video-title-box span {
-            display: inline-block;
-            background: #f9bd61;
-            color: #fff;
-            padding: 20px 50px;
-            font-family: 'Inter', sans-serif;
-            font-weight: 900;
-            text-transform: uppercase;
-            font-size: 2.2rem;
-            line-height: 1;
-            transform: rotate(-1.5deg);
-            box-shadow: 10px 10px 0 rgba(255, 157, 66, 0.3);
-            /* Orange shadow tint */
-            /* Custom Animation */
-            opacity: 0;
-            animation: labelPop 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-            animation-delay: 0.3s;
-        }
-
-        @keyframes labelPop {
-            0% {
-                transform: scale(0.5) rotate(10deg);
-                opacity: 0;
-            }
-
-            70% {
-                transform: scale(1.1) rotate(-3deg);
-                opacity: 1;
-            }
-
-            100% {
-                transform: scale(1) rotate(-1.5deg);
-                opacity: 1;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .video-title-box span {
-                font-size: 1.4rem;
-                padding: 15px 30px;
-            }
-        }
-
-        /* Scrapbook Gallery Hover */
-        .scrapbook-gallery img {
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-            cursor: pointer;
-        }
-
-        .scrapbook-gallery img:hover {
-            z-index: 100 !important;
-            transform: scale(1.08) rotate(0deg) !important;
-            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.4);
-        }
-
-        /* Festival Hover Note */
-        .festival-banner .festival-note {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
-        }
-
-        .festival-banner:hover .festival-note {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    </style>
-
-    <!-- SECTION: EL BODEGÓN (Modern Clean Layout - Image Right) -->
-    <section class="viajes-clean-section" aria-labelledby="bodegon-title" style="padding-top: 0;" uk-scrollspy="cls: uk-animation-fade; delay: 200">
-        <div class="viajes-container">
-            <div class="viajes-text" uk-scrollspy="cls: uk-animation-slide-left-medium; delay: 300">
-                <h2 id="bodegon-title" class="viajes-h2">El Bodegón</h2>
-                <p class="viajes-p">
-                    El evento "El Bodegón" propone compartir exquisitos platos elaborados por el equipo de cocina,
-                    integrado por profesores y alumnos de taller y además contar con la distinguida atención en el
-                    salón, de estudiantes que asisten diariamente a nuestro centro cultural.
-                </p>
-                <a href="galeria.html" class="viajes-link" aria-label="Ver galería de El Bodegón">
-                    <span class="viajes-arrow" aria-hidden="true"></span>
-                    <span class="viajes-link-text">VER GALERÍA</span>
-                </a>
-            </div>
-            <div class="viajes-media" uk-scrollspy="cls: uk-animation-slide-right-medium; delay: 400">
-                <div class="viajes-video-wrapper">
-                    <img src="img/comida.webp" alt="Platos elaborados por el equipo de cocina del evento El Bodegón de Cre Arte" class="viajes-img">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- VIDEO SECTION -->
-    <section class="video-section" aria-label="Video sobre El Bodegón" uk-scrollspy="cls: uk-animation-fade; delay: 200" style="padding-top: 40px;">
-        <div class="video-container">
-            <a href="https://www.facebook.com/creartebrc/videos/que-es-el-bodeg%C3%B3n-de-cre-arte-el-bodeg%C3%B3n-es-un-evento-culinario-en-d%C3%B3nde-tanto-l/1226140019332685/?rdid=XjG5j9bChlD78vPE"
-                target="_blank" rel="noopener noreferrer"
-                aria-label="Ver video: Qué es El Bodegón de Cre Arte (se abre en Facebook)">
-                <div class="video-poster">
-                    <img src="img/portada_video_bodegon.webp" alt="Imagen de portada del video sobre El Bodegón de Cre Arte">
-                    <div class="play-icon-wrapper" aria-hidden="true">
-                        <div class="play-icon">
-                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none"
-                                xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                                <path d="M8 5V19L19 12L8 5Z" fill="black" />
-                            </svg>
+                    <!-- Floating Card & Curly Arrow (Reveals on Hover) -->
+                    <div class="festival-note"
+                        style="position: absolute; right: -80px; bottom: -80px; text-align: left; width: 450px; pointer-events: none; z-index: 50;">
+                        <svg width="100" height="100" viewBox="0 0 100 100" fill="none"
+                            xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+                            style="transform: rotate(160deg); margin-left: 200px; margin-bottom: -15px;">
+                            <path
+                                d="M20 20C40 10 60 40 50 60C45 75 30 65 35 50C40 35 60 45 70 70C75 85 78 88 80 90M80 90L72 85M80 90L85 82"
+                                stroke="#FF9D42" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        <div
+                            style="background: #fdfdfd; padding: 40px; box-shadow: 0 30px 60px rgba(0,0,0,0.1); border: 1px solid #f0f0f0;">
+                            <p
+                                style="font-family: 'Inter', sans-serif; font-size: 0.95rem; color: #444; transform: none; margin: 0; line-height: 1.8; letter-spacing: 0.5px; font-weight: 500;">
+                                Cruzamos fronteras para compartir nuestra metodología, tender puentes culturales y
+                                enriquecer nuestra labor con experiencias alrededor del mundo. Una red global de
+                                creación
+                                inclusiva.
+                            </p>
                         </div>
                     </div>
                 </div>
-            </a>
-        </div>
-    </section>
+            </div>
+        </section>
 
-    <style>
-        .video-section {
-            padding: 80px 10% 120px;
-            background: #f3efe7;
-        }
+        <!-- HORIZONTAL GALLERY (4 Columns) ADDED BELOW VIAJES -->
+        <section class="horizontal-gallery-section" aria-label="Galería de imágenes de encuentros artísticos"
+            uk-scrollspy="cls: uk-animation-fade; delay: 300">
+            <div class="h-gallery-container" role="group"
+                aria-label="Galería de fotos de actividades artísticas inclusivas" uk-lightbox="animation: slide">
+                <div class="h-gallery-item" style="cursor: pointer;">
+                    <a href="img/ROMA1.webp">
+                        <img src="img/ROMA1.webp" alt="Taller artístico internacional con participantes del festival">
+                    </a>
+                </div>
+                <div class="h-gallery-item" style="cursor: pointer;">
+                    <a href="img/ROMA2.webp">
+                        <img src="img/ROMA2.webp" alt="Encuentro cultural entre artistas de diferentes países">
+                    </a>
+                </div>
+                <div class="h-gallery-item" style="cursor: pointer;">
+                    <a href="img/lagogrupal.webp">
+                        <img src="img/lagogrupal.webp" alt="Actividad de expresión artística en el festival inclusivo">
+                    </a>
+                </div>
+                <div class="h-gallery-item" style="cursor: pointer;">
+                    <a href="img/europa.JPG">
+                        <img src="img/europa.JPG" alt="Comunidad de artistas de Cre Arte compartiendo experiencias">
+                    </a>
+                </div>
+            </div>
+        </section>
 
-        .video-container {
-            position: relative;
-            width: 100%;
-            max-width: 1100px;
-            margin: 0 auto;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 50px 100px rgba(0, 0, 0, 0.12);
-        }
+        <style>
+            .viajes-clean-section {
+                padding: 120px 10%;
+                background: #f3efe7;
+            }
 
-        .video-poster {
-            position: relative;
-            width: 100%;
-            aspect-ratio: 16 / 9;
-            cursor: pointer;
-            overflow: hidden;
-        }
+            .viajes-container {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 80px;
+                align-items: center;
+                max-width: 1200px;
+                margin: 0 auto;
+            }
 
-        .video-poster img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 1.2s cubic-bezier(0.2, 1, 0.3, 1);
-        }
+            .viajes-h2 {
+                font-family: 'Inter', sans-serif;
+                font-size: clamp(3rem, 8vw, 4.5rem);
+                font-weight: 900;
+                color: #000;
+                margin-bottom: 30px;
+                letter-spacing: -2px;
+                line-height: 1;
+                text-transform: uppercase;
+            }
 
-        .video-poster:hover img {
-            transform: scale(1.08);
-        }
+            .viajes-p {
+                font-family: 'Inter', sans-serif;
+                font-size: 1.1rem;
+                line-height: 1.8;
+                color: #444;
+                margin-bottom: 30px;
+                font-weight: 400;
+            }
 
-        .play-icon-wrapper {
-            position: absolute;
-            inset: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(0, 0, 0, 0.1);
-            transition: background 0.3s ease;
-        }
+            .viajes-link {
+                display: inline-flex;
+                align-items: center;
+                text-decoration: none;
+                color: #000;
+                font-weight: 800;
+                font-family: 'Inter', sans-serif;
+                font-size: 0.9rem;
+                letter-spacing: 1px;
+                margin-top: 20px;
+                transition: transform 0.3s ease;
+            }
 
-        .video-poster:hover .play-icon-wrapper {
-            background: rgba(0, 0, 0, 0.3);
-        }
+            .viajes-link:hover {
+                transform: translateX(10px);
+            }
 
-        .play-icon {
-            width: 90px;
-            height: 90px;
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+            .viajes-arrow {
+                width: 50px;
+                height: 1px;
+                background: #000;
+                position: relative;
+                margin-right: 15px;
+            }
 
-        .video-poster:hover .play-icon {
-            transform: scale(1.15);
-            background: #fff;
-            border-color: #fff;
-        }
+            .viajes-arrow::after {
+                content: '';
+                position: absolute;
+                right: 0;
+                top: -4px;
+                width: 8px;
+                height: 8px;
+                border-right: 1px solid #000;
+                border-top: 1px solid #000;
+                transform: rotate(45deg);
+            }
 
-        @media (max-width: 768px) {
+            .viajes-media {
+                position: relative;
+            }
+
+            .viajes-video-wrapper {
+                position: relative;
+                overflow: hidden;
+                border-radius: 4px;
+                box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
+            }
+
+            .viajes-img {
+                width: 100%;
+                height: auto;
+                display: block;
+                transition: transform 0.8s ease;
+            }
+
+            .viajes-video-wrapper:hover .viajes-img {
+                transform: scale(1.05);
+            }
+
+            .viajes-play-overlay {
+                position: absolute;
+                inset: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: rgba(0, 0, 0, 0.1);
+                transition: background 0.3s ease;
+            }
+
+            .viajes-video-wrapper:hover .viajes-play-overlay {
+                background: rgba(0, 0, 0, 0.25);
+            }
+
+            .viajes-play-btn {
+                width: 80px;
+                height: 80px;
+                border-radius: 50%;
+                border: 3px solid #fff;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: transform 0.3s ease;
+            }
+
+            .viajes-video-wrapper:hover .viajes-play-btn {
+                transform: scale(1.1);
+            }
+
+            @media (max-width: 992px) {
+                .viajes-container {
+                    grid-template-columns: 1fr;
+                    gap: 50px;
+                }
+
+                .viajes-h2 {
+                    font-size: 2.5rem;
+                }
+            }
+
+            @media (prefers-reduced-motion: reduce) {
+
+                body,
+                .banner-content,
+                .banner-brush-title,
+                .banner-subtitle {
+                    animation: none !important;
+                    opacity: 1 !important;
+                    transform: none !important;
+                }
+            }
+        </style>
+
+
+        <!-- NARRATIVE SECTION (Expanding the message) -->
+        <section class="narrative-section" aria-labelledby="red-arte-title">
+            <div class="narrative-content">
+                <h3 id="red-arte-title" class="narrative-h3"
+                    uk-scrollspy="cls: uk-animation-slide-left-medium; delay: 100">Red Arte x Igual
+                </h3>
+                <p class="narrative-p" uk-scrollspy="cls: uk-animation-fade; delay: 300">
+                    En Red Arte por Igual, trabajamos el concepto de igualdad desde la necesidad de
+                    visibilidad urgente. Estamos impulsados por el deseo de que el arte, como
+                    herramienta transformadora, se convierta en una prioridad dentro de los
+                    paradigmas sociales. No solo para mejorar la calidad de vida de las personas con
+                    discapacidad, sino para el enriquecimiento de una cultura que está obligada a
+                    tomar la palabra democráticamente y avanzar.
+                    El desconocimiento, la discriminación y la falta de accesibilidad son algunos de los
+                    causantes de la invisibilidad instalada. Creemos firmemente que, a través de una
+                    red cultural internacional, podemos impulsar un cambio real, generando lazos con
+                    instituciones y particulares que compartan el mismo anhelo de construir un mundo
+                    un poco más justo.
+                </p>
+                <p class="narrative-p" uk-scrollspy="cls: uk-animation-fade; delay: 500">
+                    Confiamos en las diferentes miradas para enriquecer este espacio, que estará
+                    basado en un recorrido ideológico que abrace el arte en todas sus expresiones y
+                    áreas explorativas: desde su nacimiento creativo hasta su reconocimiento público.
+                    Por ello, nuestras dos grandes aristas de trabajo serán: la potenciación de la
+                    obra artística pública, social y cultural, por un lado; y el fortalecimiento de las
+                    organizaciones involucradas y el intercambio de saberes, por el otro.
+                    Con más de 30 años de trayectoria, en Cre-Arte hemos establecido lazos y
+                    relaciones con instituciones y particulares a través de encuentros, talleres y
+                    festivales que nos han demostrado la riqueza implícita de compartir experiencias y
+                    desafíos diarios. Hoy, damos el paso para formalizar y expandir este movimiento.
+                </p>
+            </div>
+        </section>
+
+        <style>
+            .narrative-section {
+                padding: 100px 10%;
+                background: #f3efe7;
+                text-align: left;
+            }
+
+            .narrative-content {
+                max-width: 800px;
+            }
+
+            .narrative-h3 {
+                font-family: 'Inter', sans-serif;
+                font-size: 2rem;
+                font-weight: 700;
+                color: #333;
+                margin-bottom: 25px;
+                letter-spacing: 4px;
+                text-transform: uppercase;
+            }
+
+            .narrative-p {
+                font-family: 'Inter', sans-serif;
+                font-size: 1.1rem;
+                line-height: 1.8;
+                color: #333;
+                margin-bottom: 25px;
+                font-weight: 400;
+            }
+
+            @media (max-width: 768px) {
+                .narrative-section {
+                    padding: 60px 5%;
+                }
+
+                .narrative-h3 {
+                    font-size: 1.8rem;
+                }
+            }
+        </style>
+
+        <!-- NEW EDITORIAL SECTION -->
+        <section class="editorial-section" aria-label="Galería editorial de Red Arte por Igual" style="padding-top: 0;">
+            <div class="ed-grid">
+                <!-- Card 2 + 3 UNIFICADAS -->
+                <div class="ed-card ed-unified" uk-scrollspy="cls: uk-animation-slide-left-small; delay: 200"
+                    style="grid-column: span 2; aspect-ratio: 2 / 1; padding: 0;">
+                    <img src="img/artexigual1.webp"
+                        alt="Encuentro de artistas internacionales en el festival Red Arte por Igual"
+                        style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+
+                <!-- Card 4 -->
+                <div class="ed-card card-4 card-gold" uk-scrollspy="cls: uk-animation-slide-right-small; delay: 400">
+                    <div class="portrait-wrapper">
+                        <img src="img/artexigual4.webp"
+                            alt="Retrato de un artista participante del programa Red Arte por Igual">
+                    </div>
+                </div>
+
+
+        </section>
+
+        <!-- HORIZONTAL GALLERY (4 Columns) -->
+        <section class="horizontal-gallery-section" aria-label="Galería de imágenes de encuentros artísticos"
+            uk-scrollspy="cls: uk-animation-fade; delay: 300">
+            <div class="h-gallery-container" role="group"
+                aria-label="Galería de fotos de actividades artísticas inclusivas">
+                <div class="h-gallery-item">
+                    <img src="img/artexigual2.webp" alt="Taller artístico internacional con participantes del festival">
+                </div>
+                <div class="h-gallery-item">
+                    <img src="img/artexigual3.webp" alt="Encuentro cultural entre artistas de diferentes países">
+                </div>
+                <div class="h-gallery-item">
+                    <img src="img/artexigual5.webp" alt="Actividad de expresión artística en el festival inclusivo">
+                </div>
+                <div class="h-gallery-item">
+                    <img src="img/artexigual6.webp" alt="Comunidad de artistas de Cre Arte compartiendo experiencias">
+                </div>
+            </div>
+        </section>
+
+        <style>
+            .horizontal-gallery-section {
+                padding: 0 5% 100px 5%;
+                background: #f3efe7;
+            }
+
+            .h-gallery-container {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 15px;
+            }
+
+            .h-gallery-item {
+                aspect-ratio: 4 / 3;
+                overflow: hidden;
+                border-radius: 4px;
+            }
+
+            .h-gallery-item img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: transform 0.6s ease;
+            }
+
+            .h-gallery-item:hover img {
+                transform: scale(1.05);
+            }
+
+            @media (max-width: 768px) {
+                .h-gallery-container {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+            }
+        </style>
+
+        <!-- SECTION: NOCHES DE CRE ARTE (Focus on Ciclo Puertas) -->
+        <section class="noches-clean-section" aria-labelledby="noches-title"
+            uk-scrollspy="cls: uk-animation-fade; delay: 200">
+            <div class="noches-container">
+                <div class="noches-media" uk-scrollspy="cls: uk-animation-slide-left-medium; delay: 300">
+                    <div class="viajes-video-wrapper">
+                        <img src="img/cicloimg.webp"
+                            alt="Artistas presentando su obra en el Ciclo Puertas de Las Noches de Cre Arte"
+                            class="viajes-img">
+                    </div>
+                </div>
+                <div class="noches-text" uk-scrollspy="cls: uk-animation-slide-right-medium; delay: 400">
+                    <h2 id="noches-title" class="viajes-h2"
+                        style="font-size: clamp(2rem, 5vw, 2.8rem); margin-bottom: 15px;">Las Noches de
+                        Cre Arte</h2>
+                    <h3 class="narrative-h3"
+                        style="color: #6a2a8c; font-size: 1.2rem; margin-bottom: 35px; letter-spacing: 6px;">Ciclo
+                        Puertas
+                    </h3>
+                    <p class="viajes-p">
+                        El ciclo Puertas tiene como objetivo generar un lugar de encuentro e intercambio entre los
+                        artistas
+                        de la ciudad e invitar a la comunidad a conocer el trabajo que se realiza en el centro cultural
+                        y
+                        educativo Cre-arte.
+                    </p>
+                    <a href="galeria.html" class="viajes-link" aria-label="Ver galería del Ciclo Puertas">
+                        <span class="viajes-arrow" aria-hidden="true"></span>
+                        <span class="viajes-link-text">VER GALERÍA</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <style>
+            .noches-clean-section {
+                padding: 120px 10%;
+                background: #f3efe7;
+            }
+
+            .noches-container {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 80px;
+                align-items: center;
+                max-width: 1200px;
+                margin: 0 auto;
+            }
+
+            .noches-text {
+                padding-left: 20px;
+            }
+
+            @media (max-width: 992px) {
+                .noches-container {
+                    grid-template-columns: 1fr;
+                    gap: 50px;
+                }
+
+                .noches-media {
+                    order: 2;
+                }
+
+                .noches-text {
+                    order: 1;
+                    padding-left: 0;
+                }
+            }
+        </style>
+
+        <style>
+            @media (max-width: 768px) {
+                .banner-title {
+                    font-size: 3rem;
+                }
+            }
+
+            /* Video Title Box */
+            .video-title-box {
+                text-align: center;
+                margin-top: 80px;
+                margin-bottom: -20px;
+                position: relative;
+                z-index: 100;
+            }
+
+            .video-title-box span {
+                display: inline-block;
+                background: #f9bd61;
+                color: #fff;
+                padding: 20px 50px;
+                font-family: 'Inter', sans-serif;
+                font-weight: 900;
+                text-transform: uppercase;
+                font-size: 2.2rem;
+                line-height: 1;
+                transform: rotate(-1.5deg);
+                box-shadow: 10px 10px 0 rgba(255, 157, 66, 0.3);
+                /* Orange shadow tint */
+                /* Custom Animation */
+                opacity: 0;
+                animation: labelPop 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+                animation-delay: 0.3s;
+            }
+
+            @keyframes labelPop {
+                0% {
+                    transform: scale(0.5) rotate(10deg);
+                    opacity: 0;
+                }
+
+                70% {
+                    transform: scale(1.1) rotate(-3deg);
+                    opacity: 1;
+                }
+
+                100% {
+                    transform: scale(1) rotate(-1.5deg);
+                    opacity: 1;
+                }
+            }
+
+            @media (max-width: 768px) {
+                .video-title-box span {
+                    font-size: 1.4rem;
+                    padding: 15px 30px;
+                }
+            }
+
+            /* Scrapbook Gallery Hover */
+            .scrapbook-gallery img {
+                transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+                cursor: pointer;
+            }
+
+            .scrapbook-gallery img:hover {
+                z-index: 100 !important;
+                transform: scale(1.08) rotate(0deg) !important;
+                box-shadow: 0 40px 100px rgba(0, 0, 0, 0.4);
+            }
+
+            /* Festival Hover Note */
+            .festival-banner .festival-note {
+                opacity: 0;
+                transform: translateY(20px);
+                transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+            }
+
+            .festival-banner:hover .festival-note {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        </style>
+
+        <!-- SECTION: EL BODEGÓN (Modern Clean Layout - Image Right) -->
+        <section class="viajes-clean-section" aria-labelledby="bodegon-title" style="padding-top: 0;"
+            uk-scrollspy="cls: uk-animation-fade; delay: 200">
+            <div class="viajes-container">
+                <div class="viajes-text" uk-scrollspy="cls: uk-animation-slide-left-medium; delay: 300">
+                    <h2 id="bodegon-title" class="viajes-h2">El Bodegón</h2>
+                    <p class="viajes-p">
+                        El evento "El Bodegón" propone compartir exquisitos platos elaborados por el equipo de cocina,
+                        integrado por profesores y alumnos de taller y además contar con la distinguida atención en el
+                        salón, de estudiantes que asisten diariamente a nuestro centro cultural.
+                    </p>
+                    <a href="galeria.html" class="viajes-link" aria-label="Ver galería de El Bodegón">
+                        <span class="viajes-arrow" aria-hidden="true"></span>
+                        <span class="viajes-link-text">VER GALERÍA</span>
+                    </a>
+                </div>
+                <div class="viajes-media" uk-scrollspy="cls: uk-animation-slide-right-medium; delay: 400">
+                    <div class="viajes-video-wrapper">
+                        <img src="img/comida.webp"
+                            alt="Platos elaborados por el equipo de cocina del evento El Bodegón de Cre Arte"
+                            class="viajes-img">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- VIDEO SECTION -->
+        <section class="video-section" aria-label="Video sobre El Bodegón"
+            uk-scrollspy="cls: uk-animation-fade; delay: 200" style="padding-top: 40px;">
+            <div class="video-container">
+                <a href="https://www.facebook.com/creartebrc/videos/que-es-el-bodeg%C3%B3n-de-cre-arte-el-bodeg%C3%B3n-es-un-evento-culinario-en-d%C3%B3nde-tanto-l/1226140019332685/?rdid=XjG5j9bChlD78vPE"
+                    target="_blank" rel="noopener noreferrer"
+                    aria-label="Ver video: Qué es El Bodegón de Cre Arte (se abre en Facebook)">
+                    <div class="video-poster">
+                        <img src="img/portada_video_bodegon.webp"
+                            alt="Imagen de portada del video sobre El Bodegón de Cre Arte">
+                        <div class="play-icon-wrapper" aria-hidden="true">
+                            <div class="play-icon">
+                                <svg width="40" height="40" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                    <path d="M8 5V19L19 12L8 5Z" fill="black" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <style>
             .video-section {
-                padding: 40px 5%;
+                padding: 80px 10% 120px;
+                background: #f3efe7;
+            }
+
+            .video-container {
+                position: relative;
+                width: 100%;
+                max-width: 1100px;
+                margin: 0 auto;
+                border-radius: 12px;
+                overflow: hidden;
+                box-shadow: 0 50px 100px rgba(0, 0, 0, 0.12);
+            }
+
+            .video-poster {
+                position: relative;
+                width: 100%;
+                aspect-ratio: 16 / 9;
+                cursor: pointer;
+                overflow: hidden;
+            }
+
+            .video-poster img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: transform 1.2s cubic-bezier(0.2, 1, 0.3, 1);
+            }
+
+            .video-poster:hover img {
+                transform: scale(1.08);
+            }
+
+            .play-icon-wrapper {
+                position: absolute;
+                inset: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: rgba(0, 0, 0, 0.1);
+                transition: background 0.3s ease;
+            }
+
+            .video-poster:hover .play-icon-wrapper {
+                background: rgba(0, 0, 0, 0.3);
             }
 
             .play-icon {
-                width: 60px;
-                height: 60px;
+                width: 90px;
+                height: 90px;
+                background: rgba(255, 255, 255, 0.9);
+                backdrop-filter: blur(10px);
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border: 1px solid rgba(255, 255, 255, 0.5);
+                transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             }
-        }
 
-        /* Footer: unificar color con el resto del sitio */
-        .mag-footer .footer-links a,
-        .mag-footer .footer-links a:visited,
-        .mag-footer .footer-social a,
-        .mag-footer .footer-social a:visited,
-        .mag-footer .footer-social .footer-social-icon,
-        .mag-footer .footer-social .footer-social-icon:visited,
-        .mag-footer .footer-social .footer-social-icon svg,
-        .mag-footer .footer-bottom {
-            color: #111 !important;
-        }
+            .video-poster:hover .play-icon {
+                transform: scale(1.15);
+                background: #fff;
+                border-color: #fff;
+            }
 
-        .mag-footer .footer-links a:hover,
-        .mag-footer .footer-social a:hover,
-        .mag-footer .footer-social .footer-social-icon:hover {
-            color: #6a1a1c !important;
-        }
-    </style>
+            @media (max-width: 768px) {
+                .video-section {
+                    padding: 40px 5%;
+                }
+
+                .play-icon {
+                    width: 60px;
+                    height: 60px;
+                }
+            }
+
+            /* Footer: unificar color con el resto del sitio */
+            .mag-footer .footer-links a,
+            .mag-footer .footer-links a:visited,
+            .mag-footer .footer-social a,
+            .mag-footer .footer-social a:visited,
+            .mag-footer .footer-social .footer-social-icon,
+            .mag-footer .footer-social .footer-social-icon:visited,
+            .mag-footer .footer-social .footer-social-icon svg,
+            .mag-footer .footer-bottom {
+                color: #111 !important;
+            }
+
+            .mag-footer .footer-links a:hover,
+            .mag-footer .footer-social a:hover,
+            .mag-footer .footer-social .footer-social-icon:hover {
+                color: #6a1a1c !important;
+            }
+        </style>
 
     </main>
     <!-- FOOTER -->
@@ -1448,13 +1508,16 @@
             <a href="./obras.html">Obras</a>
         </div>
         <div class="footer-social" aria-label="Redes sociales de Cre Arte">
-            <a href="https://www.instagram.com/creartebrc/" target="_blank" rel="noopener noreferrer" aria-label="Instagram de Cre Arte (se abre en nueva pestaña)">
+            <a href="https://www.instagram.com/creartebrc/" target="_blank" rel="noopener noreferrer"
+                aria-label="Instagram de Cre Arte (se abre en nueva pestaña)">
                 <span uk-icon="icon: instagram; ratio: 1.2" aria-hidden="true"></span>
             </a>
-            <a href="https://www.facebook.com/creartebrc" target="_blank" rel="noopener noreferrer" aria-label="Facebook de Cre Arte (se abre en nueva pestaña)">
+            <a href="https://www.facebook.com/creartebrc" target="_blank" rel="noopener noreferrer"
+                aria-label="Facebook de Cre Arte (se abre en nueva pestaña)">
                 <span uk-icon="icon: facebook; ratio: 1.2" aria-hidden="true"></span>
             </a>
-            <a class="footer-social-icon spotify-icon" href="https://open.spotify.com/show/0GyrmphdSMMSeWOZtYImGz" target="_blank" rel="noopener noreferrer" aria-label="Spotify de Cre Arte (se abre en nueva pestaña)">
+            <a class="footer-social-icon spotify-icon" href="https://open.spotify.com/show/0GyrmphdSMMSeWOZtYImGz"
+                target="_blank" rel="noopener noreferrer" aria-label="Spotify de Cre Arte (se abre en nueva pestaña)">
                 <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
                     <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8" />
                     <path d="M7 10.2c3.2-1 6.5-.9 10 .4" stroke="currentColor" stroke-width="1.5"
@@ -1465,7 +1528,8 @@
                         stroke-linecap="round" />
                 </svg>
             </a>
-            <a href="https://www.youtube.com/@cre-arte1309" target="_blank" rel="noopener noreferrer" aria-label="YouTube de Cre Arte (se abre en nueva pestaña)">
+            <a href="https://www.youtube.com/@cre-arte1309" target="_blank" rel="noopener noreferrer"
+                aria-label="YouTube de Cre Arte (se abre en nueva pestaña)">
                 <span uk-icon="icon: youtube; ratio: 1.2" aria-hidden="true"></span>
             </a>
         </div>
@@ -1492,35 +1556,48 @@
                     herramienta de
                     transformación social y empoderamiento para personas con discapacidad.
                 </p>
-                <div class="uk-grid-small uk-child-width-1-3@s modal-gallery" role="group" aria-label="Galería de imágenes de Red Arte x Igual" uk-grid uk-lightbox>
+                <div class="uk-grid-small uk-child-width-1-3@s modal-gallery" role="group"
+                    aria-label="Galería de imágenes de Red Arte x Igual" uk-grid uk-lightbox>
                     <div>
                         <a href="img/artexigual.webp" data-caption="Exposición Red Arte x Igual">
-                            <img src="img/artexigual.webp" alt="Exposición internacional de obras artísticas del programa Red Arte x Igual" loading="lazy" decoding="async" fetchpriority="low">
+                            <img src="img/artexigual.webp"
+                                alt="Exposición internacional de obras artísticas del programa Red Arte x Igual"
+                                loading="lazy" decoding="async" fetchpriority="low">
                         </a>
                     </div>
                     <div>
                         <a href="img/artexigual2.webp" data-caption="Talleres internacionales">
-                            <img src="img/artexigual2.webp" alt="Taller artístico internacional con participantes de diversos países" loading="lazy" decoding="async" fetchpriority="low">
+                            <img src="img/artexigual2.webp"
+                                alt="Taller artístico internacional con participantes de diversos países" loading="lazy"
+                                decoding="async" fetchpriority="low">
                         </a>
                     </div>
                     <div>
                         <a href="img/artexigual3.webp" data-caption="Encuentros culturales">
-                            <img src="img/artexigual3.webp" alt="Encuentro cultural entre artistas con discapacidad de diferentes regiones" loading="lazy" decoding="async" fetchpriority="low">
+                            <img src="img/artexigual3.webp"
+                                alt="Encuentro cultural entre artistas con discapacidad de diferentes regiones"
+                                loading="lazy" decoding="async" fetchpriority="low">
                         </a>
                     </div>
                     <div>
                         <a href="img/artexigual4.webp" data-caption="Arte sin fronteras">
-                            <img src="img/artexigual4.webp" alt="Artista creando una obra como parte del programa Arte sin Fronteras" loading="lazy" decoding="async" fetchpriority="low">
+                            <img src="img/artexigual4.webp"
+                                alt="Artista creando una obra como parte del programa Arte sin Fronteras" loading="lazy"
+                                decoding="async" fetchpriority="low">
                         </a>
                     </div>
                     <div>
                         <a href="img/artexigual5.webp" data-caption="Impacto social">
-                            <img src="img/artexigual5.webp" alt="Participantes del programa mostrando el impacto social del arte inclusivo" loading="lazy" decoding="async" fetchpriority="low">
+                            <img src="img/artexigual5.webp"
+                                alt="Participantes del programa mostrando el impacto social del arte inclusivo"
+                                loading="lazy" decoding="async" fetchpriority="low">
                         </a>
                     </div>
                     <div>
                         <a href="img/artexigual6.webp" data-caption="Comunidad Cre Arte">
-                            <img src="img/artexigual6.webp" alt="Comunidad de Cre Arte reunida en un evento artístico inclusivo" loading="lazy" decoding="async" fetchpriority="low">
+                            <img src="img/artexigual6.webp"
+                                alt="Comunidad de Cre Arte reunida en un evento artístico inclusivo" loading="lazy"
+                                decoding="async" fetchpriority="low">
                         </a>
                     </div>
                 </div>
@@ -1652,9 +1729,9 @@
                         ? s.r * 2.8
                         : s.tier === 'strong'
                             ? s.r * 2.2
-                        : s.r > 1.1
-                            ? s.r * 2.3
-                            : s.r * 1.35;
+                            : s.r > 1.1
+                                ? s.r * 2.3
+                                : s.r * 1.35;
                     ctx.beginPath();
                     ctx.arc(s.x, s.y, glowR, 0, Math.PI * 2);
                     const grd = ctx.createRadialGradient(s.x, s.y, s.r * 0.3, s.x, s.y, glowR);

@@ -97,6 +97,9 @@ main:focus {
   align-items: center;
   transition: right var(--transition-speed) cubic-bezier(0.77, 0, 0.175, 1);
   padding: 2rem;
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
 }
 
 .mobile-menu.active {
@@ -139,6 +142,10 @@ main:focus {
 
 .mobile-menu-links a:hover {
   color: var(--accent-color);
+}
+
+body.no-scroll {
+  overflow: hidden !important;
 }
 
 /* --- Global Media Queries --- */
