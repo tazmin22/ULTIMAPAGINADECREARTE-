@@ -217,6 +217,19 @@
             background-position: center;
         }
 
+        .strip::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 1;
+            transition: background 0.5s ease;
+        }
+
+        .strip:hover::before {
+            background: rgba(0, 0, 0, 0.3);
+        }
+
         /* Images for the gallery */
         .strip:nth-child(1) {
             background-image: url('./img/bannerportada.png');
