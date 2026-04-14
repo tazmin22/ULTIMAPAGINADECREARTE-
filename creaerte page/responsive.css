@@ -71,6 +71,16 @@ main:focus {
   background-color: #fff;
 }
 
+/* Bring nav above mobile menu so close button is visible */
+nav:has(.mobile-nav-toggle.active) {
+  z-index: 3500 !important;
+}
+
+/* Dark bars when menu is open (visible on light menu background) */
+.nav-light .mobile-nav-toggle.active span {
+  background-color: #111;
+}
+
 .mobile-nav-toggle.active span:nth-child(1) {
   transform: translateY(9px) rotate(45deg);
 }
