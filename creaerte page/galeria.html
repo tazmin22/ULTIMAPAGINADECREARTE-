@@ -210,6 +210,7 @@
 
         .gallery-section {
             margin: 0 0 72px;
+            scroll-margin-top: 140px;
         }
 
         .gallery-section:last-child {
@@ -347,12 +348,9 @@
     </div>
 
     <main id="contenido-principal" tabindex="-1">
-        <section class="obras-container" aria-labelledby="obras-title">
+        <section class="obras-container" aria-labelledby="galeria-title">
             <header class="obras-header">
-                <p class="obras-kicker">Archivo artístico</p>
-                <h1 class="obras-title" id="obras-title">Obras</h1>
-                <p class="obras-subtitle">Una selección de nuestras obras.</p>
-                <p class="obras-count" id="obras-count"></p>
+                <h1 class="obras-title" id="galeria-title">Galería</h1>
             </header>
         </section>
 
@@ -418,18 +416,11 @@
         const galleryFolders = Array.isArray(window.GALERIA_FOLDERS) ? window.GALERIA_FOLDERS : [];
         const galleryAssets = window.GALERIA_ASSETS || {};
         const sectionsContainer = document.getElementById('gallery-sections');
-        const obrasCount = document.getElementById('obras-count');
         const stripExtension = (name) => name
             .replace(/\.(webp|jpg|jpeg|png)$/ig, '')
             .replace(/[_-]+/g, ' ')
             .replace(/\s+/g, ' ')
             .trim();
-        const totalGalleryItems = galleryFolders.reduce((sum, section) =>
-            sum + (Array.isArray(section.files) ? section.files.length : 0), 0);
-
-        if (obrasCount) {
-            obrasCount.textContent = `${totalGalleryItems} obras`;
-        }
 
         if (sectionsContainer) {
             const buildItem = ({ file, folder }) => {
@@ -465,11 +456,18 @@
             const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
             const batchSize = window.matchMedia('(max-width: 768px)').matches ? 4 : 6;
             const batchPause = prefersReducedMotion ? 0 : 48;
+            const makeSectionId = (value) => value
+                .normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, '')
+                .toLowerCase()
+                .replace(/[^a-z0-9]+/g, '-')
+                .replace(/^-+|-+$/g, '');
 
             const renderSection = (section, index) => {
                 const files = Array.isArray(section.files) ? section.files : [];
                 const sectionEl = document.createElement('section');
                 sectionEl.className = 'gallery-section';
+                sectionEl.id = makeSectionId(section.name || section.folder || `section-${index}`);
 
                 const header = document.createElement('header');
                 header.className = 'gallery-section-header';
@@ -477,7 +475,7 @@
                 const title = document.createElement('h2');
                 title.className = 'gallery-section-title';
                 title.textContent = (section.name || section.folder || '').trim();
-                title.id = `gallery-section-${index}`;
+                title.id = `${sectionEl.id}-title`;
 
                 header.appendChild(title);
 
