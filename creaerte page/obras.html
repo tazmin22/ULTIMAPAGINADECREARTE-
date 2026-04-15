@@ -184,9 +184,9 @@
         }
 
         .catalogos-section {
-            margin-top: 48px;
-            padding: 30px 0 0;
-            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            margin-top: 64px;
+            padding: 48px 0 0;
+            border-top: 1px solid rgba(0, 0, 0, 0.08);
         }
 
         .catalogos-kicker {
@@ -216,92 +216,171 @@
 
         .catalogos-grid {
             display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 18px 22px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0;
         }
 
-        .catalogo-link {
-            --catalogo-base: #4f726d;
-            --catalogo-hover: #6e8f89;
-            display: block;
-            padding: 0;
-            border: 0;
-            background: transparent;
-            color: var(--catalogo-base);
+        .catalogo-card {
+            padding: 32px 24px;
+            border: 1px solid rgba(0,0,0,0.08);
+            border-right: none;
             text-decoration: none !important;
-            text-align: left;
-            transform: translateY(0);
-            transform-origin: center;
-            transition: transform 0.38s cubic-bezier(0.22, 1, 0.36, 1), color 0.38s ease, filter 0.38s ease;
-            box-shadow: none;
-            will-change: transform;
-        }
-
-        .catalogo-link:visited,
-        .catalogo-link:hover,
-        .catalogo-link:focus-visible {
-            text-decoration: none !important;
-            transform: translateY(-4px);
-            color: var(--catalogo-hover);
-            filter: saturate(1.04);
-        }
-
-        .catalogo-link strong {
-            position: relative;
-            display: inline-block;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
             color: inherit;
+            transition: background 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+            background-size: cover;
+            background-position: center;
+            min-height: 320px;
         }
 
-        .catalogo-link strong::after {
+        .catalogo-card .catalogo-bg {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            opacity: 0.25;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            z-index: 0;
+        }
+
+        .catalogo-card:hover .catalogo-bg {
+            opacity: 0.4;
+            transform: scale(1.05);
+        }
+
+        .catalogo-card .catalogo-num,
+        .catalogo-card .catalogo-name,
+        .catalogo-card .catalogo-desc,
+        .catalogo-card .catalogo-cta {
+            position: relative;
+            z-index: 1;
+        }
+
+        .catalogo-card::before {
             content: '';
             position: absolute;
-            left: 0;
-            right: 0;
-            bottom: -0.18em;
-            height: 1px;
-            background: currentColor;
-            transform: scaleX(0);
-            transform-origin: left center;
-            transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            top: -50px;
+            right: -50px;
+            transition: transform 0.5s ease, opacity 0.5s ease;
+            pointer-events: none;
         }
 
-        .catalogo-link span {
-            display: block;
-            margin-top: 6px;
-            font-family: 'EB Garamond', serif;
-            font-size: 1.05rem;
-            line-height: 1.35;
-            color: inherit;
+        .catalogo-card::after {
+            content: '';
+            position: absolute;
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            bottom: -35px;
+            left: -35px;
+            transition: transform 0.5s ease, opacity 0.5s ease;
+            pointer-events: none;
         }
 
-        .catalogo-link:hover span,
-        .catalogo-link:focus-visible span {
-            letter-spacing: 0.01em;
+        /* Card 1 - Batik: bordo */
+        .catalogo-card:nth-child(1)::before { background: rgba(106, 26, 28, 0.2); }
+        .catalogo-card:nth-child(1)::after { background: rgba(106, 26, 28, 0.15); }
+        .catalogo-card:nth-child(1):hover::before { opacity: 0.3; }
+        .catalogo-card:nth-child(1):hover::after { opacity: 0.25; }
+
+        /* Card 2 - Grabado: naranja */
+        .catalogo-card:nth-child(2)::before { background: rgba(230, 92, 0, 0.2); }
+        .catalogo-card:nth-child(2)::after { background: rgba(230, 92, 0, 0.15); }
+        .catalogo-card:nth-child(2):hover::before { opacity: 0.3; }
+        .catalogo-card:nth-child(2):hover::after { opacity: 0.25; }
+
+        /* Card 3 - Pintura: verde oliva */
+        .catalogo-card:nth-child(3)::before { background: rgba(137, 148, 117, 0.25); }
+        .catalogo-card:nth-child(3)::after { background: rgba(137, 148, 117, 0.2); }
+        .catalogo-card:nth-child(3):hover::before { opacity: 0.35; }
+        .catalogo-card:nth-child(3):hover::after { opacity: 0.3; }
+
+        .catalogo-card:hover::before {
+            transform: scale(1.2);
         }
 
-        .catalogo-link:hover strong,
-        .catalogo-link:focus-visible strong {
-            letter-spacing: 0.16em;
+        .catalogo-card:hover::after {
+            transform: scale(1.15);
         }
 
-        .catalogo-link:hover strong::after,
-        .catalogo-link:focus-visible strong::after {
-            transform: scaleX(1);
+        .catalogo-card:last-child {
+            border-right: 1px solid rgba(0,0,0,0.08);
+        }
+
+        .catalogo-card:hover {
+            background: rgba(255, 255, 255, 0.85);
+        }
+
+        .catalogo-card:hover,
+        .catalogo-card:hover .catalogo-name,
+        .catalogo-card:hover .catalogo-desc,
+        .catalogo-card:hover .catalogo-cta {
+            color: #333;
+        }
+
+        .catalogo-num {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            line-height: 1;
+            color: rgba(0,0,0,0.08);
+            margin-bottom: 16px;
+        }
+
+        .catalogo-card:nth-child(1) .catalogo-num { color: rgba(106, 26, 28, 0.15); }
+        .catalogo-card:nth-child(2) .catalogo-num { color: rgba(230, 92, 0, 0.15); }
+        .catalogo-card:nth-child(3) .catalogo-num { color: rgba(137, 148, 117, 0.2); }
+
+        .catalogo-name {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+
+        .catalogo-desc {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.78rem;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .catalogo-cta {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #333;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none !important;
+            transition: letter-spacing 0.3s ease;
+        }
+
+        .catalogo-card:hover .catalogo-cta {
+            letter-spacing: 2px;
         }
 
         @media (max-width: 900px) {
             .catalogos-grid {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-            }
-        }
-
-        @media (max-width: 620px) {
-            .catalogos-grid {
                 grid-template-columns: 1fr;
+            }
+            .catalogo-card {
+                border-right: 1px solid rgba(0,0,0,0.08);
+                border-bottom: none;
+            }
+            .catalogo-card:last-child {
+                border-bottom: 1px solid rgba(0,0,0,0.08);
             }
         }
 
@@ -457,20 +536,26 @@
             <h2 class="catalogos-title" id="catalogos-title">Ver catálogos completos</h2>
             <p class="catalogos-copy">Abrí cada PDF para recorrer las series de Cre Arte con más detalle.</p>
             <div class="catalogos-grid">
-                <a class="catalogo-link" href="./PDF/Catalogo%20Batik%20-%20Crearte.pdf" target="_blank" rel="noopener noreferrer">
-                    <span>
-                        <strong>Batik</strong>
-                    </span>
+                <a class="catalogo-card" href="./PDF/Catalogo%20Batik%20-%20Crearte.pdf" target="_blank" rel="noopener noreferrer" aria-label="Catálogo Batik">
+                    <div class="catalogo-bg" style="background-image: url('./talleres/batik.webp');" aria-hidden="true"></div>
+                    <div class="catalogo-num">01</div>
+                    <div class="catalogo-name">Batik</div>
+                    <div class="catalogo-desc">Explorá las técnicas de batik y las obras textiles creadas por los artistas de Cre Arte.</div>
+                    <span class="catalogo-cta">Abrir catálogo →</span>
                 </a>
-                <a class="catalogo-link" href="./PDF/Obras%20Grabado.pdf" target="_blank" rel="noopener noreferrer">
-                    <span>
-                        <strong>Grabado</strong>
-                    </span>
+                <a class="catalogo-card" href="./PDF/Obras%20Grabado.pdf" target="_blank" rel="noopener noreferrer" aria-label="Catálogo Grabado">
+                    <div class="catalogo-bg" style="background-image: url('./img/OBRAS1.webp');" aria-hidden="true"></div>
+                    <div class="catalogo-num">02</div>
+                    <div class="catalogo-name">Grabado</div>
+                    <div class="catalogo-desc">Descubrí la colección de grabados que reflejan la mirada artística de nuestros estudiantes.</div>
+                    <span class="catalogo-cta">Abrir catálogo →</span>
                 </a>
-                <a class="catalogo-link" href="./PDF/Catalogo%20Pintura-%20Cre-Arte%202025.pdf" target="_blank" rel="noopener noreferrer">
-                    <span>
-                        <strong>Pintura</strong>
-                    </span>
+                <a class="catalogo-card" href="./PDF/Catalogo%20Pintura-%20Cre-Arte%202025.pdf" target="_blank" rel="noopener noreferrer" aria-label="Catálogo Pintura">
+                    <div class="catalogo-bg" style="background-image: url('./img/pintura.webp');" aria-hidden="true"></div>
+                    <div class="catalogo-num">03</div>
+                    <div class="catalogo-name">Pintura</div>
+                    <div class="catalogo-desc">Recorré las obras pictóricas más recientes del taller de pintura de Cre Arte.</div>
+                    <span class="catalogo-cta">Abrir catálogo →</span>
                 </a>
             </div>
         </section>

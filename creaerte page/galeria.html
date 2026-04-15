@@ -425,7 +425,7 @@
     </section>
 
     <section aria-label="Galería de fotos de Cre Arte" style="margin-top: 150px; max-width: 1500px; margin-left: auto; margin-right: auto; padding: 0 20px 100px;">
-        <div class="gallery-grid" id="gallery-grid" uk-lightbox="animation: slide"></div>
+        <div id="gallery-sections"></div>
     </section>
     </main>
 
@@ -483,20 +483,30 @@
     <script src="./galeria-list.js"></script>
     <script src="./galeria-assets.js"></script>
     <script>
-        const galleryFiles = Array.isArray(window.GALERIA_FILES) ? window.GALERIA_FILES : [];
+        const galleryFolders = Array.isArray(window.GALERIA_FOLDERS) ? window.GALERIA_FOLDERS : [];
         const galleryAssets = window.GALERIA_ASSETS || {};
-        const galleryGrid = document.getElementById('gallery-grid');
+        const sectionsContainer = document.getElementById('gallery-sections');
         const stripExtension = (name) => name
             .replace(/\.(webp|jpg|jpeg|png)$/ig, '')
             .replace(/[_-]+/g, ' ')
             .replace(/\s+/g, ' ')
             .trim();
 
-        if (galleryGrid) {
-            const buildItem = (file) => {
+        if (sectionsContainer) {
+            // Single grid for all images
+            const grid = document.createElement('div');
+            grid.className = 'gallery-grid';
+            grid.setAttribute('uk-lightbox', 'animation: slide');
+            sectionsContainer.appendChild(grid);
+
+            const allFiles = galleryFolders.flatMap(section =>
+                section.files.map(file => ({ file, folder: section.folder }))
+            );
+
+            const buildItem = ({ file, folder }) => {
                 const meta = galleryAssets[file] || {};
-                const imagePath = encodeURI(`./talleres/${file}`);
-                const thumbPath = encodeURI(meta.thumb || imagePath);
+                const imagePath = `./${folder}/${encodeURIComponent(file)}`;
+                const thumbPath = meta.thumb || imagePath;
                 const caption = stripExtension(file);
 
                 const item = document.createElement('article');
@@ -529,34 +539,32 @@
             let renderedCount = 0;
 
             const appendBatch = () => {
-                if (renderedCount >= galleryFiles.length) {
-                    return;
-                }
+                if (renderedCount >= allFiles.length) return;
 
                 const fragment = document.createDocumentFragment();
                 const itemsToReveal = [];
-                const nextLimit = Math.min(renderedCount + batchSize, galleryFiles.length);
+                const nextLimit = Math.min(renderedCount + batchSize, allFiles.length);
                 const batchOffset = renderedCount;
 
                 while (renderedCount < nextLimit) {
-                    const item = buildItem(galleryFiles[renderedCount]);
+                    const item = buildItem(allFiles[renderedCount]);
                     item.style.transitionDelay = `${(renderedCount - batchOffset) * 45}ms`;
                     fragment.appendChild(item);
                     itemsToReveal.push(item);
                     renderedCount += 1;
                 }
 
-                galleryGrid.appendChild(fragment);
+                grid.appendChild(fragment);
 
                 requestAnimationFrame(() => {
                     itemsToReveal.forEach((item) => item.classList.add('is-visible'));
                 });
 
                 if (window.UIkit && typeof window.UIkit.update === 'function') {
-                    window.UIkit.update(galleryGrid);
+                    window.UIkit.update(grid);
                 }
 
-                if (renderedCount < galleryFiles.length) {
+                if (renderedCount < allFiles.length) {
                     window.setTimeout(appendBatch, batchPause);
                 }
             };
