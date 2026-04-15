@@ -919,7 +919,7 @@
             .viajes-link {
                 display: inline-flex;
                 align-items: center;
-                text-decoration: none;
+                text-decoration: none !important;
                 color: #000;
                 font-weight: 800;
                 font-family: 'Inter', sans-serif;
@@ -927,6 +927,20 @@
                 letter-spacing: 1px;
                 margin-top: 20px;
                 transition: transform 0.3s ease;
+                border: none;
+                outline: none;
+            }
+
+            .viajes-link:link,
+            .viajes-link:visited,
+            .viajes-link:hover,
+            .viajes-link:active {
+                text-decoration: none !important;
+                color: #000;
+            }
+
+            .viajes-link-text {
+                text-decoration: none !important;
             }
 
             .viajes-link:hover {
@@ -934,11 +948,16 @@
             }
 
             .viajes-arrow {
-                width: 50px;
+                width: 25px;
                 height: 1px;
                 background: #000;
                 position: relative;
                 margin-right: 15px;
+                transition: width 0.3s ease;
+            }
+
+            .viajes-link:hover .viajes-arrow {
+                width: 50px;
             }
 
             .viajes-arrow::after {
