@@ -9,7 +9,7 @@
 
     <!-- Google Fonts -->
     <link
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;700;900&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Kaushan+Script&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;700;900&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap"
         rel="stylesheet">
     <!-- UIkit -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.19.4/dist/css/uikit.min.css" />
@@ -20,15 +20,9 @@
     <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
     <link rel="stylesheet" href="responsive.css">
     <link rel="stylesheet" href="nav-footer.css">
-    <link rel="preload" as="image" href="./img/galeria-hero/strip-1.webp">
-    <link rel="preload" as="image" href="./img/galeria-hero/strip-2.webp">
-    <link rel="preload" as="image" href="./img/galeria-hero/strip-3.webp">
-    <link rel="preload" as="image" href="./img/galeria-hero/strip-4.webp">
-    <link rel="preload" as="image" href="./img/galeria-hero/strip-5.webp">
     <style>
         :root {
-            --paper: #fbf9f4;
-            --wine: #6a1a1c;
+            --paper: #f9f7f2;
             --orange: #e65c00;
             --text: #111;
         }
@@ -62,36 +56,30 @@
             }
         }
 
-        /* ===== NAV (Unified with Puertas al Mundo) ===== */
+        /* Nav & Logo */
         .t-nav {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
-            z-index: 9999;
+            padding: 35px 0;
+            z-index: 1000;
             display: flex;
             justify-content: center;
-            align-items: center;
-            padding: 45px 0;
             background: transparent;
             border-bottom: none;
             backdrop-filter: none;
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
         .floating-logo {
             position: absolute;
-            top: 30px;
-            left: 5%;
-            z-index: 2100;
-            transition: all 0.4s ease;
+            top: 25px;
+            left: 40px;
+            z-index: 2000;
         }
 
         .floating-logo img {
-            height: 110px;
-            width: auto;
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-            filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.2));
+            height: 100px;
         }
 
         .t-nav-links {
@@ -101,19 +89,17 @@
 
         .t-nav-links a {
             font-family: 'Inter', sans-serif;
-            font-size: 0.72rem;
-            letter-spacing: 4px;
             text-transform: uppercase;
-            color: #fff;
+            font-size: 0.75rem;
+            font-weight: 400;
+            letter-spacing: 4px;
+            color: #111;
             text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            opacity: 0.9;
+            transition: color 0.3s;
         }
 
         .t-nav-links a:hover {
-            opacity: 1;
-            color: var(--orange) !important;
+            color: var(--orange);
         }
 
         /* Skip navigation link */
@@ -151,126 +137,67 @@
             outline: none;
         }
 
-        /* ===== STRIP HERO (From Puertas al Mundo) ===== */
-        .strip-wrapper {
-            display: flex;
-            width: 100%;
-            height: 100vh;
-            overflow: hidden;
-            background: #000;
-            position: relative;
+        /* ===== OBRAS GALLERY ===== */
+        .obras-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 160px 20px 100px;
         }
 
-        .strip-overlay-content {
-            position: absolute;
-            bottom: 10%;
-            left: 8%;
-            z-index: 50;
-            pointer-events: none;
+        .obras-header {
+            margin-bottom: 30px;
+            padding: 0 6px;
         }
 
-        .gallery-title-block {
-            display: inline-block;
-            background: var(--wine);
-            padding: 12px 35px;
-            color: #fff;
-            transform: rotate(-1.5deg);
-            box-shadow: 6px 6px 25px rgba(0, 0, 0, 0.15);
-            margin-bottom: 5px;
-        }
-
-        .gallery-title-block h2 {
+        .obras-kicker {
+            margin: 0 0 8px;
             font-family: 'Inter', sans-serif;
-            font-weight: 900;
-            font-size: clamp(2rem, 5vw, 3.8rem);
+            font-size: 0.75rem;
             text-transform: uppercase;
+            letter-spacing: 4px;
+            color: rgba(17, 17, 17, 0.55);
+        }
+
+        .obras-title {
             margin: 0;
-            line-height: 1;
-            letter-spacing: 2px;
-        }
-
-        .gallery-title-block.accent {
-            transform: rotate(2deg) translateY(-8px) translateX(30px);
-            background: var(--wine);
-            padding: 8px 30px;
-        }
-
-        .gallery-title-block.accent h3 {
             font-family: 'Playfair Display', serif;
-            font-style: italic;
-            font-weight: 400;
-            font-size: clamp(2rem, 5vw, 3.8rem);
-            margin: 0;
-            line-height: 1;
-            text-transform: none;
+            font-size: clamp(2.8rem, 6vw, 5.2rem);
+            line-height: 0.95;
+            letter-spacing: -0.03em;
         }
 
-        .strip {
-            position: relative;
-            flex: 1;
-            height: 100%;
-            overflow: hidden;
-            cursor: pointer;
-            transition: all 0.7s cubic-bezier(0.23, 1, 0.32, 1);
-            border-right: 1px solid rgba(255, 255, 255, 0.05);
-            background-size: cover;
-            background-position: center;
+        .obras-subtitle {
+            margin: 14px 0 0;
+            max-width: 720px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.98rem;
+            line-height: 1.7;
+            color: #333;
         }
 
-        .strip::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.6);
-            z-index: 1;
-            transition: background 0.5s ease;
+        .obras-count {
+            margin: 10px 0 0;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.82rem;
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            color: rgba(17, 17, 17, 0.55);
         }
 
-        .strip:hover::before {
-            background: rgba(0, 0, 0, 0.3);
+        @media (max-width: 860px) {
+            .obras-container {
+                padding-top: 140px;
+            }
         }
 
-        /* Images for the gallery */
-        .strip:nth-child(1) {
-            background-image: url('./img/bannerportada.png');
-        }
-
-        .strip:nth-child(2) {
-            background-image: url('./img/galeria-hero/strip-2.webp');
-        }
-
-        .strip:nth-child(3) {
-            background-image: url('./img/bannerportada2.png');
-        }
-
-        .strip:nth-child(4) {
-            background-image: url('./img/bannerportada3.png');
-        }
-
-        .strip:nth-child(5) {
-            background-image: url('./img/galeria-hero/strip-5.webp');
-        }
-
-        .strip:last-child {
-            border-right: none;
-        }
-
-        .strip:hover {
-            flex: 4;
-        }
-
-        @media (max-width: 768px) {
-            .strip-wrapper {
-                flex-direction: column;
+        @media (max-width: 560px) {
+            .obras-container {
+                padding-left: 14px;
+                padding-right: 14px;
             }
 
-            .strip {
-                border-right: none;
-                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            }
-
-            .strip:hover {
-                flex: 3;
+            .floating-logo img {
+                height: 78px;
             }
         }
 
@@ -371,10 +298,11 @@
 <body>
     <a href="#contenido-principal" class="skip-link">Saltar al contenido principal</a>
 
+    <a href="./index.html" class="floating-logo" aria-label="Ir al inicio de Cre Arte">
+        <img src="./img/LOGO.png" alt="Logo de Cre Arte">
+    </a>
+
     <nav class="t-nav" aria-label="Navegación principal">
-        <a href="index.html" class="floating-logo" aria-label="Ir al inicio de Cre Arte">
-            <img src="./img/LOGO.png" alt="Logo de Cre Arte">
-        </a>
         <div class="t-nav-links" role="menubar">
             <a href="talleres.html" role="menuitem">Talleres</a>
             <a href="quienes_somos.html" role="menuitem">Quiénes Somos</a>
@@ -399,34 +327,18 @@
     </div>
 
     <main id="contenido-principal" tabindex="-1">
-    <section aria-labelledby="galeria-hero-title">
-    <div class="strip-wrapper" uk-scrollspy="cls: uk-animation-fade; target: .strip; delay: 100">
-        <div class="strip"></div>
-        <div class="strip"></div>
-        <div class="strip"></div>
-        <div class="strip"></div>
-        <div class="strip"></div>
+        <section class="obras-container" aria-labelledby="obras-title">
+            <header class="obras-header">
+                <p class="obras-kicker">Archivo artístico</p>
+                <h1 class="obras-title" id="obras-title">Obras</h1>
+                <p class="obras-subtitle">Una selección de nuestras obras.</p>
+                <p class="obras-count" id="obras-count"></p>
+            </header>
+        </section>
 
-        <div class="strip-overlay-content"
-            style="position: absolute; top: 50%; left: 50px; transform: translateY(-50%); z-index: 100; pointer-events: none;">
-            <div class="gallery-title-block"
-                style="background: rgba(255, 255, 255, 0.95); padding: 15px 50px; transform: rotate(-3deg); margin-left: 0; display: inline-block; box-shadow: 0 15px 50px rgba(0,0,0,0.15);">
-                <h2 id="galeria-hero-title"
-                    style="color: #111; margin: 0; font-family: 'Kaushan Script', cursive; font-weight: 400; font-size: clamp(2.5rem, 6vw, 4.5rem); letter-spacing: normal; text-transform: none;">
-                    Galería</h2>
-            </div>
-            <br>
-            <div class="gallery-title-block accent"
-                style="display: inline-block; margin-top: 10px; margin-left: 20px; box-shadow: 10px 10px 30px rgba(0,0,0,0.2);">
-
-            </div>
-        </div>
-    </div>
-    </section>
-
-    <section aria-label="Galería de fotos de Cre Arte" style="margin-top: 150px; max-width: 1500px; margin-left: auto; margin-right: auto; padding: 0 20px 100px;">
-        <div id="gallery-sections"></div>
-    </section>
+        <section aria-label="Galería de fotos de Cre Arte" style="margin-top: 150px; max-width: 1500px; margin-left: auto; margin-right: auto; padding: 0 20px 100px;">
+            <div id="gallery-sections"></div>
+        </section>
     </main>
 
     <!-- FOOTER -->
@@ -486,11 +398,18 @@
         const galleryFolders = Array.isArray(window.GALERIA_FOLDERS) ? window.GALERIA_FOLDERS : [];
         const galleryAssets = window.GALERIA_ASSETS || {};
         const sectionsContainer = document.getElementById('gallery-sections');
+        const obrasCount = document.getElementById('obras-count');
         const stripExtension = (name) => name
             .replace(/\.(webp|jpg|jpeg|png)$/ig, '')
             .replace(/[_-]+/g, ' ')
             .replace(/\s+/g, ' ')
             .trim();
+        const totalGalleryItems = galleryFolders.reduce((sum, section) =>
+            sum + (Array.isArray(section.files) ? section.files.length : 0), 0);
+
+        if (obrasCount) {
+            obrasCount.textContent = `${totalGalleryItems} obras`;
+        }
 
         if (sectionsContainer) {
             // Single grid for all images
