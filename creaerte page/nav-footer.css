@@ -10,6 +10,8 @@
     scroll-snap-align: start;
     position: relative;
     z-index: 10;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
 }
 
 
