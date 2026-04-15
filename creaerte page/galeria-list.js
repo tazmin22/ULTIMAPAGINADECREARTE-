@@ -3,6 +3,7 @@ window.GALERIA_FOLDERS = [
     name: "Obras de Cre-Arte",
     folder: "Obras de Cre-Arte",
     files: [
+      "Murga del Tomate- 2017- Arte x =.webp",
       "Descanaval- 2017- Arte x = (21).webp",
       "Descanaval- 2017- Arte x = (24).webp",
       "Descanaval- 2017- Arte x = (27).webp",
@@ -15,7 +16,6 @@ window.GALERIA_FOLDERS = [
       "Lo que predece- 2017- Arte x =  (1).webp",
       "Murga del Tomate- 2017- Arte x = (2).webp",
       "Murga del Tomate- 2017- Arte x = (3).webp",
-      "Murga del Tomate- 2017- Arte x =.webp",
       "Zapandanga- 2017- Arte x = (17).webp",
       "Zapandanga- 2017- Arte x = (29).webp",
     ]
