@@ -202,6 +202,11 @@
         }
 
         /* ===== GALLERY SECTION GRID ===== */
+        .gallery-shell {
+            margin-top: 150px;
+            padding: 0 !important;
+        }
+
         .gallery-sections {
             max-width: 1500px;
             margin: 0 auto;
@@ -210,11 +215,8 @@
 
         .gallery-section {
             margin: 0 0 72px;
-            scroll-margin-top: 140px;
-        }
-
-        #talleres {
-            scroll-margin-top: 260px;
+            padding: 0 !important;
+            scroll-margin-top: 110px;
         }
 
         .gallery-section:last-child {
@@ -358,8 +360,40 @@
             </header>
         </section>
 
-        <section aria-label="Galería de fotos de Cre Arte" style="margin-top: 150px;">
-            <div id="gallery-sections" class="gallery-sections"></div>
+        <section class="gallery-shell" aria-label="Galería de fotos de Cre Arte">
+            <div class="gallery-sections">
+                <section class="gallery-section" id="obras-de-cre-arte" data-gallery-section="obras-de-cre-arte"
+                    aria-labelledby="obras-de-cre-arte-title">
+                    <header class="gallery-section-header">
+                        <h2 class="gallery-section-title" id="obras-de-cre-arte-title">Obras de Cre-Arte</h2>
+                    </header>
+                    <div class="gallery-grid" data-gallery-grid="obras-de-cre-arte" uk-lightbox="animation: slide"></div>
+                </section>
+
+                <section class="gallery-section" id="talleres" data-gallery-section="talleres"
+                    aria-labelledby="talleres-title">
+                    <header class="gallery-section-header">
+                        <h2 class="gallery-section-title" id="talleres-title">Talleres</h2>
+                    </header>
+                    <div class="gallery-grid" data-gallery-grid="talleres" uk-lightbox="animation: slide"></div>
+                </section>
+
+                <section class="gallery-section" id="viajes-y-europa" data-gallery-section="viajes-y-europa"
+                    aria-labelledby="viajes-y-europa-title">
+                    <header class="gallery-section-header">
+                        <h2 class="gallery-section-title" id="viajes-y-europa-title">Viajes y Europa</h2>
+                    </header>
+                    <div class="gallery-grid" data-gallery-grid="viajes-y-europa" uk-lightbox="animation: slide"></div>
+                </section>
+
+                <section class="gallery-section" id="entrenarte-y-linea-sur" data-gallery-section="entrenarte-y-linea-sur"
+                    aria-labelledby="entrenarte-y-linea-sur-title">
+                    <header class="gallery-section-header">
+                        <h2 class="gallery-section-title" id="entrenarte-y-linea-sur-title">Entrenarte y Linea Sur</h2>
+                    </header>
+                    <div class="gallery-grid" data-gallery-grid="entrenarte-y-linea-sur" uk-lightbox="animation: slide"></div>
+                </section>
+            </div>
         </section>
     </main>
 
@@ -419,14 +453,14 @@
     <script>
         const galleryFolders = Array.isArray(window.GALERIA_FOLDERS) ? window.GALERIA_FOLDERS : [];
         const galleryAssets = window.GALERIA_ASSETS || {};
-        const sectionsContainer = document.getElementById('gallery-sections');
+        const gallerySections = Array.from(document.querySelectorAll('[data-gallery-section]'));
         const stripExtension = (name) => name
             .replace(/\.(webp|jpg|jpeg|png)$/ig, '')
             .replace(/[_-]+/g, ' ')
             .replace(/\s+/g, ' ')
             .trim();
 
-        if (sectionsContainer) {
+        if (gallerySections.length) {
             const buildItem = ({ file, folder }) => {
                 const meta = galleryAssets[file] || {};
                 const imagePath = `./${folder}/${encodeURIComponent(file)}`;
@@ -458,76 +492,84 @@
             };
 
             const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-            const batchSize = window.matchMedia('(max-width: 768px)').matches ? 4 : 6;
-            const batchPause = prefersReducedMotion ? 0 : 48;
             const makeSectionId = (value) => value
                 .normalize('NFD')
                 .replace(/[\u0300-\u036f]/g, '')
                 .toLowerCase()
                 .replace(/[^a-z0-9]+/g, '-')
                 .replace(/^-+|-+$/g, '');
+            const nextFrame = () => new Promise((resolve) => requestAnimationFrame(resolve));
+            const waitForImages = (root) => {
+                const images = Array.from(root.querySelectorAll('img'));
+                return Promise.all(images.map((image) => {
+                    if (image.complete) return Promise.resolve();
+                    return new Promise((resolve) => {
+                        image.addEventListener('load', resolve, { once: true });
+                        image.addEventListener('error', resolve, { once: true });
+                    });
+                }));
+            };
+            const alignToHash = () => {
+                const hash = window.location.hash;
+                if (!hash) return;
 
-            const renderSection = (section, index) => {
+                const target = document.querySelector(hash);
+                if (!target) return;
+
+                target.scrollIntoView({ block: 'start', behavior: 'auto' });
+            };
+            const fillSection = (section) => {
                 const files = Array.isArray(section.files) ? section.files : [];
-                const sectionEl = document.createElement('section');
-                sectionEl.className = 'gallery-section';
-                sectionEl.id = makeSectionId(section.name || section.folder || `section-${index}`);
+                const sectionId = makeSectionId(section.name || section.folder || '');
+                const grid = document.querySelector(`[data-gallery-grid="${sectionId}"]`);
+                if (!grid) return;
 
-                const header = document.createElement('header');
-                header.className = 'gallery-section-header';
+                const fragment = document.createDocumentFragment();
+                const itemsToReveal = [];
 
-                const title = document.createElement('h2');
-                title.className = 'gallery-section-title';
-                title.textContent = (section.name || section.folder || '').trim();
-                title.id = `${sectionEl.id}-title`;
-
-                header.appendChild(title);
-
-                const grid = document.createElement('div');
-                grid.className = 'gallery-grid';
-                grid.setAttribute('uk-lightbox', 'animation: slide');
-
-                sectionEl.appendChild(header);
-                sectionEl.appendChild(grid);
-                sectionsContainer.appendChild(sectionEl);
-
-                let renderedCount = 0;
-
-                const appendBatch = () => {
-                    if (renderedCount >= files.length) return;
-
-                    const fragment = document.createDocumentFragment();
-                    const itemsToReveal = [];
-                    const nextLimit = Math.min(renderedCount + batchSize, files.length);
-                    const batchOffset = renderedCount;
-
-                    while (renderedCount < nextLimit) {
-                        const item = buildItem({ file: files[renderedCount], folder: section.folder });
-                        item.style.transitionDelay = `${(renderedCount - batchOffset) * 45}ms`;
-                        fragment.appendChild(item);
-                        itemsToReveal.push(item);
-                        renderedCount += 1;
+                files.forEach((file) => {
+                    const item = buildItem({ file, folder: section.folder });
+                    if (prefersReducedMotion) {
+                        item.classList.add('is-visible');
                     }
+                    fragment.appendChild(item);
+                    itemsToReveal.push(item);
+                });
 
-                    grid.appendChild(fragment);
+                grid.replaceChildren(fragment);
 
+                if (!prefersReducedMotion) {
                     requestAnimationFrame(() => {
                         itemsToReveal.forEach((item) => item.classList.add('is-visible'));
                     });
+                }
 
-                    if (window.UIkit && typeof window.UIkit.update === 'function') {
-                        window.UIkit.update(grid);
-                    }
+                if (window.UIkit && typeof window.UIkit.update === 'function') {
+                    window.UIkit.update(grid);
+                }
+            };
+            const stabilizeHashNavigation = async () => {
+                const hash = window.location.hash;
+                if (!hash) return;
 
-                    if (renderedCount < files.length) {
-                        window.setTimeout(appendBatch, batchPause);
-                    }
-                };
+                const targetSection = document.querySelector(hash);
+                if (!targetSection) return;
 
-                appendBatch();
+                const targetIndex = gallerySections.findIndex((section) => section === targetSection);
+                const previousSections = targetIndex > 0 ? gallerySections.slice(0, targetIndex) : [];
+
+                await Promise.all(previousSections.map(waitForImages));
+                await nextFrame();
+                await nextFrame();
+                alignToHash();
+                window.setTimeout(alignToHash, 180);
+                window.setTimeout(alignToHash, 520);
             };
 
-            galleryFolders.forEach((section, index) => renderSection(section, index));
+            galleryFolders.forEach(fillSection);
+            stabilizeHashNavigation();
+            window.addEventListener('load', stabilizeHashNavigation, { once: true });
+            window.addEventListener('hashchange', stabilizeHashNavigation);
         }
     </script>
     <script>
