@@ -782,8 +782,7 @@
       right: 0;
       z-index: 100;
       display: flex;
-      justify-content: center;
-      /* Centered links */
+      justify-content: flex-start;
       align-items: center;
       padding: 28px 6%;
     }
@@ -825,6 +824,12 @@
 
     .t-nav-links a:hover {
       color: #fff;
+    }
+
+    .t-nav-links,
+    .mobile-nav-toggle,
+    .mobile-menu {
+      display: none !important;
     }
 
 
@@ -1570,6 +1575,24 @@
 
       .where-highlight {
         padding: 5px 10px !important;
+      }
+    }
+
+    @media (max-width: 1024px) {
+      .t-nav {
+        justify-content: space-between !important;
+      }
+
+      .t-nav-links {
+        display: none !important;
+      }
+
+      .mobile-nav-toggle {
+        display: flex !important;
+      }
+
+      .mobile-menu {
+        display: flex !important;
       }
     }
   </style>
