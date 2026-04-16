@@ -1257,6 +1257,18 @@
         margin-top: -2rem !important;
       }
 
+      .uk-animation-fade,
+      .uk-animation-slide-bottom-small,
+      .uk-animation-slide-bottom-medium,
+      .uk-animation-slide-left-small {
+        animation-duration: 0.7s !important;
+        animation-fill-mode: both !important;
+      }
+
+      .hero-video {
+        object-position: center center !important;
+      }
+
       /* CTA Hero */
       .cta-hero {
         min-height: 280px !important;
@@ -1320,6 +1332,31 @@
         gap: 20px;
       }
 
+      .uk-transition-toggle .tile.hover-reveal img[uk-cover],
+      .uk-transition-toggle .tile.colorize img[uk-cover] {
+        opacity: 1 !important;
+        object-fit: contain !important;
+        padding: 14px;
+        background: transparent;
+        transition: opacity .35s ease, transform .45s ease !important;
+      }
+
+      .uk-transition-toggle:active .tile.hover-reveal img[uk-cover],
+      .uk-transition-toggle:focus-visible .tile.hover-reveal img[uk-cover],
+      .uk-transition-toggle:active .tile.colorize img[uk-cover],
+      .uk-transition-toggle:focus-visible .tile.colorize img[uk-cover] {
+        transform: scale(1.03) !important;
+      }
+
+      .tile .hover-overlay,
+      .tile.colorize .hover-color {
+        opacity: 0.18 !important;
+      }
+
+      .tile .uk-cover-container canvas {
+        height: 320px !important;
+      }
+
       .step-card:nth-child(n) {
         margin-top: 0 !important;
       }
@@ -1349,6 +1386,7 @@
         min-height: auto !important;
         order: -1;
         padding: 20px !important;
+        overflow: visible !important;
       }
 
       .where-image-frame {
@@ -1395,6 +1433,25 @@
         display: block;
       }
 
+      .where-corner-gif {
+        top: 10px;
+        left: 10px;
+        width: min(108px, 28vw);
+        transform: none !important;
+      }
+
+      .where-bottom-gif {
+        right: 10px;
+        bottom: 10px;
+        width: min(98px, 26vw);
+        transform: none !important;
+      }
+
+      .where-corner-gif img,
+      .where-bottom-gif img {
+        object-fit: contain !important;
+      }
+
       /* Pointing hand hidden on mobile */
       .pointing-hand-map {
         display: none !important;
@@ -1432,6 +1489,11 @@
         height: 280px !important;
       }
 
+      .uk-transition-toggle .tile.hover-reveal img[uk-cover],
+      .uk-transition-toggle .tile.colorize img[uk-cover] {
+        padding: 10px;
+      }
+
       /* Steps - single column */
       .steps-grid {
         grid-template-columns: 1fr !important;
@@ -1442,6 +1504,16 @@
         margin-top: 0 !important;
       }
 
+      .step-image-wrap {
+        aspect-ratio: auto;
+        overflow: visible;
+      }
+
+      .step-image-wrap img {
+        height: auto;
+        object-fit: contain;
+      }
+
       /* Social cards stack */
       .social-section .uk-grid-medium > div {
         width: 100% !important;
@@ -1450,12 +1522,21 @@
       /* Where image */
       .where-image-col {
         min-height: auto !important;
+        overflow: visible !important;
       }
 
       .where-image-frame {
         height: auto !important;
         min-height: 0 !important;
         aspect-ratio: 4 / 3;
+      }
+
+      .where-corner-gif {
+        width: 78px;
+      }
+
+      .where-bottom-gif {
+        width: 72px;
       }
 
       /* Editorial divider */
