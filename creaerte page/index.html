@@ -640,25 +640,34 @@
       }
 
       .where-image-col {
-        min-height: 500px;
+        min-height: 440px;
         order: -1;
-        padding: 14px;
+        padding: 8px 12px 18px;
       }
 
       .where-corner-gif {
-        width: min(128px, 34vw);
-        transform: translate(-22%, 48%);
+        display: block;
+        top: -4px;
+        left: -4px;
+        width: min(72px, 18vw);
+        transform: none !important;
       }
 
       .where-bottom-gif {
-        width: min(110px, 28vw);
-        transform: translate(26%, -12%);
+        display: block;
+        right: -10px;
+        bottom: -18px;
+        width: min(64px, 16vw);
+        transform: none !important;
       }
 
       .where-image-frame {
-        width: min(100%, 680px);
-        height: min(460px, 76vw);
-        min-height: 380px;
+        width: 100%;
+        height: min(420px, 78vw);
+        min-height: 320px;
+        background-size: contain;
+        background-position: center center;
+        background-repeat: no-repeat;
       }
 
       .where-content-col {
@@ -771,6 +780,30 @@
 
       .step-card:nth-child(n) {
         margin-top: 0 !important;
+      }
+
+      .where-image-col {
+        min-height: 360px;
+        padding: 4px 8px 12px;
+      }
+
+      .where-corner-gif {
+        display: block;
+        top: -2px;
+        left: -2px;
+        width: min(60px, 16vw);
+      }
+
+      .where-bottom-gif {
+        display: block;
+        right: -8px;
+        bottom: -15px;
+        width: min(54px, 14vw);
+      }
+
+      .where-image-frame {
+        height: min(320px, 74vw);
+        min-height: 250px;
       }
     }
 
@@ -1337,11 +1370,18 @@
         gap: 20px;
       }
 
-      .uk-transition-toggle .tile.hover-reveal img[uk-cover],
+      .uk-transition-toggle .tile.hover-reveal img[uk-cover] {
+        opacity: 0 !important;
+        object-fit: cover !important;
+        padding: 0 !important;
+        background: transparent;
+        transition: opacity .35s ease, transform .45s ease !important;
+      }
+
       .uk-transition-toggle .tile.colorize img[uk-cover] {
         opacity: 1 !important;
-        object-fit: contain !important;
-        padding: 14px;
+        object-fit: cover !important;
+        padding: 0 !important;
         background: transparent;
         transition: opacity .35s ease, transform .45s ease !important;
       }
@@ -1355,7 +1395,12 @@
 
       .tile .hover-overlay,
       .tile.colorize .hover-color {
-        opacity: 0.18 !important;
+        display: none !important;
+      }
+
+      .tile .title {
+        display: flex !important;
+        opacity: 1 !important;
       }
 
       .tile .uk-cover-container canvas {
@@ -1439,16 +1484,16 @@
       }
 
       .where-corner-gif {
-        top: 10px;
-        left: 10px;
-        width: min(108px, 28vw);
+        top: -2px;
+        left: -2px;
+        width: min(60px, 16vw);
         transform: none !important;
       }
 
       .where-bottom-gif {
-        right: 10px;
-        bottom: 10px;
-        width: min(98px, 26vw);
+        right: -2px;
+        bottom: -2px;
+        width: min(54px, 14vw);
         transform: none !important;
       }
 
@@ -1494,9 +1539,50 @@
         height: 280px !important;
       }
 
-      .uk-transition-toggle .tile.hover-reveal img[uk-cover],
+      .uk-transition-toggle .tile.hover-reveal img[uk-cover] {
+        opacity: 0 !important;
+        object-fit: cover !important;
+        padding: 0 !important;
+      }
+
       .uk-transition-toggle .tile.colorize img[uk-cover] {
-        padding: 10px;
+        opacity: 1 !important;
+        object-fit: cover !important;
+        padding: 0 !important;
+      }
+
+      .tile .hover-overlay,
+      .tile.colorize .hover-color {
+        display: none !important;
+      }
+
+      .tile .title {
+        display: flex !important;
+        opacity: 1 !important;
+      }
+
+      .tile .uk-cover-container canvas {
+        height: 280px !important;
+      }
+
+      .uk-transition-toggle.is-open .tile.hover-reveal img[uk-cover] {
+        opacity: 1 !important;
+        transform: scale(1.03) !important;
+      }
+
+      .uk-transition-toggle.is-open .tile.colorize img[uk-cover] {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+
+      .uk-transition-toggle.is-open .tile .title {
+        opacity: 0 !important;
+      }
+
+      .uk-transition-toggle.is-open .tile.hover-reveal .hover-overlay,
+      .uk-transition-toggle.is-open .tile.colorize .hover-color {
+        display: block !important;
+        opacity: .18 !important;
       }
 
       /* Steps - single column */
@@ -1982,6 +2068,38 @@
   </footer>
 
   <script>
+    (function enableMobileMosaicReveal() {
+      const isTouchLike = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+      if (!isTouchLike) return;
+
+      const tiles = Array.from(document.querySelectorAll('.uk-transition-toggle'));
+      if (!tiles.length) return;
+
+      const closeAllTiles = () => {
+        tiles.forEach((tile) => tile.classList.remove('is-open'));
+      };
+
+      tiles.forEach((tile) => {
+        tile.addEventListener('click', (event) => {
+          if (tile.classList.contains('colorize')) {
+            return;
+          }
+
+          if (tile.classList.contains('is-open')) return;
+
+          event.preventDefault();
+          closeAllTiles();
+          tile.classList.add('is-open');
+        });
+      });
+
+      document.addEventListener('click', (event) => {
+        if (!event.target.closest('.uk-transition-toggle')) {
+          closeAllTiles();
+        }
+      });
+    })();
+
     const trigger = document.querySelector('.sacaraat-trigger');
     if (trigger) {
       trigger.addEventListener('mousemove', (e) => {
