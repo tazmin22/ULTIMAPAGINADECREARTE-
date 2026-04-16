@@ -60,10 +60,12 @@ document.addEventListener('DOMContentLoaded', () => {
 // Scroll Listener for Navbar (White background on scroll)
 window.addEventListener('scroll', () => {
   const nav = document.querySelector('.t-nav');
-  if (nav && window.pageYOffset > 50) {
-    nav.classList.add('scrolled');
-  } else if (nav) {
-    nav.classList.remove('scrolled');
+  if (window.pageYOffset > 50) {
+    document.body.classList.add('scrolled');
+    if (nav) nav.classList.add('scrolled');
+  } else {
+    document.body.classList.remove('scrolled');
+    if (nav) nav.classList.remove('scrolled');
   }
 });
 
