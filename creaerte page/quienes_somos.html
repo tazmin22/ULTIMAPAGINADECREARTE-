@@ -1219,6 +1219,107 @@
             box-shadow: 0 0 10px rgba(166, 124, 124, 0.2);
         }
 
+        .about-video-section {
+            padding: 40px 8% 90px;
+            background: #fbf9f4;
+        }
+
+        .about-video-wrap {
+            max-width: 760px;
+            margin: 0 auto;
+            position: relative;
+            overflow: visible;
+        }
+
+        .about-video-card {
+            position: relative;
+            display: block;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
+            z-index: 2;
+        }
+
+        .about-video-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.18);
+            transition: background 0.35s ease;
+        }
+
+        .about-video-card:hover::after {
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .about-video-poster {
+            display: block;
+            width: 100%;
+            height: auto;
+            transition: transform 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .about-video-card:hover .about-video-poster {
+            transform: scale(1.04);
+        }
+
+        .about-video-play {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 82px;
+            height: 82px;
+            border-radius: 50%;
+            border: 4px solid #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            z-index: 3;
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.35);
+            transition: transform 0.35s ease, box-shadow 0.35s ease;
+        }
+
+        .about-video-play svg {
+            width: 34px;
+            height: 34px;
+            fill: currentColor;
+            margin-left: 6px;
+        }
+
+        .about-video-card:hover .about-video-play {
+            transform: translate(-50%, -50%) scale(1.08);
+            box-shadow: 0 0 60px rgba(0, 0, 0, 0.45);
+        }
+
+        .about-video-sticker {
+            position: absolute;
+            width: 185px;
+            height: 185px;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .about-video-sticker img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .about-video-sticker.is-top-left {
+            top: -42px;
+            left: -30px;
+            transform: rotate(-14deg);
+        }
+
+        .about-video-sticker.is-bottom-right {
+            right: -34px;
+            bottom: -26px;
+            width: 152px;
+            height: 152px;
+            transform: rotate(12deg);
+        }
+
         @media (prefers-reduced-motion: reduce) {
             body,
             .hero-splash img,
@@ -1232,6 +1333,9 @@
             .mosaic-box,
             .sticky-scene img,
             .sticky-item,
+            .about-video-poster,
+            .about-video-card::after,
+            .about-video-play,
             .closure-banner img {
                 animation: none !important;
                 transition: none !important;
@@ -1245,6 +1349,39 @@
             .sticky-scene img {
                 opacity: 1 !important;
                 transform: none !important;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .about-video-section {
+                padding: 20px 6% 70px;
+            }
+
+            .about-video-sticker {
+                width: 145px;
+                height: 145px;
+            }
+
+            .about-video-sticker.is-top-left {
+                top: -24px;
+                left: -12px;
+            }
+
+            .about-video-sticker.is-bottom-right {
+                right: -14px;
+                bottom: -14px;
+                width: 120px;
+                height: 120px;
+            }
+
+            .about-video-play {
+                width: 74px;
+                height: 74px;
+            }
+
+            .about-video-play svg {
+                width: 30px;
+                height: 30px;
             }
         }
     </style>
@@ -1271,9 +1408,11 @@
 
     <nav class="t-nav" aria-label="Navegación principal">
         <div class="t-nav-links" role="menubar">
-            <a href="./talleres.html" role="menuitem">Talleres</a>
             <a href="./quienes_somos.html" role="menuitem" aria-current="page">Quiénes Somos</a>
+            <a href="./talleres.html" role="menuitem">Talleres</a>
             <a href="./puertas_al_mundo.html" role="menuitem">Puertas al Mundo</a>
+            <a href="./galeria.html" role="menuitem">Galería</a>
+            <a href="./obras.html" role="menuitem">Arte Visual</a>
 
         </div>
         <button class="mobile-nav-toggle" aria-label="Abrir Menú" aria-expanded="false" aria-controls="mobile-menu">
@@ -1285,8 +1424,8 @@
 
     <div class="mobile-menu" id="mobile-menu" aria-label="Menú móvil">
         <ul class="mobile-menu-links" role="menu">
-            <li role="none"><a href="./talleres.html" role="menuitem">Talleres</a></li>
             <li role="none"><a href="./quienes_somos.html" role="menuitem" aria-current="page">Quiénes Somos</a></li>
+            <li role="none"><a href="./talleres.html" role="menuitem">Talleres</a></li>
             <li role="none"><a href="./puertas_al_mundo.html" role="menuitem">Puertas al Mundo</a></li>
             <li role="none"><a href="./galeria.html" role="menuitem">Galería</a></li>
             <li role="none"><a href="./obras.html" role="menuitem">Arte Visual</a></li>
@@ -1421,6 +1560,28 @@
 
 
     <!-- NUESTRO STAFF (MOSAIC STYLE) -->
+
+    <section class="about-video-section section-reveal" aria-label="Video institucional de Cre Arte en YouTube">
+        <div class="about-video-wrap">
+            <div class="about-video-sticker is-top-left" aria-hidden="true">
+                <img src="./img/gifvideo.webp" alt="" role="presentation">
+            </div>
+            <div class="about-video-sticker is-bottom-right" aria-hidden="true">
+                <img src="./img/gifvideo2.webp" alt="" role="presentation">
+            </div>
+            <a href="https://www.youtube.com/watch?v=JIyBh75iQx0" target="_blank" rel="noopener noreferrer"
+                aria-label="Ver video institucional de Cre Arte en YouTube (se abre en nueva pestaña)"
+                class="about-video-card">
+                <img src="./img/Captura_video_quienessomos.png" alt="Imagen de portada del video institucional de Cre Arte"
+                    class="about-video-poster">
+                <div class="about-video-play" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" focusable="false">
+                        <path d="M8 5v14l11-7z"></path>
+                    </svg>
+                </div>
+            </a>
+        </div>
+    </section>
 
     <section class="staff-mosaic-section section-reveal" id="staff" aria-label="Galería de arte de Cre Arte">
         <div class="staff-mosaic">
