@@ -1231,6 +1231,31 @@
             overflow: visible;
         }
 
+        .about-video-caption {
+            max-width: 720px;
+            margin: 28px auto 0;
+            text-align: center;
+            color: #2a2a2a;
+            font-family: 'Inter', sans-serif;
+            position: relative;
+            z-index: 2;
+        }
+
+        .about-video-caption h3 {
+            margin: 0 0 8px;
+            font-size: 0.9rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 800;
+            color: #6a1a1c;
+        }
+
+        .about-video-caption p {
+            margin: 0;
+            font-size: 0.92rem;
+            line-height: 1.7;
+        }
+
         .about-video-card {
             position: relative;
             display: block;
@@ -1255,11 +1280,13 @@
             display: block;
             width: 100%;
             height: auto;
-            transition: transform 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+            filter: grayscale(100%) contrast(1.05);
+            transition: transform 1s cubic-bezier(0.165, 0.84, 0.44, 1), filter 0.5s ease;
         }
 
         .about-video-card:hover .about-video-poster {
             transform: scale(1.04);
+            filter: grayscale(0%) contrast(1.05);
         }
 
         .about-video-play {
@@ -1313,11 +1340,11 @@
         }
 
         .about-video-sticker.is-bottom-right {
-            right: -34px;
-            bottom: -26px;
+            right: 0;
+            bottom: 34px;
             width: 152px;
             height: 152px;
-            transform: rotate(12deg);
+            transform: translate(22%, 22%) rotate(12deg);
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -1357,6 +1384,14 @@
                 padding: 20px 6% 70px;
             }
 
+            .about-video-caption {
+                margin-top: 22px;
+            }
+
+            .about-video-caption p {
+                font-size: 0.88rem;
+            }
+
             .about-video-sticker {
                 width: 145px;
                 height: 145px;
@@ -1368,10 +1403,11 @@
             }
 
             .about-video-sticker.is-bottom-right {
-                right: -14px;
-                bottom: -14px;
+                right: 0;
+                bottom: 24px;
                 width: 120px;
                 height: 120px;
+                transform: translate(18%, 18%) rotate(12deg);
             }
 
             .about-video-play {
@@ -1580,6 +1616,11 @@
                     </svg>
                 </div>
             </a>
+            <div class="about-video-caption">
+                <h3>Video institucional Cre-arte</h3>
+                <p>Video institucional realizado por CPCA para Cre-arte, centro cultural y educativo para personas
+                    con discapacidad de la ciudad de Bariloche.</p>
+            </div>
         </div>
     </section>
 
