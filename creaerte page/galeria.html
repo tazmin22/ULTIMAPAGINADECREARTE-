@@ -85,7 +85,7 @@
             top: 25px;
             left: 40px;
             z-index: 4000;
-            transition: all 0.4s ease;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
         .scrolled .floating-logo {
@@ -93,13 +93,13 @@
         }
 
         .floating-logo img {
-            height: 100px;
+            height: 90px;
             transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-            filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.1));
+            filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.08));
         }
 
         .scrolled .floating-logo img {
-            height: 60px;
+            height: 55px;
         }
 
         .t-nav-links {
@@ -208,23 +208,35 @@
 
         @media (max-width: 1024px) {
             .obras-container {
-                padding-top: 140px;
+                padding-top: 120px;
                 text-align: center;
             }
             .obras-subtitle {
                 margin-left: auto;
                 margin-right: auto;
+                font-size: 0.9rem;
+                max-width: 500px;
             }
             .floating-logo {
-                left: 20px;
+                left: 25px;
+                top: 20px;
+            }
+            .floating-logo img {
+                height: 70px !important;
+            }
+            .scrolled .floating-logo {
+                top: 12px;
+            }
+            .scrolled .floating-logo img {
+                height: 48px !important;
             }
         }
 
         @media (max-width: 560px) {
             .obras-container {
-                padding-top: 120px;
-                padding-left: 14px;
-                padding-right: 14px;
+                padding-top: 100px;
+                padding-left: 18px;
+                padding-right: 18px;
             }
 
             .floating-logo {
@@ -233,11 +245,17 @@
             }
 
             .floating-logo img {
-                height: 55px !important;
+                height: 52px !important;
             }
             
             .obras-title {
-                font-size: 3.2rem;
+                font-size: 2.8rem;
+                letter-spacing: -0.02em;
+            }
+
+            .obras-subtitle {
+                font-size: 0.85rem;
+                line-height: 1.5;
             }
         }
 
@@ -270,7 +288,7 @@
         .gallery-section-title {
             margin: 0;
             font-family: 'Inter', sans-serif;
-            font-size: 0.88rem;
+            font-size: 0.88rem !important;
             text-transform: uppercase;
             letter-spacing: 3px;
             color: rgba(17, 17, 17, 0.45);
