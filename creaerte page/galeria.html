@@ -58,7 +58,7 @@
 
         /* Nav & Logo */
         .t-nav {
-            position: fixed;
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
@@ -81,7 +81,7 @@
         }
 
         .floating-logo {
-            position: fixed;
+            position: absolute;
             top: 25px;
             left: 40px;
             z-index: 4000;
@@ -163,59 +163,71 @@
         .obras-container {
             max-width: 1280px;
             margin: 0 auto;
-            padding: 160px 20px 100px;
+            padding: 142px 32px 84px;
+            width: 100%;
+            min-width: 0;
         }
 
         .obras-header {
-            margin-bottom: 30px;
-            padding: 0 6px;
+            margin-bottom: 0;
+            padding: 0;
+            max-width: 760px;
         }
 
         .obras-kicker {
-            margin: 0 0 8px;
+            margin: 0 0 14px;
             font-family: 'Inter', sans-serif;
-            font-size: 0.75rem;
+            font-size: 0.74rem;
+            font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 4px;
-            color: rgba(17, 17, 17, 0.55);
+            letter-spacing: 0.36em;
+            color: rgba(17, 17, 17, 0.5);
         }
 
         .obras-title {
             margin: 0;
             font-family: 'Playfair Display', serif;
-            font-size: clamp(2.8rem, 6vw, 5.2rem);
-            line-height: 0.95;
+            font-size: clamp(3rem, 6vw, 5.4rem);
+            line-height: 0.92;
             letter-spacing: -0.03em;
         }
 
         .obras-subtitle {
-            margin: 14px 0 0;
-            max-width: 720px;
+            margin: 20px 0 0;
+            max-width: 640px;
             font-family: 'Inter', sans-serif;
-            font-size: 0.98rem;
-            line-height: 1.7;
-            color: #333;
+            font-size: 1.02rem;
+            line-height: 1.8;
+            color: rgba(17, 17, 17, 0.74);
         }
 
         .obras-count {
-            margin: 10px 0 0;
+            margin: 26px 0 0;
             font-family: 'Inter', sans-serif;
-            font-size: 0.82rem;
+            font-size: 0.78rem;
+            font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 0.18em;
-            color: rgba(17, 17, 17, 0.55);
+            letter-spacing: 0.24em;
+            color: rgba(17, 17, 17, 0.46);
         }
 
         @media (max-width: 1024px) {
             .obras-container {
-                padding-top: 120px;
+                padding: 118px 24px 68px;
                 text-align: center;
             }
+
+            .obras-header {
+                margin: 0 auto;
+                padding-left: 0;
+                padding-right: 0;
+            }
+
             .obras-subtitle {
                 margin-left: auto;
                 margin-right: auto;
-                font-size: 0.9rem;
-                max-width: 500px;
+                font-size: 0.94rem;
+                max-width: 540px;
             }
             .floating-logo {
                 left: 25px;
@@ -232,11 +244,36 @@
             }
         }
 
+        @media (max-width: 768px) {
+            .t-nav {
+                padding-left: 16px !important;
+                padding-right: 16px !important;
+            }
+
+            .obras-container {
+                padding: 100px 16px 44px;
+            }
+
+            .obras-title {
+                font-size: clamp(2.5rem, 12vw, 3.85rem) !important;
+                line-height: 0.98;
+            }
+
+            .obras-subtitle {
+                margin-top: 16px;
+                max-width: 100%;
+                font-size: 0.92rem;
+                line-height: 1.7;
+            }
+
+            .obras-count {
+                margin-top: 20px;
+            }
+        }
+
         @media (max-width: 560px) {
             .obras-container {
-                padding-top: 100px;
-                padding-left: 18px;
-                padding-right: 18px;
+                padding: 88px 18px 36px;
             }
 
             .floating-logo {
@@ -249,13 +286,18 @@
             }
             
             .obras-title {
-                font-size: 2.8rem;
+                font-size: clamp(2.35rem, 13vw, 2.85rem) !important;
                 letter-spacing: -0.02em;
             }
 
             .obras-subtitle {
                 font-size: 0.85rem;
-                line-height: 1.5;
+                line-height: 1.6;
+            }
+
+            .obras-kicker,
+            .obras-count {
+                letter-spacing: 2px;
             }
         }
 
@@ -263,16 +305,20 @@
         .gallery-shell {
             margin-top: 0;
             padding: 0 !important;
+            width: 100%;
+            min-width: 0;
         }
 
         .gallery-sections {
             max-width: 1280px;
             margin: 0 auto;
-            padding: 0 20px 100px;
+            padding: 0 32px 110px;
+            width: 100%;
+            min-width: 0;
         }
 
         .gallery-section {
-            margin: 0 0 72px;
+            margin: 0 0 88px;
             padding: 0 !important;
             scroll-margin-top: 110px;
         }
@@ -282,25 +328,27 @@
         }
 
         .gallery-section-header {
-            padding: 0 6px 10px;
+            padding: 0 0 18px;
         }
 
         .gallery-section-title {
             margin: 0;
             font-family: 'Inter', sans-serif;
-            font-size: 0.88rem !important;
+            font-size: 0.82rem !important;
             text-transform: uppercase;
-            letter-spacing: 3px;
-            color: rgba(17, 17, 17, 0.45);
-            font-weight: 400;
+            letter-spacing: 0.3em;
+            color: rgba(17, 17, 17, 0.52);
+            font-weight: 600;
         }
 
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(4, minmax(0, 1fr));
-            grid-auto-rows: 190px;
-            gap: 15px;
+            grid-auto-rows: 210px;
+            gap: 18px;
             grid-auto-flow: dense;
+            width: 100%;
+            min-width: 0;
         }
 
         .gallery-item {
@@ -310,6 +358,7 @@
             background: #fff;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
             transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+            min-width: 0;
         }
 
         .gallery-item:hover {
@@ -359,16 +408,33 @@
         }
 
         @media (max-width: 1200px) {
+            .gallery-sections {
+                padding-left: 24px;
+                padding-right: 24px;
+            }
+
             .gallery-grid {
                 grid-template-columns: repeat(3, minmax(0, 1fr));
+                grid-auto-rows: 200px;
             }
         }
 
         @media (max-width: 960px) {
+            .gallery-section {
+                margin-bottom: 56px;
+                scroll-margin-top: 96px;
+            }
+
+            .gallery-section-header {
+                padding-left: 0;
+                padding-right: 0;
+                padding-bottom: 14px;
+            }
+
             .gallery-grid {
                 grid-template-columns: repeat(2, minmax(0, 1fr));
                 grid-auto-rows: 240px;
-                gap: 12px;
+                gap: 14px;
             }
 
             .gallery-item.w-2,
@@ -378,24 +444,35 @@
             }
 
             .gallery-sections {
-                padding-bottom: 60px;
+                padding-left: 16px;
+                padding-right: 16px;
+                padding-bottom: 72px;
             }
         }
 
         @media (max-width: 640px) {
             .gallery-grid {
                 grid-template-columns: 1fr;
-                grid-auto-rows: 280px;
+                grid-auto-rows: auto;
             }
 
             .gallery-sections {
                 padding-left: 14px;
                 padding-right: 14px;
+                padding-bottom: 58px;
+            }
+
+            .gallery-item,
+            .gallery-item.w-2,
+            .gallery-item.h-2 {
+                grid-column: span 1 !important;
+                grid-row: span 1 !important;
+                aspect-ratio: 4 / 5;
             }
             
             .gallery-section-title {
-                font-size: 0.75rem;
-                letter-spacing: 2px;
+                font-size: 0.73rem;
+                letter-spacing: 0.22em;
             }
         }
     </style>
@@ -428,7 +505,7 @@
             <li role="none"><a href="./quienes_somos.html" role="menuitem">Quiénes Somos</a></li>
             <li role="none"><a href="./puertas_al_mundo.html" role="menuitem">Puertas al Mundo</a></li>
             <li role="none"><a href="./galeria.html" role="menuitem" aria-current="page">Galería</a></li>
-            <li role="none"><a href="./obras.html" role="menuitem">Obras</a></li>
+            <li role="none"><a href="./obras.html" role="menuitem">Arte Visual</a></li>
         </ul>
     </div>
 
@@ -447,7 +524,7 @@
                 <section class="gallery-section" id="obras-de-cre-arte" data-gallery-section="obras-de-cre-arte"
                     aria-labelledby="obras-de-cre-arte-title">
                     <header class="gallery-section-header">
-                        <h2 class="gallery-section-title" id="obras-de-cre-arte-title">Obras de Cre-Arte</h2>
+                        <h2 class="gallery-section-title" id="obras-de-cre-arte-title">Arte Visual de Cre-Arte</h2>
                     </header>
                     <div class="gallery-grid" data-gallery-grid="obras-de-cre-arte" uk-lightbox="animation: slide"></div>
                 </section>
@@ -500,7 +577,7 @@
         </div>
         <div class="footer-links" style="margin-bottom: 30px;" role="navigation" aria-label="Más enlaces">
             <a href="./galeria.html" aria-current="page">Galería</a>
-            <a href="./obras.html">Obras</a>
+            <a href="./obras.html">Arte Visual</a>
         </div>
         <div class="footer-social" aria-label="Redes sociales de Cre Arte">
             <a href="https://www.instagram.com/creartebrc/" target="_blank" rel="noopener noreferrer" aria-label="Instagram de Cre Arte (se abre en nueva pestaña)">
