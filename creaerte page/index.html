@@ -578,13 +578,12 @@
 
     .where-corner-gif {
       position: absolute;
-      top: 0;
-      left: 0;
-      width: min(175px, 30vw);
+      top: -60px;
+      left: -60px;
+      width: min(250px, 40vw);
       aspect-ratio: 1 / 1;
       z-index: 1;
       pointer-events: none;
-      transform: translate(-32%, 48%);
     }
 
     .where-corner-gif img {
@@ -598,13 +597,12 @@
 
     .where-bottom-gif {
       position: absolute;
-      right: 0;
-      bottom: 0;
-      width: min(150px, 26vw);
+      right: -60px;
+      bottom: -60px;
+      width: min(220px, 35vw);
       aspect-ratio: 1 / 1;
       z-index: 1;
       pointer-events: none;
-      transform: translate(34%, -14%);
     }
 
     .where-bottom-gif img {
@@ -621,8 +619,14 @@
       height: min(620px, 80vw);
       min-height: 620px;
       margin: 0 auto;
-      background: url('./talleres/talleres10.webp') center/cover;
       z-index: 3;
+    }
+
+    .where-image-main {
+      position: absolute;
+      inset: 0;
+      background: url('./talleres/talleres10.webp') center/cover;
+      z-index: 2;
       box-shadow: 0 24px 55px rgba(0, 0, 0, 0.10);
     }
 
@@ -647,21 +651,21 @@
 
       .where-corner-gif {
         display: block;
-        top: -4px;
-        left: -4px;
-        width: min(72px, 18vw);
+        top: -30px;
+        left: -30px;
+        width: min(110px, 25vw);
         transform: none !important;
       }
 
       .where-bottom-gif {
         display: block;
-        right: -10px;
-        bottom: -18px;
-        width: min(64px, 16vw);
+        right: -30px;
+        bottom: -30px;
+        width: min(100px, 22vw);
         transform: none !important;
       }
 
-      .where-image-frame {
+      .where-image-main {
         width: 100%;
         height: min(420px, 78vw);
         min-height: 320px;
@@ -2006,13 +2010,15 @@
 
       <!-- Image Column -->
       <div class="where-image-col" uk-scrollspy="cls: uk-animation-fade; delay: 200" role="img" aria-label="Imagen decorativa del edificio de Cre Arte">
-        <div class="where-corner-gif" aria-hidden="true">
-          <img src="./img/gifvideo.gif" alt="" role="presentation">
+        <div class="where-image-frame" aria-hidden="true">
+          <div class="where-corner-gif" aria-hidden="true">
+            <img src="./img/gifvideo.gif" alt="" role="presentation">
+          </div>
+          <div class="where-bottom-gif" aria-hidden="true">
+            <img src="./img/gifvideo.gif" alt="" role="presentation">
+          </div>
+          <div class="where-image-main"></div>
         </div>
-        <div class="where-bottom-gif" aria-hidden="true">
-          <img src="./img/gifvideo.gif" alt="" role="presentation">
-        </div>
-        <div class="where-image-frame" aria-hidden="true"></div>
       </div>
     </div>
   </section>
