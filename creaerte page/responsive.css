@@ -275,6 +275,18 @@ body.no-scroll {
     height: auto !important; /* Reset fixed heights */
   }
 
+  /* Ensure Headline -> Image -> Content order in 'where' section */
+  .where-headline {
+    order: 1 !important;
+  }
+  .where-image-col {
+    order: 2 !important;
+  }
+  .where-content-col {
+    order: 3 !important;
+    margin-top: 80px !important;
+  }
+
   .ed-card {
     height: auto !important;
     padding: 40px 5% !important; /* Standardize padding on mobile */
@@ -410,6 +422,7 @@ body.no-scroll {
 
   .where-text-details {
     margin-bottom: 25px !important;
+    margin-top: 80px !important;
     order: 2 !important;
   }
 
