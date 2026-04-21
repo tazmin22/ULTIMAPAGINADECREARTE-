@@ -216,7 +216,7 @@
 
         .catalogos-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(4, 1fr);
             gap: 0;
         }
 
@@ -225,14 +225,13 @@
             border: 1px solid rgba(0,0,0,0.08);
             border-right: none;
             text-decoration: none !important;
-            color: inherit;
+            color: #fff;
             transition: background 0.3s ease;
             display: flex;
             flex-direction: column;
             position: relative;
             overflow: hidden;
-            background-size: cover;
-            background-position: center;
+            background: #171717;
             min-height: 320px;
         }
 
@@ -241,14 +240,28 @@
             inset: 0;
             background-size: cover;
             background-position: center;
-            opacity: 0.25;
+            background-repeat: no-repeat;
+            opacity: 0.82;
+            filter: saturate(1.08) contrast(1.08);
             transition: opacity 0.5s ease, transform 0.5s ease;
             z-index: 0;
         }
 
+        .catalogo-card .catalogo-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            transition: background 0.35s ease;
+        }
+
         .catalogo-card:hover .catalogo-bg {
-            opacity: 0.4;
-            transform: scale(1.05);
+            opacity: 0.96;
+            transform: scale(1.03);
+        }
+
+        .catalogo-card:hover .catalogo-bg::after {
+            background: rgba(0, 0, 0, 0.62);
         }
 
         .catalogo-card .catalogo-num,
@@ -301,6 +314,12 @@
         .catalogo-card:nth-child(3):hover::before { opacity: 0.35; }
         .catalogo-card:nth-child(3):hover::after { opacity: 0.3; }
 
+        /* Card 4 - Cerámica: terracota */
+        .catalogo-card:nth-child(4)::before { background: rgba(168, 104, 68, 0.24); }
+        .catalogo-card:nth-child(4)::after { background: rgba(168, 104, 68, 0.18); }
+        .catalogo-card:nth-child(4):hover::before { opacity: 0.34; }
+        .catalogo-card:nth-child(4):hover::after { opacity: 0.28; }
+
         .catalogo-card:hover::before {
             transform: scale(1.2);
         }
@@ -314,27 +333,29 @@
         }
 
         .catalogo-card:hover {
-            background: rgba(255, 255, 255, 0.85);
+            background: #101010;
         }
 
         .catalogo-card:hover,
         .catalogo-card:hover .catalogo-name,
         .catalogo-card:hover .catalogo-desc,
         .catalogo-card:hover .catalogo-cta {
-            color: #333;
+            color: #fff;
         }
 
         .catalogo-num {
             font-family: 'Playfair Display', serif;
             font-size: 3.5rem;
             line-height: 1;
-            color: rgba(0,0,0,0.08);
+            color: rgba(255,255,255,0.25);
             margin-bottom: 16px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
         }
 
-        .catalogo-card:nth-child(1) .catalogo-num { color: rgba(106, 26, 28, 0.15); }
-        .catalogo-card:nth-child(2) .catalogo-num { color: rgba(230, 92, 0, 0.15); }
-        .catalogo-card:nth-child(3) .catalogo-num { color: rgba(137, 148, 117, 0.2); }
+        .catalogo-card:nth-child(1) .catalogo-num { color: rgba(255, 224, 224, 0.4); }
+        .catalogo-card:nth-child(2) .catalogo-num { color: rgba(255, 235, 220, 0.42); }
+        .catalogo-card:nth-child(3) .catalogo-num { color: rgba(236, 244, 224, 0.4); }
+        .catalogo-card:nth-child(4) .catalogo-num { color: rgba(255, 238, 226, 0.42); }
 
         .catalogo-name {
             font-family: 'Inter', sans-serif;
@@ -343,15 +364,20 @@
             text-transform: uppercase;
             letter-spacing: 2px;
             margin-bottom: 8px;
+            color: #fff;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease, letter-spacing 0.3s ease, text-shadow 0.3s ease;
         }
 
         .catalogo-desc {
             font-family: 'Inter', sans-serif;
             font-size: 0.78rem;
-            color: #666;
+            color: rgba(255,255,255,0.84);
             line-height: 1.6;
             margin-bottom: 20px;
             flex-grow: 1;
+            text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
+            transition: color 0.3s ease, text-shadow 0.3s ease;
         }
 
         .catalogo-cta {
@@ -359,16 +385,40 @@
             font-size: 0.78rem;
             text-transform: uppercase;
             letter-spacing: 1px;
-            color: #333;
+            color: #fff;
             display: inline-flex;
             align-items: center;
             gap: 8px;
             text-decoration: none !important;
-            transition: letter-spacing 0.3s ease;
+            transition: letter-spacing 0.3s ease, transform 0.3s ease, text-shadow 0.3s ease;
+            text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
         }
 
         .catalogo-card:hover .catalogo-cta {
-            letter-spacing: 2px;
+            letter-spacing: 2.5px;
+            transform: translateY(-1px);
+            text-shadow: 0 2px 14px rgba(0, 0, 0, 0.8);
+        }
+
+        .catalogo-card:hover .catalogo-name {
+            letter-spacing: 3px;
+            transform: translateY(-1px);
+            text-shadow: 0 3px 16px rgba(0, 0, 0, 0.9);
+        }
+
+        .catalogo-card:hover .catalogo-desc {
+            color: rgba(255,255,255,0.96);
+            text-shadow: 0 2px 12px rgba(0, 0, 0, 0.8);
+        }
+
+        @media (max-width: 1100px) {
+            .catalogos-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .catalogo-card:nth-child(2n) {
+                border-right: 1px solid rgba(0,0,0,0.08);
+            }
         }
 
         @media (max-width: 900px) {
@@ -539,24 +589,31 @@
             <p class="catalogos-copy">Abrí cada PDF para recorrer las series de Cre Arte con más detalle.</p>
             <div class="catalogos-grid">
                 <a class="catalogo-card" href="./PDF/Catalogo%20Batik%20-%20Crearte.pdf" target="_blank" rel="noopener noreferrer" aria-label="Catálogo Batik">
-                    <div class="catalogo-bg" style="background-image: url('./talleres/batik.webp');" aria-hidden="true"></div>
+                    <div class="catalogo-bg" style="background-image: url('./PDF/batik-card.png');" aria-hidden="true"></div>
                     <div class="catalogo-num">01</div>
                     <div class="catalogo-name">Batik</div>
                     <div class="catalogo-desc">Explorá las técnicas de batik y el Arte Visual textil creado por los artistas de Cre Arte.</div>
                     <span class="catalogo-cta">Abrir catálogo →</span>
                 </a>
                 <a class="catalogo-card" href="./PDF/Obras%20Grabado.pdf" target="_blank" rel="noopener noreferrer" aria-label="Catálogo Grabado">
-                    <div class="catalogo-bg" style="background-image: url('./img/OBRAS1.webp');" aria-hidden="true"></div>
+                    <div class="catalogo-bg" style="background-image: url('./PDF/grabado-card.png');" aria-hidden="true"></div>
                     <div class="catalogo-num">02</div>
                     <div class="catalogo-name">Grabado</div>
                     <div class="catalogo-desc">Descubrí la colección de grabados que reflejan la mirada artística de nuestros estudiantes.</div>
                     <span class="catalogo-cta">Abrir catálogo →</span>
                 </a>
                 <a class="catalogo-card" href="./PDF/Catalogo%20Pintura-%20Cre-Arte%202025.pdf" target="_blank" rel="noopener noreferrer" aria-label="Catálogo Pintura">
-                    <div class="catalogo-bg" style="background-image: url('./img/pintura.webp');" aria-hidden="true"></div>
+                    <div class="catalogo-bg" style="background-image: url('./PDF/pintura.png');" aria-hidden="true"></div>
                     <div class="catalogo-num">03</div>
                     <div class="catalogo-name">Pintura</div>
                     <div class="catalogo-desc">Recorré el Arte Visual pictórico más reciente del taller de pintura de Cre Arte.</div>
+                    <span class="catalogo-cta">Abrir catálogo →</span>
+                </a>
+                <a class="catalogo-card" href="./PDF/Catalogo%20Ceramica-%20Crearte.pdf" target="_blank" rel="noopener noreferrer" aria-label="Catálogo Cerámica">
+                    <div class="catalogo-bg" style="background-image: url('./PDF/ceramica.png');" aria-hidden="true"></div>
+                    <div class="catalogo-num">04</div>
+                    <div class="catalogo-name">Cerámica</div>
+                    <div class="catalogo-desc">Explorá el nuevo catálogo de cerámica con piezas y procesos del taller de Cre Arte.</div>
                     <span class="catalogo-cta">Abrir catálogo →</span>
                 </a>
             </div>
