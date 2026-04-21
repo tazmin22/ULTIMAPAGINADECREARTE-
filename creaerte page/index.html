@@ -1517,8 +1517,39 @@
       }
 
       /* Mosaic */
-      .uk-child-width-1-2\@m .uk-width-2-3\@l {
+      section.mosaico-principal[style*="margin-bottom"] {
+        width: 100vw !important;
+        max-width: 100vw !important;
+        margin-left: calc(50% - 50vw) !important;
+        margin-right: calc(50% - 50vw) !important;
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+        padding: 0 !important;
+        overflow-x: clip !important;
+      }
+
+      .mosaico-principal-grid {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 0 !important;
         width: 100% !important;
+        margin: 0 !important;
+      }
+
+      .mosaico-principal-grid > div {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        flex-basis: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+
+      .mosaico-principal-grid > div > a,
+      .mosaico-principal-grid > div > a > .tile {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
       }
 
       /* Footer */
@@ -1540,8 +1571,39 @@
       }
 
       /* Mosaic - single column */
-      .uk-child-width-1-2\@m > div {
+      section.mosaico-principal[style*="margin-bottom"] {
+        width: 100vw !important;
+        max-width: 100vw !important;
+        margin-left: calc(50% - 50vw) !important;
+        margin-right: calc(50% - 50vw) !important;
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+        padding: 0 !important;
+        overflow-x: clip !important;
+      }
+
+      .mosaico-principal-grid {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 0 !important;
         width: 100% !important;
+        margin: 0 !important;
+      }
+
+      .mosaico-principal-grid > div {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        flex-basis: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+
+      .mosaico-principal-grid > div > a,
+      .mosaico-principal-grid > div > a > .tile {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
       }
 
       .tile .uk-cover-container canvas {
@@ -1763,11 +1825,11 @@
   </script>
 
   <!-- Mosaico principal -->
-  <section class="uk-section uk-section-remove-padding no-margin"
+  <section class="uk-section uk-section-remove-padding no-margin mosaico-principal"
     uk-scrollspy="cls: uk-animation-fade; target: .tile; delay: 120"
     style="margin-bottom: 80px !important; margin-top: 100px;" aria-labelledby="mosaico-heading">
     <h2 id="mosaico-heading" class="uk-hidden">Secciones del sitio</h2>
-    <div class="uk-grid-collapse uk-child-width-1-1 uk-child-width-1-2@m uk-child-width-1-3@l" uk-grid>
+    <div class="uk-grid-collapse uk-child-width-1-1 uk-child-width-1-2@m uk-child-width-1-3@l mosaico-principal-grid" uk-grid>
 
       <!-- QUIENES SOMOS -->
       <div id="ingreso">
