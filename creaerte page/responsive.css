@@ -284,7 +284,26 @@ body.no-scroll {
   }
   .where-content-col {
     order: 3 !important;
-    margin-top: 150px !important;
+    margin-top: 0 !important;
+  }
+
+  section.where-section [uk-scrollspy],
+  section.where-section .uk-animation-fade,
+  section.where-section .uk-animation-slide-top-small,
+  section.where-section .uk-animation-slide-left-small {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+
+  section.where-section .where-headline,
+  section.where-section .where-content-col,
+  section.where-section .where-image-col {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
   }
 
   .ed-card {
@@ -422,7 +441,7 @@ body.no-scroll {
 
   .where-text-details {
     margin-bottom: 25px !important;
-    margin-top: 150px !important;
+    margin-top: 0 !important;
     order: 2 !important;
   }
 
