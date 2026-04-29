@@ -856,6 +856,17 @@
                 background-color 0.25s ease;
         }
 
+        .mosaic-tile::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.26));
+            opacity: 0;
+            transition: opacity 0.25s ease;
+            z-index: 5;
+            pointer-events: none;
+        }
+
         .mosaic-tile.visible {
             opacity: 1 !important;
             transform: translateY(0) !important;
@@ -929,6 +940,14 @@
             transform: translateZ(5px);
         }
 
+        .mosaic-tile:hover::before {
+            opacity: 1;
+        }
+
+        .mosaic-tile:focus-within::before {
+            opacity: 1;
+        }
+
         @media (prefers-reduced-motion: reduce) {
             .mosaic-tile {
                 opacity: 1 !important;
@@ -942,18 +961,38 @@
             position: relative;
             z-index: 10;
             text-align: center;
-            /* CENTERED */
+            display: flex;
+            align-items: center;
+            justify-content: center;
             width: 100%;
+            height: 100%;
         }
 
-        .mosaic-tile p {
+        .mosaic-tile-desc {
+            position: absolute;
+            left: 50%;
+            bottom: 1.4rem;
+            transform: translateX(-50%) translateY(10px);
+            width: min(86%, 18rem);
             font-family: 'Inter', sans-serif;
-            font-size: 0.5rem;
-            font-weight: 700;
-            color: #fff;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            margin-bottom: 10px;
+            font-size: clamp(0.72rem, 0.95vw, 0.92rem);
+            font-weight: 400;
+            line-height: 1.45;
+            color: rgba(255, 255, 255, 0.94);
+            text-transform: none;
+            letter-spacing: 0;
+            margin: 0;
+            opacity: 0;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            z-index: 11;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.28);
+            pointer-events: none;
+        }
+
+        .mosaic-tile:hover .mosaic-tile-desc,
+        .mosaic-tile:focus-within .mosaic-tile-desc {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
         }
 
         /* Tile Colors - Earthy Palette (NO WHITE/BONE) */
@@ -1616,18 +1655,21 @@
                 <div class="tile-content">
 
                     <h3>Xilografía</h3>
+                    <p class="mosaic-tile-desc">Creamos obras gráficas de manera colaborativa, desde el diseño hasta la impresión.</p>
                 </div>
             </div>
             <div class="mosaic-tile bg-earth">
                 <div class="tile-content">
 
                     <h3>Literario</h3>
+                    <p class="mosaic-tile-desc">Desarrollamos prácticas de lectura, escritura y oralidad como formas de comunicación colectiva.</p>
                 </div>
             </div>
             <div class="mosaic-tile bg-night">
                 <div class="tile-content">
 
                     <h3>Costura</h3>
+                    <p class="mosaic-tile-desc">Confeccionamos y modificamos prendas que luego comercializamos en la feria interna.</p>
                 </div>
             </div>
 
@@ -1636,18 +1678,21 @@
                 <div class="tile-content">
 
                     <h3>Taller de la voz</h3>
+                    <p class="mosaic-tile-desc">Trabajamos sobre la voz y su expresividad, tanto desde el canto como desde la palabra hablada.</p>
                 </div>
             </div>
             <div class="mosaic-tile bg-moss">
                 <div class="tile-content">
 
                     <h3>Plástica</h3>
+                    <p class="mosaic-tile-desc">Exploramos materiales, colores y formas, desarrollando la creatividad y la expresión individual y colectiva.</p>
                 </div>
             </div>
             <div class="mosaic-tile bg-terracotta">
                 <div class="tile-content">
 
                     <h3>Cerámica</h3>
+                    <p class="mosaic-tile-desc">Exploramos todos los procesos cerámicos: modelado, torneado, esmaltado y horneado.</p>
                 </div>
             </div>
             <div class="mosaic-tile bg-deep-blue">
@@ -1662,18 +1707,21 @@
                 <div class="tile-content">
 
                     <h3>Utilería</h3>
+                    <p class="mosaic-tile-desc">Creamos objetos para producciones escénicas y desarrollamos habilidades manuales mientras imaginamos soluciones de forma y función.</p>
                 </div>
             </div>
             <div class="mosaic-tile bg-clay">
                 <div class="tile-content">
 
                     <h3>Baile</h3>
+                    <p class="mosaic-tile-desc">Generamos experiencias para desarrollar la conciencia corporal individual y grupal.</p>
                 </div>
             </div>
             <div class="mosaic-tile bg-sage">
                 <div class="tile-content">
 
                     <h3>Juego deportivo</h3>
+                    <p class="mosaic-tile-desc">Creamos juegos y deportes accesibles de manera colectiva.</p>
                 </div>
             </div>
             <div class="mosaic-tile bg-mustard">
@@ -1694,18 +1742,21 @@
                 <div class="tile-content">
 
                     <h3>Jardinería</h3>
+                    <p class="mosaic-tile-desc">Nos dedicamos a reproducir plantas mediante esquejes y semillas y mantenemos nuestros espacios verdes.</p>
                 </div>
             </div>
             <div class="mosaic-tile bg-wine">
                 <div class="tile-content">
 
                     <h3>Yoga</h3>
+                    <p class="mosaic-tile-desc">Generamos un espacio de encuentro donde trabajamos el cuerpo físico, mental y emocional.</p>
                 </div>
             </div>
             <div class="mosaic-tile bg-moss">
                 <div class="tile-content">
 
                     <h3>Danza</h3>
+                    <p class="mosaic-tile-desc">Desarrollamos la conciencia corporal, la comunicación y la creación coreográfica.</p>
                 </div>
             </div>
 
@@ -1720,18 +1771,21 @@
                 <div class="tile-content">
 
                     <h3>Murga</h3>
+                    <p class="mosaic-tile-desc">Integramos música, percusión, canto, baile y actuación para presentaciones con alegría y reflexión social.</p>
                 </div>
             </div>
             <div class="mosaic-tile bg-forest">
                 <div class="tile-content">
 
                     <h3>Batik</h3>
+                    <p class="mosaic-tile-desc">Aplicamos la técnica de teñido por reserva, transitando cada etapa del proceso para lograr piezas únicas.</p>
                 </div>
             </div>
             <div class="mosaic-tile bg-clay">
                 <div class="tile-content">
 
                     <h3>Mantenimiento</h3>
+                    <p class="mosaic-tile-desc">Aprendemos el uso de herramientas y desarrollamos prácticas constructivas.</p>
                 </div>
             </div>
 
@@ -1740,12 +1794,14 @@
                 <div class="tile-content">
 
                     <h3>Vestuario</h3>
+                    <p class="mosaic-tile-desc">Diseñamos y confeccionamos vestuario para la murga y diferentes producciones escénicas.</p>
                 </div>
             </div>
             <div class="mosaic-tile bg-mustard">
                 <div class="tile-content">
 
                     <h3>Entrenamiento</h3>
+                    <p class="mosaic-tile-desc">Trabajamos sobre la adaptación de prácticas deportivas para hacerlas inclusivas.</p>
                 </div>
             </div>
             <div class="mosaic-tile bg-earth">
@@ -1758,6 +1814,7 @@
                 <div class="tile-content">
 
                     <h3>Teatro</h3>
+                    <p class="mosaic-tile-desc">Nos acercamos al lenguaje teatral a través del juego, la improvisación y la construcción de personajes.</p>
                 </div>
             </div>
 
@@ -1772,6 +1829,7 @@
                 <div class="tile-content">
 
                     <h3>Experiencias gráficas</h3>
+                    <p class="mosaic-tile-desc">Experimentamos con técnicas no convencionales de arte impreso, explorando la repetición y la huella.</p>
                 </div>
             </div>
             <div class="mosaic-tile bg-terracotta">
@@ -1792,18 +1850,21 @@
                 <div class="tile-content">
 
                     <h3>Batik/grabado</h3>
+                    <p class="mosaic-tile-desc">Aplicamos la técnica de teñido por reserva, transitando cada etapa del proceso para lograr piezas únicas.</p>
                 </div>
             </div>
             <div class="mosaic-tile bg-clay">
                 <div class="tile-content">
 
                     <h3>Joyería</h3>
+                    <p class="mosaic-tile-desc">Experimentamos con distintos materiales y técnicas para crear accesorios utilitarios.</p>
                 </div>
             </div>
             <div class="mosaic-tile bg-sage">
                 <div class="tile-content">
 
                     <h3>Conciencia corporal</h3>
+                    <p class="mosaic-tile-desc">Exploramos el cuerpo, su anatomía y movimiento trabajando equilibrio, flexibilidad, coordinación y fuerza.</p>
                 </div>
             </div>
             <div class="mosaic-tile bg-mustard">
@@ -1818,18 +1879,21 @@
                 <div class="tile-content">
 
                     <h3>Reflexión</h3>
+                    <p class="mosaic-tile-desc">Nos reunimos semanalmente para reflexionar sobre vínculos y género y fortalecer la autonomía.</p>
                 </div>
             </div>
             <div class="mosaic-tile bg-night">
                 <div class="tile-content">
 
                     <h3>Masculinidades</h3>
+                    <p class="mosaic-tile-desc">Reflexionamos sobre las masculinidades y cuestionamos modelos hegemónicos.</p>
                 </div>
             </div>
             <div class="mosaic-tile bg-wine">
                 <div class="tile-content">
 
                     <h3>Bordado</h3>
+                    <p class="mosaic-tile-desc">Exploramos el bordado a mano sobre distintos soportes, experimentando con diversas técnicas.</p>
                 </div>
             </div>
             <div class="mosaic-tile bg-moss">
@@ -1844,12 +1908,14 @@
                 <div class="tile-content">
 
                     <h3>Fotografía</h3>
+                    <p class="mosaic-tile-desc">Exploramos la fotografía digital y analógica, experimentando con encuadres, luces y composición.</p>
                 </div>
             </div>
             <div class="mosaic-tile bg-deep-blue">
                 <div class="tile-content">
 
                     <h3>Diseño con luz</h3>
+                    <p class="mosaic-tile-desc">Combinamos fotografía y grabado para experimentar con la imagen y su huella.</p>
                 </div>
             </div>
             <div class="mosaic-tile bg-forest">
@@ -1870,6 +1936,7 @@
                 <div class="tile-content">
 
                     <h3>Ensamble musical</h3>
+                    <p class="mosaic-tile-desc">Investigamos sonidos e instrumentación para crear música colectiva, integrando improvisación y composición.</p>
                 </div>
             </div>
             <div class="mosaic-tile bg-mustard">
@@ -1902,6 +1969,7 @@
                 <div class="tile-content">
 
                     <h3>Cine</h3>
+                    <p class="mosaic-tile-desc">Creamos cortometrajes y videoclips a partir de un trabajo colectivo.</p>
                 </div>
             </div>
             <div class="mosaic-tile bg-terracotta">
@@ -1928,12 +1996,14 @@
                 <div class="tile-content">
 
                     <h3>Ciudadanía</h3>
+                    <p class="mosaic-tile-desc">Promovemos la participación democrática y la organización grupal.</p>
                 </div>
             </div>
             <div class="mosaic-tile bg-sage">
                 <div class="tile-content">
 
                     <h3>Fusion textil</h3>
+                    <p class="mosaic-tile-desc">Intervenimos prendas de manera artística para su posterior comercialización.</p>
                 </div>
             </div>
             <div class="mosaic-tile bg-mustard">
@@ -1948,18 +2018,21 @@
                 <div class="tile-content">
 
                     <h3>Títeres</h3>
+                    <p class="mosaic-tile-desc">Creamos títeres, escenografías y utilería, y exploramos cómo utilizarlos para contar historias.</p>
                 </div>
             </div>
             <div class="mosaic-tile bg-night">
                 <div class="tile-content">
 
                     <h3>Cestería</h3>
+                    <p class="mosaic-tile-desc">Creamos cestas, objetos utilitarios y esculturas desde el arte textil.</p>
                 </div>
             </div>
             <div class="mosaic-tile bg-wine">
                 <div class="tile-content">
 
                     <h3>Experiencias gráficas</h3>
+                    <p class="mosaic-tile-desc">Experimentamos con técnicas no convencionales de arte impreso, explorando la repetición y la huella.</p>
                 </div>
             </div>
             <div class="mosaic-tile bg-moss">
