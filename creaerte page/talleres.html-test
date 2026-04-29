@@ -4,9 +4,9 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Talleres - Cre Arte Bariloche</title>
+    <title>Talleres - Cre-Arte Bariloche</title>
     <meta name="description"
-        content="Descubrí los talleres de pintura, dibujo y expresión artística de Cre Arte en Bariloche. Para todos los niveles y edades." />
+        content="Descubrí los talleres de pintura, dibujo y expresión artística de Cre-Arte en Bariloche. Para todos los niveles y edades." />
     <link rel="icon" type="image/png" href="./img/LOGO.png" />
 
     <!-- UIkit -->
@@ -1487,7 +1487,7 @@
     <!-- ── NAV ─────────────────────────────────────────────────────── -->
     <nav class="t-nav" id="mainNav">
         <a href="./index.html" class="top-logo">
-            <img src="./img/LOGO.png" alt="Cre Arte">
+            <img src="./img/LOGO.png" alt="Cre-Arte">
         </a>
         <div class="t-nav-links">
             <a href="./talleres.html">Talleres</a>
@@ -2000,7 +2000,7 @@
             </a>
         </div>
         <div class="footer-bottom">
-            &copy; 2026 Cre Arte Bariloche. Todos los derechos reservados.<br>
+            &copy; 2026 Cre-Arte Bariloche. Todos los derechos reservados.<br>
             Pagina desarollada por Qiell
         </div>
     </footer>
