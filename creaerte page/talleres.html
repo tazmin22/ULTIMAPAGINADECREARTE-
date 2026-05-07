@@ -930,12 +930,6 @@
 
         /* Clay to Forest */
 
-        .mosaic-tile:hover h3 {
-            transform: scale(1.05);
-            /* Slight pop */
-            transition: transform 0.4s ease;
-        }
-
         .mosaic-tile:hover {
             transform: translateZ(5px);
         }
@@ -962,6 +956,7 @@
             z-index: 10;
             text-align: center;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             width: 100%;
@@ -971,8 +966,9 @@
         .mosaic-tile-desc {
             position: absolute;
             left: 50%;
-            bottom: 1.4rem;
-            transform: translateX(-50%) translateY(10px);
+            top: 50%;
+            bottom: auto;
+            transform: translate(-50%, calc(-50% + 10px));
             width: min(86%, 18rem);
             font-family: 'Inter', sans-serif;
             font-size: clamp(0.72rem, 0.95vw, 0.92rem);
@@ -990,16 +986,20 @@
             pointer-events: none;
         }
 
-        .mosaic-tile:hover .mosaic-tile-desc,
-        .mosaic-tile:focus-within .mosaic-tile-desc {
-            opacity: 1;
-            transform: translateX(-50%) translateY(0);
+        .mosaic-tile.has-desc h3 {
+            transition: opacity 0.25s ease, transform 0.25s ease;
         }
 
-        .mosaic-tile.bg-forest:hover h3,
-        .mosaic-tile.bg-forest:focus-within h3 {
+        .mosaic-tile.has-desc:hover h3,
+        .mosaic-tile.has-desc:focus-within h3 {
             opacity: 0;
             transform: scale(0.96);
+        }
+
+        .mosaic-tile.has-desc:hover .mosaic-tile-desc,
+        .mosaic-tile.has-desc:focus-within .mosaic-tile-desc {
+            opacity: 1;
+            transform: translate(-50%, -50%);
         }
 
         /* Tile Colors - Earthy Palette (NO WHITE/BONE) */
@@ -1075,21 +1075,63 @@
 
         @media (max-width: 900px) {
             .workshop-mosaic-grid {
-                grid-template-columns: repeat(2, 1fr);
-                grid-auto-rows: 50vw;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                grid-auto-rows: minmax(220px, 52vw);
             }
 
-            .mosaic-tile:hover h3,
-            .mosaic-tile:focus-within h3 {
+            .mosaic-tile {
+                min-height: 210px;
+                padding: 1rem;
+                transform: none !important;
+            }
+
+            .tile-content {
+                height: 100%;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+            }
+
+            .mosaic-tile h3 {
+                font-size: clamp(0.88rem, 4.3vw, 1.05rem);
+                line-height: 1.15;
+                letter-spacing: 0;
+                text-transform: none;
+            }
+
+            .mosaic-tile-desc {
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                bottom: auto;
+                transform: translate(-50%, calc(-50% + 10px));
+                width: min(90%, 32rem);
+                max-height: calc(100% - 1.6rem);
+                overflow-y: auto;
+                font-size: clamp(0.7rem, 2.2vw, 0.82rem);
+                line-height: 1.45;
+                white-space: pre-line;
+                opacity: 0;
+                text-shadow: 0 2px 8px rgba(0, 0, 0, 0.28);
+                pointer-events: none;
+            }
+
+            .mosaic-tile.has-desc:focus-within h3,
+            .mosaic-tile.has-desc:hover h3 {
                 opacity: 0;
                 transform: scale(0.96);
             }
 
-            .mosaic-tile-desc {
-                width: min(88%, 16rem);
-                font-size: clamp(0.64rem, 2.2vw, 0.8rem);
-                line-height: 1.35;
-                bottom: 1rem;
+            .mosaic-tile.has-desc:hover .mosaic-tile-desc,
+            .mosaic-tile.has-desc:focus-within .mosaic-tile-desc {
+                opacity: 1;
+                transform: translate(-50%, -50%);
+                pointer-events: auto;
+            }
+
+            .mosaic-tile:hover::before,
+            .mosaic-tile:focus-within::before {
+                opacity: 1 !important;
             }
         }
 
@@ -1675,7 +1717,8 @@
                 <div class="tile-content">
 
                     <h3>Xilografía</h3>
-                    <p class="mosaic-tile-desc">Creamos obras gráficas de manera colaborativa, desde el diseño hasta la impresión.</p>
+                    <p class="mosaic-tile-desc">En el taller de xilografía se trabaja de manera colaborativa. Esto quiere decir que a partir de una temática, se piensa y se ejecuta la obra en conjunto, desde el boceto, el tallado y el entintado.
+La intención de este espacio es que los estudiantes puedan aprender y conocer cómo se piensa la imagen y las distintas cualidades de la técnica de grabado: xilografía.</p>
                 </div>
             </div>
             <div class="mosaic-tile bg-earth">
@@ -1719,6 +1762,7 @@
                 <div class="tile-content">
 
                     <h3>Música</h3>
+                    <p class="mosaic-tile-desc">Exploración con distintos instrumentos musicales, la voz y la percusión corporal a partir de la improvisación, utilizando distintas técnicas para expresarnos creativamente.</p>
                 </div>
             </div>
 
@@ -1761,7 +1805,7 @@ Exploramos desplazamientos, uso del espacio y creación coreográfica.</p>
             <div class="mosaic-tile bg-earth">
                 <div class="tile-content">
 
-                    <h3>Música</h3>
+                    <h3>Reflexión</h3>
                 </div>
             </div>
             <div class="mosaic-tile bg-night">
@@ -1864,8 +1908,7 @@ la creatividad colectiva.</p>
                 <div class="tile-content">
 
                     <h3>Experiencias gráficas</h3>
-                    <p class="mosaic-tile-desc">Experimentamos con técnicas no convencionales de arte impreso, explorando la
-repetición y la huella.</p>
+                    <p class="mosaic-tile-desc">El taller de experiencias gráficas tiene como fin experimentar con materiales y técnicas no convencionales. A partir de la huella y la repetición se explora el mundo del arte impreso.</p>
                 </div>
             </div>
             <div class="mosaic-tile bg-terracotta">
@@ -1886,8 +1929,7 @@ repetición y la huella.</p>
                 <div class="tile-content">
 
                     <h3>Batik/grabado</h3>
-                    <p class="mosaic-tile-desc">En el taller aplicamos esta técnica de teñido por reserva, transitando cada etapa del
-proceso para lograr piezas únicas.</p>
+                    <p class="mosaic-tile-desc">Es un taller en el que se fusionan las dos disciplinas artísticas. Se trabaja con la técnica de xilografía realizando una matriz que se estampa en tela y luego esa tela se interviene con la técnica de batik.</p>
                 </div>
             </div>
             <div class="mosaic-tile bg-clay">
@@ -1917,9 +1959,8 @@ coordinación y fuerza.</p>
             <div class="mosaic-tile bg-earth">
                 <div class="tile-content">
 
-                    <h3>Reflexión</h3>
-                    <p class="mosaic-tile-desc">Nos reunimos semanalmente para reflexionar sobre vínculos y género. Compartimos
-experiencias y promovemos la autonomía, los derechos y vínculos saludables.</p>
+                    <h3>Texturas sociales</h3>
+                    <p class="mosaic-tile-desc">Es un espacio de reflexión social y colectiva sobre situaciones actuales que atraviesan a los estudiantes (discapacidad, identidad, feminismo, derechos) con el fin de crear una producción artística a partir de las siguientes técnicas: bordado, fotografía y arte impreso.</p>
                 </div>
             </div>
             <div class="mosaic-tile bg-night">
@@ -1958,7 +1999,7 @@ composición. Investigamos distintas formas de mirar y representar la realidad.<
                 <div class="tile-content">
 
                     <h3>Diseño con luz</h3>
-                    <p class="mosaic-tile-desc">Combinamos fotografía y grabado para experimentar con la imagen y su huella.</p>
+                    <p class="mosaic-tile-desc">Es un taller en el que se combinan dos disciplinas artísticas: la fotografía y el grabado. En este espacio se experimentan distintas maneras de revelar y dejar la huella.</p>
                 </div>
             </div>
             <div class="mosaic-tile bg-forest">
@@ -1993,6 +2034,7 @@ improvisación y composición.</p>
                 <div class="tile-content">
 
                     <h3>Percusión Watawo</h3>
+                    <p class="mosaic-tile-desc">El taller de percusión Watawo es un grupo de música disidente de la Asociación Cre-Arte. Somos un palimpsesto musical que se amalgama a partir de la improvisación percusiva. Creamos formas sonoras con instrumentos formales e informales. En cada presentación vamos imprimiendo capas de sonidos que se amalgaman con las anteriores, generando texturas musicales únicas. Somos disidentes musicales porque nuestra expresión parte de provocar a aquello que consideramos estética musical hegemónica. Generamos piezas donde nos permitimos sentir y crear sin estar sometidos a mandatos o estéticas condicionantes, encontrando en los sonidos una auténtica forma de comunicarnos.</p>
                 </div>
             </div>
             <div class="mosaic-tile bg-night">
@@ -2007,6 +2049,7 @@ improvisación y composición.</p>
                 <div class="tile-content">
 
                     <h3>Tienda de arte</h3>
+                    <p class="mosaic-tile-desc">Es un espacio de producción artística que tiene como fin crear objetos que reflejen la identidad de Cre-Arte como institución y para su comercialización.</p>
                 </div>
             </div>
             <div class="mosaic-tile bg-moss">
@@ -2080,8 +2123,7 @@ materiales y técnicas para desarrollar nuestras producciones.</p>
                 <div class="tile-content">
 
                     <h3>Experiencias gráficas</h3>
-                    <p class="mosaic-tile-desc">Experimentamos con técnicas no convencionales de arte impreso, explorando la
-repetición y la huella.</p>
+                    <p class="mosaic-tile-desc">El taller de experiencias gráficas tiene como fin experimentar con materiales y técnicas no convencionales. A partir de la huella y la repetición se explora el mundo del arte impreso.</p>
                 </div>
             </div>
             <div class="mosaic-tile bg-moss">
@@ -2099,6 +2141,11 @@ repetición y la huella.</p>
         // Fast entrance for the mosaic
         document.addEventListener('DOMContentLoaded', () => {
             const tiles = document.querySelectorAll('.mosaic-tile');
+            tiles.forEach((tile) => {
+                if (tile.querySelector('.mosaic-tile-desc')) {
+                    tile.classList.add('has-desc');
+                }
+            });
             requestAnimationFrame(() => {
                 requestAnimationFrame(() => {
                     tiles.forEach((tile) => {
