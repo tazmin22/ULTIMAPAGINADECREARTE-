@@ -518,7 +518,6 @@
     .hand-pointer-trigger {
       position: relative;
       display: inline-block;
-      cursor: pointer;
       text-transform: none;
     }
 
@@ -529,16 +528,10 @@
       right: -20px;
       width: 130px;
       opacity: 0;
-      transform: translateY(30px) rotate(-15deg);
-      transition: all 0.28s cubic-bezier(0.165, 0.84, 0.44, 1);
+      transform: rotate(-15deg);
       pointer-events: none;
       filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.2));
       z-index: 100;
-    }
-
-    .where-content-col:hover .pointing-hand-map {
-      opacity: 1;
-      transform: translateY(0) rotate(-15deg);
     }
 
     .where-text-details {
@@ -2032,7 +2025,7 @@
   <!-- Dónde estamos SPLIT -->
   <section class="where-section" id="ubicacion" aria-labelledby="where-heading">
     <div class="where-split">
-      <h2 id="where-heading" class="where-headline" uk-scrollspy="cls: uk-animation-slide-top-small; delay: 100">
+      <h2 id="where-heading" class="where-headline">
         <span class="where-highlight">
         <span class="hand-pointer-trigger">
             Encontranos
@@ -2045,7 +2038,7 @@
       </h2>
 
       <!-- Content Column (rest of it) -->
-      <div class="where-content-col" uk-scrollspy="cls: uk-animation-slide-left-small; delay: 200">
+      <div class="where-content-col">
         <div class="where-text-details">
           <p>Un espacio de encuentro, arte y comunidad en el corazón de San Carlos de Bariloche.</p>
 
@@ -2070,7 +2063,7 @@
       </div>
 
       <!-- Image Column -->
-      <div class="where-image-col" uk-scrollspy="cls: uk-animation-fade; delay: 200" role="img" aria-label="Imagen decorativa del edificio de Cre-Arte">
+      <div class="where-image-col" role="img" aria-label="Imagen decorativa del edificio de Cre-Arte">
         <div class="where-image-frame" aria-hidden="true">
           <div class="where-corner-gif" aria-hidden="true">
             <img src="./img/gifvideo.gif" alt="" role="presentation">
