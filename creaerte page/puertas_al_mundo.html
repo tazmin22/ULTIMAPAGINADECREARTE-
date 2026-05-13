@@ -1132,18 +1132,26 @@
         <section class="horizontal-gallery-section" aria-label="Galería de imágenes de encuentros artísticos"
             uk-scrollspy="cls: uk-animation-fade; delay: 300">
             <div class="h-gallery-container" role="group"
-                aria-label="Galería de fotos de actividades artísticas inclusivas">
+                aria-label="Galería de fotos de actividades artísticas inclusivas" uk-lightbox="animation: slide">
                 <div class="h-gallery-item">
-                    <img src="img/artexigual2.webp" alt="Taller artístico internacional con participantes del festival">
+                    <a href="img/artexigual2.webp">
+                        <img src="img/artexigual2.webp" alt="Taller artístico internacional con participantes del festival">
+                    </a>
                 </div>
                 <div class="h-gallery-item">
-                    <img src="img/artexigual3.webp" alt="Encuentro cultural entre artistas de diferentes países">
+                    <a href="img/artexigual3.webp">
+                        <img src="img/artexigual3.webp" alt="Encuentro cultural entre artistas de diferentes países">
+                    </a>
                 </div>
                 <div class="h-gallery-item">
-                    <img src="img/artexigual5.webp" alt="Actividad de expresión artística en el festival inclusivo">
+                    <a href="img/artexigual5.webp">
+                        <img src="img/artexigual5.webp" alt="Actividad de expresión artística en el festival inclusivo">
+                    </a>
                 </div>
                 <div class="h-gallery-item">
-                    <img src="img/artexigual6.webp" alt="Comunidad de artistas de Cre-Arte compartiendo experiencias">
+                    <a href="img/artexigual6.webp">
+                        <img src="img/artexigual6.webp" alt="Comunidad de artistas de Cre-Arte compartiendo experiencias">
+                    </a>
                 </div>
             </div>
         </section>
@@ -1164,6 +1172,12 @@
                 aspect-ratio: 4 / 3;
                 overflow: hidden;
                 border-radius: 4px;
+            }
+
+            .h-gallery-item a {
+                display: block;
+                width: 100%;
+                height: 100%;
             }
 
             .h-gallery-item img {
