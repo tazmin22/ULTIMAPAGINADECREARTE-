@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap');
+
 /* ===== SHARED FOOTER STYLES ===== */
 .mag-footer {
     padding: 50px 10%;
@@ -94,6 +96,69 @@
     padding-top: 30px;
     font-family: 'Inter', sans-serif;
     letter-spacing: 1px;
+}
+
+.footer-bottom .footer-copyright {
+    margin-bottom: 20px;
+}
+
+.link-qiell {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-width: 210px;
+    padding: 8px 18px 6px;
+    border-radius: 20px;
+    background: transparent;
+    color: #e2e2e2;
+    text-decoration: none;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.link-qiell,
+.link-qiell:hover,
+.link-qiell:focus,
+.link-qiell:active,
+.link-qiell:visited {
+    text-decoration: none !important;
+}
+
+.link-qiell:hover {
+    color: #f0f0f0;
+    transform: translateY(-3px);
+    opacity: 0.94;
+}
+
+.link-qiell:focus-visible {
+    outline: 3px solid rgba(142, 91, 255, 0.4);
+    outline-offset: 4px;
+}
+
+.qiell-credit-label {
+    font-size: 0.82rem;
+    line-height: 1.3;
+    color: #d0d0d0;
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.32);
+}
+
+.qiell-credit-logo {
+    display: block;
+    width: 78px;
+    max-width: 100%;
+    height: auto;
+    filter: drop-shadow(0 6px 16px rgba(91, 69, 202, 0.22));
+}
+
+.qiell-credit-name {
+    font-size: 1rem;
+    line-height: 1;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    letter-spacing: 0;
+    color: #d9d9d9;
+    text-shadow: 0 1px 10px rgba(0, 0, 0, 0.34);
 }
 
 /* Subtle page jump button: go to top / bottom */
@@ -207,6 +272,20 @@
     .page-scroll-toggle svg {
         width: 16px;
         height: 16px;
+    }
+
+    .link-qiell {
+        min-width: 0;
+        width: min(100%, 230px);
+        padding: 8px 14px 6px;
+    }
+
+    .qiell-credit-logo {
+        width: 72px;
+    }
+
+    .qiell-credit-name {
+        font-size: 0.94rem;
     }
 }
 
@@ -344,25 +423,6 @@ nav .floating-logo:hover img {
     color: #899475;
 }
 
-
-/* Qiell Link (from talleres) */
-.link-qiell {
-    color: inherit;
-    text-decoration: none;
-    font-weight: 700;
-    position: relative;
-    display: inline-block;
-    transition: all 0.3s ease;
-    padding: 0 5px;
-    font-size: 0.88rem;
-}
-
-.link-qiell:hover {
-    color: inherit;
-    text-decoration: none;
-    transform: translateY(-2px);
-    letter-spacing: 2px;
-}
 
 /* Hearts Animation */
 .heart-particle {
