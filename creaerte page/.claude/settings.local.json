@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dpkg -l)",
+      "Bash(apt list *)",
+      "Bash(pip3 install *)",
+      "Bash(python3)",
+      "Bash(ls -d \"/home/taz/Escritorio/proyecto-crearte/creaerte page/\"*Obras*)",
+      "Bash(grep -i \"\\\\.webp$\")"
+    ]
+  }
+}

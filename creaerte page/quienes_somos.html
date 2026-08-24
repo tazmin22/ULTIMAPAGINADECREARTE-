@@ -239,7 +239,7 @@
             z-index: 50;
             margin: 0;
             color: #111;
-            padding: 120px 8%;
+            padding: 80px 8% 120px;
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -251,17 +251,27 @@
 
         .about-spread {
             display: grid;
-            grid-template-columns: 1fr 1fr 0.8fr;
-            gap: 40px;
+            grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.95fr);
+            align-items: start;
+            column-gap: clamp(32px, 4vw, 64px);
             width: 100%;
             max-width: 1400px;
             margin: 0 auto;
             position: relative;
         }
 
+        .about-spread-media {
+            grid-column: 1;
+            grid-row: 1 / span 3;
+            position: relative;
+            min-height: 470px;
+            width: 100%;
+        }
+
         /* Título apilado y masivo */
         .about-spread-title {
             grid-column: 2;
+            grid-row: 1;
             margin: 0;
             line-height: 0.9;
             font-family: 'Inter', sans-serif;
@@ -289,24 +299,26 @@
         /* Bloques de texto editorial */
         .about-spread-text {
             grid-column: 2;
-            margin-top: 30px;
+            grid-row: 2;
+            margin-top: 22px;
             font-family: 'Inter', sans-serif;
             font-size: 0.78rem;
-            line-height: 1.8;
-            letter-spacing: 1px;
-            text-transform: uppercase;
+            line-height: 1.7;
+            letter-spacing: 0.45px;
+            text-transform: none;
             color: #333;
             max-width: 380px;
         }
 
         .about-spread-body {
             grid-column: 2;
-            margin-top: 50px;
+            grid-row: 3;
+            margin-top: 38px;
             font-family: 'Inter', sans-serif;
             font-size: 0.78rem;
-            line-height: 1.8;
-            letter-spacing: 1px;
-            text-transform: uppercase;
+            line-height: 1.7;
+            letter-spacing: 0.45px;
+            text-transform: none;
             color: #333;
             max-width: 350px;
         }
@@ -327,19 +339,19 @@
 
         /* Posiciones basadas en la captura */
         .sp-1 {
-            top: -80px;
-            left: -160px;
-            width: 500px;
-            height: 570px;
+            top: 0;
+            left: 0;
+            width: min(42%, 320px);
+            height: 320px;
             z-index: 5;
             opacity: 0.9;
         }
 
         .sp-2 {
-            bottom: -100px;
-            left: 80px;
-            width: 320px;
-            height: 400px;
+            bottom: 0;
+            left: clamp(28px, 12%, 80px);
+            width: min(46%, 320px);
+            height: clamp(270px, 30vw, 400px);
             z-index: 10;
         }
 
@@ -352,11 +364,23 @@
         }
 
         .sp-4 {
-            bottom: 20px;
-            right: -80px;
-            width: 450px;
-            height: 600px;
+            top: 0;
+            right: 0;
+            width: min(62%, 450px);
+            height: 438px;
             z-index: 10;
+        }
+
+        .sp-1 img {
+            object-position: center 36%;
+        }
+
+        .sp-2 img {
+            object-position: center 32%;
+        }
+
+        .sp-4 img {
+            object-position: center 42%;
         }
 
         /* Línea vertical de revista */
@@ -1041,50 +1065,68 @@
             }
 
             .about-spread {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
+                display: grid !important;
+                grid-template-columns: 1fr;
                 gap: 24px;
                 max-width: 760px;
             }
 
             .about-spread-title {
                 order: 1;
+                grid-row: auto;
             }
 
             .about-spread-text {
                 order: 2;
-                margin-top: 10px;
+                margin-top: 0;
+                grid-row: auto;
             }
 
             .about-spread-body {
                 order: 3;
                 margin-top: 0;
+                grid-row: auto;
             }
 
-            .spread-photo {
+            .about-spread-media {
+                order: 4;
+                grid-row: auto;
+                display: grid;
+                grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+                grid-template-rows: repeat(2, minmax(180px, 1fr));
+                gap: 16px;
+                min-height: auto;
+                width: 100%;
+            }
+
+            .about-spread-media .spread-photo {
                 position: relative !important;
                 top: auto !important;
                 left: auto !important;
                 right: auto !important;
                 bottom: auto !important;
-                width: min(100%, 720px) !important;
-                height: auto !important;
-                aspect-ratio: 6 / 5;
-                margin: 0 auto;
+                width: 100% !important;
+                height: 100% !important;
                 transform: none !important;
+                margin: 0 !important;
             }
 
             .sp-1 {
-                order: 4;
+                grid-column: 1;
+                grid-row: 1 / span 2;
+                aspect-ratio: 4 / 5;
             }
 
             .sp-2 {
-                order: 5;
+                grid-column: 2;
+                grid-row: 1;
+                aspect-ratio: 1 / 1;
             }
 
             .sp-4 {
-                order: 6;
+                grid-column: 2;
+                grid-row: 2;
+                aspect-ratio: 1 / 1.12;
             }
 
             .about-spread-title,
@@ -1138,24 +1180,15 @@
             }
 
             .about-spread {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
+                display: grid !important;
+                grid-template-columns: 1fr;
                 gap: 20px;
             }
 
-            .spread-photo {
-                position: relative !important;
-                top: auto !important;
-                left: auto !important;
-                right: auto !important;
-                bottom: auto !important;
-                width: 100% !important;
-                max-width: 520px;
-                height: auto !important;
-                aspect-ratio: 5 / 4;
-                transform: none !important;
-                margin: 0 auto;
+            .about-spread-media {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                grid-template-rows: auto auto;
+                gap: 12px;
             }
 
             .about-spread-title,
@@ -1174,6 +1207,24 @@
 
             .about-spread-title span {
                 font-size: clamp(2rem, 7vw, 3.5rem);
+            }
+
+            .sp-1 {
+                grid-column: 1 / -1;
+                grid-row: 1;
+                aspect-ratio: 16 / 11;
+            }
+
+            .sp-2 {
+                grid-column: 1;
+                grid-row: 2;
+                aspect-ratio: 1 / 1.02;
+            }
+
+            .sp-4 {
+                grid-column: 2;
+                grid-row: 2;
+                aspect-ratio: 1 / 1.02;
             }
 
             .spread-side-text {
@@ -1520,12 +1571,8 @@
 
     <!-- CABECERA PRINCIPAL -->
     <header class="hero-splash" id="portada">
-        <video autoplay muted loop playsinline preload="auto" poster=""
-            aria-label="Video institucional de Cre-Arte en Bariloche">
-            <source src="./img/Diseño sin título.mp4" type="video/mp4">
-        </video>
+        <img src="./img/slide2.jpg.webp" alt="Cre-Arte en Bariloche" loading="eager" fetchpriority="high">
     </header>
-
 
     <a href="./index.html" class="floating-logo" aria-label="Ir al inicio de Cre-Arte">
         <img src="./img/LOGO.png" alt="Logo de Cre-Arte">
@@ -1571,11 +1618,12 @@
     <!-- MAGAZINE SPREAD SECTION (BIENVENIDOS) -->
     <section class="about-us-section section-reveal" aria-labelledby="titulo-somos">
         <div class="about-spread">
-            <!-- Fotos superpuestas (Editorial Style) -->
-            <div class="spread-photo sp-1 visible"><img src="./img/frente.webp" alt="Participantes de Cre-Arte en un viaje cultural" role="presentation"></div>
-            <div class="spread-photo sp-2 visible"><img src="./img/grupal.webp" alt="Actividades comunitarias de Cre-Arte en Jacobacci" role="presentation"></div>
-
-            <div class="spread-photo sp-4 visible"><img src="./img/SUM.webp" alt="Grupo de personas en un taller de Cre-Arte" role="presentation"></div>
+            <div class="about-spread-media" aria-hidden="true">
+                <!-- Fotos superpuestas (Editorial Style) -->
+                <div class="spread-photo sp-1 visible"><img src="./img/frente.webp" alt="Participantes de Cre-Arte en un viaje cultural" role="presentation"></div>
+                <div class="spread-photo sp-2 visible"><img src="./img/grupal.webp" alt="Actividades comunitarias de Cre-Arte en Jacobacci" role="presentation"></div>
+                <div class="spread-photo sp-4 visible"><img src="./img/SUM.webp" alt="Grupo de personas en un taller de Cre-Arte" role="presentation"></div>
+            </div>
 
             <div class="spread-side-text fade-in-right" aria-hidden="true">Cre-Arte Bariloche</div>
 
@@ -1787,57 +1835,54 @@
 
     <!-- FOOTER -->
     <footer class="mag-footer" role="contentinfo">
-        <div class="footer-donation fade-in-up">
-            <div class="qr-interactive-container">
-                <img src="./img/manos_donar.webp" alt="" role="presentation" class="qr-hands-reveal">
-                <div class="qr-base" uk-lightbox>
-                    <a href="./img/mercadopago_qr.png" data-caption="Alias: crearte.bariloche">
-                        <img src="./img/mercadopago_qr.png" alt="Código QR de Mercado Pago. Alias: crearte.bariloche">
-                    </a>
-                </div>
+        <div class="footer-wave" aria-hidden="true">
+            <svg viewBox="0 0 1440 160" preserveAspectRatio="none">
+                <path fill="#eee6d8" d="M0 42C225 108 450 137 690 132c238-5 397-104 620-73 57 8 99 21 130 35v66H0Z" />
+            </svg>
+        </div>
+        <div class="footer-content">
+            <div class="footer-columns">
+                <section class="footer-column">
+                    <div class="footer-donation" aria-label="Donar a Cre-Arte">
+                        <div class="qr-interactive-container">
+                            <img src="./img/manos_donar.webp" alt="" role="presentation" class="qr-hands-reveal">
+                            <div class="qr-base" uk-lightbox>
+                                <a href="./img/mercadopago_qr.png" data-caption="Alias: crearte.bariloche">
+                                    <img src="./img/mercadopago_qr.png" alt="Código QR de Mercado Pago. Alias: crearte.bariloche">
+                                </a>
+                            </div>
+                        </div>
+                        <span>Doná y apoyá nuestra labor</span>
+                    </div>
+                </section>
+                <section class="footer-column">
+                    <div class="footer-social-block">
+                        <h3>Seguinos en:</h3>
+                        <div class="footer-social" aria-label="Redes sociales de Cre-Arte">
+                            <a href="https://www.instagram.com/creartebrc/" target="_blank" rel="noopener noreferrer" aria-label="Instagram de Cre-Arte (se abre en nueva pestaña)">
+                                <span uk-icon="icon: instagram; ratio: 1.2" aria-hidden="true"></span>
+                            </a>
+                            <a href="https://www.facebook.com/creartebrc" target="_blank" rel="noopener noreferrer" aria-label="Facebook de Cre-Arte (se abre en nueva pestaña)">
+                                <span uk-icon="icon: facebook; ratio: 1.2" aria-hidden="true"></span>
+                            </a>
+                            <a class="footer-social-icon spotify-icon" href="https://open.spotify.com/show/0GyrmphdSMMSeWOZtYImGz" target="_blank" rel="noopener noreferrer" aria-label="Spotify de Cre-Arte (se abre en nueva pestaña)">
+                                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                    <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8" />
+                                    <path d="M7 10.2c3.2-1 6.5-.9 10 .4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                                    <path d="M7.9 13.2c2.6-.8 5.2-.7 8 .2" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" />
+                                    <path d="M8.9 15.7c1.9-.4 3.8-.3 5.5.2" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" />
+                                </svg>
+                            </a>
+                            <a href="https://www.youtube.com/@cre-arte1309" target="_blank" rel="noopener noreferrer" aria-label="YouTube de Cre-Arte (se abre en nueva pestaña)">
+                                <span uk-icon="icon: youtube; ratio: 1.2" aria-hidden="true"></span>
+                            </a>
+                        </div>
+                    </div>
+                </section>
             </div>
-            <span>Doná y apoyá nuestra labor</span>
-        </div>
-        <div class="footer-links" style="margin-bottom: 12px;" role="navigation" aria-label="Enlaces del sitio">
-            <a href="./index.html">Inicio</a>
-            <a href="./talleres.html">Talleres</a>
-            <a href="./quienes_somos.html" aria-current="page">Quiénes Somos</a>
-            <a href="./puertas_al_mundo.html">Puertas al Mundo</a>
-        </div>
-        <div class="footer-links" style="margin-bottom: 30px;" role="navigation" aria-label="Más enlaces">
-            <a href="./galeria.html">Galería</a>
-            <a href="./obras.html">Arte Visual</a>
-        </div>
-        <div class="footer-social" aria-label="Redes sociales de Cre-Arte">
-            <a href="https://www.instagram.com/creartebrc/" target="_blank" rel="noopener noreferrer" aria-label="Instagram de Cre-Arte (se abre en nueva pestaña)">
-                <span uk-icon="icon: instagram; ratio: 1.2" aria-hidden="true"></span>
-            </a>
-            <a href="https://www.facebook.com/creartebrc" target="_blank" rel="noopener noreferrer" aria-label="Facebook de Cre-Arte (se abre en nueva pestaña)">
-                <span uk-icon="icon: facebook; ratio: 1.2" aria-hidden="true"></span>
-            </a>
-            <a class="footer-social-icon spotify-icon" href="https://open.spotify.com/show/0GyrmphdSMMSeWOZtYImGz" target="_blank" rel="noopener noreferrer" aria-label="Spotify de Cre-Arte (se abre en nueva pestaña)">
-                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8" />
-                    <path d="M7 10.2c3.2-1 6.5-.9 10 .4" stroke="currentColor" stroke-width="1.5"
-                        stroke-linecap="round" />
-                    <path d="M7.9 13.2c2.6-.8 5.2-.7 8 .2" stroke="currentColor" stroke-width="1.35"
-                        stroke-linecap="round" />
-                    <path d="M8.9 15.7c1.9-.4 3.8-.3 5.5.2" stroke="currentColor" stroke-width="1.25"
-                        stroke-linecap="round" />
-                </svg>
-            </a>
-            <a href="https://www.youtube.com/@cre-arte1309" target="_blank" rel="noopener noreferrer" aria-label="YouTube de Cre-Arte (se abre en nueva pestaña)">
-                <span uk-icon="icon: youtube; ratio: 1.2" aria-hidden="true"></span>
-            </a>
-        </div>
-        <div class="footer-bottom">
-            <div class="footer-copyright">&copy; 2026 Cre-Arte Bariloche. Todos los derechos reservados.</div>
-            <a href="https://qiell.com.ar/" target="_blank" rel="noopener noreferrer" class="link-qiell"
-                aria-label="Qiell (se abre en nueva pestaña)">
-                <span class="qiell-credit-label">Tienda desarrollada por</span>
-                <img src="./img/logo-qiell.svg" alt="" class="qiell-credit-logo">
-                <span class="qiell-credit-name">Qiell</span>
-            </a>
+            <div class="footer-bottom">
+                <div class="footer-copyright">&copy; 2026 Cre-Arte Bariloche. Todos los derechos reservados.</div>
+            </div>
         </div>
     </footer>
 
