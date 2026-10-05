@@ -17,9 +17,6 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Caveat:wght@600;700&family=Inter:wght@300;400;600;700&display=swap"
-        rel="stylesheet">
     <link rel="stylesheet" href="responsive.css">
     <link rel="stylesheet" href="nav-footer.css">
 
@@ -47,7 +44,7 @@
             padding: 0;
             background: #fff;
             color: #111;
-            font-family: 'EB Garamond', serif;
+            font-family: 'Inter', sans-serif;
             overflow-x: hidden;
             overflow-y: auto;
             /* Scroll enabled */
@@ -185,7 +182,7 @@
 
         .t-hero-overlay {
             grid-area: 1 / 1;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, transparent 60%);
+            background: transparent;
             width: 100%;
             height: 100%;
             z-index: 5;
@@ -208,7 +205,7 @@
             display: inline-block;
             color: #fff;
             margin-bottom: 0px;
-            text-shadow: 2px 2px 15px rgba(0, 0, 0, 0.8);
+            text-shadow: none;
         }
 
         .t-title-block h2 {
@@ -228,7 +225,7 @@
         }
 
         .t-title-block.accent h3 {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Inter', sans-serif;
             font-style: italic;
             font-weight: 400;
             font-size: clamp(2rem, 5vw, 3.8rem);
@@ -269,7 +266,7 @@
         .t-video-media {
             border-radius: 4px;
             overflow: hidden;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
+            box-shadow: none;
             position: relative;
         }
 
@@ -290,12 +287,12 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.2);
+            background: transparent;
             transition: all 0.4s ease;
         }
 
         .custom-video-thumb:hover::after {
-            background: rgba(0, 0, 0, 0.4);
+            background: transparent;
         }
 
         .custom-video-thumb:hover .video-poster {
@@ -324,7 +321,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 0 40px rgba(0, 0, 0, 0.4);
+            box-shadow: none;
             transition: all 0.4s ease;
         }
 
@@ -338,7 +335,7 @@
         .custom-video-thumb:hover .video-play-btn {
             transform: translate(-50%, -50%) scale(1.1);
             background: transparent;
-            box-shadow: 0 0 60px rgba(0, 0, 0, 0.6);
+            box-shadow: none;
         }
 
         .t-video-text {
@@ -432,7 +429,7 @@
             z-index: 1;
             /* Above bg, below video */
             pointer-events: none;
-            filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.05));
+            filter: none;
             overflow: hidden;
             border: none;
         }
@@ -499,7 +496,7 @@
         /* ── MAG TALLERES SCATTERED IMAGES (OPCIONAL/RESTANTE) ── */
         .mag-scatter-img {
             position: absolute;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            box-shadow: none;
             transition: transform 1.2s cubic-bezier(0.165, 0.84, 0.44, 1), opacity 1.2s ease;
             will-change: transform;
             cursor: pointer;
@@ -585,7 +582,7 @@
             bottom: 15%;
             right: 25%;
             max-width: 300px;
-            font-family: 'EB Garamond', serif;
+            font-family: 'Inter', sans-serif;
             font-size: 1.1rem;
             line-height: 1.6;
             color: #333;
@@ -615,7 +612,7 @@
         }
 
         .t-offer-header h2 span {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Inter', sans-serif;
             font-style: italic;
             font-weight: 400;
             font-size: 0.8em;
@@ -676,7 +673,7 @@
 
         .t-card-title em {
             display: block;
-            font-family: 'Playfair Display', serif;
+            font-family: 'Inter', sans-serif;
             font-style: italic;
             font-weight: 400;
             text-transform: none;
@@ -687,7 +684,7 @@
         }
 
         .t-card-subtitle {
-            font-family: 'Caveat', cursive;
+            font-family: 'Inter', sans-serif;
             font-size: 1.4rem;
             color: #6a1a1c;
             margin-bottom: 28px;
@@ -774,12 +771,12 @@
             display: inline-block;
             padding: 10px 25px;
             margin-bottom: 12px;
-            box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.05);
+            box-shadow: none;
             transform: rotate(-1.5deg);
         }
 
         .workshop-title-label.accent {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Inter', sans-serif;
             font-style: italic;
             font-weight: 400;
             text-transform: none;
@@ -860,7 +857,7 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(180deg, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.26));
+            background: transparent;
             opacity: 0;
             transition: opacity 0.25s ease;
             z-index: 5;
@@ -886,7 +883,7 @@
             word-wrap: break-word;
             overflow-wrap: break-word;
             max-width: 100%;
-            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            text-shadow: none;
         }
 
         .mosaic-tile.bg-earth:hover {
@@ -988,7 +985,7 @@
             opacity: 0;
             transition: opacity 0.3s ease, transform 0.3s ease;
             z-index: 11;
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.28);
+            text-shadow: none;
             pointer-events: none;
         }
 
@@ -1122,7 +1119,7 @@
                 hyphens: auto;
                 padding: 0 0.1rem;
                 opacity: 0;
-                text-shadow: 0 2px 8px rgba(0, 0, 0, 0.28);
+                text-shadow: none;
                 pointer-events: none;
             }
 
@@ -1171,7 +1168,7 @@
         }
 
         .t-intro-title {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Inter', sans-serif;
             font-weight: 700;
             font-size: clamp(2.8rem, 4.5vw, 4.5rem);
             line-height: 0.92;
@@ -1242,13 +1239,13 @@
             position: absolute;
             bottom: 40px;
             left: -20px;
-            font-family: 'Caveat', cursive;
+            font-family: 'Inter', sans-serif;
             font-size: 1.5rem;
             color: var(--dark);
             background: var(--cream);
             padding: 10px 20px 10px 30px;
             transform: rotate(-3deg);
-            box-shadow: 3px 3px 12px rgba(0, 0, 0, .12);
+            box-shadow: none;
         }
 
         /* ── OFERTA SECTION ──────────────────────────────────────────── */
@@ -1273,7 +1270,7 @@
         }
 
         .t-offer-header h2 span {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Inter', sans-serif;
             font-style: italic;
             font-weight: 400;
             font-size: 0.8em;
@@ -1341,7 +1338,7 @@
 
         .t-card-title em {
             display: block;
-            font-family: 'Playfair Display', serif;
+            font-family: 'Inter', sans-serif;
             font-style: italic;
             font-weight: 400;
             text-transform: none;
@@ -1352,7 +1349,7 @@
         }
 
         .t-card-subtitle {
-            font-family: 'Caveat', cursive;
+            font-family: 'Inter', sans-serif;
             font-size: 1.4rem;
             color: var(--orange);
             margin-bottom: 28px;
@@ -1452,7 +1449,7 @@
             bottom: 0;
             left: 0;
             right: 0;
-            background: linear-gradient(to top, rgba(15, 8, 2, .7), transparent);
+            background: transparent;
             padding: 40px 30px 20px;
             color: rgba(255, 255, 255, .7);
             font-family: 'Inter', sans-serif;
@@ -1480,7 +1477,7 @@
         }
 
         .t-bio-name {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Inter', sans-serif;
             font-size: clamp(2rem, 3.5vw, 3.2rem);
             font-weight: 700;
             color: var(--dark);
@@ -1489,7 +1486,7 @@
         }
 
         .t-bio-role {
-            font-family: 'Caveat', cursive;
+            font-family: 'Inter', sans-serif;
             font-size: 1.4rem;
             color: var(--wine);
             margin-bottom: 28px;
@@ -1529,7 +1526,7 @@
 
         .t-quote::before {
             content: '"';
-            font-family: 'Playfair Display', serif;
+            font-family: 'Inter', sans-serif;
             font-size: 18rem;
             color: rgba(106, 26, 28, .06);
             position: absolute;
@@ -1541,7 +1538,7 @@
         }
 
         .t-quote q {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Inter', sans-serif;
             font-style: italic;
             font-size: clamp(1.4rem, 2.5vw, 2.1rem);
             color: var(--wine);
@@ -1628,15 +1625,17 @@
 
         /* === NEW PREMIUM FOOTER === */
     </style>
+    <link rel="stylesheet" href="site-base.css">
 </head>
 
 <body>
     <a href="#contenido-principal" class="skip-link">Saltar al contenido principal</a>
     <!-- ── NAV ─────────────────────────────────────────────────────── -->
     <nav class="t-nav" id="mainNav" aria-label="Navegación principal">
-        <a href="./index.html" class="top-logo" aria-label="Ir al inicio de Cre-Arte">
+        <a href="./index.html" class="t-nav-logo" aria-label="Ir al inicio de Cre-Arte">
             <img src="./img/LOGO.png" alt="Logo de Cre-Arte">
         </a>
+
         <div class="t-nav-links" role="menubar">
             <a href="./quienes_somos.html" role="menuitem">Quiénes Somos</a>
             <a href="./talleres.html" role="menuitem" aria-current="page">Talleres</a>
@@ -1654,8 +1653,8 @@
 
     <div class="mobile-menu" id="mobile-menu" aria-label="Menú móvil">
         <ul class="mobile-menu-links" role="menu">
-            <li role="none"><a href="./talleres.html" role="menuitem" aria-current="page">Talleres</a></li>
             <li role="none"><a href="./quienes_somos.html" role="menuitem">Quiénes Somos</a></li>
+            <li role="none"><a href="./talleres.html" role="menuitem" aria-current="page">Talleres</a></li>
             <li role="none"><a href="./puertas_al_mundo.html" role="menuitem">Puertas al Mundo</a></li>
             <li role="none"><a href="./galeria.html" role="menuitem">Galería</a></li>
             <li role="none"><a href="./obras.html" role="menuitem">Arte Visual</a></li>
@@ -1714,6 +1713,8 @@
     </section>
 
     <!-- ── LISTADO COMPLETO DE TALLERES (MOSAICO COLORIDO) ────────── -->
+    <div class="section-separator" aria-hidden="true"></div>
+
     <section class="workshop-mosaic-section" id="mosaic-list" style="margin-top: 50px; margin-bottom: 200px;" aria-label="Listado completo de talleres">
         <div class="workshop-mosaic-grid">
             <!-- Row 1 -->

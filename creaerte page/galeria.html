@@ -8,9 +8,6 @@
     <link rel="icon" type="image/png" href="./img/LOGO.png" />
 
     <!-- Google Fonts -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;700;900&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap"
-        rel="stylesheet">
     <!-- UIkit -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.19.4/dist/css/uikit.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.19.4/dist/js/uikit.min.js"></script>
@@ -22,7 +19,7 @@
     <link rel="stylesheet" href="responsive.css">
     <style>
         :root {
-            --paper: #f9f7f2;
+            --paper: #ffffff;
             --orange: #e65c00;
             --text: #111;
         }
@@ -42,7 +39,7 @@
             overflow-x: hidden !important;
             background-color: var(--paper);
             color: var(--text);
-            font-family: 'EB Garamond', serif;
+            font-family: 'Inter', sans-serif;
             animation: fadeInPage 1.2s ease-out;
         }
 
@@ -75,7 +72,7 @@
         .t-nav.scrolled {
             background: rgba(255, 255, 255, 0.95);
             padding: 18px 0;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+            box-shadow: none;
             backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(0, 0, 0, 0.05);
         }
@@ -95,7 +92,7 @@
         .floating-logo img {
             height: 90px;
             transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-            filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.08));
+            filter: none;
         }
 
         .scrolled .floating-logo img {
@@ -186,7 +183,7 @@
 
         .obras-title {
             margin: 0;
-            font-family: 'Playfair Display', serif;
+            font-family: 'Inter', sans-serif;
             font-size: clamp(3rem, 6vw, 5.4rem);
             line-height: 0.92;
             letter-spacing: -0.03em;
@@ -356,14 +353,14 @@
             border-radius: 4px;
             overflow: hidden;
             background: #fff;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+            box-shadow: none;
             transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
             min-width: 0;
         }
 
         .gallery-item:hover {
             transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            box-shadow: none;
             z-index: 10;
         }
 
@@ -394,7 +391,7 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.05));
+            background: transparent;
             z-index: 1;
             pointer-events: none;
         }
@@ -476,16 +473,17 @@
             }
         }
     </style>
+    <link rel="stylesheet" href="site-base.css">
 </head>
 
-<body>
+<body class="page-white">
     <a href="#contenido-principal" class="skip-link">Saltar al contenido principal</a>
 
-    <a href="./index.html" class="floating-logo" aria-label="Ir al inicio de Cre-Arte">
-        <img src="./img/LOGO.png" alt="Logo de Cre-Arte">
-    </a>
-
     <nav class="t-nav" aria-label="Navegación principal">
+        <a href="./index.html" class="t-nav-logo" aria-label="Ir al inicio de Cre-Arte">
+            <img src="./img/LOGO.png" alt="Logo de Cre-Arte">
+        </a>
+
         <div class="t-nav-links" role="menubar">
             <a href="quienes_somos.html" role="menuitem">Quiénes Somos</a>
             <a href="talleres.html" role="menuitem">Talleres</a>
@@ -503,8 +501,8 @@
 
     <div class="mobile-menu" id="mobile-menu" aria-label="Menú móvil">
         <ul class="mobile-menu-links" role="menu">
-            <li role="none"><a href="./talleres.html" role="menuitem">Talleres</a></li>
             <li role="none"><a href="./quienes_somos.html" role="menuitem">Quiénes Somos</a></li>
+            <li role="none"><a href="./talleres.html" role="menuitem">Talleres</a></li>
             <li role="none"><a href="./puertas_al_mundo.html" role="menuitem">Puertas al Mundo</a></li>
             <li role="none"><a href="./galeria.html" role="menuitem" aria-current="page">Galería</a></li>
             <li role="none"><a href="./obras.html" role="menuitem">Arte Visual</a></li>
@@ -520,6 +518,8 @@
                 <p class="obras-count" id="galeria-count"></p>
             </header>
         </section>
+
+        <div class="section-separator" aria-hidden="true"></div>
 
         <section class="gallery-shell" aria-label="Galería de fotos de Cre-Arte">
             <div class="gallery-sections">

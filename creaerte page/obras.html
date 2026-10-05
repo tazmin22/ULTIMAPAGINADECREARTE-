@@ -8,9 +8,6 @@
     <link rel="icon" type="image/png" href="./img/LOGO.png" />
 
     <!-- Google Fonts -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;700;900&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap"
-        rel="stylesheet">
     <!-- UIkit -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.19.4/dist/css/uikit.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.19.4/dist/js/uikit.min.js"></script>
@@ -22,7 +19,7 @@
     <link rel="stylesheet" href="nav-footer.css">
     <style>
         :root {
-            --paper: #f9f7f2;
+            --paper: #ffffff;
             --orange: #e65c00;
             --text: #111;
         }
@@ -42,7 +39,7 @@
             overflow-x: hidden !important;
             background-color: var(--paper);
             color: var(--text);
-            font-family: 'EB Garamond', serif;
+            font-family: 'Inter', sans-serif;
             animation: fadeInPage 1.2s ease-out;
         }
 
@@ -159,7 +156,7 @@
 
         .obras-title {
             margin: 0;
-            font-family: 'Playfair Display', serif;
+            font-family: 'Inter', sans-serif;
             font-size: clamp(2.8rem, 6vw, 5.2rem);
             line-height: 0.95;
             letter-spacing: -0.03em;
@@ -200,7 +197,7 @@
 
         .catalogos-title {
             margin: 0 0 12px;
-            font-family: 'Playfair Display', serif;
+            font-family: 'Inter', sans-serif;
             font-size: clamp(1.8rem, 3vw, 2.6rem);
             line-height: 1;
         }
@@ -251,7 +248,7 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: rgba(0, 0, 0, 0.5);
+            background: transparent;
             transition: background 0.35s ease;
         }
 
@@ -261,7 +258,7 @@
         }
 
         .catalogo-card:hover .catalogo-bg::after {
-            background: rgba(0, 0, 0, 0.62);
+            background: transparent;
         }
 
         .catalogo-card .catalogo-num,
@@ -344,12 +341,12 @@
         }
 
         .catalogo-num {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Inter', sans-serif;
             font-size: 3.5rem;
             line-height: 1;
             color: rgba(255,255,255,0.25);
             margin-bottom: 16px;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+            text-shadow: none;
         }
 
         .catalogo-card:nth-child(1) .catalogo-num { color: rgba(255, 224, 224, 0.4); }
@@ -365,7 +362,7 @@
             letter-spacing: 2px;
             margin-bottom: 8px;
             color: #fff;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            text-shadow: none;
             transition: transform 0.3s ease, letter-spacing 0.3s ease, text-shadow 0.3s ease;
         }
 
@@ -376,7 +373,7 @@
             line-height: 1.6;
             margin-bottom: 20px;
             flex-grow: 1;
-            text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
+            text-shadow: none;
             transition: color 0.3s ease, text-shadow 0.3s ease;
         }
 
@@ -391,24 +388,24 @@
             gap: 8px;
             text-decoration: none !important;
             transition: letter-spacing 0.3s ease, transform 0.3s ease, text-shadow 0.3s ease;
-            text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
+            text-shadow: none;
         }
 
         .catalogo-card:hover .catalogo-cta {
             letter-spacing: 2.5px;
             transform: translateY(-1px);
-            text-shadow: 0 2px 14px rgba(0, 0, 0, 0.8);
+            text-shadow: none;
         }
 
         .catalogo-card:hover .catalogo-name {
             letter-spacing: 3px;
             transform: translateY(-1px);
-            text-shadow: 0 3px 16px rgba(0, 0, 0, 0.9);
+            text-shadow: none;
         }
 
         .catalogo-card:hover .catalogo-desc {
             color: rgba(255,255,255,0.96);
-            text-shadow: 0 2px 12px rgba(0, 0, 0, 0.8);
+            text-shadow: none;
         }
 
         @media (max-width: 1100px) {
@@ -447,13 +444,13 @@
             border-radius: 0;
             overflow: hidden;
             background: rgba(255, 255, 255, 0.72);
-            box-shadow: 0 14px 34px rgba(0, 0, 0, 0.08);
+            box-shadow: none;
             transition: transform 0.35s ease, box-shadow 0.35s ease;
         }
 
         .obra-item:hover {
             transform: translateY(-2px);
-            box-shadow: 0 18px 44px rgba(0, 0, 0, 0.12);
+            box-shadow: none;
         }
 
         .obra-item a {
@@ -488,7 +485,7 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.05));
+            background: transparent;
             z-index: 1;
             pointer-events: none;
         }
@@ -538,16 +535,17 @@
             }
         }
     </style>
+    <link rel="stylesheet" href="site-base.css">
 </head>
 
-<body>
+<body class="page-white">
     <a href="#contenido-principal" class="skip-link">Saltar al contenido principal</a>
 
-    <a href="./index.html" class="floating-logo" aria-label="Ir al inicio de Cre-Arte">
-        <img src="./img/LOGO.png" alt="Logo de Cre-Arte">
-    </a>
-
     <nav class="t-nav" aria-label="Navegación principal">
+        <a href="./index.html" class="t-nav-logo" aria-label="Ir al inicio de Cre-Arte">
+            <img src="./img/LOGO.png" alt="Logo de Cre-Arte">
+        </a>
+
         <div class="t-nav-links" role="menubar">
             <a href="./quienes_somos.html" role="menuitem">Quiénes Somos</a>
             <a href="./talleres.html" role="menuitem">Talleres</a>
@@ -565,8 +563,8 @@
 
     <div class="mobile-menu" id="mobile-menu" aria-label="Menú móvil">
         <ul class="mobile-menu-links" role="menu">
-            <li role="none"><a href="./talleres.html" role="menuitem">Talleres</a></li>
             <li role="none"><a href="./quienes_somos.html" role="menuitem">Quiénes Somos</a></li>
+            <li role="none"><a href="./talleres.html" role="menuitem">Talleres</a></li>
             <li role="none"><a href="./puertas_al_mundo.html" role="menuitem">Puertas al Mundo</a></li>
             <li role="none"><a href="./galeria.html" role="menuitem">Galería</a></li>
             <li role="none"><a href="./obras.html" role="menuitem" aria-current="page">Arte Visual</a></li>
@@ -583,6 +581,8 @@
         <section aria-labelledby="obras-title">
             <div class="obras-grid" id="obras-grid" uk-lightbox="animation: slide"></div>
         </section>
+        <div class="section-separator" aria-hidden="true"></div>
+
         <section class="catalogos-section" aria-labelledby="catalogos-title">
             <p class="catalogos-kicker">Catálogos</p>
             <h2 class="catalogos-title" id="catalogos-title">Ver catálogos completos</h2>

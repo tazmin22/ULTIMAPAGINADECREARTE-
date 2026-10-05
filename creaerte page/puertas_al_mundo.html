@@ -17,9 +17,6 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@300;400;600;800;900&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Kaushan+Script&display=swap"
-        rel="stylesheet">
     <link rel="stylesheet" href="responsive.css">
     <link rel="stylesheet" href="nav-footer.css">
 
@@ -123,7 +120,7 @@
             height: 110px;
             width: auto;
             transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-            filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.2));
+            filter: none;
         }
 
         .t-nav-links {
@@ -269,13 +266,13 @@
             display: flex;
             flex-direction: column;
             transition: all 0.5s ease;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+            box-shadow: none;
             border: none;
         }
 
         .ed-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.08);
+            box-shadow: none;
         }
 
         /* Special Card Types */
@@ -574,7 +571,7 @@
             background: #fff;
             color: #000;
             transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            box-shadow: none;
         }
 
         /* Twinkling Stars Animation */
@@ -597,18 +594,18 @@
             background: rgba(255, 255, 255, 0.9);
             border-radius: 50%;
             pointer-events: none;
-            box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+            box-shadow: none;
             z-index: 1;
         }
 
         #stars-canvas {
             opacity: 1;
-            filter: drop-shadow(0 0 14px rgba(255, 255, 255, 0.32)) brightness(1.08) contrast(1.06);
+            filter: brightness(1.08) contrast(1.06);
         }
 
         @media (min-width: 1025px) {
             #stars-canvas {
-                filter: drop-shadow(0 0 18px rgba(255, 255, 255, 0.36)) brightness(1.1) contrast(1.08);
+                filter: brightness(1.1) contrast(1.08);
             }
         }
 
@@ -712,16 +709,18 @@
             }
         }
     </style>
+    <link rel="stylesheet" href="site-base.css">
 </head>
 
 <body>
 
     <a href="#contenido-principal" class="skip-link">Saltar al contenido principal</a>
 
-    <nav class="t-nav" aria-label="Navegación principal">
-        <a href="index.html" class="floating-logo" aria-label="Ir al inicio de Cre-Arte">
+    <nav class="t-nav nav-light" aria-label="Navegación principal">
+        <a href="./index.html" class="t-nav-logo" aria-label="Ir al inicio de Cre-Arte">
             <img src="./img/LOGO.png" alt="Logo de Cre-Arte">
         </a>
+
         <div class="t-nav-links" role="menubar">
             <a href="quienes_somos.html" role="menuitem">Quiénes Somos</a>
             <a href="talleres.html" role="menuitem">Talleres</a>
@@ -739,8 +738,8 @@
 
     <div class="mobile-menu" id="mobile-menu" role="navigation" aria-label="Menú móvil">
         <ul class="mobile-menu-links" role="menu">
-            <li role="none"><a href="./talleres.html" role="menuitem">Talleres</a></li>
             <li role="none"><a href="./quienes_somos.html" role="menuitem">Quiénes Somos</a></li>
+            <li role="none"><a href="./talleres.html" role="menuitem">Talleres</a></li>
             <li role="none"><a href="./puertas_al_mundo.html" role="menuitem" aria-current="page">Puertas al Mundo</a>
             </li>
             <li role="none"><a href="./galeria.html" role="menuitem">Galería</a></li>
@@ -750,7 +749,7 @@
 
     <main id="contenido-principal" tabindex="-1">
         <!-- HERO: PUERTAS AL MUNDO -->
-        <section class="banner-section" aria-labelledby="hero-title" uk-scrollspy="cls: uk-animation-fade; delay: 300">
+        <section class="banner-section" aria-label="Portada de Puertas al Mundo" uk-scrollspy="cls: uk-animation-fade; delay: 300">
             <!-- Performance Optimized Canvas Sky -->
             <canvas id="stars-canvas" aria-hidden="true"
                 style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1;">
@@ -758,18 +757,13 @@
             </canvas>
 
 
-            <div class="banner-content"
-                style="position: absolute; top: 70%; left: 50%; transform: translate(-50%, -50%); text-align: center; z-index: 10; width: 100%;">
-                <h1 id="hero-title" class="banner-brush-title"
-                    style="font-family: 'Kaushan Script', cursive; font-size: clamp(2rem, 7vw, 6.2rem); color: #ffffff; transform: rotate(-3deg); text-shadow: 0 10px 40px rgba(0,0,0,0.4); margin: 0; line-height: 1;">
-                    Puertas al Mundo
-                </h1>
-            </div>
         </section>
 
 
 
         <!-- SECTION: FESTIVAL (Modern Clean Layout) -->
+        <div class="section-separator" aria-hidden="true"></div>
+
         <section class="viajes-clean-section" aria-labelledby="festival-title"
             uk-scrollspy="cls: uk-animation-fade; delay: 200" style="margin-top: 100px;">
             <div class="viajes-container">
@@ -799,12 +793,14 @@
                 <div class="viajes-media">
                     <img src="img/artexigual7.webp"
                         alt="Artistas participantes en un encuentro del festival internacional de Cre-Arte"
-                        class="viajes-img" style="border-radius: 4px; box-shadow: 0 30px 60px rgba(0,0,0,0.1);">
+                        class="viajes-img" style="border-radius: 4px; box-shadow: none;">
                 </div>
             </div>
         </section>
 
         <!-- SECTION: VIAJES (Banner Style) -->
+        <div class="section-separator" aria-hidden="true"></div>
+
         <section class="editorial-section" aria-labelledby="viajes-title"
             uk-scrollspy="cls: uk-animation-fade; delay: 100"
             style="padding: 0; overflow: hidden; margin-bottom: 60px; width: 100%;">
@@ -815,7 +811,7 @@
                     style="padding: 100px 5%; text-align: center; position: relative; width: 100%; max-width: 1200px;">
                     <div class="video-title-box" style="margin: 0;">
                         <h2 id="viajes-title"
-                            style="font-size: 2.5rem; padding: 15px 45px; transform: rotate(-1.5deg); font-weight: 900; box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.1); margin: 0; background: #f9bd61; color: #fff; display: inline-block; text-transform: uppercase;">
+                            style="font-size: 2.5rem; padding: 15px 45px; transform: rotate(-1.5deg); font-weight: 900; box-shadow: none; margin: 0; background: #f9bd61; color: #fff; display: inline-block; text-transform: uppercase;">
                             VIAJES</h2>
                     </div>
                     <!-- Floating Card & Curly Arrow (Reveals on Hover) -->
@@ -829,7 +825,7 @@
                                 stroke="#FF9D42" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
                         <div
-                            style="background: #ffffff; padding: 40px; box-shadow: 0 30px 60px rgba(0,0,0,0.1); border: 1px solid #f0f0f0;">
+                            style="background: #ffffff; padding: 40px; box-shadow: none; border: 1px solid #f0f0f0;">
                             <p
                                 style="font-family: 'Inter', sans-serif; font-size: 0.95rem; color: #444; transform: none; margin: 0; line-height: 1.8; letter-spacing: 0.5px; font-weight: 500;">
                                 Cruzamos fronteras para compartir nuestra metodología, tender puentes culturales y
@@ -844,6 +840,8 @@
         </section>
 
         <!-- HORIZONTAL GALLERY (4 Columns) ADDED BELOW VIAJES -->
+        <div class="section-separator" aria-hidden="true"></div>
+
         <section class="horizontal-gallery-section" aria-label="Galería de imágenes de encuentros artísticos"
             uk-scrollspy="cls: uk-animation-fade; delay: 300">
             <div class="h-gallery-container" role="group"
@@ -961,7 +959,7 @@
                 position: relative;
                 overflow: hidden;
                 border-radius: 4px;
-                box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
+                box-shadow: none;
             }
 
             .viajes-img {
@@ -981,12 +979,12 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                background: rgba(0, 0, 0, 0.1);
+                background: transparent;
                 transition: background 0.3s ease;
             }
 
             .viajes-video-wrapper:hover .viajes-play-overlay {
-                background: rgba(0, 0, 0, 0.25);
+                background: transparent;
             }
 
             .viajes-play-btn {
@@ -1030,6 +1028,8 @@
 
 
         <!-- NARRATIVE SECTION (Expanding the message) -->
+        <div class="section-separator" aria-hidden="true"></div>
+
         <section class="narrative-section" aria-labelledby="red-arte-title">
             <div class="narrative-content">
                 <h3 id="red-arte-title" class="narrative-h3"
@@ -1107,6 +1107,8 @@
         </style>
 
         <!-- NEW EDITORIAL SECTION -->
+        <div class="section-separator" aria-hidden="true"></div>
+
         <section class="editorial-section" aria-label="Galería editorial de Red Arte por Igual" style="padding-top: 0;">
             <div class="ed-grid">
                 <!-- Card 2 + 3 UNIFICADAS -->
@@ -1129,6 +1131,8 @@
         </section>
 
         <!-- HORIZONTAL GALLERY (4 Columns) -->
+        <div class="section-separator" aria-hidden="true"></div>
+
         <section class="horizontal-gallery-section" aria-label="Galería de imágenes de encuentros artísticos"
             uk-scrollspy="cls: uk-animation-fade; delay: 300">
             <div class="h-gallery-container" role="group"
@@ -1199,6 +1203,8 @@
         </style>
 
         <!-- SECTION: NOCHES DE Cre-Arte (Focus on Ciclo Puertas) -->
+        <div class="section-separator" aria-hidden="true"></div>
+
         <section class="noches-clean-section" aria-labelledby="noches-title"
             uk-scrollspy="cls: uk-animation-fade; delay: 200">
             <div class="noches-container">
@@ -1291,7 +1297,7 @@
                 font-size: 2.2rem;
                 line-height: 1;
                 transform: rotate(-1.5deg);
-                box-shadow: 10px 10px 0 rgba(255, 157, 66, 0.3);
+                box-shadow: none;
                 /* Orange shadow tint */
                 /* Custom Animation */
                 opacity: 0;
@@ -1332,7 +1338,7 @@
             .scrapbook-gallery img:hover {
                 z-index: 100 !important;
                 transform: scale(1.08) rotate(0deg) !important;
-                box-shadow: 0 40px 100px rgba(0, 0, 0, 0.4);
+                box-shadow: none;
             }
 
             /* Festival Hover Note */
@@ -1349,6 +1355,8 @@
         </style>
 
         <!-- SECTION: EL BODEGÓN (Modern Clean Layout - Image Right) -->
+        <div class="section-separator" aria-hidden="true"></div>
+
         <section class="viajes-clean-section" aria-labelledby="bodegon-title" style="padding-top: 0;"
             uk-scrollspy="cls: uk-animation-fade; delay: 200">
             <div class="viajes-container">
@@ -1371,6 +1379,8 @@
         </section>
 
         <!-- VIDEO SECTION -->
+        <div class="section-separator" aria-hidden="true"></div>
+
         <section class="video-section" aria-label="Video sobre El Bodegón"
             uk-scrollspy="cls: uk-animation-fade; delay: 200" style="padding-top: 40px;">
             <div class="video-container">
@@ -1406,7 +1416,7 @@
                 margin: 0 auto;
                 border-radius: 12px;
                 overflow: hidden;
-                box-shadow: 0 50px 100px rgba(0, 0, 0, 0.12);
+                box-shadow: none;
             }
 
             .video-poster {

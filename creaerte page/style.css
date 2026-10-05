@@ -6,7 +6,7 @@
 }
 
 body {
-  font-family: 'Arial', sans-serif;
+  font-family: 'Inter', sans-serif;
   color: #222;
   background: #f5f8ff;
   line-height: 1.6;
@@ -111,7 +111,7 @@ nav {
   background: white;
   padding: 2rem;
   border-radius: 15px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  box-shadow: none;
   opacity: 0;
   transform: translateY(30px);
   transition: all 0.8s ease;
@@ -124,7 +124,7 @@ nav {
   }
 
   * { box-sizing: border-box; }
-  body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background: #111; color: #fff; }
+  body { margin: 0; font-family: 'Inter', sans-serif; background: #111; color: #fff; }
 
   /* Contenedor del mosaico */
   .mosaic {
@@ -161,7 +161,7 @@ nav {
   .overlay {
     position: absolute; inset: 0;
     display: flex; align-items: center; justify-content: center;
-    background: rgba(0,0,0,.5);
+    background: transparent;
     color: #fff; font-weight: 700; font-size: 1.15rem;
     text-align: center; padding: 0 12px;
     opacity: 0; transform: translateY(6px);

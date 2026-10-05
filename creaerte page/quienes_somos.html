@@ -17,9 +17,6 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Caveat:wght@600;700&family=Inter:wght@300;400;600;700;900&family=Kaushan+Script&display=swap"
-        rel="stylesheet">
 
     <!-- Lenis Smooth Scroll -->
     <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"></script>
@@ -29,6 +26,10 @@
 
 
     <style>
+        :root {
+            --page-white: #ffffff;
+        }
+
         /* ===== BASE ===== */
         *,
         *::before,
@@ -43,11 +44,11 @@
 
 
         body {
-            background-color: #fff;
+            background-color: var(--page-white);
             margin: 0;
             padding: 0;
             color: #111;
-            font-family: 'EB Garamond', serif;
+            font-family: 'Inter', sans-serif;
             overflow-x: hidden;
         }
 
@@ -120,7 +121,7 @@
         .floating-logo img {
             height: 120px;
             width: auto;
-            filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.2));
+            filter: none;
             transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
@@ -137,26 +138,28 @@
             letter-spacing: 4px;
             text-transform: uppercase;
             color: #fff;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            text-shadow: none;
             text-decoration: none !important;
             border-bottom: none !important;
-            box-shadow: none !important;
+            box-shadow: none;
         }
 
         .t-nav-links a:hover,
         .t-nav-links a:focus,
         .t-nav-links a:focus-visible,
         .t-nav-links a[aria-current="page"] {
-            color: #f2cb7b;
+            color: #fff;
             text-decoration: none !important;
             border-bottom: none !important;
-            box-shadow: none !important;
+            box-shadow: none;
         }
 
 
         .hero-splash {
             width: 100%;
-            height: 100vh;
+            margin: 0;
+            padding: 0;
+            height: 70vh;
             background: #000;
             position: relative;
             overflow: hidden;
@@ -172,6 +175,9 @@
             inset: 0;
             width: 100%;
             height: 100%;
+            max-width: none !important;
+            max-height: none !important;
+            display: block;
             object-fit: cover;
             object-position: center center;
             opacity: 1;
@@ -183,7 +189,7 @@
             content: "";
             position: absolute;
             inset: 0;
-            background: linear-gradient(180deg, rgba(0, 0, 0, 0.18) 0%, rgba(0, 0, 0, 0.34) 100%);
+            background: rgba(0, 0, 0, 0.52);
             z-index: 1;
             pointer-events: none;
         }
@@ -208,7 +214,7 @@
 
         .hero-splash-title h1 span {
             display: block;
-            font-family: 'Kaushan Script', cursive;
+            font-family: 'Inter', sans-serif;
             font-style: normal;
             font-weight: 400;
             text-transform: none;
@@ -224,7 +230,7 @@
 
 
         .hero-splash-title p {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Inter', sans-serif;
             font-style: italic;
             font-size: clamp(1.5rem, 4vw, 3rem);
             margin-top: 10px;
@@ -234,7 +240,7 @@
         /* ===== MAGAZINE SPREAD SECTION (BIENVENIDOS) ===== */
 
         .about-us-section {
-            background-color: #fff;
+            background-color: var(--page-white);
             position: relative;
             z-index: 50;
             margin: 0;
@@ -283,7 +289,7 @@
         }
 
         .about-spread-title span {
-            font-family: 'Kaushan Script', cursive;
+            font-family: 'Inter', sans-serif;
             font-style: normal;
             font-size: clamp(3rem, 7vw, 5.5rem);
             color: #e65c00;
@@ -326,7 +332,7 @@
         /* Fotos del spread */
         .spread-photo {
             position: absolute;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            box-shadow: none;
             overflow: hidden;
         }
 
@@ -412,16 +418,16 @@
         .btn-story:hover {
             background-color: #111;
             transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: none;
             color: #fff;
         }
 
         /* scattered photo items for About Section */
         .scattered-photo {
             position: absolute;
-            background: #fff;
+            background: var(--page-white);
             padding: 15px;
-            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.15);
+            box-shadow: none;
             z-index: 20;
             transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
@@ -482,7 +488,7 @@
 
         /* ===== STAFF SECTION (MOSAIC STYLE) ===== */
         .staff-mosaic-section {
-            background-color: #fff;
+            background-color: var(--page-white);
             /* Color hueso de fondo */
             padding: 100px 5%;
             display: flex;
@@ -496,15 +502,18 @@
         .staff-mosaic {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
+            gap: 1px;
+            border: 1px solid #bda4a4;
             width: 100%;
             max-width: 1100px;
-            background-color: #fff;
-            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.1);
+            background-color: #bda4a4;
+            box-shadow: none;
             /* Efecto libro/póster */
         }
 
         .mosaic-box {
             width: 100%;
+            background-color: #879d5a;
             aspect-ratio: 1 / 1;
             /* Cuadrados perfectos */
             display: flex;
@@ -536,11 +545,6 @@
             background-color: #6d5b50;
         }
 
-        .color-bone-light {
-            background-color: #fff;
-            border: 1px solid rgba(0, 0, 0, 0.06);
-        }
-
         /* Imágenes del mosaico */
         .mosaic-img {
             position: relative;
@@ -551,11 +555,25 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: grayscale(100%) contrast(1.15);
-            /* Efecto blanco y negro fuerte */
+            filter: none;
             transition: transform 0.6s ease, filter 0.4s ease;
             position: relative;
             z-index: 10;
+        }
+
+        .mosaic-img::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: 11;
+            background: rgba(0, 0, 0, 0.22);
+            opacity: 1;
+            pointer-events: none;
+            transition: opacity 0.35s ease;
+        }
+
+        .mosaic-img:hover::after {
+            opacity: 0;
         }
 
         .mosaic-hover-info {
@@ -566,7 +584,7 @@
         .mosaic-img:hover img {
             transform: scale(1.05);
             /* Ligero zoom interactivo */
-            filter: grayscale(0%);
+            filter: none;
         }
 
         .mosaic-img:hover .mosaic-hover-info {
@@ -575,7 +593,7 @@
         }
 
         .mosaic-hover-name {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Inter', sans-serif;
             font-size: 1.8rem;
             font-weight: 500;
             margin-bottom: 5px;
@@ -595,7 +613,7 @@
         .mosaic-text-box {
             grid-column: span 2;
             grid-row: span 2;
-            background-color: #ffffff;
+            background-color: var(--page-white);
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -617,7 +635,7 @@
 
         .mosaic-names span {
             display: block;
-            font-family: 'Playfair Display', serif;
+            font-family: 'Inter', sans-serif;
             font-style: italic;
             font-size: clamp(1.8rem, 3.5vw, 3rem);
             color: #e65c00;
@@ -654,7 +672,7 @@
 
         /* ===== HISTORY (SCRAPBOOK) SECTION ===== */
         .history-section {
-            background-color: #fff;
+            background-color: var(--page-white);
             /* Color más oscuro y cálido para contraste */
             min-height: 100vh;
             /* Altura suficiente para el collage */
@@ -679,7 +697,7 @@
         .scrap-piece {
             position: absolute;
             transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            box-shadow: none;
             /* Sombra para dar relieve 3D */
             z-index: 20;
             /* Elevado sobre trazos */
@@ -727,11 +745,11 @@
             left: 28%;
             width: 380px;
             height: 440px;
-            background-color: #fdfdfc;
+            background-color: var(--page-white);
             /* Tarjeta blanca */
             z-index: 40;
             /* Por encima de todo */
-            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
+            box-shadow: none;
             transform: rotate(-1deg);
             display: flex;
             flex-direction: column;
@@ -763,7 +781,7 @@
 
         .scrap-title span {
             display: block;
-            font-family: 'Playfair Display', serif;
+            font-family: 'Inter', sans-serif;
             font-style: italic;
             font-size: 2.5rem;
             color: #e65c00;
@@ -888,7 +906,7 @@
         }
 
         .closure-overlay h2 {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Inter', sans-serif;
             font-size: clamp(2.5rem, 5vw, 4rem);
             font-weight: 500;
             line-height: 1.1;
@@ -972,7 +990,7 @@
 
         /* ===== STICKY INTERACTIVE SECTION ===== */
         .sticky-interactive-section {
-            background-color: #fff;
+            background-color: var(--page-white);
             display: flex;
             padding: 15vh 10%;
             gap: 5%;
@@ -1010,7 +1028,7 @@
             height: 60vh;
             border-radius: 0;
             overflow: hidden;
-            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.2);
+            box-shadow: none;
             background: #ddd;
         }
 
@@ -1149,13 +1167,26 @@
             }
         }
 
+        @media (max-width: 960px) {
+            .hero-splash {
+                height: 55vh;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .hero-splash {
+                height: 45vh;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-splash {
+                height: 40vh;
+            }
+        }
+
         @media (max-width: 900px) {
             /* Hero splash */
-            .hero-splash {
-                height: 60vh !important;
-                min-height: 350px;
-            }
-
             .hero-splash-title h1 {
                 font-size: clamp(2rem, 10vw, 4rem);
             }
@@ -1329,7 +1360,7 @@
             justify-content: center;
             align-items: center;
             padding: 40px 0;
-            background-color: #fff;
+            background-color: var(--page-white);
             /* Match page background */
         }
 
@@ -1354,12 +1385,12 @@
             width: 9px;
             height: 9px;
             background-color: #a67c7c;
-            box-shadow: 0 0 10px rgba(166, 124, 124, 0.2);
+            box-shadow: none;
         }
 
         .about-video-section {
             padding: 40px 8% 90px;
-            background: #fff;
+            background: var(--page-white);
         }
 
         .about-video-wrap {
@@ -1398,7 +1429,7 @@
             position: relative;
             display: block;
             overflow: hidden;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
+            box-shadow: none;
             z-index: 2;
         }
 
@@ -1406,12 +1437,13 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: rgba(0, 0, 0, 0.18);
+            background: transparent;
             transition: background 0.35s ease;
+            pointer-events: none;
         }
 
         .about-video-card:hover::after {
-            background: rgba(0, 0, 0, 0.3);
+            background: transparent;
         }
 
         .about-video-poster {
@@ -1441,7 +1473,7 @@
             justify-content: center;
             color: #fff;
             z-index: 3;
-            box-shadow: 0 0 40px rgba(0, 0, 0, 0.35);
+            box-shadow: none;
             transition: transform 0.35s ease, box-shadow 0.35s ease;
         }
 
@@ -1454,7 +1486,7 @@
 
         .about-video-card:hover .about-video-play {
             transform: translate(-50%, -50%) scale(1.08);
-            box-shadow: 0 0 60px rgba(0, 0, 0, 0.45);
+            box-shadow: none;
         }
 
         .about-video-sticker {
@@ -1563,22 +1595,27 @@
             }
         }
     </style>
+    <link rel="stylesheet" href="site-base.css">
 </head>
 
-<body>
+<body class="page-white">
 
     <a href="#contenido-principal" class="skip-link">Saltar al contenido principal</a>
 
     <!-- CABECERA PRINCIPAL -->
-    <header class="hero-splash" id="portada">
-        <img src="./img/slide2.jpg.webp" alt="Cre-Arte en Bariloche" loading="eager" fetchpriority="high">
+    <header class="hero-splash" id="portada" aria-label="Cre-Arte en Bariloche">
+        <video autoplay muted loop playsinline preload="auto" poster="./img/portada_quienes_somos.webp"
+            aria-hidden="true" disablepictureinpicture>
+            <source src="./img/portada_quienes_somos.mp4" type="video/mp4">
+            <img src="./img/portada_quienes_somos.webp" alt="">
+        </video>
     </header>
 
-    <a href="./index.html" class="floating-logo" aria-label="Ir al inicio de Cre-Arte">
-        <img src="./img/LOGO.png" alt="Logo de Cre-Arte">
-    </a>
+    <nav class="t-nav nav-light" aria-label="Navegación principal">
+        <a href="./index.html" class="t-nav-logo" aria-label="Ir al inicio de Cre-Arte">
+            <img src="./img/LOGO.png" alt="Logo de Cre-Arte">
+        </a>
 
-    <nav class="t-nav" aria-label="Navegación principal">
         <div class="t-nav-links" role="menubar">
             <a href="./quienes_somos.html" role="menuitem" aria-current="page">Quiénes Somos</a>
             <a href="./talleres.html" role="menuitem">Talleres</a>
@@ -1654,6 +1691,8 @@
 
     <!-- HISTORY / SCRAPBOOK -->
 
+    <div class="section-separator" aria-hidden="true"></div>
+
     <section class="history-section section-reveal" id="historia" aria-labelledby="titulo-historia">
         <div class="scrapbook-container">
             <!-- Imagen izquierda (Agua/Campamento) -->
@@ -1690,6 +1729,8 @@
 
 
     <!-- STICKY INTERACTIVE SECTION -->
+    <div class="section-separator" aria-hidden="true"></div>
+
     <section class="sticky-interactive-section section-reveal" id="interactivo" aria-label="Trayectoria y logros de Cre-Arte">
         <div class="sticky-text-wrapper">
             <div class="sticky-item active" data-index="0">
@@ -1734,6 +1775,8 @@
 
     <!-- NUESTRO STAFF (MOSAIC STYLE) -->
 
+    <div class="section-separator" aria-hidden="true"></div>
+
     <section class="about-video-section section-reveal" aria-label="Video institucional de Cre-Arte en YouTube">
         <div class="about-video-wrap">
             <div class="about-video-sticker is-top-left" aria-hidden="true">
@@ -1756,6 +1799,8 @@
         </div>
     </section>
 
+    <div class="section-separator" aria-hidden="true"></div>
+
     <section class="staff-mosaic-section section-reveal" id="staff" aria-label="Galería de arte de Cre-Arte">
         <div class="staff-mosaic">
             <!-- Fila 1 -->
@@ -1763,7 +1808,7 @@
             <div class="mosaic-box mosaic-img fade-in-place stagger-2">
                 <img src="./img/cocineros.webp" alt="Participantes en el taller de cocina de Cre-Arte">
             </div>
-            <div class="mosaic-box color-bone-light fade-in-place stagger-3"></div>
+            <div class="mosaic-box color-olive fade-in-place stagger-3"></div>
             <div class="mosaic-box mosaic-img fade-in-place stagger-4">
                 <img src="./img/cuadro1.webp" alt="Obra de arte creada por un estudiante de Cre-Arte">
             </div>
@@ -1812,8 +1857,8 @@
             <div class="mosaic-box mosaic-img fade-in-place stagger-14">
                 <img src="./img/Despellejado.webp" alt="Obra de arte de la exposición de Cre-Arte">
             </div>
-            <div class="mosaic-box color-bone-light fade-in-place stagger-15"></div>
-            <div class="mosaic-box color-bone-light fade-in-place stagger-16"></div>
+            <div class="mosaic-box color-mustard fade-in-place stagger-15"></div>
+            <div class="mosaic-box color-orange fade-in-place stagger-16"></div>
             <div class="mosaic-box color-brown fade-in-place stagger-16">
                 <span
                     style="color: #fff; font-family: 'Inter', sans-serif; font-weight: bold; letter-spacing: 2px; font-size: 0.9rem;">CRE
@@ -1825,7 +1870,7 @@
 
     <!-- CLOSURE BANNER -->
 
-    <section class="closure-banner section-reveal" aria-label="Mensaje de cierre" style="background-color: #fff; height: 30vh;">
+    <section class="closure-banner section-reveal" aria-label="Mensaje de cierre" style="background-color: var(--page-white); height: 30vh;">
         <div class="closure-overlay visible" style="color: #6a1a1c;">
             <p>Donde el arte nos une</p>
         </div>
