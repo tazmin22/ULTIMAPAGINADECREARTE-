@@ -2,6 +2,50 @@
 
 :root {
     --font-site: 'Inter', sans-serif;
+    --image-radius: 16px;
+}
+
+/* Rounded images, including gallery content inserted after page load. */
+img {
+    border-radius: var(--image-radius) !important;
+    clip-path: none !important;
+}
+
+/* Clip cover images and their overlays at the visible frame. */
+.tile,
+.spread-photo,
+.mosaic-box:has(img),
+.mosaic-img,
+.sticky-image-wrapper,
+.closure-banner,
+.about-video-card,
+.custom-video-thumb,
+.t-card-img,
+.mosaic-tile,
+.t-intro-img,
+.t-bio-img,
+.obra-item,
+.gallery-item,
+.catalogo-card,
+.where-image-main,
+.festival-banner,
+.portrait-wrapper,
+.h-gallery-item,
+.viajes-video-wrapper,
+.video-container,
+.video-poster:has(img) {
+    border-radius: var(--image-radius) !important;
+    overflow: hidden;
+}
+
+/* Full-width cover media retain straight corners. */
+.mosaico-principal .tile,
+.mosaico-principal img,
+.staff-mosaic .mosaic-box,
+.staff-mosaic img,
+:is(.hero-static, .hero-splash, .t-hero, .banner-section, .strip-wrapper) img,
+:is(.hero-static, .hero-splash, .t-hero, .banner-section, .strip-wrapper) video {
+    border-radius: 0 !important;
 }
 
 /* Unified typography, including UIkit headings and form controls. */

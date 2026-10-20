@@ -194,6 +194,19 @@
             pointer-events: none;
         }
 
+        .hero-splash-wave {
+            position: absolute;
+            right: 0;
+            bottom: -1px;
+            left: 0;
+            z-index: 2;
+            display: block;
+            width: 100%;
+            height: clamp(56px, 9.2vw, 132px);
+            fill: var(--page-white);
+            pointer-events: none;
+        }
+
         .hero-splash-title {
             position: absolute;
             z-index: 2;
@@ -1609,6 +1622,9 @@
             <source src="./img/portada_quienes_somos.mp4" type="video/mp4">
             <img src="./img/portada_quienes_somos.webp" alt="">
         </video>
+        <svg class="hero-splash-wave" viewBox="0 0 1440 160" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+            <path d="M0 42C225 108 450 137 690 132c238-5 397-104 620-73 57 8 99 21 130 35v66H0Z" />
+        </svg>
     </header>
 
     <nav class="t-nav nav-light" aria-label="Navegación principal">
@@ -1691,7 +1707,6 @@
 
     <!-- HISTORY / SCRAPBOOK -->
 
-    <div class="section-separator" aria-hidden="true"></div>
 
     <section class="history-section section-reveal" id="historia" aria-labelledby="titulo-historia">
         <div class="scrapbook-container">
@@ -1729,7 +1744,6 @@
 
 
     <!-- STICKY INTERACTIVE SECTION -->
-    <div class="section-separator" aria-hidden="true"></div>
 
     <section class="sticky-interactive-section section-reveal" id="interactivo" aria-label="Trayectoria y logros de Cre-Arte">
         <div class="sticky-text-wrapper">
@@ -1775,7 +1789,6 @@
 
     <!-- NUESTRO STAFF (MOSAIC STYLE) -->
 
-    <div class="section-separator" aria-hidden="true"></div>
 
     <section class="about-video-section section-reveal" aria-label="Video institucional de Cre-Arte en YouTube">
         <div class="about-video-wrap">
@@ -1799,7 +1812,6 @@
         </div>
     </section>
 
-    <div class="section-separator" aria-hidden="true"></div>
 
     <section class="staff-mosaic-section section-reveal" id="staff" aria-label="Galería de arte de Cre-Arte">
         <div class="staff-mosaic">

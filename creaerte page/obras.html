@@ -135,14 +135,15 @@
 
         /* ===== OBRAS GALLERY ===== */
         .obras-container {
-            max-width: 1280px;
+            max-width: none;
+            width: 100%;
             margin: 0 auto;
-            padding: 160px 20px 100px;
+            padding: 160px 0 100px;
         }
 
         .obras-header {
             margin-bottom: 30px;
-            padding: 0 6px;
+            padding: 0 20px;
         }
 
         .obras-kicker {
@@ -181,9 +182,8 @@
         }
 
         .catalogos-section {
-            margin-top: 64px;
-            padding: 48px 0 0;
-            border-top: 1px solid rgba(0, 0, 0, 0.08);
+            margin-top: 24px;
+            padding: 0 20px !important;
         }
 
         .catalogos-kicker {
@@ -431,6 +431,11 @@
             }
         }
 
+        .obras-gallery {
+            padding: 0 !important;
+            width: 100%;
+        }
+
         .obras-grid {
             display: grid;
             grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -520,8 +525,8 @@
             }
 
             .obras-container {
-                padding-left: 14px;
-                padding-right: 14px;
+                padding-left: 0;
+                padding-right: 0;
             }
 
             .floating-logo img {
@@ -578,15 +583,10 @@
             <p class="obras-subtitle">Una selección de nuestro Arte Visual.</p>
             <p class="obras-count" id="obras-count"></p>
         </header>
-        <section aria-labelledby="obras-title">
+        <section class="obras-gallery" aria-labelledby="obras-title">
             <div class="obras-grid" id="obras-grid" uk-lightbox="animation: slide"></div>
         </section>
-        <div class="section-separator" aria-hidden="true"></div>
-
-        <section class="catalogos-section" aria-labelledby="catalogos-title">
-            <p class="catalogos-kicker">Catálogos</p>
-            <h2 class="catalogos-title" id="catalogos-title">Ver catálogos completos</h2>
-            <p class="catalogos-copy">Abrí cada PDF para recorrer las series de Cre-Arte con más detalle.</p>
+        <section class="catalogos-section" aria-label="Catálogos de Arte Visual">
             <div class="catalogos-grid">
                 <a class="catalogo-card" href="./PDF/Catalogo%20Batik%20-%20Crearte.pdf" target="_blank" rel="noopener noreferrer" aria-label="Catálogo Batik">
                     <div class="catalogo-bg" style="background-image: url('./PDF/batik-card.png');" aria-hidden="true"></div>

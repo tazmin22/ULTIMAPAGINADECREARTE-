@@ -528,6 +528,19 @@
             z-index: 15;
         }
 
+        .banner-wave {
+            position: absolute;
+            right: 0;
+            bottom: -1px;
+            left: 0;
+            z-index: 2;
+            display: block;
+            width: 100%;
+            height: clamp(56px, 9.2vw, 132px);
+            fill: var(--bg-color);
+            pointer-events: none;
+        }
+
         .banner-content {
             max-width: 800px;
         }
@@ -755,14 +768,15 @@
                 style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1;">
                 Cielo nocturno decorativo con estrellas
             </canvas>
-
+            <svg class="banner-wave" viewBox="0 0 1440 160" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+                <path d="M0 42C225 108 450 137 690 132c238-5 397-104 620-73 57 8 99 21 130 35v66H0Z" />
+            </svg>
 
         </section>
 
 
 
         <!-- SECTION: FESTIVAL (Modern Clean Layout) -->
-        <div class="section-separator" aria-hidden="true"></div>
 
         <section class="viajes-clean-section" aria-labelledby="festival-title"
             uk-scrollspy="cls: uk-animation-fade; delay: 200" style="margin-top: 100px;">
@@ -799,7 +813,6 @@
         </section>
 
         <!-- SECTION: VIAJES (Banner Style) -->
-        <div class="section-separator" aria-hidden="true"></div>
 
         <section class="editorial-section" aria-labelledby="viajes-title"
             uk-scrollspy="cls: uk-animation-fade; delay: 100"
@@ -840,7 +853,6 @@
         </section>
 
         <!-- HORIZONTAL GALLERY (4 Columns) ADDED BELOW VIAJES -->
-        <div class="section-separator" aria-hidden="true"></div>
 
         <section class="horizontal-gallery-section" aria-label="Galería de imágenes de encuentros artísticos"
             uk-scrollspy="cls: uk-animation-fade; delay: 300">
@@ -1028,7 +1040,6 @@
 
 
         <!-- NARRATIVE SECTION (Expanding the message) -->
-        <div class="section-separator" aria-hidden="true"></div>
 
         <section class="narrative-section" aria-labelledby="red-arte-title">
             <div class="narrative-content">
@@ -1107,7 +1118,6 @@
         </style>
 
         <!-- NEW EDITORIAL SECTION -->
-        <div class="section-separator" aria-hidden="true"></div>
 
         <section class="editorial-section" aria-label="Galería editorial de Red Arte por Igual" style="padding-top: 0;">
             <div class="ed-grid">
@@ -1131,7 +1141,6 @@
         </section>
 
         <!-- HORIZONTAL GALLERY (4 Columns) -->
-        <div class="section-separator" aria-hidden="true"></div>
 
         <section class="horizontal-gallery-section" aria-label="Galería de imágenes de encuentros artísticos"
             uk-scrollspy="cls: uk-animation-fade; delay: 300">
@@ -1203,7 +1212,6 @@
         </style>
 
         <!-- SECTION: NOCHES DE Cre-Arte (Focus on Ciclo Puertas) -->
-        <div class="section-separator" aria-hidden="true"></div>
 
         <section class="noches-clean-section" aria-labelledby="noches-title"
             uk-scrollspy="cls: uk-animation-fade; delay: 200">
@@ -1355,7 +1363,6 @@
         </style>
 
         <!-- SECTION: EL BODEGÓN (Modern Clean Layout - Image Right) -->
-        <div class="section-separator" aria-hidden="true"></div>
 
         <section class="viajes-clean-section" aria-labelledby="bodegon-title" style="padding-top: 0;"
             uk-scrollspy="cls: uk-animation-fade; delay: 200">
@@ -1379,7 +1386,6 @@
         </section>
 
         <!-- VIDEO SECTION -->
-        <div class="section-separator" aria-hidden="true"></div>
 
         <section class="video-section" aria-label="Video sobre El Bodegón"
             uk-scrollspy="cls: uk-animation-fade; delay: 200" style="padding-top: 40px;">

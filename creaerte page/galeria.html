@@ -281,7 +281,7 @@
             .floating-logo img {
                 height: 52px !important;
             }
-            
+
             .obras-title {
                 font-size: clamp(2.35rem, 13vw, 2.85rem) !important;
                 letter-spacing: -0.02em;
@@ -299,6 +299,10 @@
         }
 
         /* ===== GALLERY SECTION GRID ===== */
+        #contenido-principal {
+            padding-top: 130px;
+        }
+
         .gallery-shell {
             margin-top: 0;
             padding: 0 !important;
@@ -307,59 +311,37 @@
         }
 
         .gallery-sections {
-            max-width: 1280px;
+            max-width: none;
             margin: 0 auto;
-            padding: 0 32px 110px;
+            padding: 0 16px 16px;
             width: 100%;
             min-width: 0;
         }
 
-        .gallery-section {
-            margin: 0 0 88px;
-            padding: 0 !important;
-            scroll-margin-top: 110px;
-        }
 
-        .gallery-section:last-child {
-            margin-bottom: 0;
-        }
 
-        .gallery-section-header {
-            padding: 0 0 18px;
-        }
 
-        .gallery-section-title {
-            margin: 0;
-            font-family: var(--font-site);
-            font-size: 0.82rem !important;
-            text-transform: uppercase;
-            letter-spacing: 0.3em;
-            color: rgba(17, 17, 17, 0.52);
-            font-weight: 600;
-        }
 
         .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(4, minmax(0, 1fr));
-            grid-auto-rows: 210px;
-            gap: 18px;
-            grid-auto-flow: dense;
+            --gallery-gap: 16px;
+            position: relative;
             width: 100%;
             min-width: 0;
         }
 
         .gallery-item {
-            position: relative;
+            position: absolute;
+            top: 0;
+            left: 0;
+            margin: 0;
             border-radius: 4px;
             overflow: hidden;
             background: #fff;
             box-shadow: none;
-            transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
             min-width: 0;
         }
 
         .gallery-item:hover {
-            transform: translateY(-8px) scale(1.02);
             box-shadow: none;
             z-index: 10;
         }
@@ -367,15 +349,14 @@
         .gallery-item a {
             display: block;
             width: 100%;
-            height: 100%;
+            height: auto;
             position: relative;
             z-index: 2;
         }
 
         .gallery-img {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
+            height: auto;
             display: block;
             transition: transform 0.45s ease;
         }
@@ -383,9 +364,6 @@
         .gallery-item:hover .gallery-img {
             transform: scale(1.03);
         }
-
-        .gallery-item.w-2 { grid-column: span 2; }
-        .gallery-item.h-2 { grid-row: span 2; }
 
         .gallery-item::before {
             content: '';
@@ -405,74 +383,19 @@
         }
 
         @media (max-width: 1200px) {
-            .gallery-sections {
-                padding-left: 24px;
-                padding-right: 24px;
-            }
-
-            .gallery-grid {
-                grid-template-columns: repeat(3, minmax(0, 1fr));
-                grid-auto-rows: 200px;
-            }
-        }
 
         @media (max-width: 960px) {
-            .gallery-section {
-                margin-bottom: 56px;
-                scroll-margin-top: 96px;
-            }
-
-            .gallery-section-header {
-                padding-left: 0;
-                padding-right: 0;
-                padding-bottom: 14px;
-            }
-
-            .gallery-grid {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-                grid-auto-rows: 240px;
-                gap: 14px;
-            }
-
-            .gallery-item.w-2,
-            .gallery-item.h-2 {
-                grid-column: span 1 !important;
-                grid-row: span 1 !important;
-            }
-
-            .gallery-sections {
-                padding-left: 16px;
-                padding-right: 16px;
-                padding-bottom: 72px;
-            }
-        }
 
         @media (max-width: 640px) {
             .gallery-grid {
-                grid-template-columns: 1fr;
-                grid-auto-rows: auto;
+                --gallery-gap: 12px;
             }
 
             .gallery-sections {
-                padding-left: 14px;
-                padding-right: 14px;
-                padding-bottom: 58px;
+                padding-bottom: 12px;
             }
 
-            .gallery-item,
-            .gallery-item.w-2,
-            .gallery-item.h-2 {
-                grid-column: span 1 !important;
-                grid-row: span 1 !important;
-                aspect-ratio: 4 / 5;
-            }
-            
-            .gallery-section-title {
-                font-size: 0.73rem;
-                letter-spacing: 0.22em;
-            }
-        }
-    </style>
+        </style>
     <link rel="stylesheet" href="site-base.css">
 </head>
 
@@ -510,50 +433,11 @@
     </div>
 
     <main id="contenido-principal" tabindex="-1">
-        <section class="obras-container" aria-labelledby="galeria-title">
-            <header class="obras-header">
-                <p class="obras-kicker">Archivo fotográfico</p>
-                <h1 class="obras-title" id="galeria-title">Galería</h1>
-                <p class="obras-subtitle">Momentos, viajes y talleres capturados en imágenes.</p>
-                <p class="obras-count" id="galeria-count"></p>
-            </header>
-        </section>
-
-        <div class="section-separator" aria-hidden="true"></div>
+        <h1 class="uk-hidden-visually">Galería</h1>
 
         <section class="gallery-shell" aria-label="Galería de fotos de Cre-Arte">
             <div class="gallery-sections">
-                <section class="gallery-section" id="obras-de-cre-arte" data-gallery-section="obras-de-cre-arte"
-                    aria-labelledby="obras-de-cre-arte-title">
-                    <header class="gallery-section-header">
-                        <h2 class="gallery-section-title" id="obras-de-cre-arte-title">Arte Visual de Cre-Arte</h2>
-                    </header>
-                    <div class="gallery-grid" data-gallery-grid="obras-de-cre-arte" uk-lightbox="animation: slide"></div>
-                </section>
-
-                <section class="gallery-section" id="talleres" data-gallery-section="talleres"
-                    aria-labelledby="talleres-title">
-                    <header class="gallery-section-header">
-                        <h2 class="gallery-section-title" id="talleres-title">Talleres</h2>
-                    </header>
-                    <div class="gallery-grid" data-gallery-grid="talleres" uk-lightbox="animation: slide"></div>
-                </section>
-
-                <section class="gallery-section" id="viajes-y-europa" data-gallery-section="viajes-y-europa"
-                    aria-labelledby="viajes-y-europa-title">
-                    <header class="gallery-section-header">
-                        <h2 class="gallery-section-title" id="viajes-y-europa-title">Viajes y Europa</h2>
-                    </header>
-                    <div class="gallery-grid" data-gallery-grid="viajes-y-europa" uk-lightbox="animation: slide"></div>
-                </section>
-
-                <section class="gallery-section" id="entrenarte-y-linea-sur" data-gallery-section="entrenarte-y-linea-sur"
-                    aria-labelledby="entrenarte-y-linea-sur-title">
-                    <header class="gallery-section-header">
-                        <h2 class="gallery-section-title" id="entrenarte-y-linea-sur-title">Entrenarte y Linea Sur</h2>
-                    </header>
-                    <div class="gallery-grid" data-gallery-grid="entrenarte-y-linea-sur" uk-lightbox="animation: slide"></div>
-                </section>
+                <div class="gallery-grid" data-gallery-grid uk-lightbox="animation: slide"></div>
             </div>
         </section>
     </main>
@@ -616,20 +500,14 @@
     <script>
         const galleryFolders = Array.isArray(window.GALERIA_FOLDERS) ? window.GALERIA_FOLDERS : [];
         const galleryAssets = window.GALERIA_ASSETS || {};
-        const gallerySections = Array.from(document.querySelectorAll('[data-gallery-section]'));
-        const galeriaCount = document.getElementById('galeria-count');
-
-        if (galeriaCount) {
-            const total = galleryFolders.reduce((sum, s) => sum + (Array.isArray(s.files) ? s.files.length : 0), 0);
-            galeriaCount.textContent = `${total} fotos`;
-        }
+        const galleryGrid = document.querySelector('[data-gallery-grid]');
         const stripExtension = (name) => name
             .replace(/\.(webp|jpg|jpeg|png)$/ig, '')
             .replace(/[_-]+/g, ' ')
             .replace(/\s+/g, ' ')
             .trim();
 
-        if (gallerySections.length) {
+        if (galleryGrid) {
             const buildItem = ({ file, folder }) => {
                 const meta = galleryAssets[file] || {};
                 const imagePath = `./${folder}/${encodeURIComponent(file)}`;
@@ -660,24 +538,12 @@
                 return item;
             };
 
-            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
             const makeSectionId = (value) => value
                 .normalize('NFD')
                 .replace(/[\u0300-\u036f]/g, '')
                 .toLowerCase()
                 .replace(/[^a-z0-9]+/g, '-')
                 .replace(/^-+|-+$/g, '');
-            const nextFrame = () => new Promise((resolve) => requestAnimationFrame(resolve));
-            const waitForImages = (root) => {
-                const images = Array.from(root.querySelectorAll('img'));
-                return Promise.all(images.map((image) => {
-                    if (image.complete) return Promise.resolve();
-                    return new Promise((resolve) => {
-                        image.addEventListener('load', resolve, { once: true });
-                        image.addEventListener('error', resolve, { once: true });
-                    });
-                }));
-            };
             const alignToHash = () => {
                 const hash = window.location.hash;
                 if (!hash) return;
@@ -687,62 +553,65 @@
 
                 target.scrollIntoView({ block: 'start', behavior: 'auto' });
             };
-            const sizePattern = [
-                ['w-2', 'h-2'],
-                ['h-2'],
-                ['w-2'],
-                [],
-                [],
-                ['h-2'],
-                ['w-2'],
-                [],
-                ['h-2'],
-                ['w-2', 'h-2'],
-                [],
-                [],
-            ];
+            const layoutGallery = (grid) => {
+                const availableWidth = grid.clientWidth;
+                if (!availableWidth) return;
+                const gap = parseFloat(getComputedStyle(grid).getPropertyValue('--gallery-gap')) || 16;
+                const columns = window.innerWidth <= 640
+                    ? 2
+                    : Math.max(1, Math.floor((availableWidth + gap) / (280 + gap)));
+                const itemWidth = (availableWidth - gap * (columns - 1)) / columns;
+                const heights = Array(columns).fill(0);
 
-            const fillSection = (section) => {
+                for (const item of grid.children) {
+                    item.style.width = `${itemWidth}px`;
+                    const column = heights.indexOf(Math.min(...heights));
+                    item.style.transform = `translate(${column * (itemWidth + gap)}px, ${heights[column]}px)`;
+                    heights[column] += item.getBoundingClientRect().height + gap;
+                }
+
+                grid.style.height = `${Math.max(0, ...heights) - (grid.children.length ? gap : 0)}px`;
+            };
+
+            const observeGallery = (grid) => {
+                let frame;
+                const scheduleLayout = () => {
+                    cancelAnimationFrame(frame);
+                    frame = requestAnimationFrame(() => layoutGallery(grid));
+                };
+                // Reflow when an image without stored dimensions finishes loading.
+                grid.addEventListener('load', scheduleLayout, true);
+                grid.addEventListener('error', scheduleLayout, true);
+                let previousWidth = grid.clientWidth;
+                const observer = new ResizeObserver(() => {
+                    if (grid.clientWidth === previousWidth) return;
+                    previousWidth = grid.clientWidth;
+                    scheduleLayout();
+                });
+                observer.observe(grid);
+                layoutGallery(grid);
+            };
+
+            const fragment = document.createDocumentFragment();
+            galleryFolders.forEach((section) => {
                 const files = Array.isArray(section.files) ? section.files : [];
                 const sectionId = makeSectionId(section.name || section.folder || '');
-                const grid = document.querySelector(`[data-gallery-grid="${sectionId}"]`);
-                if (!grid) return;
-
-                const fragment = document.createDocumentFragment();
-
                 files.forEach((file, index) => {
                     const item = buildItem({ file, folder: section.folder });
-                    sizePattern[index % sizePattern.length].forEach((cls) => {
-                        item.classList.add(cls);
-                    });
+                    if (index === 0) item.id = sectionId;
                     fragment.appendChild(item);
                 });
+            });
+            galleryGrid.replaceChildren(fragment);
+            observeGallery(galleryGrid);
+            if (window.UIkit && typeof window.UIkit.update === 'function') {
+                window.UIkit.update(galleryGrid);
+            }
 
-                grid.replaceChildren(fragment);
-
-                if (window.UIkit && typeof window.UIkit.update === 'function') {
-                    window.UIkit.update(grid);
-                }
+            const stabilizeHashNavigation = () => {
+                layoutGallery(galleryGrid);
+                requestAnimationFrame(alignToHash);
             };
-            const stabilizeHashNavigation = async () => {
-                const hash = window.location.hash;
-                if (!hash) return;
-
-                const targetSection = document.querySelector(hash);
-                if (!targetSection) return;
-
-                const targetIndex = gallerySections.findIndex((section) => section === targetSection);
-                const previousSections = targetIndex > 0 ? gallerySections.slice(0, targetIndex) : [];
-
-                await Promise.all(previousSections.map(waitForImages));
-                await nextFrame();
-                await nextFrame();
-                alignToHash();
-                window.setTimeout(alignToHash, 180);
-                window.setTimeout(alignToHash, 520);
-            };
-
-            galleryFolders.forEach(fillSection);
             stabilizeHashNavigation();
             window.addEventListener('load', stabilizeHashNavigation, { once: true });
             window.addEventListener('hashchange', stabilizeHashNavigation);
