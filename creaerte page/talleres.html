@@ -819,21 +819,28 @@
             overflow: hidden;
         }
 
+        .workshops-footer {
+            --footer-overlap: clamp(32px, 4vw, 56px);
+            margin-top: calc(-1 * var(--footer-overlap));
+            background: linear-gradient(to bottom, transparent var(--footer-overlap), #eee6d8 var(--footer-overlap));
+        }
+
+        .workshops-footer .footer-wave {
+            height: var(--footer-overlap);
+            background: transparent;
+        }
+
+        .workshops-footer .footer-wave svg {
+            height: 100%;
+        }
+
         .workshop-mosaic-grid {
             display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            grid-auto-rows: 20vw;
-            /* Square tiles */
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            grid-auto-rows: clamp(220px, 28vw, 360px);
             gap: 0;
             position: relative;
             z-index: 2;
-        }
-
-        @media (min-width: 1200px) {
-            .workshop-mosaic-grid {
-                grid-template-columns: repeat(5, 1fr);
-                grid-auto-rows: 20vw;
-            }
         }
 
         .mosaic-tile {
@@ -1078,8 +1085,7 @@
 
         @media (max-width: 900px) {
             .workshop-mosaic-grid {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-                grid-auto-rows: minmax(220px, 52vw);
+                grid-auto-rows: 240px;
             }
 
             .mosaic-tile {
@@ -1139,6 +1145,12 @@
             .mosaic-tile:hover::before,
             .mosaic-tile:focus-within::before {
                 opacity: 1 !important;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .workshop-mosaic-grid {
+                grid-template-columns: minmax(0, 1fr);
             }
         }
 
@@ -1715,7 +1727,7 @@
     <!-- ── LISTADO COMPLETO DE TALLERES (MOSAICO COLORIDO) ────────── -->
     <div class="section-separator" aria-hidden="true"></div>
 
-    <section class="workshop-mosaic-section" id="mosaic-list" style="margin-top: 50px; margin-bottom: 200px;" aria-label="Listado completo de talleres">
+    <section class="workshop-mosaic-section" id="mosaic-list" style="margin-top: 50px;" aria-label="Listado completo de talleres">
         <div class="workshop-mosaic-grid">
             <!-- Row 1 -->
             <div class="mosaic-tile bg-sage">
@@ -1810,18 +1822,21 @@ Exploramos desplazamientos, uso del espacio y creación coreográfica.</p>
                 <div class="tile-content">
 
                     <h3>Computación</h3>
+                    <p class="mosaic-tile-desc">Aprendemos herramientas informáticas, comunicación y diseño, adaptando la tecnología a las necesidades de cada participante. Un espacio de aprendizaje mutuo y conexión digital.</p>
                 </div>
             </div>
             <div class="mosaic-tile bg-earth">
                 <div class="tile-content">
 
                     <h3>Telar</h3>
+                    <p class="mosaic-tile-desc">Exploramos el tejido en telar, combinando hilos, colores y texturas para crear piezas textiles. Desarrollamos la creatividad y las habilidades manuales en cada etapa del proceso.</p>
                 </div>
             </div>
             <div class="mosaic-tile bg-wine">
                 <div class="tile-content">
 
                     <h3>Radio</h3>
+                    <p class="mosaic-tile-desc">Tu voz al aire. Producción, locución y creatividad sonora. Un taller para contar nuestras historias y conectar con la comunidad a través de las ondas decoradas y el aire en vivo.</p>
                 </div>
             </div>
 
@@ -2148,6 +2163,7 @@ materiales y técnicas para desarrollar nuestras producciones.</p>
             tiles.forEach((tile) => {
                 if (tile.querySelector('.mosaic-tile-desc')) {
                     tile.classList.add('has-desc');
+                    tile.tabIndex = 0;
                 }
             });
 
@@ -2166,7 +2182,7 @@ materiales y técnicas para desarrollar nuestras producciones.</p>
     </main>
 
     <!-- FOOTER -->
-    <footer class="mag-footer" role="contentinfo">
+    <footer class="mag-footer workshops-footer" role="contentinfo">
         <div class="footer-wave" aria-hidden="true">
             <svg viewBox="0 0 1440 160" preserveAspectRatio="none">
                 <path fill="#eee6d8" d="M0 42C225 108 450 137 690 132c238-5 397-104 620-73 57 8 99 21 130 35v66H0Z" />
