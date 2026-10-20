@@ -6,7 +6,7 @@
 }
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-site);
   color: #222;
   background: #f5f8ff;
   line-height: 1.6;
@@ -124,7 +124,7 @@ nav {
   }
 
   * { box-sizing: border-box; }
-  body { margin: 0; font-family: 'Inter', sans-serif; background: #111; color: #fff; }
+  body { margin: 0; font-family: var(--font-site); background: #111; color: #fff; }
 
   /* Contenedor del mosaico */
   .mosaic {

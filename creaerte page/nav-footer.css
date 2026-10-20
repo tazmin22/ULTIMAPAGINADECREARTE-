@@ -6,7 +6,7 @@
     padding: 0 0 96px;
     background: #eee6d8;
     color: #292929;
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-site);
     font-size: 0.95rem;
     scroll-snap-align: start;
 }
@@ -45,6 +45,31 @@
     margin: 0 auto;
 }
 
+.mag-footer.mosaic-footer {
+    --footer-overlap: clamp(32px, 4vw, 56px);
+    margin-top: calc(-1 * var(--footer-overlap));
+    background: linear-gradient(to bottom, transparent var(--footer-overlap), #eee6d8 var(--footer-overlap));
+}
+
+.mosaic-footer .footer-wave {
+    height: var(--footer-overlap);
+    background: transparent;
+}
+
+.mosaic-footer .footer-wave svg {
+    height: 100%;
+}
+
+.footer-motto {
+    margin: 0;
+    padding-top: 40px;
+    color: #6a1a1c;
+    font-size: 0.92rem;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+}
+
 .footer-columns {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -71,7 +96,7 @@
 .footer-social-block h3 {
     margin: 0 0 28px;
     color: #fff;
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-site);
     font-size: 0.95rem;
     font-weight: 600;
     letter-spacing: 0.02em;

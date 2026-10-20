@@ -44,7 +44,7 @@
             padding: 0;
             background: #fff;
             color: #111;
-            font-family: 'Inter', sans-serif;
+            font-family: var(--font-site);
             overflow-x: hidden;
             overflow-y: auto;
             /* Scroll enabled */
@@ -144,7 +144,7 @@
         }
 
         .t-nav-links a {
-            font-family: 'Inter', sans-serif;
+            font-family: var(--font-site);
             font-size: 0.72rem;
             letter-spacing: 3px;
             text-transform: uppercase;
@@ -209,7 +209,7 @@
         }
 
         .t-title-block h2 {
-            font-family: 'Inter', sans-serif;
+            font-family: var(--font-site);
             font-weight: 900;
             font-size: clamp(2rem, 5vw, 3.8rem);
             text-transform: uppercase;
@@ -225,7 +225,7 @@
         }
 
         .t-title-block.accent h3 {
-            font-family: 'Inter', sans-serif;
+            font-family: var(--font-site);
             font-style: italic;
             font-weight: 400;
             font-size: clamp(2rem, 5vw, 3.8rem);
@@ -237,7 +237,7 @@
         }
 
         .t-hero-desc {
-            font-family: 'Inter', sans-serif;
+            font-family: var(--font-site);
             max-width: 450px;
             color: #fff;
             margin-top: 40px;
@@ -343,7 +343,7 @@
         }
 
         .t-video-text h2 {
-            font-family: 'Inter', sans-serif;
+            font-family: var(--font-site);
             font-weight: 900;
             font-size: 2.8rem;
             margin-bottom: 10px;
@@ -351,7 +351,7 @@
         }
 
         .t-video-text h3 {
-            font-family: 'Inter', sans-serif;
+            font-family: var(--font-site);
             font-size: 1.1rem;
             text-transform: uppercase;
             letter-spacing: 3px;
@@ -360,7 +360,7 @@
         }
 
         .t-video-text p {
-            font-family: 'Inter', sans-serif;
+            font-family: var(--font-site);
             font-size: 1rem;
             line-height: 1.8;
             color: #444;
@@ -399,7 +399,7 @@
         }
 
         .viajes-link-text {
-            font-family: 'Inter', sans-serif;
+            font-family: var(--font-site);
             font-size: 0.85rem;
             letter-spacing: 3px;
             font-weight: 800;
@@ -582,7 +582,7 @@
             bottom: 15%;
             right: 25%;
             max-width: 300px;
-            font-family: 'Inter', sans-serif;
+            font-family: var(--font-site);
             font-size: 1.1rem;
             line-height: 1.6;
             color: #333;
@@ -602,7 +602,7 @@
         }
 
         .t-offer-header h2 {
-            font-family: 'Inter', sans-serif;
+            font-family: var(--font-site);
             font-size: clamp(2rem, 5vw, 4rem);
             font-weight: 900;
             color: #111;
@@ -612,7 +612,7 @@
         }
 
         .t-offer-header h2 span {
-            font-family: 'Inter', sans-serif;
+            font-family: var(--font-site);
             font-style: italic;
             font-weight: 400;
             font-size: 0.8em;
@@ -651,7 +651,7 @@
         }
 
         .t-card-label {
-            font-family: 'Inter', sans-serif;
+            font-family: var(--font-site);
             font-size: 0.65rem;
             letter-spacing: 4px;
             text-transform: uppercase;
@@ -661,7 +661,7 @@
         }
 
         .t-card-title {
-            font-family: 'Inter', sans-serif;
+            font-family: var(--font-site);
             font-size: clamp(2.2rem, 4.5vw, 4.2rem);
             font-weight: 900;
             text-transform: uppercase;
@@ -673,7 +673,7 @@
 
         .t-card-title em {
             display: block;
-            font-family: 'Inter', sans-serif;
+            font-family: var(--font-site);
             font-style: italic;
             font-weight: 400;
             text-transform: none;
@@ -684,7 +684,7 @@
         }
 
         .t-card-subtitle {
-            font-family: 'Inter', sans-serif;
+            font-family: var(--font-site);
             font-size: 1.4rem;
             color: #6a1a1c;
             margin-bottom: 28px;
@@ -699,7 +699,7 @@
 
         .t-card-cta {
             display: inline-block;
-            font-family: 'Inter', sans-serif;
+            font-family: var(--font-site);
             font-size: 0.7rem;
             letter-spacing: 3px;
             text-transform: uppercase;
@@ -753,7 +753,7 @@
         }
 
         .workshop-title-large {
-            font-family: 'Inter', sans-serif;
+            font-family: var(--font-site);
             font-weight: 900;
             font-size: clamp(2.5rem, 6vw, 4.5rem);
             line-height: 1.1;
@@ -776,7 +776,7 @@
         }
 
         .workshop-title-label.accent {
-            font-family: 'Inter', sans-serif;
+            font-family: var(--font-site);
             font-style: italic;
             font-weight: 400;
             text-transform: none;
@@ -793,7 +793,7 @@
 
 
         .w-desc-inline {
-            font-family: 'Inter', sans-serif;
+            font-family: var(--font-site);
             font-size: 0.9rem;
             font-weight: 400;
             text-transform: none;
@@ -817,21 +817,6 @@
             background: #fff;
             position: relative;
             overflow: hidden;
-        }
-
-        .workshops-footer {
-            --footer-overlap: clamp(32px, 4vw, 56px);
-            margin-top: calc(-1 * var(--footer-overlap));
-            background: linear-gradient(to bottom, transparent var(--footer-overlap), #eee6d8 var(--footer-overlap));
-        }
-
-        .workshops-footer .footer-wave {
-            height: var(--footer-overlap);
-            background: transparent;
-        }
-
-        .workshops-footer .footer-wave svg {
-            height: 100%;
         }
 
         .workshop-mosaic-grid {
@@ -878,7 +863,7 @@
 
         /* Legacy mappings to prevent breaks */
         .mosaic-tile h3 {
-            font-family: 'Inter', sans-serif;
+            font-family: var(--font-site);
             font-weight: 900;
             font-size: clamp(0.75rem, 1.4vw, 1.7rem);
             /* REFINED SIZE */
@@ -974,7 +959,7 @@
             bottom: auto;
             transform: translate(-50%, calc(-50% + 10px));
             width: min(86%, 20rem);
-            font-family: 'Inter', sans-serif;
+            font-family: var(--font-site);
             font-size: clamp(0.72rem, 0.95vw, 0.92rem);
             font-weight: 400;
             line-height: 1.45;
@@ -1170,7 +1155,7 @@
         }
 
         .t-intro-label {
-            font-family: 'Inter', sans-serif;
+            font-family: var(--font-site);
             font-size: 0.65rem;
             letter-spacing: 4px;
             text-transform: uppercase;
@@ -1180,7 +1165,7 @@
         }
 
         .t-intro-title {
-            font-family: 'Inter', sans-serif;
+            font-family: var(--font-site);
             font-weight: 700;
             font-size: clamp(2.8rem, 4.5vw, 4.5rem);
             line-height: 0.92;
@@ -1203,7 +1188,7 @@
         }
 
         .t-intro-link {
-            font-family: 'Inter', sans-serif;
+            font-family: var(--font-site);
             font-size: 0.7rem;
             letter-spacing: 3px;
             text-transform: uppercase;
@@ -1251,7 +1236,7 @@
             position: absolute;
             bottom: 40px;
             left: -20px;
-            font-family: 'Inter', sans-serif;
+            font-family: var(--font-site);
             font-size: 1.5rem;
             color: var(--dark);
             background: var(--cream);
@@ -1272,7 +1257,7 @@
         }
 
         .t-offer-header h2 {
-            font-family: 'Inter', sans-serif;
+            font-family: var(--font-site);
             font-size: clamp(2rem, 5vw, 4rem);
             font-weight: 900;
             color: #fff;
@@ -1282,7 +1267,7 @@
         }
 
         .t-offer-header h2 span {
-            font-family: 'Inter', sans-serif;
+            font-family: var(--font-site);
             font-style: italic;
             font-weight: 400;
             font-size: 0.8em;
@@ -1328,7 +1313,7 @@
         }
 
         .t-card-label {
-            font-family: 'Inter', sans-serif;
+            font-family: var(--font-site);
             font-size: 0.65rem;
             letter-spacing: 4px;
             text-transform: uppercase;
@@ -1338,7 +1323,7 @@
         }
 
         .t-card-title {
-            font-family: 'Inter', sans-serif;
+            font-family: var(--font-site);
             font-size: clamp(2.2rem, 4.5vw, 4.2rem);
             font-weight: 900;
             text-transform: uppercase;
@@ -1350,7 +1335,7 @@
 
         .t-card-title em {
             display: block;
-            font-family: 'Inter', sans-serif;
+            font-family: var(--font-site);
             font-style: italic;
             font-weight: 400;
             text-transform: none;
@@ -1361,7 +1346,7 @@
         }
 
         .t-card-subtitle {
-            font-family: 'Inter', sans-serif;
+            font-family: var(--font-site);
             font-size: 1.4rem;
             color: var(--orange);
             margin-bottom: 28px;
@@ -1381,7 +1366,7 @@
 
         .t-card-cta {
             display: inline-block;
-            font-family: 'Inter', sans-serif;
+            font-family: var(--font-site);
             font-size: 0.7rem;
             letter-spacing: 3px;
             text-transform: uppercase;
@@ -1464,7 +1449,7 @@
             background: transparent;
             padding: 40px 30px 20px;
             color: rgba(255, 255, 255, .7);
-            font-family: 'Inter', sans-serif;
+            font-family: var(--font-site);
             font-size: 0.68rem;
             letter-spacing: 2px;
             text-transform: uppercase;
@@ -1479,7 +1464,7 @@
         }
 
         .t-bio-label {
-            font-family: 'Inter', sans-serif;
+            font-family: var(--font-site);
             font-size: 0.65rem;
             letter-spacing: 4px;
             text-transform: uppercase;
@@ -1489,7 +1474,7 @@
         }
 
         .t-bio-name {
-            font-family: 'Inter', sans-serif;
+            font-family: var(--font-site);
             font-size: clamp(2rem, 3.5vw, 3.2rem);
             font-weight: 700;
             color: var(--dark);
@@ -1498,7 +1483,7 @@
         }
 
         .t-bio-role {
-            font-family: 'Inter', sans-serif;
+            font-family: var(--font-site);
             font-size: 1.4rem;
             color: var(--wine);
             margin-bottom: 28px;
@@ -1513,7 +1498,7 @@
 
         .t-bio-cta {
             display: inline-block;
-            font-family: 'Inter', sans-serif;
+            font-family: var(--font-site);
             font-size: 0.7rem;
             letter-spacing: 3px;
             text-transform: uppercase;
@@ -1538,7 +1523,7 @@
 
         .t-quote::before {
             content: '"';
-            font-family: 'Inter', sans-serif;
+            font-family: var(--font-site);
             font-size: 18rem;
             color: rgba(106, 26, 28, .06);
             position: absolute;
@@ -1550,7 +1535,7 @@
         }
 
         .t-quote q {
-            font-family: 'Inter', sans-serif;
+            font-family: var(--font-site);
             font-style: italic;
             font-size: clamp(1.4rem, 2.5vw, 2.1rem);
             color: var(--wine);
@@ -1561,7 +1546,7 @@
         }
 
         .t-quote-author {
-            font-family: 'Inter', sans-serif;
+            font-family: var(--font-site);
             font-size: 0.7rem;
             letter-spacing: 3px;
             text-transform: uppercase;
@@ -1574,7 +1559,7 @@
             color: var(--cream);
             text-align: center;
             padding: 44px 6%;
-            font-family: 'Inter', sans-serif;
+            font-family: var(--font-site);
             font-size: 0.78rem;
             letter-spacing: 1px;
         }
@@ -2182,7 +2167,7 @@ materiales y técnicas para desarrollar nuestras producciones.</p>
     </main>
 
     <!-- FOOTER -->
-    <footer class="mag-footer workshops-footer" role="contentinfo">
+    <footer class="mag-footer mosaic-footer" role="contentinfo">
         <div class="footer-wave" aria-hidden="true">
             <svg viewBox="0 0 1440 160" preserveAspectRatio="none">
                 <path fill="#eee6d8" d="M0 42C225 108 450 137 690 132c238-5 397-104 620-73 57 8 99 21 130 35v66H0Z" />
