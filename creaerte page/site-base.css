@@ -1,7 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,100..900;1,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 :root {
     --font-site: 'Inter', sans-serif;
+    --font-heading: 'Montserrat', sans-serif;
     --image-radius: 16px;
 }
 
@@ -21,7 +22,6 @@ img {
 .about-video-card,
 .custom-video-thumb,
 .t-card-img,
-.mosaic-tile,
 .t-intro-img,
 .t-bio-img,
 .obra-item,
@@ -43,17 +43,32 @@ img {
 .mosaico-principal img,
 .staff-mosaic .mosaic-box,
 .staff-mosaic img,
+.workshop-mosaic-grid .mosaic-tile,
 :is(.hero-static, .hero-splash, .t-hero, .banner-section, .strip-wrapper) img,
 :is(.hero-static, .hero-splash, .t-hero, .banner-section, .strip-wrapper) video {
     border-radius: 0 !important;
 }
 
-/* Unified typography, including UIkit headings and form controls. */
+/* Body copy, navigation and form controls share the text family. */
 html,
 body,
 body *,
 body *::before,
 body *::after {
+    font-family: var(--font-site) !important;
+}
+
+/* Headings and their nested emphasis use the title family. */
+:is(h1, h2, h3, h4, h5, h6),
+:is(h1, h2, h3, h4, h5, h6) * {
+    font-family: var(--font-heading) !important;
+}
+
+/* Preserve the existing typography throughout cards and mosaic tiles. */
+:is(.tile, .mosaic-tile, .t-card, .ed-card, .catalogo-card,
+    .social-card, .step-card, .about-video-card),
+:is(.tile, .mosaic-tile, .t-card, .ed-card, .catalogo-card,
+    .social-card, .step-card, .about-video-card) * {
     font-family: var(--font-site) !important;
 }
 
@@ -69,22 +84,6 @@ body *::after {
 .page-white {
     --page-white: #ffffff;
     background-color: #ffffff;
-}
-
-/* Small decorative divider between main content sections. */
-.section-separator {
-    width: min(120px, 30vw);
-    height: 1px;
-    margin: 24px auto;
-    background: rgba(106, 26, 28, 0.28);
-    pointer-events: none;
-}
-
-@media (max-width: 640px) {
-    .section-separator {
-        width: 80px;
-        margin: 18px auto;
-    }
 }
 
 /* Shared navigation, based on the home page. */
@@ -131,10 +130,15 @@ nav.t-nav.nav-home .t-nav-links {
     display: none !important;
 }
 
+nav.t-nav .t-nav-links a,
+.mobile-menu-links a {
+    font-family: var(--font-heading) !important;
+}
+
 nav.t-nav .t-nav-links a {
     font-size: 0.72rem;
-    font-weight: 500;
-    letter-spacing: 4px;
+    font-weight: 600;
+    letter-spacing: 2px;
     line-height: 1.5;
     text-transform: uppercase;
     text-decoration: none !important;
