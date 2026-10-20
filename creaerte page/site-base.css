@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,100..900;1,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 :root {
+    --text-ash: #454545;
+    --text-on-dark: #ecebe7;
     --font-site: 'Inter', sans-serif;
     --font-heading: 'Montserrat', sans-serif;
     --image-radius: 16px;
@@ -80,6 +82,11 @@ body *::after {
     text-shadow: none !important;
 }
 
+/* Lift the history text card above its photo collage. */
+.history-section .scrap-text-box {
+    box-shadow: 0 12px 36px rgba(45, 45, 45, 0.16) !important;
+}
+
 /* White page backgrounds. */
 .page-white {
     --page-white: #ffffff;
@@ -88,6 +95,7 @@ body *::after {
 
 /* Shared navigation, based on the home page. */
 nav.t-nav {
+    --nav-text: var(--text-ash);
     position: absolute !important;
     top: 0 !important;
     left: 0 !important;
@@ -142,12 +150,32 @@ nav.t-nav .t-nav-links a {
     line-height: 1.5;
     text-transform: uppercase;
     text-decoration: none !important;
-    color: #111 !important;
+    color: var(--nav-text) !important;
     opacity: 1;
 }
 
-nav.t-nav.nav-light .t-nav-links a {
-    color: #fff !important;
+nav.t-nav.nav-light {
+    --nav-text: var(--text-on-dark);
+}
+
+nav.t-nav .t-nav-links a * {
+    color: inherit !important;
+}
+
+nav.t-nav .mobile-nav-toggle span {
+    background-color: var(--nav-text);
+}
+
+nav.t-nav .mobile-nav-toggle.active span {
+    background-color: var(--text-ash);
+}
+
+.mobile-menu .mobile-menu-links a {
+    color: var(--text-ash);
+}
+
+.mobile-menu .mobile-menu-links a:hover {
+    color: var(--accent-color);
 }
 
 nav.t-nav .mobile-nav-toggle {

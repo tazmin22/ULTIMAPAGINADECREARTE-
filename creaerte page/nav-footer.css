@@ -5,7 +5,7 @@
     overflow: hidden;
     padding: 0 0 96px;
     background: #eee6d8;
-    color: #292929;
+    color: var(--text-ash);
     font-family: var(--font-site);
     font-size: 0.95rem;
     scroll-snap-align: start;
@@ -107,7 +107,7 @@
 .footer-column p {
     max-width: 390px;
     margin: 0;
-    color: #292929;
+    color: var(--text-ash);
     font-size: 0.95rem;
     line-height: 1.55;
 }
@@ -117,7 +117,7 @@
 }
 
 .footer-social-block h3 {
-    color: #000;
+    color: var(--text-ash);
     margin-bottom: 18px;
     font-size: 0.78rem;
 }
@@ -134,7 +134,7 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    color: #292929;
+    color: var(--text-ash);
     line-height: 1;
     transition: color 0.2s ease, transform 0.2s ease;
 }
@@ -216,7 +216,7 @@
 
 .footer-donation > span {
     max-width: 150px;
-    color: #292929;
+    color: var(--text-ash);
     font-size: 0.85rem;
     line-height: 1.45;
 }
