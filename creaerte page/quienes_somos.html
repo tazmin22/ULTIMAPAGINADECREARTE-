@@ -1039,19 +1039,25 @@
 
         .sticky-text-wrapper {
             flex: 1;
-            padding-bottom: 50vh;
-            /* Espacio para que el ultimo item llegue arriba */
+            padding-bottom: 0;
         }
 
         .sticky-item {
-            margin-bottom: 60vh;
-            /* Increased for longer paragraphs */
+            margin-bottom: clamp(120px, 26vh, 280px);
             opacity: 0.15;
             transition: opacity 0.5s ease, transform 0.5s ease, color 0.5s ease;
             cursor: pointer;
             display: flex;
             align-items: center;
             gap: 20px;
+        }
+
+        .sticky-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .story-inline-image {
+            display: none;
         }
 
         .sticky-item.active {
@@ -1635,6 +1641,90 @@
             }
         }
     </style>
+    <style>
+        /* En pantallas medianas y pequeñas, cada relato conserva su propia foto. */
+        @media (max-width: 1100px) {
+            .sticky-interactive-section {
+                display: block;
+                padding: 48px 6%;
+            }
+
+            .sticky-interactive-section .sticky-text-wrapper {
+                display: grid;
+                gap: 48px;
+                padding: 0;
+            }
+
+            .sticky-interactive-section .sticky-image-wrapper {
+                display: none;
+            }
+
+            .sticky-interactive-section .sticky-item {
+                --image-radius: 4px;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                align-items: center;
+                gap: 28px;
+                margin: 0;
+                opacity: 1;
+                transform: none;
+                cursor: auto;
+            }
+
+            .sticky-interactive-section .sticky-item p {
+                opacity: 1;
+            }
+
+            .sticky-item .story-inline-image {
+                display: block;
+                width: 100%;
+                height: clamp(220px, 30vw, 340px);
+                object-fit: cover;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .sticky-interactive-section {
+                padding: 40px 5%;
+            }
+
+            .sticky-interactive-section .sticky-item {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .sticky-item .story-inline-image {
+                grid-row: 1;
+                height: auto;
+                aspect-ratio: 7 / 5;
+            }
+        }
+
+        @media (max-width: 1100px) and (prefers-reduced-motion: no-preference) {
+            .sticky-item.story-entry-enabled > p,
+            .sticky-item.story-entry-enabled > .story-inline-image {
+                opacity: 0 !important;
+                translate: 0 28px;
+                transition: opacity 0.75s ease, translate 0.85s cubic-bezier(0.165, 0.84, 0.44, 1),
+                    scale 0.95s cubic-bezier(0.165, 0.84, 0.44, 1);
+            }
+
+            .sticky-item.story-entry-enabled > .story-inline-image {
+                scale: 0.97;
+            }
+
+            .sticky-item.story-entry-enabled > p {
+                transition-delay: 0.14s;
+            }
+
+            .sticky-item.story-entered > p,
+            .sticky-item.story-entered > .story-inline-image {
+                opacity: 1 !important;
+                translate: 0 0;
+                scale: 1;
+            }
+        }
+    </style>
     <link rel="stylesheet" href="site-base.css">
 </head>
 
@@ -2010,6 +2100,18 @@
         // --- STICKY INTERACTIVE SECTION LOGIC ---
         const stickyItems = document.querySelectorAll('.sticky-item');
         const stickyImages = document.querySelectorAll('.sticky-scene img');
+        const stickyDesktop = window.matchMedia('(min-width: 1101px)');
+
+        stickyItems.forEach(item => {
+            const source = stickyImages[Number(item.dataset.index)];
+            if (!source) return;
+            const image = source.cloneNode(false);
+            image.className = 'story-inline-image';
+            image.removeAttribute('data-index');
+            image.loading = 'lazy';
+            image.decoding = 'async';
+            item.appendChild(image);
+        });
 
         const stickyObserverOptions = {
             root: null,
@@ -2018,6 +2120,7 @@
         };
 
         const stickyObserver = new IntersectionObserver((entries) => {
+            if (!stickyDesktop.matches) return;
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     const index = entry.target.getAttribute('data-index');
@@ -2033,7 +2136,29 @@
             });
         }, stickyObserverOptions);
 
-        stickyItems.forEach(item => stickyObserver.observe(item));
+        const storyEntryObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add('story-entered');
+                observer.unobserve(entry.target);
+            });
+        }, { threshold: 0.12, rootMargin: '0px 0px -24px 0px' });
+
+        function updateStoryLayout() {
+            stickyObserver.disconnect();
+            storyEntryObserver.disconnect();
+            if (stickyDesktop.matches) {
+                stickyItems.forEach(item => stickyObserver.observe(item));
+            } else {
+                stickyItems.forEach(item => {
+                    item.classList.add('story-entry-enabled');
+                    if (!item.classList.contains('story-entered')) storyEntryObserver.observe(item);
+                });
+            }
+        }
+
+        stickyDesktop.addEventListener('change', updateStoryLayout);
+        updateStoryLayout();
 
 
     </script>

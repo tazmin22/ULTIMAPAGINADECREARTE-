@@ -158,6 +158,12 @@ body *::after {
     box-shadow: 0 12px 36px rgba(45, 45, 45, 0.16) !important;
 }
 
+@media (max-width: 1100px) {
+    .history-section .scrap-text-box {
+        box-shadow: none !important;
+    }
+}
+
 /* White page backgrounds. */
 .page-white {
     --page-white: #ffffff;
