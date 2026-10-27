@@ -28,6 +28,7 @@
     <style>
         :root {
             --page-white: #ffffff;
+            --title-olive: #87936d;
         }
 
         /* ===== BASE ===== */
@@ -194,12 +195,22 @@
             pointer-events: none;
         }
 
+        .hero-splash #stars-canvas {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+            filter: brightness(1.08) contrast(1.06);
+        }
+
         .hero-splash-wave {
             position: absolute;
             right: 0;
             bottom: -1px;
             left: 0;
-            z-index: 2;
+            z-index: 3;
             display: block;
             width: 100%;
             height: clamp(56px, 9.2vw, 132px);
@@ -280,10 +291,11 @@
         }
 
         .about-spread-media {
+            --image-radius: 4px;
             grid-column: 1;
             grid-row: 1 / span 3;
             position: relative;
-            min-height: 470px;
+            min-height: 760px;
             width: 100%;
         }
 
@@ -292,27 +304,34 @@
             grid-column: 2;
             grid-row: 1;
             margin: 0;
-            line-height: 0.9;
+            line-height: 1;
             font-family: var(--font-site);
             font-size: clamp(3.5rem, 8vw, 6rem);
             font-weight: 900;
-            color: #e65c00;
+            color: #fff;
             text-transform: none;
             letter-spacing: -2px;
         }
 
-        .about-spread-title span {
-            font-family: var(--font-site);
-            font-style: normal;
-            font-size: clamp(3rem, 7vw, 5.5rem);
-            color: #e65c00;
-            font-weight: 400;
-            text-transform: none;
-            letter-spacing: normal;
+        /* Franjas editoriales, como el título de la convocatoria. */
+        .about-spread-title span,
+        .scrap-title span {
             display: block;
+            width: fit-content;
+            max-width: 100%;
+            padding: 0.04em 0.18em 0.12em;
+            margin-bottom: 0.07em;
+            background-color: var(--title-olive);
+            color: inherit;
+            font-size: inherit;
+            font-weight: 900;
+            font-style: normal;
+            text-transform: none;
+            letter-spacing: inherit;
             position: relative;
             z-index: 15;
-            transform: rotate(-3deg);
+            transform: rotate(-1.5deg);
+            transform-origin: left center;
         }
 
         /* Bloques de texto editorial */
@@ -321,7 +340,7 @@
             grid-row: 2;
             margin-top: 22px;
             font-family: var(--font-site);
-            font-size: 0.78rem;
+            font-size: 0.9rem;
             line-height: 1.7;
             letter-spacing: 0.45px;
             text-transform: none;
@@ -334,7 +353,7 @@
             grid-row: 3;
             margin-top: 38px;
             font-family: var(--font-site);
-            font-size: 0.78rem;
+            font-size: 0.9rem;
             line-height: 1.7;
             letter-spacing: 0.45px;
             text-transform: none;
@@ -347,6 +366,7 @@
             position: absolute;
             box-shadow: none;
             overflow: hidden;
+            transform: translate3d(0, var(--parallax-y, 0px), 0) rotate(var(--photo-angle, 0deg));
         }
 
         .spread-photo img {
@@ -356,21 +376,22 @@
             display: block;
         }
 
-        /* Posiciones basadas en la captura */
+        /* Composición escalonada con espacio entre los puntos de atención. */
         .sp-1 {
-            top: 0;
+            --photo-angle: -4deg;
+            top: 24px;
             left: 0;
-            width: min(42%, 320px);
-            height: 320px;
+            width: 63%;
+            height: 330px;
             z-index: 5;
-            opacity: 0.9;
         }
 
         .sp-2 {
-            bottom: 0;
-            left: clamp(28px, 12%, 80px);
-            width: min(46%, 320px);
-            height: clamp(270px, 30vw, 400px);
+            --photo-angle: 3deg;
+            top: 425px;
+            left: 4%;
+            width: 66%;
+            height: 300px;
             z-index: 10;
         }
 
@@ -383,11 +404,12 @@
         }
 
         .sp-4 {
-            top: 0;
-            right: 0;
-            width: min(62%, 450px);
-            height: 438px;
-            z-index: 10;
+            --photo-angle: 4deg;
+            top: 210px;
+            right: 1%;
+            width: 60%;
+            height: 340px;
+            z-index: 8;
         }
 
         .sp-1 img {
@@ -635,36 +657,30 @@
             padding: 20px;
         }
 
-        .mosaic-names {
-            line-height: 0.9;
-            font-family: var(--font-site);
+        .mosaic-text-box .mosaic-names {
+            line-height: 1;
+            font-family: var(--font-heading) !important;
             font-size: clamp(2rem, 4vw, 3.5rem);
             font-weight: 900;
-            color: #e65c00;
-            text-transform: uppercase;
-            letter-spacing: -2px;
-            margin-bottom: 15px;
-        }
-
-        .mosaic-names span {
-            display: block;
-            font-family: var(--font-site);
-            font-style: italic;
-            font-size: clamp(1.8rem, 3.5vw, 3rem);
-            color: #e65c00;
-            font-weight: 500;
+            color: #fff;
+            background-color: var(--title-olive);
             text-transform: none;
-            letter-spacing: normal;
+            letter-spacing: -2px;
+            width: fit-content;
+            max-width: 100%;
+            padding: 0.04em 0.18em 0.12em;
+            margin: 0 0 24px;
+            transform: rotate(-1.5deg);
         }
 
         .mosaic-subtitle {
             color: var(--text-ash);
             font-family: var(--font-site);
-            font-size: 0.78rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            font-size: 0.9rem;
+            text-transform: none;
+            letter-spacing: 0.45px;
             font-weight: normal;
-            line-height: 1.8;
+            line-height: 1.7;
             max-width: 80%;
             margin-top: 15px;
         }
@@ -725,6 +741,7 @@
 
         /* Foto izquierda (Paisaje / Taller) */
         .scrap-1 {
+            --photo-angle: -4deg;
             top: 15%;
             left: 2%;
             width: 400px;
@@ -734,22 +751,36 @@
 
         /* Foto superior centro (Tono oscuro/Gris) */
         .scrap-2 {
+            --photo-angle: 3deg;
             top: 3%;
             left: 32%;
             width: 320px;
             height: 400px;
-            transform: rotate(-3deg);
             z-index: 15;
         }
 
         /* Foto derecha (Blanco y Negro) */
         .scrap-3 {
+            --photo-angle: 4deg;
             top: 10%;
             right: 0%;
             width: 340px;
             height: 480px;
             z-index: 12;
-            transform: rotate(2deg);
+        }
+
+        /* Movimiento independiente para conservar la animación de entrada. */
+        @media (min-width: 1201px) and (prefers-reduced-motion: no-preference) {
+            .scrapbook-container .scrap-photo {
+                translate: var(--float-x, 0px) calc(var(--parallax-y, 0px) + var(--float-y, 0px));
+                rotate: var(--photo-angle);
+            }
+        }
+
+        @media (min-width: 1201px) and (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+            .about-spread-media .spread-photo {
+                translate: var(--float-x, 0px) var(--float-y, 0px);
+            }
         }
 
         /* Tarjeta central de texto (Wild Muse style) */
@@ -782,25 +813,19 @@
         }
 
         .scrap-title {
-            line-height: 0.9;
+            line-height: 1;
             font-family: var(--font-site);
             font-size: 3rem;
             font-weight: 900;
-            color: #e65c00;
-            text-transform: uppercase;
+            color: #fff;
+            text-transform: none;
             letter-spacing: -2px;
             margin: 0 0 20px 0;
         }
 
         .scrap-title span {
-            display: block;
-            font-family: var(--font-site);
-            font-style: italic;
-            font-size: 2.5rem;
-            color: #e65c00;
-            font-weight: 500;
-            text-transform: none;
-            letter-spacing: normal;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .scrap-desc {
@@ -1070,12 +1095,13 @@
 
         .sticky-item p {
             font-family: var(--font-site);
-            font-size: 0.78rem;
-            line-height: 1.8;
+            font-size: 0.9rem;
+            font-weight: 400;
+            line-height: 1.7;
             margin: 0;
             color: var(--text-ash);
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            text-transform: none;
+            letter-spacing: 0.45px;
             transition: all 0.6s ease;
             max-width: 100%;
             opacity: 0.4;
@@ -1250,7 +1276,8 @@
             }
 
             .about-spread-title span {
-                font-size: clamp(2rem, 7vw, 3.5rem);
+                margin-left: auto;
+                margin-right: auto;
             }
 
             .sp-1 {
@@ -1312,8 +1339,8 @@
             }
 
             .sticky-item p {
-                font-size: 0.6rem;
-                letter-spacing: 1px;
+                font-size: 0.9rem;
+                letter-spacing: 0.45px;
                 opacity: 1 !important;
             }
 
@@ -1616,8 +1643,9 @@
     <a href="#contenido-principal" class="skip-link">Saltar al contenido principal</a>
 
     <!-- CABECERA PRINCIPAL -->
-    <header class="hero-splash" id="portada" aria-label="Cre-Arte en Bariloche">
-        <img src="./img/quienes_somos_portadaimagen.png" alt="" fetchpriority="high">
+    <header class="hero-splash" id="portada" aria-label="Cielo nocturno de Bariloche">
+        <img src="./img/noche.webp" alt="" fetchpriority="high">
+        <canvas id="stars-canvas" aria-hidden="true">Cielo nocturno decorativo con estrellas</canvas>
         <svg class="hero-splash-wave" viewBox="0 0 1440 160" preserveAspectRatio="none" aria-hidden="true" focusable="false">
             <path d="M0 42C225 108 450 137 690 132c238-5 397-104 620-73 57 8 99 21 130 35v66H0Z" />
         </svg>
@@ -1669,16 +1697,16 @@
         <div class="about-spread">
             <div class="about-spread-media" aria-hidden="true">
                 <!-- Fotos superpuestas (Editorial Style) -->
-                <div class="spread-photo sp-1 visible"><img src="./img/frente.webp" alt="Participantes de Cre-Arte en un viaje cultural" role="presentation"></div>
-                <div class="spread-photo sp-2 visible"><img src="./img/grupal.webp" alt="Actividades comunitarias de Cre-Arte en Jacobacci" role="presentation"></div>
-                <div class="spread-photo sp-4 visible"><img src="./img/SUM.webp" alt="Grupo de personas en un taller de Cre-Arte" role="presentation"></div>
+                <div class="spread-photo sp-1 visible" data-parallax="0.08"><img src="./img/frente.webp" alt="Participantes de Cre-Arte en un viaje cultural" role="presentation"></div>
+                <div class="spread-photo sp-2 visible" data-parallax="0.14"><img src="./talleres/talleres38.webp" alt="Actividades de los talleres de Cre-Arte" role="presentation"></div>
+                <div class="spread-photo sp-4 visible" data-parallax="-0.1"><img src="./talleres/talleres21.webp" alt="Grupo de personas en un taller de Cre-Arte" role="presentation"></div>
             </div>
 
             <div class="spread-side-text fade-in-right" aria-hidden="true">Cre-Arte Bariloche</div>
 
             <h2 id="titulo-somos" class="about-spread-title zoom-pop stagger-2">
                 <span>Somos</span>
-                Cre-Arte
+                <span>Cre-Arte</span>
             </h2>
 
             <div class="about-spread-text fade-in-right stagger-4">
@@ -1707,24 +1735,24 @@
     <section class="history-section section-reveal" id="historia" aria-labelledby="titulo-historia">
         <div class="scrapbook-container">
             <!-- Imagen izquierda (Agua/Campamento) -->
-            <div class="scrap-piece scrap-1 fade-in-up stagger-1">
+            <div class="scrap-piece scrap-photo scrap-1 fade-in-up stagger-1" data-parallax="0.08">
                 <img src="./img/HISTORICA2.webp" alt="Fotografía histórica de los inicios de Cre-Arte">
             </div>
 
             <!-- Imagen top medio (Con borde) -->
-            <div class="scrap-piece scrap-2 fade-in-up stagger-3">
+            <div class="scrap-piece scrap-photo scrap-2 fade-in-up stagger-3" data-parallax="0.14">
                 <img src="./img/HISTORICA.webp" alt="Momento fundacional de Cre-Arte en Bariloche">
             </div>
 
             <!-- Imagen derecha (B&W Mujer) -->
-            <div class="scrap-piece scrap-3 fade-in-up stagger-2">
+            <div class="scrap-piece scrap-photo scrap-3 fade-in-up stagger-2" data-parallax="-0.1">
                 <img src="./img/Grupo.webp" alt="Grupo de participantes de Cre-Arte">
             </div>
 
             <!-- Tarjeta Central de Texto (Wild Muse style) -->
             <div class="scrap-piece scrap-text-box fade-in-up stagger-4">
                 <div class="scrap-title-top">Desde 1995</div>
-                <h2 id="titulo-historia" class="scrap-title"><span>Nuestra</span>HISTORIA</h2>
+                <h2 id="titulo-historia" class="scrap-title"><span>Nuestra</span> <span>Historia</span></h2>
                 <div class="scrap-desc">
                     Desde sus inicios, la institución se enfocó en el arte y la cultura como herramientas fundamentales
                     para el desarrollo personal, la inclusión y la participación social. Su modelo educativo promueve la
@@ -1848,7 +1876,7 @@
             <div class="mosaic-box color-burgundy fade-in-place stagger-14"></div>
             <!-- TEXT BOX (Span 2x2) -->
             <div class="mosaic-box mosaic-text-box fade-in-place stagger-10" style="z-index: 25;">
-                <div class="mosaic-names"><span></span>Cre-Arte</div>
+                <h2 class="mosaic-names">Cre-Arte</h2>
                 <div class="mosaic-subtitle">Se ha convertido en un lugar donde el arte es la vía para
                     romper prejuicios, contribuir a la cultura comunitaria, forjar y ser protagonistas de
                     los procesos históricos y crear una sociedad cada vez más <span
@@ -1927,13 +1955,13 @@
             </div>
             <div class="footer-bottom">
                 <div class="footer-copyright">&copy; 2026 Cre-Arte Bariloche. Todos los derechos reservados.</div>
+                <p class="footer-credit">Desarrollado por: <a href="https://wa.me/5492944284493" target="_blank" rel="noopener noreferrer" aria-label="Contactar a sacaraat por WhatsApp">sacaraat</a></p>
             </div>
         </div>
     </footer>
 
+    <script src="photo-motion.js"></script>
     <script>
-        // Lógica de Mouse Parallax removida por petición del usuario
-
         // Elimina cualquier postal residual si el navegador conserva una versión vieja del HTML.
         document.querySelectorAll('.scrap-postal').forEach((el) => el.remove());
 
@@ -2009,5 +2037,6 @@
 
 
     </script>
+    <script src="night-sky.js"></script>
     <script src="script.js"></script>
 </body>

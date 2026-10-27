@@ -515,17 +515,25 @@
         .banner-section {
             width: 100%;
             margin-left: 0;
-            height: 100vh;
-            background-image: linear-gradient(to right, rgba(0, 0, 0, 0.6), transparent), url('img/noche.webp');
-            background-size: cover;
-            background-position: center;
+            height: clamp(260px, 30vw, 420px);
+            background: #262622;
+            overflow: hidden;
             display: flex;
             align-items: center;
-            padding: 0 10%;
+            padding: 0;
             margin-top: 0;
-            margin-bottom: 80px;
+            margin-bottom: 0;
             position: relative;
             z-index: 15;
+        }
+
+        /* Portada actualizada, sin ampliación adicional. */
+        .banner-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url('img/quienes_somos_portadaimagen.png?v=f8b05f99e43a') center / cover no-repeat;
+            pointer-events: none;
         }
 
         .banner-wave {
@@ -635,12 +643,12 @@
             }
 
             .banner-section {
-                padding: 120px 6% !important;
-                height: 70vh !important;
-                min-height: 400px !important;
+                padding: 0 !important;
+                min-height: 0 !important;
+                height: clamp(220px, 45vw, 300px);
                 margin-top: 0 !important;
                 overflow: hidden !important;
-                background-position: center 30% !important;
+                background-position: center !important;
             }
 
             #stars-canvas {
@@ -723,13 +731,20 @@
         }
     </style>
     <link rel="stylesheet" href="site-base.css">
+    <link rel="stylesheet" href="puertas-motion.css">
 </head>
 
 <body>
 
     <a href="#contenido-principal" class="skip-link">Saltar al contenido principal</a>
 
-    <nav class="t-nav" aria-label="Navegación principal">
+    <header class="banner-section" id="portada" aria-label="Cre-Arte en Bariloche">
+        <svg class="banner-wave" viewBox="0 0 1440 160" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+            <path d="M0 42C225 108 450 137 690 132c238-5 397-104 620-73 57 8 99 21 130 35v66H0Z" />
+        </svg>
+    </header>
+
+    <nav class="t-nav nav-light" aria-label="Navegación principal">
         <a href="./index.html" class="t-nav-logo" aria-label="Ir al inicio de Cre-Arte">
             <img src="./img/LOGO.png" alt="Logo de Cre-Arte">
         </a>
@@ -768,10 +783,10 @@
         <!-- SECTION: FESTIVAL (Modern Clean Layout) -->
 
         <section class="viajes-clean-section" aria-labelledby="festival-title"
-            uk-scrollspy="cls: uk-animation-fade; delay: 200" style="margin-top: 100px;">
+            style="margin-top: 100px;">
             <div class="viajes-container">
                 <div class="viajes-text">
-                    <h2 id="festival-title" class="viajes-h2">Nuestro Festival</h2>
+                    <h2 id="festival-title" class="viajes-h2 olive-title"><span>Nuestro Festival</span></h2>
                     <p class="viajes-p">
                         Hacemos el festival porque creemos que es la posibilidad de ver el arte como
                         modificador de vida, como herramienta transformadora, como reconocimiento y
@@ -804,7 +819,6 @@
         <!-- SECTION: VIAJES (Banner Style) -->
 
         <section class="editorial-section" aria-labelledby="viajes-title"
-            uk-scrollspy="cls: uk-animation-fade; delay: 100"
             style="padding: 0; overflow: hidden; margin-bottom: 60px; width: 100%;">
             <div class="festival-banner" role="img"
                 aria-label="Paisaje de viaje internacional del programa Puertas al Mundo"
@@ -812,9 +826,9 @@
                 <div class="content"
                     style="padding: 100px 5%; text-align: center; position: relative; width: 100%; max-width: 1200px;">
                     <div class="video-title-box" style="margin: 0;">
-                        <h2 id="viajes-title"
-                            style="font-size: 2.5rem; padding: 15px 45px; transform: rotate(-1.5deg); font-weight: 900; box-shadow: none; margin: 0; background: #f9bd61; color: #fff; display: inline-block; text-transform: uppercase;">
-                            VIAJES</h2>
+                        <h2 id="viajes-title" class="olive-title"
+                            style="font-size: 2.5rem; margin: 0; display: inline-block; text-transform: uppercase;">
+                            <span>VIAJES</span></h2>
                     </div>
                     <!-- Floating Card & Curly Arrow (Reveals on Hover) -->
                     <div class="festival-note"
@@ -843,8 +857,7 @@
 
         <!-- HORIZONTAL GALLERY (4 Columns) ADDED BELOW VIAJES -->
 
-        <section class="horizontal-gallery-section" aria-label="Galería de imágenes de encuentros artísticos"
-            uk-scrollspy="cls: uk-animation-fade; delay: 300">
+        <section class="horizontal-gallery-section" aria-label="Galería de imágenes de encuentros artísticos">
             <div class="h-gallery-container" role="group"
                 aria-label="Galería de fotos de actividades artísticas inclusivas" uk-lightbox="animation: slide">
                 <div class="h-gallery-item" style="cursor: pointer;">
@@ -1016,6 +1029,15 @@
 
             @media (prefers-reduced-motion: reduce) {
 
+                [uk-scrollspy],
+                [uk-scrollspy] > *,
+                [uk-scrollspy] .h-gallery-item {
+                    visibility: visible !important;
+                    animation: none !important;
+                    opacity: 1 !important;
+                    transform: none !important;
+                }
+
                 body,
                 .banner-content,
                 .banner-brush-title,
@@ -1032,10 +1054,9 @@
 
         <section class="narrative-section" aria-labelledby="red-arte-title">
             <div class="narrative-content">
-                <h3 id="red-arte-title" class="narrative-h3"
-                    uk-scrollspy="cls: uk-animation-slide-left-medium; delay: 100">Red Arte x Igual
+                <h3 id="red-arte-title" class="narrative-h3 olive-title"><span>Red Arte x Igual</span>
                 </h3>
-                <p class="narrative-p" uk-scrollspy="cls: uk-animation-fade; delay: 300">
+                <p class="narrative-p">
                     En Red Arte por Igual, trabajamos el concepto de igualdad desde la necesidad de
                     visibilidad urgente. Estamos impulsados por el deseo de que el arte, como
                     herramienta transformadora, se convierta en una prioridad dentro de los
@@ -1048,7 +1069,7 @@
                     instituciones y particulares que compartan el mismo anhelo de construir un mundo
                     un poco más justo.
                 </p>
-                <p class="narrative-p" uk-scrollspy="cls: uk-animation-fade; delay: 500">
+                <p class="narrative-p">
                     Confiamos en las diferentes miradas para enriquecer este espacio, que estará
                     basado en un recorrido ideológico que abrace el arte en todas sus expresiones y
                     áreas explorativas: desde su nacimiento creativo hasta su reconocimiento público.
@@ -1111,7 +1132,7 @@
         <section class="editorial-section" aria-label="Galería editorial de Red Arte por Igual" style="padding-top: 0;">
             <div class="ed-grid">
                 <!-- Card 2 + 3 UNIFICADAS -->
-                <div class="ed-card ed-unified" uk-scrollspy="cls: uk-animation-slide-left-small; delay: 200"
+                <div class="ed-card ed-unified"
                     style="grid-column: span 2; aspect-ratio: 2 / 1; padding: 0;">
                     <img src="img/artexigual1.webp"
                         alt="Encuentro de artistas internacionales en el festival Red Arte por Igual"
@@ -1119,7 +1140,7 @@
                 </div>
 
                 <!-- Card 4 -->
-                <div class="ed-card card-4 card-gold" uk-scrollspy="cls: uk-animation-slide-right-small; delay: 400">
+                <div class="ed-card card-4 card-gold">
                     <div class="portrait-wrapper">
                         <img src="img/artexigual4.webp"
                             alt="Retrato de un artista participante del programa Red Arte por Igual">
@@ -1131,8 +1152,7 @@
 
         <!-- HORIZONTAL GALLERY (4 Columns) -->
 
-        <section class="horizontal-gallery-section" aria-label="Galería de imágenes de encuentros artísticos"
-            uk-scrollspy="cls: uk-animation-fade; delay: 300">
+        <section class="horizontal-gallery-section" aria-label="Galería de imágenes de encuentros artísticos">
             <div class="h-gallery-container" role="group"
                 aria-label="Galería de fotos de actividades artísticas inclusivas" uk-lightbox="animation: slide">
                 <div class="h-gallery-item">
@@ -1202,20 +1222,19 @@
 
         <!-- SECTION: NOCHES DE Cre-Arte (Focus on Ciclo Puertas) -->
 
-        <section class="noches-clean-section" aria-labelledby="noches-title"
-            uk-scrollspy="cls: uk-animation-fade; delay: 200">
+        <section class="noches-clean-section" aria-labelledby="noches-title">
             <div class="noches-container">
-                <div class="noches-media" uk-scrollspy="cls: uk-animation-slide-left-medium; delay: 300">
+                <div class="noches-media">
                     <div class="viajes-video-wrapper">
                         <img src="img/cicloimg.webp"
                             alt="Artistas presentando su obra en el Ciclo Puertas de Las Noches de Cre-Arte"
                             class="viajes-img">
                     </div>
                 </div>
-                <div class="noches-text" uk-scrollspy="cls: uk-animation-slide-right-medium; delay: 400">
-                    <h2 id="noches-title" class="viajes-h2"
-                        style="font-size: clamp(2rem, 5vw, 2.8rem); margin-bottom: 15px;">Las Noches de
-                        Cre-Arte</h2>
+                <div class="noches-text">
+                    <h2 id="noches-title" class="viajes-h2 olive-title"
+                        style="font-size: clamp(2rem, 5vw, 2.8rem); margin-bottom: 15px;"><span>Las Noches de
+                        Cre-Arte</span></h2>
                     <h3 class="narrative-h3"
                         style="color: var(--text-ash); font-size: 1.2rem; margin-bottom: 35px; letter-spacing: 6px;">Ciclo
                         Puertas
@@ -1353,18 +1372,17 @@
 
         <!-- SECTION: EL BODEGÓN (Modern Clean Layout - Image Right) -->
 
-        <section class="viajes-clean-section" aria-labelledby="bodegon-title" style="padding-top: 0;"
-            uk-scrollspy="cls: uk-animation-fade; delay: 200">
+        <section class="viajes-clean-section" aria-labelledby="bodegon-title" style="padding-top: 0;">
             <div class="viajes-container">
-                <div class="viajes-text" uk-scrollspy="cls: uk-animation-slide-left-medium; delay: 300">
-                    <h2 id="bodegon-title" class="viajes-h2">El Bodegón</h2>
+                <div class="viajes-text">
+                    <h2 id="bodegon-title" class="viajes-h2 olive-title"><span>El Bodegón</span></h2>
                     <p class="viajes-p">
                         El evento "El Bodegón" propone compartir exquisitos platos elaborados por el equipo de cocina,
                         integrado por profesores y alumnos de taller y además contar con la distinguida atención en el
                         salón, de estudiantes que asisten diariamente a nuestro centro cultural.
                     </p>
                 </div>
-                <div class="viajes-media" uk-scrollspy="cls: uk-animation-slide-right-medium; delay: 400">
+                <div class="viajes-media">
                     <div class="viajes-video-wrapper">
                         <img src="img/comida.webp"
                             alt="Platos elaborados por el equipo de cocina del evento El Bodegón de Cre-Arte"
@@ -1376,8 +1394,7 @@
 
         <!-- VIDEO SECTION -->
 
-        <section class="video-section" aria-label="Video sobre El Bodegón"
-            uk-scrollspy="cls: uk-animation-fade; delay: 200" style="padding-top: 40px;">
+        <section class="video-section" aria-label="Video sobre El Bodegón" style="padding-top: 40px;">
             <div class="video-container">
                 <a href="https://www.facebook.com/creartebrc/videos/que-es-el-bodeg%C3%B3n-de-cre-arte-el-bodeg%C3%B3n-es-un-evento-culinario-en-d%C3%B3nde-tanto-l/1226140019332685/?rdid=XjG5j9bChlD78vPE"
                     target="_blank" rel="noopener noreferrer"
@@ -1528,6 +1545,7 @@
             </div>
             <div class="footer-bottom">
                 <div class="footer-copyright">&copy; 2026 Cre-Arte Bariloche. Todos los derechos reservados.</div>
+                <p class="footer-credit">Desarrollado por: <a href="https://wa.me/5492944284493" target="_blank" rel="noopener noreferrer" aria-label="Contactar a sacaraat por WhatsApp">sacaraat</a></p>
             </div>
         </div>
     </footer>
@@ -1602,6 +1620,8 @@
         </div>
     </div>
 
+    <script src="puertas-motion.js"></script>
+    <script src="photo-motion.js"></script>
     <script src="script.js"></script>
 </body>
 

@@ -64,10 +64,13 @@
     margin: 0;
     padding-top: 40px;
     color: #6a1a1c;
-    font-size: 0.92rem;
+    font-size: 0.9rem;
+    font-family: var(--font-site);
+    font-weight: 400;
+    line-height: 1.7;
     text-align: center;
-    text-transform: uppercase;
-    letter-spacing: 4px;
+    text-transform: none;
+    letter-spacing: 0.45px;
 }
 
 .footer-columns {
@@ -155,6 +158,23 @@
 
 .footer-copyright {
     margin: 0;
+}
+
+.footer-credit {
+    margin: 12px 0 0;
+    font-size: 0.85rem;
+    line-height: 1.5;
+}
+
+.footer-credit a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.footer-credit a:hover,
+.footer-credit a:focus-visible {
+    color: #454545;
 }
 
 .footer-donation {

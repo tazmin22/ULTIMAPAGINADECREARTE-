@@ -135,15 +135,14 @@
 
         /* ===== OBRAS GALLERY ===== */
         .obras-container {
-            max-width: none;
-            width: 100%;
+            width: min(100%, 1200px);
             margin: 0 auto;
-            padding: 160px 0 100px;
+            padding: 150px 24px 72px;
         }
 
         .obras-header {
-            margin-bottom: 30px;
-            padding: 0 20px;
+            margin-bottom: 52px;
+            padding: 0;
         }
 
         .obras-kicker {
@@ -155,12 +154,10 @@
             color: rgba(69, 69, 69, 0.55);
         }
 
-        .obras-title {
+        .obras-header .obras-title {
             margin: 0;
-            font-family: var(--font-site);
-            font-size: clamp(2.8rem, 6vw, 5.2rem);
-            line-height: 0.95;
-            letter-spacing: -0.03em;
+            font-size: clamp(2rem, 3.5vw, 3rem);
+            letter-spacing: -0.025em;
         }
 
         .obras-subtitle {
@@ -182,256 +179,155 @@
         }
 
         .catalogos-section {
-            margin-top: 24px;
-            padding: 0 20px !important;
+            --image-radius: 4px;
+            margin-top: 96px;
+            padding: 0 !important;
         }
 
-        .catalogos-kicker {
-            margin: 0 0 8px;
-            font-family: var(--font-site);
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            color: rgba(69, 69, 69, 0.55);
+        .catalogos-header {
+            margin-bottom: 36px;
+            max-width: 680px;
         }
 
         .catalogos-title {
-            margin: 0 0 12px;
-            font-family: var(--font-site);
-            font-size: clamp(1.8rem, 3vw, 2.6rem);
-            line-height: 1;
+            margin: 0 0 24px;
+            font-size: clamp(2rem, 3.5vw, 3rem);
+            letter-spacing: -0.025em;
         }
 
         .catalogos-copy {
-            margin: 0 0 24px;
-            max-width: 760px;
-            font-family: var(--font-site);
-            font-size: 0.95rem;
+            margin: 0;
+            font-size: 0.9rem;
             line-height: 1.7;
             color: var(--text-ash);
         }
 
         .catalogos-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 0;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 18px;
         }
 
         .catalogo-card {
-            padding: 32px 24px;
-            border: 1px solid rgba(0,0,0,0.08);
-            border-right: none;
-            text-decoration: none !important;
-            color: #fff;
-            transition: background 0.3s ease;
             display: flex;
             flex-direction: column;
-            position: relative;
+            min-width: 0;
             overflow: hidden;
-            background: #171717;
-            min-height: 320px;
+            border: 1px solid #deded5;
+            background: #f6f5ef;
+            color: var(--text-ash);
+            text-decoration: none !important;
+            transition: translate 0.35s ease, border-color 0.35s ease;
         }
 
-        .catalogo-card .catalogo-bg {
+        .catalogo-visual {
+            position: relative;
+            aspect-ratio: 4 / 3;
+            overflow: hidden;
+            background: #dcded3;
+        }
+
+        .catalogo-bg {
             position: absolute;
             inset: 0;
             background-size: cover;
             background-position: center;
-            background-repeat: no-repeat;
-            opacity: 0.82;
-            filter: saturate(1.08) contrast(1.08);
-            transition: opacity 0.5s ease, transform 0.5s ease;
-            z-index: 0;
-        }
-
-        .catalogo-card .catalogo-bg::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: transparent;
-            transition: background 0.35s ease;
-        }
-
-        .catalogo-card:hover .catalogo-bg {
-            opacity: 0.96;
-            transform: scale(1.03);
-        }
-
-        .catalogo-card:hover .catalogo-bg::after {
-            background: transparent;
-        }
-
-        .catalogo-card .catalogo-num,
-        .catalogo-card .catalogo-name,
-        .catalogo-card .catalogo-desc,
-        .catalogo-card .catalogo-cta {
-            position: relative;
-            z-index: 1;
-        }
-
-        .catalogo-card::before {
-            content: '';
-            position: absolute;
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            top: -50px;
-            right: -50px;
-            transition: transform 0.5s ease, opacity 0.5s ease;
-            pointer-events: none;
-        }
-
-        .catalogo-card::after {
-            content: '';
-            position: absolute;
-            width: 140px;
-            height: 140px;
-            border-radius: 50%;
-            bottom: -35px;
-            left: -35px;
-            transition: transform 0.5s ease, opacity 0.5s ease;
-            pointer-events: none;
-        }
-
-        /* Card 1 - Batik: bordo */
-        .catalogo-card:nth-child(1)::before { background: rgba(106, 26, 28, 0.2); }
-        .catalogo-card:nth-child(1)::after { background: rgba(106, 26, 28, 0.15); }
-        .catalogo-card:nth-child(1):hover::before { opacity: 0.3; }
-        .catalogo-card:nth-child(1):hover::after { opacity: 0.25; }
-
-        /* Card 2 - Grabado: naranja */
-        .catalogo-card:nth-child(2)::before { background: rgba(230, 92, 0, 0.2); }
-        .catalogo-card:nth-child(2)::after { background: rgba(230, 92, 0, 0.15); }
-        .catalogo-card:nth-child(2):hover::before { opacity: 0.3; }
-        .catalogo-card:nth-child(2):hover::after { opacity: 0.25; }
-
-        /* Card 3 - Pintura: verde oliva */
-        .catalogo-card:nth-child(3)::before { background: rgba(137, 148, 117, 0.25); }
-        .catalogo-card:nth-child(3)::after { background: rgba(137, 148, 117, 0.2); }
-        .catalogo-card:nth-child(3):hover::before { opacity: 0.35; }
-        .catalogo-card:nth-child(3):hover::after { opacity: 0.3; }
-
-        /* Card 4 - Cerámica: terracota */
-        .catalogo-card:nth-child(4)::before { background: rgba(168, 104, 68, 0.24); }
-        .catalogo-card:nth-child(4)::after { background: rgba(168, 104, 68, 0.18); }
-        .catalogo-card:nth-child(4):hover::before { opacity: 0.34; }
-        .catalogo-card:nth-child(4):hover::after { opacity: 0.28; }
-
-        .catalogo-card:hover::before {
-            transform: scale(1.2);
-        }
-
-        .catalogo-card:hover::after {
-            transform: scale(1.15);
-        }
-
-        .catalogo-card:last-child {
-            border-right: 1px solid rgba(0,0,0,0.08);
-        }
-
-        .catalogo-card:hover {
-            background: #101010;
-        }
-
-        .catalogo-card:hover,
-        .catalogo-card:hover .catalogo-name,
-        .catalogo-card:hover .catalogo-desc,
-        .catalogo-card:hover .catalogo-cta {
-            color: #fff;
+            transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
         .catalogo-num {
-            font-family: var(--font-site);
-            font-size: 3.5rem;
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            padding: 6px 10px;
+            background: #fff;
+            color: #454545;
+            font-size: 0.75rem;
+            font-weight: 600;
             line-height: 1;
-            color: rgba(255,255,255,0.25);
-            margin-bottom: 16px;
-            text-shadow: none;
         }
 
-        .catalogo-card:nth-child(1) .catalogo-num { color: rgba(255, 224, 224, 0.4); }
-        .catalogo-card:nth-child(2) .catalogo-num { color: rgba(255, 235, 220, 0.42); }
-        .catalogo-card:nth-child(3) .catalogo-num { color: rgba(236, 244, 224, 0.4); }
-        .catalogo-card:nth-child(4) .catalogo-num { color: rgba(255, 238, 226, 0.42); }
+        .catalogo-body {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            padding: 24px 20px 20px;
+        }
 
-        .catalogo-name {
-            font-family: var(--font-site);
-            font-size: 1.4rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 8px;
-            color: #fff;
-            text-shadow: none;
-            transition: transform 0.3s ease, letter-spacing 0.3s ease, text-shadow 0.3s ease;
+        .catalogo-card .catalogo-name,
+        .catalogo-card .catalogo-name span {
+            margin: 0 0 18px;
+            font-family: var(--font-heading) !important;
+            font-size: 1.25rem;
+            letter-spacing: -0.025em;
+        }
+
+        .catalogo-card .catalogo-name span {
+            margin: 0;
         }
 
         .catalogo-desc {
-            font-family: var(--font-site);
-            font-size: 0.78rem;
-            color: rgba(255,255,255,0.84);
-            line-height: 1.6;
-            margin-bottom: 20px;
-            flex-grow: 1;
-            text-shadow: none;
-            transition: color 0.3s ease, text-shadow 0.3s ease;
+            margin: 0 0 24px;
+            font-size: 0.9rem;
+            line-height: 1.7;
+            color: var(--text-ash);
+            flex: 1;
         }
 
         .catalogo-cta {
-            font-family: var(--font-site);
-            font-size: 0.78rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #fff;
-            display: inline-flex;
+            display: flex;
             align-items: center;
-            gap: 8px;
-            text-decoration: none !important;
-            transition: letter-spacing 0.3s ease, transform 0.3s ease, text-shadow 0.3s ease;
-            text-shadow: none;
+            justify-content: space-between;
+            gap: 12px;
+            padding-top: 16px;
+            border-top: 1px solid #d8dbcc;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #454b37;
         }
 
-        .catalogo-card:hover .catalogo-cta {
-            letter-spacing: 2.5px;
-            transform: translateY(-1px);
-            text-shadow: none;
+        .catalogo-card:hover {
+            translate: 0 -5px;
+            border-color: #87936d;
         }
 
-        .catalogo-card:hover .catalogo-name {
-            letter-spacing: 3px;
-            transform: translateY(-1px);
-            text-shadow: none;
+        .catalogo-card:hover .catalogo-bg {
+            transform: scale(1.04);
         }
 
-        .catalogo-card:hover .catalogo-desc {
-            color: rgba(255,255,255,0.96);
-            text-shadow: none;
+        .catalogo-card:focus-visible {
+            outline: 3px solid #87936d;
+            outline-offset: 4px;
         }
 
-        @media (max-width: 1100px) {
+        @media (max-width: 960px) {
             .catalogos-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .catalogo-card:nth-child(2n) {
-                border-right: 1px solid rgba(0,0,0,0.08);
+                grid-template-columns: repeat(2, minmax(0, 1fr));
             }
         }
 
-        @media (max-width: 900px) {
+        @media (max-width: 560px) {
+            .catalogos-section {
+                margin-top: 64px;
+            }
+
             .catalogos-grid {
                 grid-template-columns: 1fr;
+                gap: 24px;
             }
-            .catalogo-card {
-                border-right: 1px solid rgba(0,0,0,0.08);
-                border-bottom: none;
-            }
-            .catalogo-card:last-child {
-                border-bottom: 1px solid rgba(0,0,0,0.08);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .catalogo-card,
+            .catalogo-bg,
+                .catalogo-card:hover,
+                .catalogo-card:hover .catalogo-bg {
+                transform: none;
             }
         }
 
         .obras-gallery {
+            --image-radius: 0px;
             padding: 0 !important;
             width: 100%;
         }
@@ -439,34 +335,25 @@
         .obras-grid {
             display: grid;
             grid-template-columns: repeat(4, minmax(0, 1fr));
-            grid-auto-rows: 190px;
-            gap: 15px;
-            grid-auto-flow: dense;
+            gap: 6px;
         }
 
         .obra-item {
             position: relative;
-            border-radius: 0;
+            aspect-ratio: 7 / 5;
+            margin: 0;
+            min-width: 0;
             overflow: hidden;
-            background: rgba(255, 255, 255, 0.72);
-            box-shadow: none;
-            transition: transform 0.35s ease, box-shadow 0.35s ease;
-        }
-
-        .obra-item:hover {
-            transform: translateY(-2px);
-            box-shadow: none;
+            background: #f0efeb;
         }
 
         .obra-item a {
             display: block;
             width: 100%;
             height: 100%;
-            position: relative;
-            z-index: 2;
         }
 
-        .obra-img {
+        .obra-item .obra-img {
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -478,65 +365,35 @@
             transform: scale(1.03);
         }
 
-        .w-2 {
-            grid-column: span 2;
+        .obra-item a:focus-visible {
+            outline: 3px solid #87936d;
+            outline-offset: -3px;
         }
 
-        .h-2 {
-            grid-row: span 2;
-        }
-
-        .obra-item::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: transparent;
-            z-index: 1;
-            pointer-events: none;
-        }
-
-        @media (max-width: 1200px) {
+        @media (max-width: 960px) {
             .obras-grid {
                 grid-template-columns: repeat(3, minmax(0, 1fr));
             }
         }
 
-        @media (max-width: 860px) {
+        @media (max-width: 640px) {
+            .obras-container {
+                padding: 120px 16px 48px;
+            }
+
+            .obras-header {
+                margin-bottom: 32px;
+            }
+
             .obras-grid {
                 grid-template-columns: repeat(2, minmax(0, 1fr));
-                grid-auto-rows: 220px;
-            }
-
-            .obras-container {
-                padding-top: 140px;
-            }
-
-            .w-2,
-            .h-2 {
-                grid-column: span 1;
-                grid-row: span 1;
+                gap: 5px;
             }
         }
 
-        @media (max-width: 560px) {
-            .obras-grid {
-                grid-template-columns: 1fr;
-                grid-auto-rows: 260px;
-            }
-
-            .obras-container {
-                padding-left: 0;
-                padding-right: 0;
-            }
-
-            .floating-logo img {
-                height: 78px;
-            }
-
-            .w-2,
-            .h-2 {
-                grid-column: span 1;
-                grid-row: span 1;
+        @media (prefers-reduced-motion: reduce) {
+            .obra-item .obra-img {
+                transition: none;
             }
         }
     </style>
@@ -578,43 +435,60 @@
 
     <main id="contenido-principal" tabindex="-1" class="obras-container" aria-labelledby="obras-title">
         <header class="obras-header">
-            <p class="obras-kicker">Archivo artístico</p>
-            <h1 class="obras-title" id="obras-title">Arte Visual</h1>
-            <p class="obras-subtitle">Una selección de nuestro Arte Visual.</p>
-            <p class="obras-count" id="obras-count"></p>
+            <h1 class="obras-title olive-title" id="obras-title"><span>Arte Visual</span></h1>
         </header>
         <section class="obras-gallery" aria-labelledby="obras-title">
             <div class="obras-grid" id="obras-grid" uk-lightbox="animation: slide"></div>
         </section>
-        <section class="catalogos-section" aria-label="Catálogos de Arte Visual">
+        <section class="catalogos-section" aria-labelledby="catalogos-title">
+            <header class="catalogos-header">
+                <h2 id="catalogos-title" class="catalogos-title olive-title"><span>Nuestros catálogos</span></h2>
+                <p class="catalogos-copy">Recorré las obras y los procesos de nuestros talleres. Elegí una técnica para explorar su catálogo.</p>
+            </header>
             <div class="catalogos-grid">
                 <a class="catalogo-card" href="./PDF/Catalogo%20Batik%20-%20Crearte.pdf" target="_blank" rel="noopener noreferrer" aria-label="Catálogo Batik">
+                    <div class="catalogo-visual">
                     <div class="catalogo-bg" style="background-image: url('./PDF/batik-card.png');" aria-hidden="true"></div>
                     <div class="catalogo-num">01</div>
-                    <div class="catalogo-name">Batik</div>
+                    </div>
+                    <div class="catalogo-body">
+                    <h3 class="catalogo-name olive-title"><span>Batik</span></h3>
                     <div class="catalogo-desc">Explorá las técnicas de batik y el Arte Visual textil creado por los artistas de Cre-Arte.</div>
-                    <span class="catalogo-cta">Abrir catálogo →</span>
+                    <span class="catalogo-cta">Explorar catálogo</span>
+                    </div>
                 </a>
                 <a class="catalogo-card" href="./PDF/Obras%20Grabado.pdf" target="_blank" rel="noopener noreferrer" aria-label="Catálogo Grabado">
+                    <div class="catalogo-visual">
                     <div class="catalogo-bg" style="background-image: url('./PDF/grabado-card.png');" aria-hidden="true"></div>
                     <div class="catalogo-num">02</div>
-                    <div class="catalogo-name">Grabado</div>
+                    </div>
+                    <div class="catalogo-body">
+                    <h3 class="catalogo-name olive-title"><span>Grabado</span></h3>
                     <div class="catalogo-desc">Descubrí la colección de grabados que reflejan la mirada artística de nuestros estudiantes.</div>
-                    <span class="catalogo-cta">Abrir catálogo →</span>
+                    <span class="catalogo-cta">Explorar catálogo</span>
+                    </div>
                 </a>
                 <a class="catalogo-card" href="./PDF/Catalogo%20Pintura-%20Cre-Arte%202025.pdf" target="_blank" rel="noopener noreferrer" aria-label="Catálogo Pintura">
+                    <div class="catalogo-visual">
                     <div class="catalogo-bg" style="background-image: url('./PDF/pintura.png');" aria-hidden="true"></div>
                     <div class="catalogo-num">03</div>
-                    <div class="catalogo-name">Pintura</div>
+                    </div>
+                    <div class="catalogo-body">
+                    <h3 class="catalogo-name olive-title"><span>Pintura</span></h3>
                     <div class="catalogo-desc">Recorré el Arte Visual pictórico más reciente del taller de pintura de Cre-Arte.</div>
-                    <span class="catalogo-cta">Abrir catálogo →</span>
+                    <span class="catalogo-cta">Explorar catálogo</span>
+                    </div>
                 </a>
                 <a class="catalogo-card" href="./PDF/Catalogo%20Ceramica-%20Crearte.pdf" target="_blank" rel="noopener noreferrer" aria-label="Catálogo Cerámica">
+                    <div class="catalogo-visual">
                     <div class="catalogo-bg" style="background-image: url('./PDF/ceramica.png');" aria-hidden="true"></div>
                     <div class="catalogo-num">04</div>
-                    <div class="catalogo-name">Cerámica</div>
+                    </div>
+                    <div class="catalogo-body">
+                    <h3 class="catalogo-name olive-title"><span>Cerámica</span></h3>
                     <div class="catalogo-desc">Explorá el nuevo catálogo de cerámica con piezas y procesos del taller de Cre-Arte.</div>
-                    <span class="catalogo-cta">Abrir catálogo →</span>
+                    <span class="catalogo-cta">Explorar catálogo</span>
+                    </div>
                 </a>
             </div>
         </section>
@@ -669,6 +543,7 @@
             </div>
             <div class="footer-bottom">
                 <div class="footer-copyright">&copy; 2026 Cre-Arte Bariloche. Todos los derechos reservados.</div>
+                <p class="footer-credit">Desarrollado por: <a href="https://wa.me/5492944284493" target="_blank" rel="noopener noreferrer" aria-label="Contactar a sacaraat por WhatsApp">sacaraat</a></p>
             </div>
         </div>
     </footer>
@@ -681,40 +556,17 @@
 
         const obraFiles = Array.isArray(window.OBRAS_FILES) ? window.OBRAS_FILES : [];
         const obrasGrid = document.getElementById('obras-grid');
-        const obrasCount = document.getElementById('obras-count');
         const stripExtension = (name) => name.replace(/\.[^.]+$/, '');
         const hasMeaningfulCaption = (name) => {
             const baseName = stripExtension(name).trim();
             return !/^(img\d+|dsc[_-]?\d+)$/i.test(baseName);
         };
 
-        if (obrasCount) {
-            obrasCount.textContent = `${obraFiles.length} piezas de Arte Visual`;
-        }
-
         if (obrasGrid) {
             const fragment = document.createDocumentFragment();
-            const sizePattern = [
-                ['w-2', 'h-2'],
-                ['h-2'],
-                ['w-2'],
-                [],
-                [],
-                ['h-2'],
-                ['w-2'],
-                [],
-                ['h-2'],
-                ['w-2', 'h-2'],
-                [],
-                [],
-            ];
-
-            obraFiles.forEach((file, index) => {
+            obraFiles.forEach((file) => {
                 const item = document.createElement('div');
                 item.className = 'obra-item';
-                sizePattern[index % sizePattern.length].forEach((className) => {
-                    item.classList.add(className);
-                });
 
                 const link = document.createElement('a');
                 const imagePath = encodeURI(`./obras/${file}`);
